@@ -16,6 +16,7 @@ class Gamegrid(object):
     grid_x = 10
     grid_y = 10
     grid_margin = 0
+    play= False
 
     def grid_pane_size_x(self):
         return self.grid_width * self.grid_x + (self.grid_x+2) * self.margin                                        
@@ -23,17 +24,34 @@ class Gamegrid(object):
     def grid_pane_size_y(self):
         return self.grid_height * self.grid_y + (self.grid_y+2) * self.margin
         
-    def drawCommandos(self):
+    def draw_actionbar(self):
+        """ 
+        Draws the action bar
+        """
+        myfont = pygame.font.SysFont("monospace", 15)
         path=os.path.join(os.path.dirname(__file__), 'play.png')
         image = pygame.image.load(path)
         image = pygame.transform.scale(image, (20, 20))
-        pygame.screen.blit(image,(0,(self.grid_pane_size_y())))
-        path=os.path.join(os.path.dirname(__file__), 'pause.png')
+        pygame.screen.blit(image,(5,(self.grid_pane_size_y()+5)))
+        label = myfont.render("Act", 1, (0,0,0))
+        pygame.screen.blit(label, (30, (self.grid_pane_size_y()+5)))
+        path=os.path.join(os.path.dirname(__file__), 'run.png')
         image = pygame.image.load(path)
         image = pygame.transform.scale(image, (20, 20))
-        pygame.screen.blit(image,(20,self.grid_pane_size_y()))
+        pygame.screen.blit(image,(60,self.grid_pane_size_y()+5))
+        label = myfont.render("Run", 1, (0,0,0))
+        pygame.screen.blit(label, (85, (self.grid_pane_size_y()+5)))
+        path=os.path.join(os.path.dirname(__file__), 'reset.png')
+        image = pygame.image.load(path)
+        image = pygame.transform.scale(image, (20, 20))
+        pygame.screen.blit(image,(120,self.grid_pane_size_y()+5))
+        label = myfont.render("Reset", 1, (0,0,0))
+        pygame.screen.blit(label, (145, (self.grid_pane_size_y()+5)))
         
-    def drawGrid(self, grid):
+    def draw_grid(self, grid):
+        """ 
+        Draws grid with all actors in it.
+        """
         pygame.screen.fill((255,255,255))
         # Draw the grid
         for row in range(self.grid_x):
@@ -52,12 +70,19 @@ class Gamegrid(object):
                         pygame.screen.blit(actor.image,(cell_left,cell_top))
                 
 
-    def addActor(self, actor):
+    def add_actor(self, actor):
+        """ 
+        Adds an actor to the grid. 
+        The method is called when a new actor is created.
+        """
         logging.info("Actor hinzugefügt: "+ actor.title)
         self.actors.append(actor)
         logging.info(self.actors)
 
     def get_actors_at_location(self, location):
+        """ 
+        Get all actors at a specific location
+        """
         actors_at_location = []
         for actor in self.actors:
             if actor.get_location() == location:
@@ -65,6 +90,9 @@ class Gamegrid(object):
         return actors_at_location
     
     def get_actors_at_location_by_class(self, location,class_name):
+        """ 
+        Geta all actors of a specific class at a specific location
+        """
         actors_at_location = ()
         for actor in self.actors:
             if actor.get_location == location and actor.__class__.__name__ == class_name:
@@ -73,33 +101,38 @@ class Gamegrid(object):
 
     def __init__(self, title, grid_x, grid_y,
                  grid_width, grid_height, margin=0):
+        """ 
+        Initialises the grid
+        """
+        
+        # Init model
         self.margin = margin
         self.grid_width = grid_width
         self.grid_height = grid_height
         self.grid_x = grid_x
         self.grid_y = grid_y
-        """
-        Initialisiert das Programm
-        """
-        # Erstelle das Modell
         for row in range(grid_x):
             self.grid.append([])
             for column in range(grid_y):
                 self.grid[row].append(0)
-        # Erstelle die GUI
+        # Init gui
         x_res = self.grid_pane_size_x()
-        y_res = self.grid_pane_size_y()+20
-
+        y_res = self.grid_pane_size_y()+30
+        
         WINDOW_SIZE = [x_res, y_res]
         pygame.screen = pygame.display.set_mode(WINDOW_SIZE)
         pygame.display.set_caption(title)
+        pygame.init()
         
     def act(self, key, click_location):
+        """ 
+        Should be overwritten in sub-classes
+        """
         pass
 
     def go(self):
         """
-        Startet die Mainloop
+        Starts the mainloop        
         """
         clock = pygame.time.Clock()
 
@@ -109,29 +142,41 @@ class Gamegrid(object):
                 click_loc=None
                 if event.type == pygame.QUIT:  # If user clicked close
                     self.done = True
-                if event.type == pygame.MOUSEBUTTONDOWN:
+                elif event.type == pygame.MOUSEBUTTONDOWN:
                     pos = pygame.mouse.get_pos()
                     if pos[0] < self.grid_pane_size_x() and pos[1] < self.grid_pane_size_y():
                         column = pos[0] // (self.grid_width + self.grid_margin)
                         row = pos[1] // (self.grid_height + self.grid_margin)
                         click_loc=[column,row]
                         logging.info("Mouseclick at grid-position:"+str(click_loc))
-                    elif pos[0] >= self.grid_pane_size_x() and pos[1] < 20:
-                        self.play=True
-                        logging.info("Play")
-                    else:
+                    elif pos[1] >= self.grid_pane_size_y() and pos[0] >5 and pos[0]<30:
                         self.play=False
-                        logging.info("Pause")
-                if event.type ==pygame.KEYDOWN:
+                        logging.info("Act")
+                        if self.play:
+                            self.act(key,click_loc)
+                            for actor in self.actors:
+                                actor.act(key,click_loc)
+                    elif pos[1] >= self.grid_pane_size_y() and pos[0] >60 and pos[0]<120:
+                         if self.play==True:
+                            self.play=False
+                            logging.info("Stop")
+                         else:
+                             self.play=True
+                             logging.info("Play")
+                    elif pos[1] >= self.grid_pane_size_y() and pos[0] >120 and pos[0]<180:
+                        self.play=False
+                        logging.info("Reset")
+                elif event.type ==pygame.KEYDOWN:
                     key=event.key
                     logging.info("key pressed")
+            if self.play:
                 self.act(key,click_loc)
                 for actor in self.actors:
                     actor.act(key,click_loc)
-                self.drawGrid(self.grid)
-                self.drawCommandos()
-                clock.tick(60)
-                pygame.display.flip()
+            self.draw_grid(self.grid)
+            self.draw_actionbar()
+            clock.tick(5)
+            pygame.display.flip()
         pygame.quit()
 
 
@@ -146,7 +191,7 @@ class Actor(object):
     def __init__(self, title, x_pos, y_pos, grid):
         self.location=[x_pos,y_pos]
         self.title = title
-        grid.addActor(self)
+        grid.add_actor(self)
         self.grid = grid
         if self.img_path!= None:
             image = pygame.image.load(self.img_path)
@@ -244,7 +289,6 @@ class Actor(object):
 def main():
     logging.basicConfig(format="%(message)s",level=logging.DEBUG,stream=sys.stdout)
     gg = Gamegrid("First Game", 16, 16, 16, 16)
-    gg.addActor(Actor("test", 4, 4, gg))
     gg.go()
    
 
