@@ -4,14 +4,10 @@ import importlib
 importlib.reload(logging)
 import sys
 import os
-
+import math
 
 
 class Gamegrid(object):
-    BLACK = (0, 0, 0)
-    WHITE = (255, 255, 255)
-    GREEN = (0, 255, 0)
-    RED = (255, 0, 0)
     grid = []
     actors = []
     done = False
@@ -20,38 +16,34 @@ class Gamegrid(object):
     grid_x = 10
     grid_y = 10
     grid_margin = 0
-    background = BLACK
 
-    def grid_max_x(self):
+    def grid_pane_size_x(self):
         return self.grid_width * self.grid_x + (self.grid_x+2) * self.margin                                        
 
-    def grid_max_y(self):
+    def grid_pane_size_y(self):
         return self.grid_height * self.grid_y + (self.grid_y+2) * self.margin
         
     def drawCommandos(self):
         path=os.path.join(os.path.dirname(__file__), 'play.png')
         image = pygame.image.load(path)
         image = pygame.transform.scale(image, (20, 20))
-        pygame.screen.blit(image,(0,(self.grid_max_y())))
+        pygame.screen.blit(image,(0,(self.grid_pane_size_y())))
         path=os.path.join(os.path.dirname(__file__), 'pause.png')
         image = pygame.image.load(path)
         image = pygame.transform.scale(image, (20, 20))
-        pygame.screen.blit(image,(20,self.grid_max_y()))
+        pygame.screen.blit(image,(20,self.grid_pane_size_y()))
         
     def drawGrid(self, grid):
-        pygame.screen.fill(self.WHITE)
+        pygame.screen.fill((255,255,255))
         # Draw the grid
         for row in range(self.grid_x):
             for column in range(self.grid_y):
                 grid_location=[column,row]
-                color = self.WHITE
-                if grid[row][column] == 1:
-                    color = self.GREEN
                 cell_left = (self.grid_margin + self.grid_width) * column
                 cell_top = (self.grid_margin + self.grid_height) * row + self.grid_margin
                 cell_width = self.grid_width
                 cell_height = self.grid_height
-                pygame.draw.rect(pygame.screen,color,
+                pygame.draw.rect(pygame.screen,(255,255,255),
                                 [cell_left, cell_top,cell_height,cell_width])
                 # Draw Actors at actual position
                 actors_at_location = self.get_actors_at_location(grid_location)
@@ -95,8 +87,8 @@ class Gamegrid(object):
             for column in range(grid_y):
                 self.grid[row].append(0)
         # Erstelle die GUI
-        x_res = self.grid_max_x()
-        y_res = self.grid_max_y()+20
+        x_res = self.grid_pane_size_x()
+        y_res = self.grid_pane_size_y()+20
 
         WINDOW_SIZE = [x_res, y_res]
         pygame.screen = pygame.display.set_mode(WINDOW_SIZE)
@@ -119,12 +111,12 @@ class Gamegrid(object):
                     self.done = True
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     pos = pygame.mouse.get_pos()
-                    if pos[0] < self.grid_max_x() and pos[1] < self.grid_max_y():
+                    if pos[0] < self.grid_pane_size_x() and pos[1] < self.grid_pane_size_y():
                         column = pos[0] // (self.grid_width + self.grid_margin)
                         row = pos[1] // (self.grid_height + self.grid_margin)
                         click_loc=[column,row]
                         logging.info("Mouseclick at grid-position:"+str(click_loc))
-                    elif pos[0] >= self.grid_max_x() and pos[1] < 20:
+                    elif pos[0] >= self.grid_pane_size_x() and pos[1] < 20:
                         self.play=True
                         logging.info("Play")
                     else:
@@ -144,13 +136,8 @@ class Gamegrid(object):
 
 
 class Actor(object):
-    BLACK = (0, 0, 0)
-    WHITE = (255, 255, 255)
-    GREEN = (0, 255, 0)
-    RED = (255, 0, 0)
     title = ""
     location = [0, 0]
-    color = RED
     direction = 0
     grid = None
     image=None
@@ -177,14 +164,14 @@ class Actor(object):
     def setY(self, y):
         self.location[1] = y
 
-    def turn_right(self):
+    def turn_left(self):
         if (self.direction < 270):
             self.direction = self.direction+90
         else:
             self.direction = 0
         logging.info("Richtung:"+str(self.direction))
 
-    def turn_left(self):
+    def turn_right(self):
         if (self.direction > 0):
             self.direction = self.direction-90
         else:
@@ -196,16 +183,27 @@ class Actor(object):
         if  (self.is_location_in_grid(target)):
             self.location = target
         logging.info("self"+str(self.location)+", target"+str(target))
+
+    def move_up(self):
+        self.direction=90
+        self.move_forward()
+
+    def move_right(self):
+        self.direction=0
+        self.move_forward()
+
+    def move_left(self):
+        self.direction=180
+        self.move_forward()
+
+    def move_down(self):
+        self.direction=270
+        self.move_forward()
         
     def get_target_location(self):
-        if self.direction == 0 :
-            return [self.location[0]+1,self.location[1]]
-        elif self.direction == 90 :
-            return [self.location[0],self.location[1]+1]
-        elif self.direction == 180 :
-            return [self.location[0]-1,self.location[1]]
-        if self.direction == 270 :
-            return [self.location[0],self.location[1]-1] 
+        loc_x=round(self.location[0]+math.cos(math.radians(self.direction)))
+        loc_y=round(self.location[1]-math.sin(math.radians(self.direction)))
+        return  [loc_x,loc_y]
         
     def is_location_in_grid(self,location):
         if location[0]>self.grid.grid_x-1:
