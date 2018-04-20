@@ -1,13 +1,12 @@
-Metadata-Version: 1.1
+Metadata-Version: 2.1
 Name: gamegridp
-Version: 0.2.1.6
+Version: 0.2.1.8
 Summary: A gamegrid clone for python
 Home-page: https://github.com/asbl/gamegridp
 Author: Andreas Siebel
 Author-email: andreas.siebel@it-teaching.de
 License: MIT
 Download-URL: https://github.com/asbl/gamegridp/archive/master.zip
-Description-Content-Type: text/markdown
 Description: # gamegridp
         
         Gamegridp ist ein Klon von gamegrid/greenfoot für Python. 
@@ -17,3 +16,4 @@ Description: # gamegridp
 Keywords: game,education
 Platform: UNKNOWN
 Classifier: Development Status :: 3 - Alpha
+Description-Content-Type: text/markdown
