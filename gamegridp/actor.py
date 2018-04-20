@@ -5,25 +5,26 @@ Created on Mon Apr 16 21:50:48 2018
 @author: asieb
 """
 
-import pygame
+
 import logging
 import math
+import pygame
 import sys
+
 
 class Actor(object):
     title = ""
-    location = (0, 0)
-    direction = 0
     grid = None
-    surface=None
-    is_rotatable=False
-    logging=None
+    surface = None
+    is_rotatable = False
+    logging = None
 
     def __init__(self, title, grid, location, heading='E', img_path=None, img_action="scale"):
         self.log()
         self.title = title
         self.grid=grid
         self.location=location
+        self.direction=0
         cell_size=self.grid.cell_size
         # Set Actor image
         cell_size=(grid.cell_size, grid.cell_size)
@@ -45,11 +46,10 @@ class Actor(object):
         except ValueError:
             self.logging.error("Achtung.... kein Grid angegeben! ")
         self.logging.debug("Actor "+title+" wurde initialisiert")
-        
-        
+
+
     def log(self):
         self.logging = logging.getLogger('actor-'+self.title)
-        self.logging.info('logged from main module')
 
     @property
     def location(self):
@@ -57,13 +57,24 @@ class Actor(object):
 
     @location.setter
     def location(self, value):
-        self.logging.debug("Location set via logger")
-        self._location=value
+        self.logging.debug("Location set")
+        self._location = value
         self.grid.update(act_disabled=True)
-        
-    def listen(self, key, data ):
+
+    @property
+    def direction(self):
+        """ Gets the direction of actor """
+        return self._direction
+
+    @direction.setter
+    def direction(self, value):
+        self.logging.debug("Direction set"+ str(value))
+        self._direction = value
+        self.grid.update(act_disabled=True)
+
+    def listen(self, key, data):
         pass
-    
+
     def act(self):
         pass
 
@@ -72,9 +83,9 @@ class Actor(object):
 
     def setY(self, y):
         self.location[1] = y
-        
+
     def set_location(self, location):
-        self.location=location
+        self.location = location
 
     def turn_left(self):
         if (self.direction < 270):
@@ -91,11 +102,11 @@ class Actor(object):
         self.logging.debug("Richtung:"+str(self.direction))
 
     def move(self):
-        target=self.look_forward()
-        if  (self.is_location_in_grid(target)):
+        target = self.look_forward()
+        if (self.is_location_in_grid(target)):
             self.location = target
         self.logging.debug("self"+str(self.location)+", target"+str(target))
-        
+
     def set_direction(self, direction):
         self.surface = pygame.transform.rotate(self.surface, -self.direction)
         self.surface = pygame.transform.rotate(self.surface, direction)
@@ -116,20 +127,20 @@ class Actor(object):
     def move_down(self):
         self.set_direction(270)
         self.move()
-        
+
     def look_forward(self):
-        loc_x=round(self.location[0]+math.cos(math.radians(self.direction)))
-        loc_y=round(self.location[1]-math.sin(math.radians(self.direction)))
-        return  [loc_x,loc_y]
-        
+        logging.debug("Location:"+ str(self.location)+ "Direction" + str(self.direction))
+        loc_x = round(self.location[0] + math.cos(math.radians(self.direction)))
+        loc_y = round(self.location[1] - math.sin(math.radians(self.direction)))
+        return loc_x, loc_y
+
     def is_move_valid(self):
         if self.is_location_in_grid(self.look_forward()):
             return True
         else:
             return False
-        
-        
-    def is_location_in_grid(self,location):
+
+    def is_location_in_grid(self, location):
         if location[0] > self.grid.grid_columns - 1:
             return False
         elif location[1] > self.grid.grid_rows - 1:
@@ -138,7 +149,7 @@ class Actor(object):
             return False
         else :
             return True
-        
+
     def get_location(self):
         return self.location
 
@@ -161,10 +172,10 @@ class Actor(object):
             return False
         else:
             return True
-        
+
     def mouse_pressed(self,location):
         pass
-    
+
     def draw(self):
         if self.hasImage():
             column=self.location[0]
@@ -175,24 +186,21 @@ class Actor(object):
                 overlapping_x=(self.surface.get_width()- cell_size)/2
             else:
                 overlapping_x = 0
-                
+
             if self.surface.get_height() > cell_size:
                 overlapping_y=(self.surface.get_height()- cell_size)/2
             else:
                 overlapping_y = 0
-            
+
             cell_left = cell_margin + (cell_margin + cell_size) * column - overlapping_x
             cell_top =  cell_margin + (cell_margin + cell_size) * row - overlapping_y
             pygame.screen.blit(self.surface,(cell_left,cell_top))
-            
-    def __del__(self):
-        self.close()
 
 def main():
     import gamegrid
     grid=gamegrid.GameGrid("My Grid", cell_size=64, columns=4, rows=4,margin=10)
     grid.log()
-    python=Actor("Python",grid, (4,4), img_path="python.jpg")
+    python=Actor("Python",grid, (4,4), )
     grid.show()
 
 
