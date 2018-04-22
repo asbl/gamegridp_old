@@ -1,8 +1,10 @@
 import sys
-import gamegridp
+from gamegridp import actor
+from gamegridp import keys
+from gamegridp import gamegrid
 
 
-class MyGrid(gamegridp.GameGrid):
+class MyGrid(gamegrid.GameGrid):
     """My Grid with custom setup method."""
 
     def setup(self):
@@ -10,8 +12,7 @@ class MyGrid(gamegridp.GameGrid):
                          img_action="do_nothing")
 
 
-
-class Player(gamegridp.Actor):
+class Player(actor.Actor):
     def __init(self):
         super().__init()
 
