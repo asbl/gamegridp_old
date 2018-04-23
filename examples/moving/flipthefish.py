@@ -1,4 +1,3 @@
-import sys
 from gamegridp import actor
 from gamegridp import keys
 from gamegridp import gamegrid

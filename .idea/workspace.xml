@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="foundation for animations">
-      <change beforePath="$PROJECT_DIR$/examples/pixelbased/movinganactor.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/pixelbased/movinganactor.py" afterDir="false" />
+    <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/examples/moving/roboanimation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/basics/basicgridobject.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/basics/basicgridobject.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/moving/flipthefish.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/moving/flipthefish.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/pixelbased/roboracing.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/pixelbased/roboracing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamegridp/gamegrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegrid.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/PKG-INFO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/SOURCES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/SOURCES.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/top_level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/top_level.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamegridp/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/setup.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,10 +26,10 @@
       <file leaf-file-name="flipthefish.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/moving/flipthefish.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+            <state relative-caret-position="294">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#1#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -41,27 +50,56 @@
       <file leaf-file-name="actor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gamegridp/actor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="280" selection-start-line="280" selection-end-line="280" />
+            <state relative-caret-position="-5078">
+              <caret line="67" column="16" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="16" />
               <folding>
                 <element signature="e#2397#2441#2" expanded="true" />
                 <element signature="e#2398#2553#1" expanded="true" />
+                <element signature="e#3791#3839#1" expanded="true" />
                 <element signature="e#7713#7812#1" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scratch.py" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="roboanimation.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/moving/roboanimation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="16" column="62" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="upload to pypi" pinned="false" current-in-tab="true">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/upload to pypi">
+      <file leaf-file-name="roboracing.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/pixelbased/roboracing.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="18" column="19" selection-end-line="29" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="basicgridobject.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/basics/basicgridobject.py">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret selection-end-column="21" />
+              <caret selection-end-line="7" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="basicbackgrounds.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/examples/basics/basicbackgrounds.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -75,25 +113,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="movinganactor.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/pixelbased/movinganactor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="gamegrid.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gamegridp/gamegrid.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2915">
-              <caret line="394" lean-forward="true" selection-start-line="394" selection-end-line="394" />
+            <state relative-caret-position="-4371">
+              <caret line="189" column="27" selection-start-line="189" selection-start-column="27" selection-end-line="189" selection-end-column="27" />
               <folding>
-                <element signature="e#909#953#1" expanded="true" />
                 <element signature="e#4465#4509#1" expanded="true" />
                 <element signature="e#6519#6576#1" expanded="true" />
                 <element signature="e#7230#7338#1" expanded="true" />
@@ -114,6 +139,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>setup</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -124,18 +154,22 @@
         <option value="$PROJECT_DIR$/examples/debug/debug_script2.py" />
         <option value="$PROJECT_DIR$/gamegridp/__init__.py" />
         <option value="$PROJECT_DIR$/examples/debug/debug_script.py" />
-        <option value="$PROJECT_DIR$/gamegridp/gamegrid.py" />
-        <option value="$PROJECT_DIR$/examples/moving/flipthefish.py" />
         <option value="$PROJECT_DIR$/examples/pixelbased/movinganactor.py" />
+        <option value="$PROJECT_DIR$/examples/moving/flipthefish.py" />
+        <option value="$PROJECT_DIR$/examples/moving/animation.py" />
+        <option value="$PROJECT_DIR$/examples/pixelbased/roboracing.py" />
         <option value="$PROJECT_DIR$/gamegridp/actor.py" />
+        <option value="$PROJECT_DIR$/gamegridp/gamegrid.py" />
+        <option value="$PROJECT_DIR$/examples/moving/roboanimation.py" />
+        <option value="$PROJECT_DIR$/examples/basics/basicgridobject.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1864" />
-    <option name="y" value="-157" />
-    <option name="width" value="1533" />
-    <option name="height" value="970" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1098" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -207,7 +241,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/examples/pixelbased/roboracing.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/examples/basics/basicgridobject.py" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -221,7 +255,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.roboracing">
+  <component name="RunManager" selected="Python.baiscfirsprogram">
+    <configuration name="baiscfirsprogram" type="PythonConfigurationType" factoryName="Python">
+      <module name="gamegridp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files\Python36\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples/basics" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/basics/basicgridobject.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="basicbackgrund" type="PythonConfigurationType" factoryName="Python">
       <module name="gamegridp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -315,6 +367,7 @@
     <list>
       <item itemvalue="Python.flipthefish" />
       <item itemvalue="Python.roboracing" />
+      <item itemvalue="Python.baiscfirsprogram" />
       <item itemvalue="Python.basicbackgrund" />
       <item itemvalue="Python.basicframework" />
       <item itemvalue="Python.pixel_movinganactor" />
@@ -345,17 +398,24 @@
       <option name="project" value="LOCAL" />
       <updated>1524421913713</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="foundation for animations">
+      <created>1524424042855</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1524424042856</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1688" y="-153" width="1696" height="1026" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22857143" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33150384" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.41655174" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -414,45 +474,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/moving/flipthefish.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/debug/debug_script.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/debug/debug_script2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="33" selection-start-line="33" selection-end-line="34" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegrid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2915">
-          <caret line="394" lean-forward="true" selection-start-line="394" selection-end-line="394" />
-          <folding>
-            <element signature="e#909#953#1" expanded="true" />
-            <element signature="e#4465#4509#1" expanded="true" />
-            <element signature="e#6519#6576#1" expanded="true" />
-            <element signature="e#7230#7338#1" expanded="true" />
-            <element signature="e#7635#7696#1" expanded="true" />
-            <element signature="e#7973#8055#1" expanded="true" />
-            <element signature="e#8323#8383#1" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -467,25 +494,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/actor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="280" selection-start-line="280" selection-end-line="280" />
-          <folding>
-            <element signature="e#2397#2441#2" expanded="true" />
-            <element signature="e#2398#2553#1" expanded="true" />
-            <element signature="e#7713#7812#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/upload to pypi">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/moving/flipthefish.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#1#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/debug/debug_script2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="33" selection-start-line="33" selection-end-line="34" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/moving/roboanimation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="62" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/gamegrid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4371">
+          <caret line="189" column="27" selection-start-line="189" selection-start-column="27" selection-end-line="189" selection-end-column="27" />
+          <folding>
+            <element signature="e#4465#4509#1" expanded="true" />
+            <element signature="e#6519#6576#1" expanded="true" />
+            <element signature="e#7230#7338#1" expanded="true" />
+            <element signature="e#7635#7696#1" expanded="true" />
+            <element signature="e#7973#8055#1" expanded="true" />
+            <element signature="e#8323#8383#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/actor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5078">
+          <caret line="67" column="16" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="16" />
+          <folding>
+            <element signature="e#2397#2441#2" expanded="true" />
+            <element signature="e#2398#2553#1" expanded="true" />
+            <element signature="e#3791#3839#1" expanded="true" />
+            <element signature="e#7713#7812#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/pixelbased/roboracing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="18" column="19" selection-end-line="29" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/basics/basicgridobject.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret selection-end-column="21" />
+          <caret selection-end-line="7" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/basics/basicbackgrounds.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
         </state>
       </provider>
     </entry>

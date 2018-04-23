@@ -2,16 +2,8 @@ MANIFEST.in
 README.md
 setup.cfg
 setup.py
-gamegridp/__init__.py
-gamegridp/actor.py
-gamegridp/gamegrid.py
-gamegridp/keys.py
 gamegridp.egg-info/PKG-INFO
 gamegridp.egg-info/SOURCES.txt
 gamegridp.egg-info/dependency_links.txt
 gamegridp.egg-info/requires.txt
 gamegridp.egg-info/top_level.txt
-gamegridp/data/pause.png
-gamegridp/data/play.png
-gamegridp/data/reset.png
-gamegridp/data/run.png

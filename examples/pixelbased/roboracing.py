@@ -6,9 +6,8 @@ class MyGrid(gamegrid.GameGrid):
     """My Grid with custom setup method."""
 
     def setup(self):
-        player1 = Player("Player", grid=self, location=(20, 20), img_path="images/robo_green.png",
-                         img_action="do_nothing")
-        player1.image_transform("scale", (40, 40))
+        player1 = Player("Player", grid=self, location=(20, 20), img_action="do_nothing")
+        player1.image_add("images/robo_green.png", "scale", (40, 40))
 
 
 class Player(actor.Actor):

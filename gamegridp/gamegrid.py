@@ -35,11 +35,17 @@ class GameGrid(object):
     draw_queue = [] # a queue of rectangles
     key_pressed = False
     key=0
+    frame = 0
 
     def __init__(self, title, cell_size=32,
                  columns=8, rows=8, margin=0,
                  background_color=(255, 255, 255), cell_color=(0, 0, 0),
                  img_path=None, img_action="scale", log=True, speed=60):
+        # log
+        if log is True:
+            self.log()
+
+
         """
         Initialises the grid
         """
@@ -50,7 +56,8 @@ class GameGrid(object):
         self.cell_size = cell_size
         self.background_color = background_color
         self.cell_color = cell_color
-        self.speed = speed
+        self.max_frames = speed
+        self._frame=0
 
         #grid and grid-dimensions
         for row in range(rows):
@@ -62,7 +69,7 @@ class GameGrid(object):
         y_res = self.grid_height + 30
         WINDOW_SIZE = (x_res, y_res)
         self.resolution = x_res,y_res
-
+        self.logging.info("Created windows of dimension: (" + str(x_res) + "," + str(y_res) + ")")
         # Init pygame
         pygame.screen = pygame.display.set_mode(WINDOW_SIZE)
         pygame.display.set_caption(title)
@@ -113,10 +120,8 @@ class GameGrid(object):
                              [0, i, self.grid_width, self.cell_margin])
                 i += self.cell_size + self.cell_margin
 
-        # log
-        if log is True:
-            self.log()
-        self.logging.info("Created windows of dimension: (" + str(x_res) + "," + str(y_res) + ")")
+
+        self.setup()
 
         # Draw_Qeue
         self.draw_queue.append(pygame.Rect(0, 0, x_res, y_res))
@@ -182,7 +187,19 @@ class GameGrid(object):
 
 
         for actor in self.actors:
+            actor.animate()
             actor.draw()
+
+    @property
+    def frame(self):
+        return self._frame
+
+    @frame.setter
+    def frame(self, value):
+        self.logging.info("Frame:"+str(self.frame))
+        self._frame = value
+        if self._frame == self.max_frames:
+            self.frame=0
 
     @property
     def grid_width(self):
@@ -336,12 +353,12 @@ class GameGrid(object):
         '''' Part 3: Draw actors'''
         self.draw()
         self.logging.debug(str(self.clock.tick()))
-        self.clock.tick(self.speed)
+        self.clock.tick(self.max_frames)
+        self.frame = self.frame + 1
         pygame.display.update(self.draw_queue)
         self.draw_queue=[]
 
     def show(self):
-        self.setup()
         """
         Starts the mainloop
         """
