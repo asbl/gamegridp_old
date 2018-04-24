@@ -7,6 +7,7 @@ Created on Mon Apr 16 21:49:29 2018
 import logging
 import os
 import sys
+
 import pygame
 
 
@@ -16,11 +17,8 @@ class GameGrid(object):
     grid = []
     actors = []
     done = False
-    cell_size = 16
     grid_rows = 0
     grid_columns = 0
-    grid_height = 0
-    grid_width = 0
     resolution=()
     running = False
     cell_margin = 0
@@ -35,7 +33,7 @@ class GameGrid(object):
     draw_queue = [] # a queue of rectangles
     key_pressed = False
     key=0
-    frame = 0
+    _frame = 0
 
     def __init__(self, title, cell_size=32,
                  columns=8, rows=8, margin=0,
@@ -67,9 +65,9 @@ class GameGrid(object):
         # Init gui
         x_res = self.grid_width
         y_res = self.grid_height + 30
-        WINDOW_SIZE = (x_res, y_res)
-        self.resolution = x_res,y_res
-        self.logging.info("Created windows of dimension: (" + str(x_res) + "," + str(y_res) + ")")
+        self.resolution =x_res,y_res
+        WINDOW_SIZE = (self.resolution[0], self.resolution[1])
+        self.logging.info("Created windows of dimension: (" + str(self.resolution[0]) + "," + str(self.resolution[1]) + ")")
         # Init pygame
         pygame.screen = pygame.display.set_mode(WINDOW_SIZE)
         pygame.display.set_caption(title)
@@ -124,14 +122,19 @@ class GameGrid(object):
         self.setup()
 
         # Draw_Qeue
-        self.draw_queue.append(pygame.Rect(0, 0, x_res, y_res))
+        self.draw_queue.append(pygame.Rect(0, 0, self.resolution[0], self.resolution[1]))
 
     def act_all(self, metoo=True):
         for actor in self.actors:
             actor.act()
 
+    @property
     def cell_size(self):
-        return self.cell_size
+        return self._cell_size
+
+    @cell_size.setter
+    def cell_size(self,value):
+        self._cell_size = value
 
     def draw_actionbar(self):
         """
@@ -187,7 +190,7 @@ class GameGrid(object):
 
 
         for actor in self.actors:
-            actor.animate()
+            actor.next_sprite()
             actor.draw()
 
     @property
@@ -196,7 +199,7 @@ class GameGrid(object):
 
     @frame.setter
     def frame(self, value):
-        self.logging.info("Frame:"+str(self.frame))
+        self.logging.debug("Frame:"+str(self.frame))
         self._frame = value
         if self._frame == self.max_frames:
             self.frame=0
@@ -211,7 +214,7 @@ class GameGrid(object):
         return height
 
     def grid_dimensions(self):
-        return (self.grid_width(), self.grid_height())
+        return (self.grid_width, self.grid_height)
 
 
 
@@ -390,12 +393,12 @@ class GameGrid(object):
     def remove_all_actors(self):
         for actor in self.actors:
             self.actors.remove(actor)
-            self.draw_queue.append(actor.image_rect)
             del actor
 
     def reset(self):
         self.remove_all_actors()
         self.setup()
+        self.draw_queue.append(pygame.Rect(0, 0, self.resolution[0], self.resolution[1]))
         self.update()
 
     def setup(self):

@@ -8,6 +8,7 @@ Created on Mon Apr 16 21:50:48 2018
 
 import logging
 import math
+
 import pygame
 
 
@@ -22,9 +23,9 @@ class Actor(object):
     is_flipped = False
     animation_speed = 4
     animated = False
+    animations = []
 
-
-    def __init__(self, title, grid, location,img_path=None, img_action="do_nothing", img_heading="E"):
+    def __init__(self, title, grid, location, img_path=None, img_action="do_nothing", img_heading="E"):
         self.log()
         self.title = title
         self.grid = grid
@@ -62,12 +63,21 @@ class Actor(object):
     def act(self):
         pass
 
-    def animate(self):
+    def animate(self, animation=""):
+        if self.animated == False:
+            self.animation = animation
+            self.animated = True
+
+    def add_animation(self, animation, index_vector):
+        index_vector.append(index_vector)
+
+    def stop(self):
+        self.animated = False
+
+    def next_sprite(self):
         if self.animated:
             if self.grid.frame % self.animation_speed == 0:
                 self.image_next()
-
-
 
     @property
     def direction(self):
@@ -93,16 +103,14 @@ class Actor(object):
         Don't change status.
         Used for flipping all sprites according to flipped state
         """
-        if self.is_flipped:
+        if not self.is_flipped:
             self.grid.draw_queue.append(pygame.Rect(self.image_rect))
             self.image = pygame.transform.flip(self.__original_images__[self.image_index], False, False)
             self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-            self.turn_left(180)
         else:
             self.grid.draw_queue.append(pygame.Rect(self.image_rect))
             self.image = pygame.transform.flip(self.__original_images__[self.image_index], True, False)
             self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-            self.turn_left(180)
 
     def flip_x(self):
         """
@@ -110,20 +118,20 @@ class Actor(object):
         Actor is turned by 180 degrees.
         is_rotatable should be False.
         """
-        if self.is_flipped:
-            self.__flip_x()
-            self.is_flipped = False
-        else:
-            self.__flip_x()
+        if not self.is_flipped:
             self.is_flipped = True
+        else:
+            self.is_flipped = False
+        self.__flip_x()
+        self.turn_left(180)
 
     def listen(self, key, data):
         pass
 
-    def image_add(self,img_path,img_action,data=None):
+    def image_add(self, img_path: str, img_action, data=None):
         self.grid.draw_queue.append(pygame.Rect(self.image_rect))
         self.__original_images__.append(pygame.image.load(img_path).convert_alpha())
-        print ("Len:_"+str(self.__original_images__.__len__()))
+        self.logging.debug("Number of Actor images:"+str(self.__original_images__.__len__()))
         self.__image_transform__(self.__original_images__.__len__()-1, img_action, data)
         if self.__original_images__.__len__() == 1:
             self.image = self.__original_images__[0]
@@ -139,7 +147,7 @@ class Actor(object):
         self.image = self.__original_images__[self.image_index]
         self.draw()
         self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-        print("Actual image:"+str(self.image_index)+"/"+str(self.__original_images__.__len__()-1))
+        self.logging.debug("Actual image:"+str(self.image_index)+"/"+str(self.__original_images__.__len__()-1))
 
 
     def __image_transform__(self, index, img_action, data=None):
@@ -316,5 +324,6 @@ class Actor(object):
     def draw(self):
         if self.hasImage():
             cell_left, cell_top = self.get_image_postion()
+            self.__flip_x()
             pygame.screen.blit(self.image, (cell_left, cell_top))
 
