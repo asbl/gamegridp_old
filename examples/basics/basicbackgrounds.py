@@ -5,5 +5,5 @@ class MyGrid(gamegrid.GameGrid):
 
 
 grid = MyGrid("My Grid", cell_size=64, columns=8, rows=8, margin=2,
-                        img_path="images/water.jpg",img_action="crop")
+              img_path="images/water.jpg", img_action="crop")
 grid.show()

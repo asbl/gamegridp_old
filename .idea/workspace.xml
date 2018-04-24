@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/examples/moving/roboanimation.py" afterDir="false" />
+    <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/basics/basicgridobject.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/basics/basicgridobject.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/basics/basicbackgrounds.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/basics/basicbackgrounds.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/moving/flipthefish.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/moving/flipthefish.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/pixelbased/roboracing.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/pixelbased/roboracing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/moving/roboanimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/moving/roboanimation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegrid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/PKG-INFO" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/SOURCES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/SOURCES.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/top_level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/top_level.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/setup.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,8 +21,8 @@
       <file leaf-file-name="flipthefish.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/moving/flipthefish.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="123">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
               <folding>
                 <element signature="e#1#28#0" expanded="true" />
               </folding>
@@ -39,7 +34,7 @@
         <entry file="file://$PROJECT_DIR$/examples/debug/debug_script.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="42">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -50,8 +45,8 @@
       <file leaf-file-name="actor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gamegridp/actor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5078">
-              <caret line="67" column="16" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="16" />
+            <state relative-caret-position="221">
+              <caret line="327" column="19" selection-start-line="327" selection-start-column="19" selection-end-line="327" selection-end-column="19" />
               <folding>
                 <element signature="e#2397#2441#2" expanded="true" />
                 <element signature="e#2398#2553#1" expanded="true" />
@@ -65,11 +60,8 @@
       <file leaf-file-name="roboanimation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/moving/roboanimation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="16" column="62" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="377">
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -77,8 +69,8 @@
       <file leaf-file-name="roboracing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/pixelbased/roboracing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="18" column="19" selection-end-line="29" />
+            <state relative-caret-position="267">
+              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -95,30 +87,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="basicbackgrounds.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/examples/basics/basicbackgrounds.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="debug_script2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/debug/debug_script2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="33" selection-start-line="33" selection-end-line="34" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gamegrid.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gamegrid.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gamegridp/gamegrid.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4371">
-              <caret line="189" column="27" selection-start-line="189" selection-start-column="27" selection-end-line="189" selection-end-column="27" />
+            <state relative-caret-position="210">
+              <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
               <folding>
+                <element signature="e#84#98#0" expanded="true" />
                 <element signature="e#4465#4509#1" expanded="true" />
                 <element signature="e#6519#6576#1" expanded="true" />
                 <element signature="e#7230#7338#1" expanded="true" />
@@ -142,6 +117,16 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>setup</find>
+      <find>frame</find>
+      <find>len:</find>
+      <find>remove_a</find>
+      <find>remo</find>
+      <find>remove(</find>
+      <find>anima</find>
+      <find>nex</find>
+      <find>reset</find>
+      <find>cell_si</find>
+      <find>animate(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -155,13 +140,14 @@
         <option value="$PROJECT_DIR$/gamegridp/__init__.py" />
         <option value="$PROJECT_DIR$/examples/debug/debug_script.py" />
         <option value="$PROJECT_DIR$/examples/pixelbased/movinganactor.py" />
-        <option value="$PROJECT_DIR$/examples/moving/flipthefish.py" />
         <option value="$PROJECT_DIR$/examples/moving/animation.py" />
         <option value="$PROJECT_DIR$/examples/pixelbased/roboracing.py" />
+        <option value="$PROJECT_DIR$/examples/basics/basicgridobject.py" />
+        <option value="$PROJECT_DIR$/examples/basics/basicbackgrounds.py" />
+        <option value="$PROJECT_DIR$/examples/moving/roboanimation.py" />
+        <option value="$PROJECT_DIR$/examples/moving/flipthefish.py" />
         <option value="$PROJECT_DIR$/gamegridp/actor.py" />
         <option value="$PROJECT_DIR$/gamegridp/gamegrid.py" />
-        <option value="$PROJECT_DIR$/examples/moving/roboanimation.py" />
-        <option value="$PROJECT_DIR$/examples/basics/basicgridobject.py" />
       </list>
     </option>
   </component>
@@ -241,7 +227,9 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/examples/basics/basicgridobject.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/examples/moving/roboanimation.py" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -255,7 +243,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.baiscfirsprogram">
+  <component name="RunManager" selected="Python.roboanimation">
     <configuration name="baiscfirsprogram" type="PythonConfigurationType" factoryName="Python">
       <module name="gamegridp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -346,6 +334,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="roboanimation" type="PythonConfigurationType" factoryName="Python">
+      <module name="gamegridp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files\Python36\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples/moving" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/moving/roboanimation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="roboracing" type="PythonConfigurationType" factoryName="Python">
       <module name="gamegridp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -366,6 +372,7 @@
     </configuration>
     <list>
       <item itemvalue="Python.flipthefish" />
+      <item itemvalue="Python.roboanimation" />
       <item itemvalue="Python.roboracing" />
       <item itemvalue="Python.baiscfirsprogram" />
       <item itemvalue="Python.basicbackgrund" />
@@ -414,8 +421,10 @@
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info active="true" anchor="bottom" id="Messages" visible="true" weight="0.32963988" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.41655174" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32965517" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41828254" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -428,15 +437,19 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="foundation for animations" />
-    <option name="LAST_COMMIT_MESSAGE" value="foundation for animations" />
+    <MESSAGE value="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/actor.py">
@@ -474,16 +487,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/debug/debug_script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/pixelbased/movinganactor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
@@ -504,12 +507,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/moving/flipthefish.py">
+    <entry file="file://$PROJECT_DIR$/examples/debug/debug_script.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="42">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
           <folding>
-            <element signature="e#1#28#0" expanded="true" />
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/pixelbased/roboracing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -521,51 +534,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/moving/roboanimation.py">
+    <entry file="file://$PROJECT_DIR$/examples/basics/basicbackgrounds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="62" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegrid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4371">
-          <caret line="189" column="27" selection-start-line="189" selection-start-column="27" selection-end-line="189" selection-end-column="27" />
-          <folding>
-            <element signature="e#4465#4509#1" expanded="true" />
-            <element signature="e#6519#6576#1" expanded="true" />
-            <element signature="e#7230#7338#1" expanded="true" />
-            <element signature="e#7635#7696#1" expanded="true" />
-            <element signature="e#7973#8055#1" expanded="true" />
-            <element signature="e#8323#8383#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/actor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5078">
-          <caret line="67" column="16" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="16" />
-          <folding>
-            <element signature="e#2397#2441#2" expanded="true" />
-            <element signature="e#2398#2553#1" expanded="true" />
-            <element signature="e#3791#3839#1" expanded="true" />
-            <element signature="e#7713#7812#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/pixelbased/roboracing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="19" selection-end-line="29" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="84">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
@@ -576,12 +548,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/basics/basicbackgrounds.py">
+    <entry file="file://$PROJECT_DIR$/examples/moving/roboanimation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+        <state relative-caret-position="377">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/examples/moving/flipthefish.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="e#1#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/actor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="327" column="19" selection-start-line="327" selection-start-column="19" selection-end-line="327" selection-end-column="19" />
+          <folding>
+            <element signature="e#2397#2441#2" expanded="true" />
+            <element signature="e#2398#2553#1" expanded="true" />
+            <element signature="e#3791#3839#1" expanded="true" />
+            <element signature="e#7713#7812#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/gamegrid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding>
+            <element signature="e#84#98#0" expanded="true" />
+            <element signature="e#4465#4509#1" expanded="true" />
+            <element signature="e#6519#6576#1" expanded="true" />
+            <element signature="e#7230#7338#1" expanded="true" />
+            <element signature="e#7635#7696#1" expanded="true" />
+            <element signature="e#7973#8055#1" expanded="true" />
+            <element signature="e#8323#8383#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

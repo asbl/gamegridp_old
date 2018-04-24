@@ -1,5 +1,4 @@
 from gamegridp import actor
-from gamegridp import keys
 from gamegridp import gamegrid
 
 
@@ -12,27 +11,13 @@ class MyGrid(gamegrid.GameGrid):
 
 
 class Player(actor.Actor):
-    def __init(self):
-        super().__init()
-
 
     def act(self):
-        self.move()
+        if self.is_valid_move():
+            self.move()
+        else:
+            self.flip_x()
 
-    def listen(self, event, data):
-        if event == "key":
-            if data == keys.W:
-                self.move_up()
-            elif data == keys.S:
-                self.move_down()
-            elif data == keys.A:
-                self.move_left()
-                if not self.is_flipped:
-                    self.flip_x()
-            elif data == keys.D:
-                self.move_right()
-                if self.is_flipped:
-                    self.flip_x()
 
 
 mygrid = MyGrid("My Grid", log=True, cell_size=20, columns=20, rows=20,
