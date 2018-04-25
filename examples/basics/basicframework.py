@@ -13,6 +13,7 @@ class MyGrid(gamegrid.GameGrid):
 
 
 class Player(actor.Actor):
+
     def act(self):
         self.move()
         if not self.is_valid_move():

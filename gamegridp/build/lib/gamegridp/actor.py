@@ -13,35 +13,31 @@ import pygame
 
 
 class Actor(object):
-    title = ""
-    grid = None
-    __original_images__ = [] #
-    image = None
-    image_index = 0
-    is_rotatable = False
-    logging = None
-    is_flipped = False
-    animation_speed = 4
-    animated = False
-    animations = []
 
-    def __init__(self, title, grid, location, img_path=None, img_action="do_nothing", img_heading="E"):
-        self.log()
+    def __init__(self, title, grid, location, img_path=None, img_action="do_nothing", img_heading="E", log=False):
+        # define instance variables
         self.title = title
-        self.grid = grid
+        self._logging=None
+        self.log()
+        # Define instance variables
+        self._original_images = []  #
+        self._image = None
+        self._image_index = 0
+        self._is_rotatable = False
+        self._is_flipped = False
+        self.__grid__ = grid
         self._location = location
         self._direction = 0
+        self._animation_speed = 4
+        self._animated = False
+        self._animations = []
+        self._animation = ""
         # Set Actor image
-        self.logging.debug("Target-Location:" + str(self.location))
+        self._logging.debug("Target-Location:" + str(self.location))
         if img_path is not None:
-            self.__original_images__.append(pygame.image.load(img_path).convert_alpha())
-            self.image = self.__original_images__[0]
-            if img_action=="scale":
-                self.__image_transform__(0,"scale")
-            if img_action=="crop":
-                self.__image_transform__(0,"crop")
-            if img_action=="do_nothing":
-                self.__image_transform__(0,"do_nothing")
+            self._original_images.append(pygame.image.load(img_path).convert_alpha())
+            self._image = self._original_images[0]
+            self.add_image(img_path, img_action)
             if img_heading == 'S':
                 self.direction = 270
             elif img_heading == 'E':
@@ -51,32 +47,50 @@ class Actor(object):
             elif img_heading == 'N':
                 self.direction = 90
         else:
-            self.image=pygame.Surface((20,20))
-            self.image.fill((0,0,255))
-        try:
-            self.setup()
-            grid.add_actor(self, location)
-        except ValueError:
-            self.logging.error("Achtung.... kein Grid angegeben! ")
-        self.logging.debug("Actor "+title+" wurde initialisiert")
+            self._image=pygame.Surface((20, 20))
+            self._image.fill((0, 0, 255))
+        self._logging.debug("Actor: " + title + "'s setup wurde ausgeführt"+str(self._is_rotatable))
+        grid.add_actor(self, location)
+        self.setup()
+        self._logging.debug("Actor " + title + " wurde initialisiert")
 
     def act(self):
+        """
+        The method should be overwritten in subclasses
+        """
         pass
 
-    def animate(self, animation=""):
-        if self.animated == False:
-            self.animation = animation
-            self.animated = True
+    def add_image(self, img_path: str, img_action, data=None):
+        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        self._original_images.append(pygame.image.load(img_path).convert_alpha())
+        self._logging.info("Number of Actor images:" + str(self._original_images.__len__()))
+        self.__image_transform__(self._original_images.__len__() - 1, img_action, data)
+        if self._original_images.__len__() == 1:
+            self._image = self._original_images[0]
+        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
 
-    def add_animation(self, animation, index_vector):
-        index_vector.append(index_vector)
+
+    def animate(self, animation=""):
+        """
+        Starts an animation
+        :param animation: Type of animation (not implemented)
+        """
+        if not self._animated:
+            self._animation = animation
+            self._animated = True
 
     def stop(self):
-        self.animated = False
+        """
+        Stops all animations
+        """
+        self._animated = False
 
     def next_sprite(self):
-        if self.animated:
-            if self.grid.frame % self.animation_speed == 0:
+        """
+        Loads the next sprite in the current animation
+        """
+        if self._animated:
+            if self.__grid__.frame % self._animation_speed == 0:
                 self.image_next()
 
     @property
@@ -86,31 +100,38 @@ class Actor(object):
 
     @direction.setter
     def direction(self, value):
-        self.logging.debug("Direction set" + str(value))
-        logging.info("rotated by " + str(value) + " degrees. Is rotatable?: "+str(self.is_rotatable))
+        self._logging.info("Direction set" + str(value))
+        self._logging.info("rotated by " + str(value) + " degrees. Is rotatable?: " + str(self._is_rotatable))
         if self.is_rotatable:
-            self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-            #rotate the original image to new direction
-            self.image = pygame.transform.rotate(self.__original_images__[self.image_index], value)
-            self._direction = value
-            self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-            self.grid.update(act_disabled=True, listen_disabled=True)
-        else:
-            self._direction = value
+            self.__rotate(value)
+        self._direction = value
+
+    def __rotate(self, direction):
+        self.__grid__.repaint_area(self.bounding_box)
+        # rotate the original image to new direction
+        self._logging.info("rotate Image" + str(dir(self._original_images)) + ", Image: " + str(
+                            self._image) + "Index:" + str(self._image_index) + ",value:" + str(direction))
+        self._image = pygame.transform.rotate(self._original_images[self._image_index], direction)
+        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+
 
     def __flip_x(self):
         """
-        Don't change status.
+        Doesn't change status.
         Used for flipping all sprites according to flipped state
         """
-        if not self.is_flipped:
-            self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-            self.image = pygame.transform.flip(self.__original_images__[self.image_index], False, False)
-            self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-        else:
-            self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-            self.image = pygame.transform.flip(self.__original_images__[self.image_index], True, False)
-            self.grid.draw_queue.append(pygame.Rect(self.image_rect))
+        try:
+            if not self._is_flipped:
+                self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+                #self._logging.info("Flipping " + self.title + " image number "+str(self._image_index))
+                self._image = pygame.transform.flip(self._original_images[self._image_index], False, False)
+                self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+            else:
+                self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+                self._image = pygame.transform.flip(self._original_images[self._image_index], True, False)
+                self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        except IndexError:
+            return
 
     def flip_x(self):
         """
@@ -118,59 +139,109 @@ class Actor(object):
         Actor is turned by 180 degrees.
         is_rotatable should be False.
         """
-        if not self.is_flipped:
-            self.is_flipped = True
+        if not self._is_flipped:
+            self._is_flipped = True
         else:
-            self.is_flipped = False
+            self._is_flipped = False
         self.__flip_x()
         self.turn_left(180)
+
+    @property
+    def image(self):
+        """
+        Gets the actual image of the actor.
+        """
+        return self._image
 
     def listen(self, key, data):
         pass
 
-    def image_add(self, img_path: str, img_action, data=None):
-        self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-        self.__original_images__.append(pygame.image.load(img_path).convert_alpha())
-        self.logging.debug("Number of Actor images:"+str(self.__original_images__.__len__()))
-        self.__image_transform__(self.__original_images__.__len__()-1, img_action, data)
-        if self.__original_images__.__len__() == 1:
-            self.image = self.__original_images__[0]
-        self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-
-
     def image_next(self):
-        self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-        if self.image_index < self.__original_images__.__len__()-1:
-            self.image_index = self.image_index +1
+        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        if self._image_index < self._original_images.__len__()-1:
+            self._image_index = self._image_index + 1
         else:
-            self.image_index = 0
-        self.image = self.__original_images__[self.image_index]
+            self._image_index = 0
+        self._image = self._original_images[self._image_index]
         self.draw()
-        self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-        self.logging.debug("Actual image:"+str(self.image_index)+"/"+str(self.__original_images__.__len__()-1))
+        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        self._logging.debug("Actual image:" + str(self._image_index) + "/" + str(self._original_images.__len__() - 1))
 
+    @property
+    def is_rotatable(self):
+        """ Gets the direction of actor """
+        return self._is_rotatable
+
+    def set_rotatable(self):
+        self._is_rotatable = True
 
     def __image_transform__(self, index, img_action, data=None):
         """
         Should be called before main-loop
         """
-        cell_size = self.grid.cell_size
+        cell_size = self.__grid__.cell_size
         if img_action == "scale":
             if data is None:
-                self.__original_images__[self.image_index] = pygame.transform.scale(self.__original_images__[self.image_index], (cell_size, cell_size))
+                self._original_images[self._image_index] = pygame.transform.scale(self._original_images[index], (cell_size, cell_size))
             else:
-                self.__original_images__[self.image_index] = pygame.transform.scale(self.__original_images__[self.image_index], (data[0], data[1]))
+                self._original_images[self._image_index] = pygame.transform.scale(self._original_images[index], (data[0], data[1]))
         elif img_action == "crop":
             cropped_surface = pygame.Surface()
-            cropped_surface.blit(self.__original_images__[self.image_index], (0, 0),
-                                 (0, 0, self.grid.grid_width(), self.grid.grid_height()))
-            self.__original_images__[self.image_index] = cropped_surface
+            cropped_surface.blit(self._original_images[self._image_index], (0, 0),
+                                 (0, 0, self.__grid__.grid_width, self.__grid__.grid_height))
+            self._original_images[self._image_index] = cropped_surface
         elif img_action == "do_nothing":
-            self.__original_images__[self.image_index] = self.__original_images__[self.image_index]
+            self._original_images[self._image_index] = self._original_images[self._image_index]
 
+    @property
+    def bounding_box(self):
+        cell_left, cell_top = self.get_image_postion()
+        width = self._image.get_width()
+        height = self._image.get_height()
+        return pygame.Rect(cell_left, cell_top, width, height)
+
+    def get_image_postion(self):
+        """
+        Gets coordinates of top-left image position
+        :return: location (x,y)
+        """
+        column = self.location[0]
+        row = self.location[1]
+        cell_margin = self.__grid__.cell_margin
+        cell_size = self.__grid__.cell_size
+        if self._image.get_width() > cell_size:
+            overlapping_x = (self._image.get_width() - cell_size) / 2
+        else:
+            overlapping_x = 0
+
+        if self._image.get_height() > cell_size:
+            overlapping_y = (self._image.get_height() - cell_size) / 2
+        else:
+            overlapping_y = 0
+
+        cell_left = cell_margin + (cell_margin + cell_size) * column - overlapping_x
+        cell_top = cell_margin + (cell_margin + cell_size) * row - overlapping_y
+        return cell_left, cell_top
+
+    def get_location(self):
+        return self.location
+
+    def get_neighbours(self):
+        locations = []
+        y_pos = self.location[0]
+        x_pos = self.location[1]
+        locations.append([x_pos+1, y_pos])
+        locations.append([x_pos+1, y_pos+1])
+        locations.append([x_pos, y_pos+1])
+        locations.append([x_pos-1, y_pos+1])
+        locations.append([x_pos-1, y_pos])
+        locations.append([x_pos-1, y_pos-1])
+        locations.append([x_pos, y_pos-1])
+        locations.append([x_pos+1, y_pos-1])
+        return locations
 
     def log(self):
-        self.logging = logging.getLogger('actor-'+self.title)
+        self._logging = logging.getLogger('actor-' + self.title)
 
     @property
     def location(self):
@@ -178,18 +249,16 @@ class Actor(object):
 
     @location.setter
     def location(self, value):
-        self.logging.debug("Location set")
-        self.grid.draw_queue.append(pygame.Rect(self.image_rect))
+        self._logging.debug("Location set")
+        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
         self._location = value
-        self.grid.draw_queue.append(pygame.Rect(self.image_rect))
-        self.grid.update(act_disabled=True, listen_disabled=True)
+        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        self.__grid__.update(act_disabled=True, listen_disabled=True)
 
-
-
-    def setX(self, x):
+    def set_x(self, x):
         self.location[0] = x
 
-    def setY(self, y):
+    def set_y(self, y):
         self.location[1] = y
 
     def setup(self):
@@ -203,27 +272,27 @@ class Actor(object):
         if self.direction > 360:
             direction = direction % 360
         self.direction = direction
-        self.logging.debug("Richtung:"+str(self.direction))
+        self._logging.debug("Richtung:" + str(self.direction))
 
     def turn_right(self, degrees):
         direction = self.direction - degrees
         if self.direction < 0:
             direction = direction % 360
         self.direction = direction
-        self.logging.debug("Richtung:"+str(self.direction))
+        self._logging.debug("Richtung:" + str(self.direction))
 
     def move_to(self, location):
         target = location
-        if self.is_location_in_grid(target):
+        if self.is_valid_move(target):
             self.location = target
 
     def move(self, distance=1):
         target = self.look_forward()
-        self.logging.debug("self"+str(self.location)+", target"+str(target))
+        self._logging.debug("self" + str(self.location) + ", target" + str(target))
         target = self.look_forward(distance)
-        if self.is_location_in_grid(target):
+        if self.is_valid_move(target):
             self.location = target
-        self.logging.debug("self"+str(self.location)+", target"+str(target))
+        self._logging.debug("self" + str(self.location) + ", target" + str(target))
 
 
     def move_up(self):
@@ -243,46 +312,23 @@ class Actor(object):
         self.move()
 
     def look_forward(self, distance=1):
-        logging.debug("Location:"+ str(self.location)+ "Direction" + str(self.direction))
+        self._logging.debug("Location:" + str(self.location) + "Direction" + str(self.direction))
         loc_x = round(self.location[0] + math.cos(math.radians(self.direction))*distance)
         loc_y = round(self.location[1] - math.sin(math.radians(self.direction))*distance)
         return loc_x, loc_y
 
-    def is_valid_move(self):
-        if self.is_location_in_grid(self.look_forward()):
+    def is_valid_move(self,target=None):
+        if target is None:
+            target=self.look_forward()
+        if self.__grid__.is_location_in_grid(target):
             return True
         else:
             return False
 
-    def is_location_in_grid(self, location):
-        if location[0] > self.grid.grid_columns - 1:
-            return False
-        elif location[1] > self.grid.grid_rows - 1:
-            return False
-        elif location[0] < 0 or location[1]<0:
-            return False
-        else :
-            return True
 
-    def get_location(self):
-        return self.location
 
-    def get_neighbours(self):
-        locations = []
-        y_pos = self.location[0]
-        x_pos = self.location[1]
-        locations.append([x_pos+1, y_pos])
-        locations.append([x_pos+1, y_pos+1])
-        locations.append([x_pos, y_pos+1])
-        locations.append([x_pos-1, y_pos+1])
-        locations.append([x_pos-1, y_pos])
-        locations.append([x_pos-1, y_pos-1])
-        locations.append([x_pos, y_pos-1])
-        locations.append([x_pos+1, y_pos-1])
-        return locations
-
-    def hasImage(self):
-        if self.image is None:
+    def has_image(self):
+        if self._image is None or self._original_images.__len__() == 0:
             return False
         else:
             return True
@@ -290,40 +336,13 @@ class Actor(object):
     def mouse_pressed(self,location):
         pass
 
-    def get_image_postion(self):
-        """
-        Gets coordinates of top-left image position
-        :return: location (x,y)
-        """
-        column = self.location[0]
-        row = self.location[1]
-        cell_margin = self.grid.cell_margin
-        cell_size = self.grid.cell_size
-        if self.image.get_width() > cell_size:
-            overlapping_x = (self.image.get_width() - cell_size) / 2
-        else:
-            overlapping_x = 0
 
-        if self.image.get_height() > cell_size:
-            overlapping_y = (self.image.get_height() - cell_size) / 2
-        else:
-            overlapping_y = 0
 
-        cell_left = cell_margin + (cell_margin + cell_size) * column - overlapping_x
-        cell_top = cell_margin + (cell_margin + cell_size) * row - overlapping_y
-
-        return cell_left, cell_top
-
-    @property
-    def image_rect(self):
-        cell_left, cell_top = self.get_image_postion()
-        width=self.image.get_width()
-        height = self.image.get_height()
-        return pygame.Rect(cell_left, cell_top, width, height)
 
     def draw(self):
-        if self.hasImage():
+        if self.has_image():
             cell_left, cell_top = self.get_image_postion()
             self.__flip_x()
-            pygame.screen.blit(self.image, (cell_left, cell_top))
+            self.__rotate(self.direction)
+            pygame.screen.blit(self._image, (cell_left, cell_top))
 

@@ -1,6 +1,7 @@
 from gamegridp import actor
 from gamegridp import gamegrid
-
+import logging
+import sys
 
 class MyGrid(gamegrid.GameGrid):
     """My Grid with custom setup method."""
@@ -19,7 +20,8 @@ class Player(actor.Actor):
             self.flip_x()
 
 
-
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+module_logger = logging.getLogger('gglogger')
 mygrid = MyGrid("My Grid", log=True, cell_size=20, columns=20, rows=20,
                 margin=0, speed=120,
                 background_color=(200, 0, 0),cell_color=(0, 0, 255),img_path="images/water.png")

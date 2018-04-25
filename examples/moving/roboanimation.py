@@ -19,6 +19,7 @@ class Robot(actor.Actor):
         self.animation_speed = 20
         self.animate()
 
+
     def act(self):
         if self.is_valid_move():
             self.move()

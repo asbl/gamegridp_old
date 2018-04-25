@@ -15,7 +15,10 @@ class MyGrid(gamegrid.GameGrid):
 
 
 class Player(actor.Actor):
-    is_rotatable = True
+
+    def setup(self):
+        self._is_rotatable = True
+
     def act(self):
         self.move()
 
@@ -30,9 +33,9 @@ class Player(actor.Actor):
             elif data == keys.D:
                 self.move_right()
 
-logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-module_logger = logging.getLogger('gglogger')
+#logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+#module_logger = logging.getLogger('gglogger')
 mygrid = MyGrid("My Grid", log=True, cell_size=1, columns=200, rows=200,
-                margin=0, speed=120,
+                margin=0, speed=60,
                 background_color=(200, 0, 0),cell_color=(0, 0, 255), img_path="images/soccer_green.jpg")
 mygrid.show()
