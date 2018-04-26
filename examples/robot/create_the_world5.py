@@ -8,9 +8,6 @@ from gamegridp import gamegrid
 class MyGrid(gamegrid.GameGrid):
     """My Grid with custom setup method."""
 
-    def setup(self):
-        self.load(2)
-
     def listen(self, event=None, data=None):
         self._logging.info(event)
         if event == "mouse_left":
@@ -31,40 +28,44 @@ class MyGrid(gamegrid.GameGrid):
                 self.save()
 
     def save(self):
-        connection = lite.connect('robodatabase.db')
-        cursor = connection.cursor()
-        cursor.execute('SELECT id FROM Game ORDER BY id DESC LIMIT 1')
-        gameid = cursor.fetchone()
-        gameid = gameid[0]
-        gameid=gameid+1
-        for actor in self.actors:
-            cursor.execute('INSERT INTO Actors(row,column,GameID,Actor) VALUES ('+str(actor.location[0])+","+str(actor.location[1])+","+str(gameid)+",'"+str(actor.title)+"')")
-            self._logging.info("...values inserted")
-        self._logging.info("Game " + str(gameid) + " saved")
-        cursor.execute('INSERT INTO Game (ID) Values('+str(gameid)+')')
-        self._logging.info("...game id")
-        connection.commit()
-        connection.close()
-        self._logging.info("Game "+str(gameid)+" saved")
+        try:
+            connection = lite.connect('robodatabase.db')
+            cursor = connection.cursor()
+            cursor.execute('SELECT id FROM Game ORDER BY id DESC LIMIT 1')
+            gameid = cursor.fetchone()
+            gameid = gameid[0]
+            gameid=gameid+1
+            for actor in self.actors:
+                cursor.execute('INSERT INTO Actors(row,column,GameID,Actor) VALUES ('+str(actor.location[0])+","+str(actor.location[1])+","+str(gameid)+",'"+str(actor.title)+"')")
+                self._logging.info("...values inserted")
+            cursor.execute('INSERT INTO Game Values('+gameid+')')
+
+        except:
+        finally:
+            connection.commit()
+            connection.close()
+        self._logging.info("...values inserted")
 
     def load(self,gameid):
-        connection = lite.connect('robodatabase.db')
-        cursor = connection.cursor()
-        cursor.execute('SELECT * FROM Actors')
-        for actordata in cursor.fetchall():
-            if actordata[4]=="Wall":
-                Wall(grid=self, location=(actordata[1],actordata[2]))
-            elif actordata[4]=="Robot":
-                Robot(grid=self, location=(actordata[1], actordata[2]))
-        actors=cursor.fetchall()
-        print("Load Actors: "+str(actors))
+        #try:
+            connection = lite.connect('robodatabase.db')
+            cursor = connection.cursor()
+            cursor.execute('SELECT id FROM Game ORDER BY id DESC LIMIT 1')
+            gameid = cursor.fetchone()
+            gameid=int(gameid[0])+1
+            for actor in self.actors:
+                cursor.execute('SELECT * from Actors WHERE game='+str(gameid))
+                self._logging.info("...values loaded")
+
+
+            cursor.execute('INSERT INTO Game Values('+gameid+')')
+            connection.commit()
 
 class Robot(actor.Actor):
     def setup(self):
         self.title="Robot"
         self.set_rotatable()
         self.add_image("images/robo_green.png", "scale", (40, 40))
-
 
     def act(self):
         self.move(1)
