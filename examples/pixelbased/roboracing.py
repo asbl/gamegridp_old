@@ -1,15 +1,17 @@
+import logging
+import sys
+
 from gamegridp import actor
 from gamegridp import gamegrid
 from gamegridp import keys
-import logging
-import sys
+
 
 class MyGrid(gamegrid.GameGrid):
     """My Grid with custom setup method."""
 
     def setup(self):
-        robo1 = Robot("Player", grid=self, location=(20, 20), img_action="do_nothing", log=True)
-        robo1.image_add("images/robo_green.png", "scale", (40, 40))
+        robo1 = Robot(grid=self, location=(20, 20), img_action="do_nothing", log=True)
+        robo1.add_image("images/robo_green.png", "scale", (40, 40))
 
 
 class Robot(actor.Actor):

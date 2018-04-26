@@ -8,14 +8,14 @@ from gamegridp import gamegrid
 class MyGrid(gamegrid.GameGrid):
     """My Grid with custom setup method."""
     def setup(self):
-        self.player1 = Robot("Player", grid=self, location=(50, 70))
+        self.player1 = Robot(grid=self, location=(50, 70))
 
 
 class Robot(actor.Actor):
 
     def setup(self):
-        self.image_add("images/robot_blue1.png", "do_nothing")
-        self.image_add("images/robot_blue2.png", "do_nothing")
+        self.add_image("images/robot_blue1.png", "do_nothing")
+        self.add_image("images/robot_blue2.png", "do_nothing")
         self.animation_speed = 20
         self.animate()
 

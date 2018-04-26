@@ -1,6 +1,7 @@
-from setuptools import setup, find_packages
 from codecs import open
 from os import path
+
+from setuptools import setup, find_packages
 
 here = path.abspath(path.dirname(__file__))
 
@@ -11,7 +12,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name = 'gamegridp',
-    version = '0.3.0.22',
+    version = '0.3.0.25',
     description = 'A gamegrid clone for python',
     long_description=long_description,
     long_description_content_type='text/markdown',

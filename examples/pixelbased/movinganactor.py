@@ -1,16 +1,15 @@
 from gamegridp import actor
 from gamegridp import gamegrid
 from gamegridp import keys
-import logging
-import sys
+
 
 class MyGrid(gamegrid.GameGrid):
     """My Grid with custom setup method."""
 
 
     def setup(self):
-        self.player1 = Player("Player", grid=self, location=(3, 3), img_path="images/char_blue.png",
-                         img_action="do_nothing")
+        self.player1 = Player(grid=self, location=(3, 3), img_path="images/char_blue.png",
+                              img_action="do_nothing")
 
 
 
