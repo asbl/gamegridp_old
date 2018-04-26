@@ -34,7 +34,7 @@ class Player(actor.Actor):
 
 #logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 #module_logger = logging.getLogger('gglogger')
-mygrid = MyGrid("My Grid", log=True, cell_size=1, columns=200, rows=200,
-                margin=0, speed=60,
+mygrid = MyGrid("My Grid", log=True, cell_size=40, columns=5, rows=5,
+                margin=1, speed=60,
                 background_color=(200, 0, 0),cell_color=(0, 0, 255), img_path="images/soccer_green.jpg")
 mygrid.show()

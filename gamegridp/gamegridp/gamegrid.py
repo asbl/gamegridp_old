@@ -20,7 +20,7 @@ class GameGrid(object):
                  img_path=None, img_action="scale", log=True, speed=60, toolbar=False):
 
         # Define instance variables
-        self.title = title
+        self.title = title#
         self._logging = False
         if log is True:
             self.log()
@@ -29,6 +29,7 @@ class GameGrid(object):
         self._grid = []
         self._actors = []
         self._frame = 0
+        self._key_holding_allowed=False
         self._resolution = ()
         self._running = False
         self._cell_margin = 0
@@ -59,6 +60,10 @@ class GameGrid(object):
         self._grid_columns = columns
         self._grid_rows = rows
         self._cell_size = cell_size
+        if self.cell_size == 1:
+            self._key_holding_allowed = True
+        else:
+            self._key_holding_allowed = False
         self._background_color = background_color
         self._cell_color = cell_color
         # grid and grid-dimensions
@@ -281,18 +286,18 @@ class GameGrid(object):
         return self.grid_width_in_pixels, self.grid_height_in_pixels
 
     def colliding(self, actor1, actor2, cell_based: bool = True):
-        if not cell_based():
+        if cell_based:
             if actor1.is_in_grid(self) and actor2.is_in_grid(self):
                 self._logging.info("Colliding? A1:" + str(actor1.location) + ",A2:" + str(actor2.location))
                 if actor1.location == actor2.location:
                     return True
                 else:
                     return False
-        else:
-            if pygame.sprite.collide_rect(actor1.bounding_box,actor2.bounding_box):
-                return True
-            else:
-                return False
+        #else:
+        #    if pygame.sprite.collide_rect(actor1.bounding_box,actor2.bounding_box):
+         #       return True
+         #   else:
+         #       return False
 
     def get_actors_at_location(self, location:tuple):
         """
@@ -387,19 +392,23 @@ class GameGrid(object):
                         self.__listen_all__("button", self._toolbar_actions[button_index])
             # Event: Key down
             elif event.type == pygame.KEYDOWN:
-                self._logging.info("key pressed : " + str(event.key))
                 self._key_pressed = True
                 self._key = event.key
+                if not self._key_holding_allowed and self._key_pressed:
+                    self.__listen_all__("key", self._key) # react immediately
+                    self._logging.info("__listen__ in gamegrid: key pressed : " + str(event.key) + "status:" + str(self._key_pressed))
             # Event: Key up
             elif event.type == pygame.KEYUP:
-                self.__listen_all__("key", event.key)
-                self._logging.info("key released : " + str(event.key))
                 self._key_pressed = False
                 self._key = event.key
+                self._logging.info(
+                    "__listen__ in gamegrid: key released : " + str(event.key) + "status:" + str(self._key_pressed))
+                self._logging.info("__listen__: key pressed: " + str(self._key_pressed) + " / holding allowed: :" + str(self._key_holding_allowed))
         if self._key_pressed:
             # self.key_pressed = False
-            self.__listen_all__("key", self._key)
-
+            if self._key_holding_allowed:
+                self.__listen_all__("key", self._key)
+        print(self._key_holding_allowed)
         return False
 
     def __listen_all__(self, event=None, data=None):
