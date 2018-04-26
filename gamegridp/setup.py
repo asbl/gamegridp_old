@@ -12,7 +12,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name = 'gamegridp',
-    version = '0.3.0.25',
+    version = '0.3.0.26',
     description = 'A gamegrid clone for python',
     long_description=long_description,
     long_description_content_type='text/markdown',

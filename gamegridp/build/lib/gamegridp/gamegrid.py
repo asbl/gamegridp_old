@@ -157,6 +157,7 @@ class GameGrid(object):
             actor.act()
         self.act()
 
+
     @property
     def cell_size(self):
         return self._cell_size
@@ -261,7 +262,9 @@ class GameGrid(object):
             actor.next_sprite()
             actor.draw()
 
-
+    @property
+    def actors(self):
+        return self._actors
     @property
     def frame(self):
         return self._frame
