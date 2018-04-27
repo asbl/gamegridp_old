@@ -354,7 +354,7 @@ class GameGrid(object):
                 # Click is in gamegrid
                 if pos[0] < self.grid_width_in_pixels and pos[1] < self.grid_height_in_pixels and event.button == 1:
                     cell_location = self.__pixel_to_cell__(pos)
-                    self._logging.info(str(cell_location))
+                    self._logging.info("__listen__"+str(cell_location))
                     column = cell_location[0]
                     row = cell_location[1]
                     cell_clicked = (column, row)
@@ -363,11 +363,11 @@ class GameGrid(object):
                                        str(cell_clicked))
                 elif pos[0] < self.grid_width_in_pixels and pos[1] < self.grid_height_in_pixels and event.button == 3:
                     cell_location = self.__pixel_to_cell__(pos)
-                    self._logging.info(str(cell_location))
+                    self._logging.info("__listen__"+str(cell_location))
                     column = cell_location[0]
                     row = cell_location[1]
                     cell_clicked = (column, row)
-                    self._logging.info("Mouseclick right at grid-position:" +
+                    self._logging.info("__listen__ - Mouseclick right at grid-position:" +
                                        str(cell_clicked))
                     self.__listen_all__("mouse_right", cell_location)
                 # Click is in status_bar
@@ -432,11 +432,9 @@ class GameGrid(object):
             For grid an all actors
             act()
         '''
-        '''self.logging.info("Acting... do act:"+str(do_act)+" + running "
-                          +str(self.running)+" act disabled"+str(act_disabled))'''
         if (self._running or do_act) and (not act_disabled):
             self.act_all(grid_act=True)
-        '''' Part 3: Draw actors'''
+        ''' Part 3: Draw actors'''
         self.draw()
         self._logging.debug(str(self.clock.tick()))
         self.clock.tick(self._max_frames)
@@ -460,14 +458,14 @@ class GameGrid(object):
                 self._logging.warning("Nicht in Liste vorhanden")
         else:
             actors_at_cell = self.get_actors_at_location(cell)
-            self._logging.info("Remove actor at: " + str(cell))
+            self._logging.info("remove_actor - Remove actor at: " + str(cell))
             for actor in actors_at_cell:
                 try:
-                    self._logging.info(str(actor) + " wird gelöscht...")
+                    self._logging.info("remove_actor"+str(actor) + " wird gelöscht...")
                     self._actors.remove(actor)
                     actor.remove_from_grid()
                 except ValueError:
-                    self._logging.warning("Nicht in Liste vorhanden")
+                    self._logging.warning("remove_actor - Nicht in Liste vorhanden")
 
     def remove_all_actors(self):
         for actor in self._actors:

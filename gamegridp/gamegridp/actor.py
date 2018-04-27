@@ -41,7 +41,7 @@ class Actor(object):
             self.image = self._original_images[0]
             self.add_image(img_path, img_action)
         else:
-            self.image = pygame.Surface((20, 20))
+            self._image = pygame.Surface((20, 20))
             self._image.fill((0, 0, 255))
         self._logging.debug("Actor: " + str(title) + "'s setup wurde ausgeführt" + str(self._is_rotatable))
         grid.add_actor(self, location)
@@ -54,7 +54,7 @@ class Actor(object):
         """
         pass
 
-    def add_image(self, img_path: str, img_action="do nothing", data=None):
+    def add_image(self, img_path: str, img_action="do nothing", data=None, img_heading="E"):
 
         self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
         self._original_images.append(pygame.image.load(img_path).convert_alpha())
@@ -194,6 +194,7 @@ class Actor(object):
         self._is_rotatable = True
 
     def set_image_heading(self, direction):
+        self._logging.info("set_image_heading: img_heading" + str(self.img_heading))
         if self.img_heading == 'S':
             self._direction = 270
         elif self.img_heading == 'E':
@@ -269,6 +270,9 @@ class Actor(object):
         locations.append([x_pos, y_pos - 1])
         locations.append([x_pos + 1, y_pos - 1])
         return locations
+
+    def listen(self, key, data):
+        pass
 
     def log(self):
         self._logging = logging.getLogger('Actor:')
