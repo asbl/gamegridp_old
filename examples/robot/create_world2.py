@@ -42,7 +42,7 @@ class Wall(gamegridp.Actor):
 
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-mygrid = MyGrid("My Grid", log=True, cell_size=60, columns=10, rows=10,
+mygrid = MyGrid("My Grid", cell_size=60, columns=10, rows=10,
                 margin=0, speed=120,
                 background_color=(200, 0, 0), cell_color=(0, 0, 255), img_path="images/stone.jpg")
 mygrid.show()

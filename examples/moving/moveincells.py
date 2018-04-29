@@ -33,7 +33,7 @@ class Player(gamegridp.Actor):
                 self.move_right()
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-mygrid = MyGrid("My Grid", log=True, cell_size=40, columns=5, rows=5,
+mygrid = MyGrid("My Grid", cell_size=40, columns=5, rows=5,
                 margin=1, speed=60,
                 background_color=(200, 0, 0),cell_color=(0, 0, 255), img_path="images/soccer_green.jpg")
 mygrid.show()

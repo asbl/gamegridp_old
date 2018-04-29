@@ -8,7 +8,7 @@ class MyGrid(gamegridp.GameGrid):
     """My Grid with custom setup method."""
 
     def setup(self):
-        robo1 = Robot(grid=self, location=(1, 1), img_action="scale", log=True)
+        robo1 = Robot(grid=self, location=(1, 1), img_action="scale")
 
     def listen(self, event=None, data=None):
         if event == "mouse_left":
@@ -34,7 +34,7 @@ class Wall(gamegridp.Actor):
 
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-mygrid = MyGrid("My Grid", log=True, cell_size=60, columns=10, rows=10,
+mygrid = MyGrid("My Grid", cell_size=60, columns=10, rows=10,
                 margin=0, speed=120,
                 background_color=(200, 0, 0), cell_color=(0, 0, 255), img_path="images/stone.jpg")
 mygrid.show()

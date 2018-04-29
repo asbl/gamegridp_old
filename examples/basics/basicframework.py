@@ -23,5 +23,5 @@ class Player(gamegridp.Actor):
             self.turn_left()
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-my_grid = MyGrid("My Grid", log=True, cell_size=12, columns=16, rows=16, margin=5, speed=60)
+my_grid = MyGrid("My Grid", cell_size=12, columns=16, rows=16, margin=5, speed=60)
 my_grid.show()

@@ -12,11 +12,10 @@ import typing
 
 class Actor(object):
 
-    def __init__(self, grid, location : list = (0, 0), title : str ="Actor", img_path: str =None, img_action: str="do_nothing",log : bool =False):
+    def __init__(self, grid, location : list = (0, 0), title : str ="Actor", img_path: str =None, img_action: str="do_nothing"):
         # define instance variables
         self.title = title
-        self._logging = None
-        self.log()
+        self._logging = logging.getLogger('Actor:')
         # Define instance variables
         self._original_images = []  # All images stores for actor
         self._image = None
@@ -31,6 +30,7 @@ class Actor(object):
         self._animations = []
         self._animation = ""
         self._blocked = False
+        self._colliding_partners=[]
         # Set Actor image
         self._logging.debug("actor.__init__() : Target-Location:" + str(self.location))
         self._has_image=False
@@ -54,7 +54,7 @@ class Actor(object):
 
     def set_image(self, img_path: str, img_action : str ="do nothing", data=None):
         """
-        Adds an single image to an actor
+        Adds an single image to an actor, deletes all other images
         :param img_path: The path of the image relative to the actual path
         :param img_action: The image action (scale, do_nothing, crop)
         :param data: scale/crop : Size as 2-Tuple
@@ -68,16 +68,19 @@ class Actor(object):
         :param img_action: The image action (scale, do_nothing, crop)
         :param data: scale/crop : Size as 2-Tuple
         """
+        self._logging.info("actor.add_image() : Number of Actor images:" + str(self._original_images.__len__()))
+        self._logging.info("Has image" + str(self.has_image))
         self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
         if not self.has_image:
-            self._original_images.clear()
+            self._original_images=[]
             self.has_image = True
+            self._logging.info("list was cleared:"+str(self._original_images.__len__()))
         self._original_images.append(pygame.image.load(img_path).convert_alpha())
         self._logging.info("actor.add_image() : Number of Actor images:" + str(self._original_images.__len__()))
         self.__image_transform__(self._original_images.__len__() - 1, img_action, data)
-        if self._has_image:
-            if self._original_images.__len__() == 1:
-                self.image = self._original_images[0]
+        self._logging.info("Actor.add_image:"+str(self._original_images.__len__()))
+        if self._original_images.__len__() == 1:
+            self.image = self._original_images[0]
         self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
 
     def animate(self, animation : str =""):
@@ -88,6 +91,9 @@ class Actor(object):
         if not self._animated:
             self._animation = animation
             self._animated = True
+
+    def add_collision_partner(self, partner):
+        self._colliding_partners.append(partner)
 
     def stop(self):
         """
@@ -287,13 +293,6 @@ class Actor(object):
         cell_top = cell_margin + (cell_margin + cell_size) * row - overlapping_y
         return cell_left, cell_top
 
-    def get_location(self) -> list:
-        """
-        Returns the location of actor
-        :return: the location as tuple
-        """
-        return self.location
-
     def get_neighbour_cells(self) -> list:
         """
         :rtype: all neighbour cells in a list.
@@ -316,12 +315,12 @@ class Actor(object):
         """
         pass
 
-    def log(self):
+    def get_location(self) -> list:
         """
-        enables logging
-        :return:
+        Returns the location of actor
+        :return: the location as tuple
         """
-        self._logging = logging.getLogger('Actor:')
+        return self.location
 
     @property
     def location(self) -> list:
@@ -340,7 +339,7 @@ class Actor(object):
         self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
         self._location = value
         self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
-        self.__grid__.update(act_disabled=True, listen_disabled=True)
+        self.__grid__.update(act_disabled=True, listen_disabled=True, collision_disabled = True)
 
     def set_x(self, x):
         """
@@ -353,6 +352,19 @@ class Actor(object):
         :param y: the y-coordinate
         """
         self.location[1] = y
+
+    def get_x(self):
+        """
+        :param x: the x-coordinate
+        """
+        return self.location[0]
+
+    def get_y(self):
+        """
+        :param y: the y-coordinate
+        """
+        return self.location[1]
+
 
     def setup(self):
         """
@@ -482,7 +494,7 @@ class Actor(object):
         return self._has_image
     @has_image.setter
     def has_image(self, value):
-        self._has_image=True
+        self._has_image=value
 
     def draw(self):
         """
@@ -494,7 +506,13 @@ class Actor(object):
             self.__rotate__(self.direction)
             pygame.screen.blit(self._image, (cell_left, cell_top))
 
-    def remove_from_grid(self):
+    def remove(self):
+        """
+        removes the actor from grid
+        """
+        self.__grid__.remove_actor(self)
+
+    def _remove_from_grid(self):
         """
         removes the actor from grid
         """

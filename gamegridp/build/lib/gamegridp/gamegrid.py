@@ -11,19 +11,20 @@ import sys
 import pygame
 
 
+
 class GameGrid(object):
     """The Main GameGrid."""
+
+    grid = None
 
     def __init__(self, title, cell_size=32,
                  columns=8, rows=8, margin=0,
                  background_color=(255, 255, 255), cell_color=(0, 0, 0),
-                 img_path=None, img_action="scale", log=False, speed=60, toolbar=False):
-
+                 img_path=None, img_action="scale", speed=60, toolbar=False):
+        self.grid=self
         # Define instance variables
         self.title = title#
-        self._logging = None
-        if log is True:
-            self.log()
+        self._logging = logging.getLogger('GameGrid')
         self.__done__ = False
         self.__original_image__ = None
         self._grid = []
@@ -33,6 +34,7 @@ class GameGrid(object):
         self._resolution = ()
         self._running = False
         self._cell_margin = 0
+        self._collision_type= "cell"
         self._image = None
         self._cell_transparency = 0
         self._clock = None
@@ -62,8 +64,10 @@ class GameGrid(object):
         self._cell_size = cell_size
         if self.cell_size == 1:
             self._key_holding_allowed = True
+            self._collision_type = "bounding_box"
         else:
             self._key_holding_allowed = False
+            self._collision_type = "bounding_box"
         self._background_color = background_color
         self._cell_color = cell_color
         # grid and grid-dimensions
@@ -155,7 +159,7 @@ class GameGrid(object):
         self._actors.append(actor)
         self.repaint_area(actor.bounding_box)
         if location is not None:
-            actor.__deprecated_set_location__(location)
+            actor.location = location
 
     def __act_all__(self, grid_act=True):
         """
@@ -302,6 +306,7 @@ class GameGrid(object):
         """
         return self._frame
 
+
     @property
     def grid_width_in_pixels(self) -> int:
         """ returns the grid with in pixes"""
@@ -320,19 +325,54 @@ class GameGrid(object):
         """
         return self.grid_width_in_pixels, self.grid_height_in_pixels
 
-    def colliding(self, actor1, actor2, cell_based: bool = True) -> bool:
-        if cell_based:
-            if actor1.is_in_grid(self) and actor2.is_in_grid(self):
-                self._logging.info("gamegrid.colliding() : Colliding? A1:" + str(actor1.location) + ",A2:" + str(actor2.location))
-                if actor1.location == actor2.location:
-                    return True
-                else:
-                    return False
-        #else:
-        #    if pygame.sprite.collide_rect(actor1.bounding_box,actor2.bounding_box):
-         #       return True
-         #   else:
-         #       return False
+    def colliding_cell(self, actor1, actor2, cell_based: bool = True) -> bool:
+        if actor1.is_in_grid(self) and actor2.is_in_grid(self):
+            self._logging.info("gamegrid.colliding() : Colliding? A1:" + str(actor1.location) + ",A2:" + str(actor2.location))
+            if actor1.location == actor2.location:
+                return True
+            else:
+                return False
+
+    def colliding_bounding_box(self, actor1, actor2) -> bool:
+        if actor1.bounding_box.colliderect(actor2.bounding_box):
+            self._logging.info("gamegrid.colliding_bounding_box: colliding")
+            return True
+        else:
+            self._logging.info("gamegrid.colliding_bounding_box: not colliding")
+            return False
+
+    def get_bounding_box_collisions(self, actor):
+        for partner in actor._colliding_partners:
+            if self.colliding_bounding_box(actor, partner):
+                return partner
+        return None
+
+    def get_cell_collisions(self,actor):
+        for partner in actor._colliding_partners:
+            if self.colliding_cell(actor, partner):
+                return partner
+        return None
+
+    def __collision__(self):
+        self._logging.info("gamegrid.__collision__() - Type:"+str(self._collision_type))
+        for actor in self.actors:
+            if self._collision_type== "bounding_box":
+                partner2 = self.get_bounding_box_collisions(actor)
+                if partner2 is not None:
+                    partner1 = actor
+                    self.collision(partner1, partner2)
+            else:
+                partner2 = self.get_cell_collisions(actor)
+                if partner2 is not None:
+                    partner1 = actor
+                    self.collision(partner1, partner2)
+
+
+    def collision(self, partner1, partner2):
+        """
+        overwritten by main_method
+        :return:
+        """
 
     def get_actors_at_location(self, location:tuple) -> list:
         """
@@ -463,7 +503,7 @@ class GameGrid(object):
         """
         pass
 
-    def update(self, do_act=False, act_disabled : bool =False, listen_disabled : bool = False):
+    def update(self, do_act=False, act_disabled : bool =False, listen_disabled : bool = False, collision_disabled = False):
         ''' Part 1:
             For grid an all actors
             listen to events
@@ -478,6 +518,8 @@ class GameGrid(object):
         if (self._running or do_act) and (not act_disabled):
             self.__act_all__(grid_act=True)
         ''' Part 3: Draw actors'''
+        if not collision_disabled:
+            self.__collision__()
         self.draw()
         self._logging.debug("gamegrid.update() : str(self.clock.tick()")
         self.clock.tick(self._max_frames)
@@ -496,7 +538,7 @@ class GameGrid(object):
         if cell == None:
             try:
                 self._actors.remove(actor)
-                actor.remove_from_grid()
+                actor._remove_from_grid()
             except ValueError:
                 self._logging.warning("gamegrid.__remove_actor() : Nicht in Liste vorhanden")
         else:
@@ -506,7 +548,7 @@ class GameGrid(object):
                 try:
                     self._logging.info("gamegrid.remove_actor() : remove_actor"+str(actor) + " wird gelöscht...")
                     self._actors.remove(actor)
-                    actor.remove_from_grid()
+                    actor._remove_from_grid()
                 except ValueError:
                     self._logging.warning("gamegrid.remove_actor() : Nicht in Liste vorhanden")
 
@@ -525,6 +567,12 @@ class GameGrid(object):
         self.setup()
         self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
         self.update()
+
+    def stop(self):
+        self._running=False
+
+    def run(self):
+        self._running=True
 
     def show(self):
         """
@@ -552,6 +600,3 @@ class GameGrid(object):
         row = \
             (pos[1] - self._cell_margin) // (self.cell_size + self._cell_margin)
         return column, row
-
-    def log(self):
-        self._logging = logging.getLogger('GameGrid')
