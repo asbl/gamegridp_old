@@ -1,6 +1,6 @@
-from gamegridp import gamegrid
+import gamegridp
 
-class MyGrid(gamegrid.GameGrid):
+class MyGrid(gamegridp.GameGrid):
     """My Grid with custom setup method."""
 
 

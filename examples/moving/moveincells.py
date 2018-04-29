@@ -1,9 +1,9 @@
-from gamegridp import actor
-from gamegridp import gamegrid
+import gamegridp
 from gamegridp import keys
+import logging
+import sys
 
-
-class MyGrid(gamegrid.GameGrid):
+class MyGrid(gamegridp.GameGrid):
     """My Grid with custom setup method."""
 
 
@@ -13,7 +13,7 @@ class MyGrid(gamegrid.GameGrid):
 
 
 
-class Player(actor.Actor):
+class Player(gamegridp.Actor):
 
     def setup(self):
         self._is_rotatable = True
@@ -32,8 +32,7 @@ class Player(actor.Actor):
             elif data == keys.D:
                 self.move_right()
 
-#logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-#module_logger = logging.getLogger('gglogger')
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 mygrid = MyGrid("My Grid", log=True, cell_size=40, columns=5, rows=5,
                 margin=1, speed=60,
                 background_color=(200, 0, 0),cell_color=(0, 0, 255), img_path="images/soccer_green.jpg")

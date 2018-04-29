@@ -1,17 +1,15 @@
 import logging
 import sys
-
-from gamegridp import actor
-from gamegridp import gamegrid
+import gamegridp
 
 
-class MyGrid(gamegrid.GameGrid):
+class MyGrid(gamegridp.GameGrid):
     """My Grid with custom setup method."""
     def setup(self):
         self.player1 = Robot(grid=self, location=(50, 70))
 
 
-class Robot(actor.Actor):
+class Robot(gamegridp.Actor):
 
     def setup(self):
         self.add_image("images/robot_blue1.png", "do_nothing")
@@ -27,7 +25,6 @@ class Robot(actor.Actor):
             self.flip_x()
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-module_logger = logging.getLogger('gglogger')
 mygrid = MyGrid("My Grid", log=True, cell_size=1, columns=200, rows=150,
                 margin=0, speed=40,
                 background_color=(200, 0, 0), cell_color=(0, 0, 255), img_path="images/water.png")
