@@ -7,7 +7,7 @@ class MyGrid(gamegridp.GameGrid):
     """My Grid with custom setup method."""
     def setup(self):
         self.player1 = Player(grid=self, location=(3, 3))
-        self.player1.add_image(img_path="images/fish.png", img_action="scale", data=(80, 80))
+        self.player1.add_image(img_path="images/fish.png", size=(80, 80))
 
 
 class Player(gamegridp.Actor):
@@ -20,6 +20,6 @@ class Player(gamegridp.Actor):
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 mygrid = MyGrid("My Grid", cell_size=25, columns=40, rows=20,
-                margin=0, speed=120,
+                margin=1, speed=120,
                 background_color=(200, 0, 0), cell_color=(0, 0, 255), img_path="images/water.png")
 mygrid.show()

@@ -1,8 +1,8 @@
 from gamegridp import actor
 from gamegridp import gamegrid
 from gamegridp import keys
-import logging
-import sys
+#import logging
+#import sys
 
 class MyGrid(gamegrid.GameGrid):
     """My Grid with custom setup method."""
@@ -24,17 +24,16 @@ class Player(actor.Actor):
 
     def listen(self, event, data):
         if event == "key":
-            if data == keys.W:
+            if "W" in data:
                 self.move_up()
-            elif data == keys.S:
+            elif "S" in data:
                 self.move_down()
-            elif data == keys.A:
+            elif "A" in data:
                 self.move_left()
-            elif data == keys.D:
+            if "D" in data:
                 self.move_right()
 
-logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+#logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 mygrid = MyGrid("My Grid", cell_size=1, columns=200, rows=200,
-                margin=0, speed=60,
-                background_color=(200, 0, 0),cell_color=(0, 0, 255), img_path="images/soccer_green.jpg")
+                margin=0,img_path="images/soccer_green.jpg")
 mygrid.show()

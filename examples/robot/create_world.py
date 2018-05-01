@@ -12,7 +12,7 @@ class MyGrid(gamegridp.GameGrid):
 
     def listen(self, event=None, data=None):
         if event == "mouse_left":
-            if self.is_empty((data[0], data[1])):
+            if self.is_empty_cell((data[0], data[1])):
                 Wall(self, (data[0], data[1]))
                 self._logging.info("Wall created at: " + str(data[0]) + "," + str(data[1]))
             else:

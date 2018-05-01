@@ -14,7 +14,7 @@ class MyGrid(gamegridp.GameGrid):
             player1.add_collision_partner(asteroid)
 
     def collision(self, partner1, partner2):
-        Explosion(grid=self, location=partner1.location)
+        Explosion(grid=self, location= partner1.location)
         partner1.remove()
         partner2.remove()
         self.stop()
@@ -29,9 +29,9 @@ class Player(gamegridp.Actor):
 
     def listen(self,event,data):
         if event == "key":
-            if data == keys.W:
+            if "W" in data:
                 self.turn_left(10)
-            elif data == keys.S:
+            elif "S" in data:
                 self.turn_right(10)
 
     def act(self):
@@ -57,6 +57,6 @@ class Explosion(gamegridp.Actor):
 random.seed()
 screen_x=400
 screen_y=300
-mygrid = MyGrid("My Grid", log=True, cell_size=1, columns=screen_x, rows=screen_y,
+mygrid = MyGrid("My Grid", cell_size=1, columns=screen_x, rows=screen_y,
                 margin=0, speed=120)
 mygrid.show()

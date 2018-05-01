@@ -12,6 +12,7 @@ class MyGrid(gamegrid.GameGrid):
         self.robot2 = Robot(grid=self, location=(28, 0), img_path="images/robo_yellow.png", img_action="scale")
         self.robot1.add_collision_partner(self.robot2)
         self.robot2.turn_left(180)
+        self.set_image(img_path = "images/water.png", img_action = "fill")
 
     def act(self):
         pass
@@ -38,6 +39,5 @@ class Robot(actor.Actor):
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 mygrid = MyGrid("My Grid", cell_size=40, columns=29, rows=1,
-                margin=0, speed=40,
-                background_color=(200, 0, 0), cell_color=(0, 0, 255), img_path="images/water.png")
+                margin=0, speed=40)
 mygrid.show()

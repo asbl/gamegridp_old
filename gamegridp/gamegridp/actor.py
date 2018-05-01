@@ -12,7 +12,7 @@ import typing
 
 class Actor(object):
 
-    def __init__(self, grid, location : list = (0, 0), title : str ="Actor", img_path: str =None, img_action: str="do_nothing"):
+    def __init__(self, grid, location : list = (0, 0), color:tuple=(0,0,255), title : str ="Actor", img_path: str =None, size:tuple=(40,40), img_action: str="do_nothing"):
         # define instance variables
         self.title = title
         self._logging = logging.getLogger('Actor:')
@@ -36,10 +36,10 @@ class Actor(object):
         self._has_image=False
         if img_path is not None:
             self._has_image = True
-            self.add_image(img_path, img_action)
+            self.add_image(img_path, img_action, size)
         else:
-            self._image = pygame.Surface((40, 40))
-            self._image.fill((0, 0, 255))
+            self._image = pygame.Surface(size)
+            self._image.fill(color)
             self._original_images.append(self._image)
         self._logging.debug("actor.__init__() : Actor: " + str(title) + "'s setup wurde ausgeführt" + str(self._is_rotatable))
         grid.add_actor(self, location)
@@ -52,21 +52,21 @@ class Actor(object):
         """
         pass
 
-    def set_image(self, img_path: str, img_action : str ="do nothing", data=None):
+    def set_image(self, img_path: str, img_action : str ="do nothing", size=None):
         """
         Adds an single image to an actor, deletes all other images
         :param img_path: The path of the image relative to the actual path
         :param img_action: The image action (scale, do_nothing, crop)
-        :param data: scale/crop : Size as 2-Tuple
+        :param size: scale/crop : Size as 2-Tuple
         """
         self.has_image=False
-        self.add_image(img_path, img_action, data)
+        self.add_image(img_path, img_action, size)
 
-    def add_image(self, img_path: str, img_action : str ="do nothing", data=None):
+    def add_image(self, img_path: str, img_action : str ="do nothing", size=None):
         """ adds an image to the actor
         :param img_path: The path of the image relative to the actual path
         :param img_action: The image action (scale, do_nothing, crop)
-        :param data: scale/crop : Size as 2-Tuple
+        :param size: scale/crop : Size as 2-Tuple
         """
         self._logging.info("actor.add_image() : Number of Actor images:" + str(self._original_images.__len__()))
         self._logging.info("Has image" + str(self.has_image))
@@ -77,7 +77,7 @@ class Actor(object):
             self._logging.info("list was cleared:"+str(self._original_images.__len__()))
         self._original_images.append(pygame.image.load(img_path).convert_alpha())
         self._logging.info("actor.add_image() : Number of Actor images:" + str(self._original_images.__len__()))
-        self.__image_transform__(self._original_images.__len__() - 1, img_action, data)
+        self.__image_transform__(self._original_images.__len__() - 1, img_action, size)
         self._logging.info("Actor.add_image:"+str(self._original_images.__len__()))
         if self._original_images.__len__() == 1:
             self.image = self._original_images[0]
@@ -230,11 +230,27 @@ class Actor(object):
          """
         return self._is_rotatable
 
+    @is_rotatable.setter
+    def is_rotatable(self, value : bool):
+        """
+        sets the actual image
+        :param value: the path to the image
+        """
+        self.__rotatable = value
+
     def set_rotatable(self):
         """
         Sets the actor-image rotatable.
         """
         self._is_rotatable = True
+
+    def set_text(self,text,size):
+        myfont = pygame.font.SysFont("monospace", size)
+        label = myfont.render(text, 1, (0, 0, 0))
+        self.image.blit(label, (0, 0))
+        self._original_images[0]=self._image
+        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+
 
     def __image_transform__(self, index : int, img_action : str, data : str =None):
         """
@@ -252,7 +268,7 @@ class Actor(object):
         elif img_action == "crop":
             cropped_surface = pygame.Surface()
             cropped_surface.blit(self._original_images[self._image_index], (0, 0),
-                                 (0, 0, self.__grid__.grid_width_in_pixels, self.__grid__.grid_height_in_pixels))
+                                 (0, 0, self.__grid__.__grid_width_in_pixels__, self.__grid__.__grid_height_in_pixels__))
             self._original_images[self._image_index] = cropped_surface
         elif img_action == "do_nothing":
             self._original_images[self._image_index] = self._original_images[self._image_index]
@@ -339,7 +355,7 @@ class Actor(object):
         self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
         self._location = value
         self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
-        self.__grid__.update(act_disabled=True, listen_disabled=True, collision_disabled = True)
+        self.__grid__.__update__(act_disabled=True, listen_disabled=True, collision_disabled = True)
 
     def set_x(self, x):
         """

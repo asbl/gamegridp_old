@@ -23,17 +23,17 @@ class Player(gamegridp.Actor):
 
     def listen(self, event, data):
         if event == "key":
-            if data == keys.W:
+            if "W" in data:
                 self.move_up()
-            elif data == keys.S:
+            elif "S" in data:
                 self.move_down()
-            elif data == keys.A:
+            elif "A" in data:
                 self.move_left()
-            elif data == keys.D:
+            elif "D" in data:
                 self.move_right()
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-mygrid = MyGrid("My Grid", cell_size=40, columns=5, rows=5,
-                margin=1, speed=60,
+mygrid = MyGrid("My Grid",    cell_size=40, columns=5, rows=5,
+                margin=1, speed=10,
                 background_color=(200, 0, 0),cell_color=(0, 0, 255), img_path="images/soccer_green.jpg")
 mygrid.show()
