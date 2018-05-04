@@ -12,8 +12,8 @@ class MyGrid(gamegridp.GameGrid):
 class Robot(gamegridp.Actor):
 
     def setup(self):
-        self.add_image("images/robot_blue1.png", "do_nothing")
-        self.add_image("images/robot_blue2.png", "do_nothing")
+        self.add_image("images/robot_blue1.png", "scale", size=(20,20))
+        self.add_image("images/robot_blue2.png", "scale", size=(20,20))
         self.animation_speed = 20
         self.animate()
 

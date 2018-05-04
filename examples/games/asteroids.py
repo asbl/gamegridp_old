@@ -23,7 +23,7 @@ class MyGrid(gamegridp.GameGrid):
 class Player(gamegridp.Actor):
 
     def setup(self):
-        self.set_image("images/ship.png","scale",(30,30))
+        self.add_image("images/ship.png","scale",(30,30))
         self.set_rotatable()
 
 

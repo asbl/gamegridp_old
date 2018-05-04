@@ -25,6 +25,8 @@ class Actor(object):
         self.__grid__ = grid
         self._location = location
         self._direction = 0
+        self.color=color
+        self.size=size
         self._animation_speed = 4
         self._animated = False
         self._animations = []
@@ -38,9 +40,7 @@ class Actor(object):
             self._has_image = True
             self.add_image(img_path, img_action, size)
         else:
-            self._image = pygame.Surface(size)
-            self._image.fill(color)
-            self._original_images.append(self._image)
+            self.delete_images()
         self._logging.debug("actor.__init__() : Actor: " + str(title) + "'s setup wurde ausgeführt" + str(self._is_rotatable))
         grid.add_actor(self, location)
         self.setup()
@@ -59,7 +59,8 @@ class Actor(object):
         :param img_action: The image action (scale, do_nothing, crop)
         :param size: scale/crop : Size as 2-Tuple
         """
-        self.has_image=False
+        if self.has_image:
+            self.delete_images()
         self.add_image(img_path, img_action, size)
 
     def add_image(self, img_path: str, img_action : str ="do nothing", size=None):
@@ -68,20 +69,26 @@ class Actor(object):
         :param img_action: The image action (scale, do_nothing, crop)
         :param size: scale/crop : Size as 2-Tuple
         """
-        self._logging.info("actor.add_image() : Number of Actor images:" + str(self._original_images.__len__()))
-        self._logging.info("Has image" + str(self.has_image))
+        self._logging.info("add_image(): Start add image")
         self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
         if not self.has_image:
             self._original_images=[]
-            self.has_image = True
-            self._logging.info("list was cleared:"+str(self._original_images.__len__()))
+            self._logging.info("add_image(): list was cleared:" + str(self._original_images.__len__()))
+        self._logging.info("add_image(): Has image:" + str(self.has_image))
         self._original_images.append(pygame.image.load(img_path).convert_alpha())
         self._logging.info("actor.add_image() : Number of Actor images:" + str(self._original_images.__len__()))
-        self.__image_transform__(self._original_images.__len__() - 1, img_action, size)
-        self._logging.info("Actor.add_image:"+str(self._original_images.__len__()))
-        if self._original_images.__len__() == 1:
-            self.image = self._original_images[0]
+        self.__image_transform__(-1, img_action, size)
+        self.image = self._original_images[0] # overwrite image
         self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        self.has_image = True
+
+    def delete_images(self):
+        self._original_images = []
+        self._image = pygame.Surface(self.size)
+        self._image.fill(self.color)
+        self._original_images.append(self._image)
+        self.has_image=False
+
 
     def animate(self, animation : str =""):
         """
@@ -260,10 +267,10 @@ class Actor(object):
         cell_size = self.__grid__.cell_size
         if img_action == "scale":
             if data is None:
-                self._original_images[self._image_index] = pygame.transform.scale(self._original_images[index],
+                self._original_images[index] = pygame.transform.scale(self._original_images[index],
                                                                                   (cell_size, cell_size))
             else:
-                self._original_images[self._image_index] = pygame.transform.scale(self._original_images[index],
+                self._original_images[index] = pygame.transform.scale(self._original_images[index],
                                                                                   (data[0], data[1]))
         elif img_action == "crop":
             cropped_surface = pygame.Surface()

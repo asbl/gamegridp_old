@@ -19,7 +19,7 @@ class MyGrid(gamegridp.GameGrid):
             else:
                 self.remove_actor(cell=(data[0], data[1]))
         elif event == "mouse_right":
-            if self.is_empty((data[0], data[1])):
+            if self.is_empty_cell((data[0], data[1])):
                 Robot(self, (data[0], data[1]))
                 self._logging.info("Robo created at: " + str(data[0]) + "," + str(data[1]))
             else:
