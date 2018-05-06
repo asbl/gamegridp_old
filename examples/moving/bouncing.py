@@ -2,40 +2,22 @@ import gamegridp
 from gamegridp import keys
 import random
 import sys
+import logging
+import sys
 
 class MyGrid(gamegridp.GameGrid):
     """My Grid with custom setup method."""
 
     def setup(self):
         self.set_image("images/galaxy.jpg","scale")
-        player1 = Player(grid=self, location=(40, 40))
-        for i in range(5):
+        for i in range(1):
             asteroid=Asteroid(grid=self, location=(random.randint(0,screen_x),random.randint(0,screen_y)))
-            player1.add_collision_partner(asteroid)
 
     def collision(self, partner1, partner2):
         Explosion(grid=self, location= partner1.location)
         partner1.remove()
         partner2.remove()
         self.stop()
-
-
-class Player(gamegridp.Actor):
-
-    def setup(self):
-        self.add_image("images/ship.png","scale",(30,30))
-        self.set_rotatable()
-
-
-    def listen(self,event,data):
-        if event == "key":
-            if "W" in data:
-                self.turn_left(10)
-            elif "S" in data:
-                self.turn_right(10)
-
-    def act(self):
-        self.move(3)
 
 
 class Asteroid(gamegridp.Actor):
@@ -47,12 +29,15 @@ class Asteroid(gamegridp.Actor):
     def act(self):
         valid = self.move(4)
         if not valid:
+            print("not valid")
             self.turn_left(180)
+            self.move(4)
 
 class Explosion(gamegridp.Actor):
     def setup(self):
         self.add_image("images/explosion.png", "do_nothing")
 
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 random.seed()
 screen_x=400
 screen_y=300

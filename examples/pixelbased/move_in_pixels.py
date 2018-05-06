@@ -9,7 +9,7 @@ class MyGrid(gamegrid.GameGrid):
 
 
     def setup(self):
-        self.player1 = Player(grid=self, location=(3, 3), img_path="images/char_blue.png",
+        self.player1 = Player(grid=self, location=(30, 30), img_path="images/char_blue.png",
                               img_action="do_nothing")
 
 

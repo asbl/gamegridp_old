@@ -43,8 +43,13 @@ class Actor(object):
             self.delete_images()
         self._logging.debug("actor.__init__() : Actor: " + str(title) + "'s setup wurde ausgeführt" + str(self._is_rotatable))
         grid.add_actor(self, location)
+        if self.grid.cell_size == 1:
+            self.__bounding_box_type__ = "image"
+        else:
+            self.__bounding_box_type__ = "cell"
         self.setup()
         self._logging.debug("actor.__init__() : Actor " + str(title) + " wurde initialisiert")
+
 
     def act(self):
         """
@@ -70,7 +75,7 @@ class Actor(object):
         :param size: scale/crop : Size as 2-Tuple
         """
         self._logging.info("add_image(): Start add image")
-        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         if not self.has_image:
             self._original_images=[]
             self._logging.info("add_image(): list was cleared:" + str(self._original_images.__len__()))
@@ -79,7 +84,7 @@ class Actor(object):
         self._logging.info("actor.add_image() : Number of Actor images:" + str(self._original_images.__len__()))
         self.__image_transform__(-1, img_action, size)
         self.image = self._original_images[0] # overwrite image
-        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         self.has_image = True
 
     def delete_images(self):
@@ -123,7 +128,7 @@ class Actor(object):
 
     @direction.setter
     def direction(self, value : int):
-        self._logging.info("actor.rotation() : rotated by " + str(value) + " degrees. Is rotatable?: " + str(self._is_rotatable))
+        self._logging.debug("actor.rotation() : rotated by " + str(value) + " degrees. Is rotatable?: " + str(self._is_rotatable))
         self.__rotate__(value)
         self._direction = value
 
@@ -133,20 +138,19 @@ class Actor(object):
         :param direction:
         """
         if self.is_rotatable:
-            self.__grid__.repaint_area(self.bounding_box)
+            self.__grid__.repaint_area(self.image_rect)
             # rotate the original image to new direction
             self._logging.debug("actor.__rotate: rotate Image" + str(dir(self._original_images)) + ", Image: " + str(
                 self._image) + "Index:" + str(self._image_index) )
             self.image = pygame.transform.rotate(self._original_images[self._image_index], direction)
-            self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+            self.__grid__.repaint_area(pygame.Rect(self.image_rect))
 
-    def is_in_grid(self, grid):
-        """
-        Checks if the actor is in grid
-        :param grid: the grid to check
-        :return:
-        """
-        if self.__grid__ == grid and grid.is_location_in_grid(self.location):
+    def is_in_grid(self, target: tuple = None) -> bool:
+        if target == None:
+            box = self.bounding_box
+        else:
+            box = self.bounding_box(target)
+        if self.grid.is_rectangle_in_grid(box):
             return True
         else:
             return False
@@ -177,14 +181,14 @@ class Actor(object):
         """
         try:
             if not self._is_flipped:
-                self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+                self.__grid__.repaint_area(pygame.Rect(self.image_rect))
                 self._logging.debug("actor.flip_x() : Flipping " + self.title + " image number " + str(self._image_index))
                 self.image = pygame.transform.flip(self._original_images[self._image_index], False, False)
-                self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+                self.__grid__.repaint_area(pygame.Rect(self.image_rect))
             else:
-                self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+                self.__grid__.repaint_area(pygame.Rect(self.image_rect))
                 self.image = pygame.transform.flip(self._original_images[self._image_index], True, False)
-                self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+                self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         except IndexError:
             self._logging.warning("actor.flip_x : Index Error in __flip_x__() in: Image Index is out of bounds")
 
@@ -220,14 +224,14 @@ class Actor(object):
         """
         switches to the next image by image_index
         """
-        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         if self._image_index < self._original_images.__len__() - 1:
             self._image_index = self._image_index + 1
         else:
             self._image_index = 0
         self.image = self._original_images[self._image_index]
         self.draw()
-        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         self._logging.debug("actor.image_next() : Image Index:" + str(self._image_index) + "/" + str(self._original_images.__len__() - 1))
 
     @property
@@ -256,7 +260,7 @@ class Actor(object):
         label = myfont.render(text, 1, (0, 0, 0))
         self.image.blit(label, (0, 0))
         self._original_images[0]=self._image
-        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
 
 
     def __image_transform__(self, index : int, img_action : str, data : str =None):
@@ -281,9 +285,9 @@ class Actor(object):
             self._original_images[self._image_index] = self._original_images[self._image_index]
 
     @property
-    def bounding_box(self):
+    def image_rect(self):
         """
-        :return: The surrounding Rectangle
+            :return: The surrounding Rectangle used for redrawing and image manipulation
         """
         try:
             left, top = self.__get_image_coordinates_in_pixels__()
@@ -293,13 +297,48 @@ class Actor(object):
             left, top, width, height = 0, 0, 0, 0
         return pygame.Rect(left, top, width, height)
 
-    def __get_image_coordinates_in_pixels__(self):
+    def __image_rect__(self,location=None):
+        """
+            the image rect when drawn to another location
+        """
+        if location == None:
+            location=self.location
+        try:
+            width = self._image.get_width()
+            height = self._image.get_height()
+            left, top = self.__get_image_coordinates_in_pixels__(location)
+        except AttributeError:
+            left, top, width, height = 0, 0, 0, 0
+        return pygame.Rect(left, top, width, height)
+
+    def __cell_rect__(self, location: tuple = None):
+        if location == None:
+            location=self.location
+        return self.grid.cell_rect(location)
+
+    def bounding_box(self, location: tuple = None):
+        """
+        :return: The surrounding Rectangle if actor is placed at location
+        """
+        if location == None:
+            location = self.location
+        if self.__bounding_box_type__ == "image":
+            return self.__image_rect__(location)
+        else:
+            return self.__cell_rect__(location)
+        
+
+    def __get_image_coordinates_in_pixels__(self, location : tuple =None):
         """
         Gets coordinates of top-left image position
         :return: (x-coordinate, y-coordinate)
         """
-        column = self.location[0]
-        row = self.location[1]
+        if location == None:
+           column = self.location[0]
+           row = self.location[1]
+        else:
+            column = location[0]
+            row = location[1]
         cell_margin = self.__grid__.cell_margin
         cell_size = self.__grid__.cell_size
         if self._image.get_width() > cell_size:
@@ -359,9 +398,9 @@ class Actor(object):
         :type value: tuple with x and y-coordinate
         """
         self._logging.debug("actor.location: Location set")
-        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         self._location = value
-        self.__grid__.repaint_area(pygame.Rect(self.bounding_box))
+        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         self.__grid__.__update__(act_disabled=True, listen_disabled=True, collision_disabled = True)
 
     def set_x(self, x):
@@ -431,18 +470,24 @@ class Actor(object):
         target = location
         if self.is_valid_move(target):
             self.location = target
+            return True
+        return False
 
     def move(self, distance: int = 1):
         """
         Moves actor by x steps
         :param distance : number of steps the actor should step forward.
         """
-        target = self.look_forward()
-        self._logging.debug("actor.move(): self" + str(self.location) + ", target" + str(target))
         target = self.look_forward(distance)
+        self._logging.info("actor.move(): ...try to move from"+str(self.location) + " to target" + str(target))
         if self.is_valid_move(target):
+            self._logging.info("actor.move(): self" + str(self.location) + ", target" + str(target))
             self.location = target
-        self._logging.debug("actor.move(): self" + str(self.location) + ", target" + str(target))
+            self._logging.info("actor.move(): ...moved to:"+str(self.location))
+            return True
+        self._logging.info("actor.move(): ..couldn't move")
+        return False
+
 
     def move_up(self):
         """
@@ -496,10 +541,13 @@ class Actor(object):
         if target is None:
             target = self.look_forward()
         # Check if target is in grid
-        self._logging.debug("actor.is_valid_mode() : target:" + str(target))
-        if self.__grid__.is_location_in_grid(target):
+
+        #if self.__grid__.is_location_in_grid(target):
+        if self.is_in_grid(target):
+            self._logging.info("actor.is_valid_move() : target:" + str(target)+",true")
             valid = True
         else:
+            self._logging.info("actor.is_valid_move() : target:" + str(target) + ",false")
             valid = False
         # check if target is not blocked
         actors_at_position = self.__grid__.get_actors_at_location(target)
@@ -540,3 +588,8 @@ class Actor(object):
         removes the actor from grid
         """
         self.__grid__ = None
+
+    @property
+    def grid(self):
+        return self.__grid__
+

@@ -176,7 +176,7 @@ class GameGrid(object):
         self._logging.debug("gamegrid.add_actor() : Actor zum Grid hinzugefügt: " + actor.title +
                             " Location:" + str(location))
         self._actors.append(actor)
-        self.repaint_area(actor.bounding_box)
+        self.repaint_area(actor.image_rect)
         if location is not None:
             actor.location = location
 
@@ -367,7 +367,7 @@ class GameGrid(object):
         :param actor2: partner
         :return: true if the bounding boxes collide
         """
-        if actor1.bounding_box.colliderect(actor2.bounding_box):
+        if actor1.bounding_box().colliderect(actor2.bounding_box()):
             self._logging.debug("gamegrid.colliding_bounding_box: colliding")
             return True
         else:
@@ -446,6 +446,26 @@ class GameGrid(object):
             return False
         else:
             return True
+
+    def is_rectangle_in_grid(self, rect):
+            self._logging.info("is_rectangle_in_grid() :"
+                               + str(rect.topleft[0]) + ","
+                               + str(rect.topleft[1]) + ","
+                               + str(rect.width)+ ","
+                               + str(rect.height)+" Gridsize"
+                               + str(self.__grid_width_in_pixels__)+","
+                               + str(self.__grid_height_in_pixels__)
+                               )
+
+            if rect.topleft[0] < 0 \
+                    or rect.topleft[1] < 0 \
+                    or rect.topleft[0]+rect.width > self.__grid_width_in_pixels__ \
+                    or rect.topleft[1]+rect.height > self.__grid_height_in_pixels__:
+                self._logging.info("is_rectangle_in_grid() : false)")
+                return False # rectangle is not in grid
+            else:
+                self._logging.info("is_rectangle_in_grid() : true)")
+                return True # rectangle is in grid
 
     def is_empty_cell(self, cell: tuple) -> bool:
         if not self.get_actors_at_location(cell):
@@ -662,3 +682,14 @@ class GameGrid(object):
         row = \
             (pos[1] - self._cell_margin) // (self.cell_size + self._cell_margin)
         return column, row
+
+    def cell_rect(self, cell : tuple):
+        """
+        transforms a pixel-coordinate into a cell coordinate in grid
+        :param pos: the position in pixels
+        """
+        x=cell[0]*self.cell_size + cell[0] * self._cell_margin + self._cell_margin
+        y=cell[1]*self.cell_size + cell[1] * self._cell_margin + self._cell_margin
+        return pygame.Rect(x,y, self.cell_size, self.cell_size)
+
+
