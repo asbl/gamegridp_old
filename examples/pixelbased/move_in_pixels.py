@@ -13,7 +13,6 @@ class MyGrid(gamegrid.GameGrid):
                               img_action="do_nothing")
 
 
-
 class Player(actor.Actor):
 
     def setup(self):

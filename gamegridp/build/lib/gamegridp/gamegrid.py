@@ -5,10 +5,10 @@ Created on Mon Apr 16 21:49:29 2018
 @author: asieb
 """
 import logging
+from gamegridp import keys
 import os
 import sys
 import pygame
-from gamegridp import keys
 
 
 
@@ -27,7 +27,7 @@ class GameGrid(object):
         self.title = title#
         self._logging = logging.getLogger('GameGrid')
         self.__done__ = False
-        self.__original_image__ = None
+        self._image = None
         self._grid = []
         self._info=False
         self._actors = []
@@ -103,49 +103,56 @@ class GameGrid(object):
         # Draw_Qeue
         self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
+    def add_cell_image(self, img_path : str, location : tuple):
+        top_left=self.cell_to_pixel(location)
+        cell_image = pygame.image.load(img_path).convert()
+        cell_image = pygame.transform.scale(cell_image, (self.cell_size, self.cell_size))
+        self._image.blit(cell_image, (top_left[0], top_left[1], self.cell_size, self.cell_size))
+
+
     def set_image(self, img_path : str, img_action : str = "upscale", size = None):
         self._logging.info("gamegrid.set_image : Set new image with action:"+str(img_action)+" and path:"+str(img_path))
         if img_path is not None:
-            self.__original_image__ = pygame.image.load(img_path).convert()
-            self._image=self.__original_image__
+            self._image = pygame.image.load(img_path).convert()
+            self._image=self._image
             self._cell_transparency = 0
             if img_path is not None and img_action == "scale":
                 if size is None:
-                    self.__original_image__ = pygame.transform.scale(self.__original_image__,
-                                                                                      (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+                    self._image = pygame.transform.scale(self._image,
+                                                         (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
                 else:
-                    self.__original_image__ = pygame.transform.scale(self.__original_image__,(size[0],size[1]))
+                    self._image = pygame.transform.scale(self._image, (size[0], size[1]))
                 self._image = pygame.transform.scale(
-                    self.__original_image__, (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+                    self._image, (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
             elif img_path is not None and img_action == "upscale":
                 if self._image.get_width() < self.__grid_width_in_pixels__ or self._image.get_height() < self.__grid_height_in_pixels__:
-                        self.__original_image__ = pygame.transform.scale(
-                            self.__original_image__, (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+                        self._image = pygame.transform.scale(
+                            self._image, (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
             elif img_path is not None and img_action == "fill":
                 if size is None:
-                    self.__original_image__ = pygame.transform.scale(self.__original_image__,
-                                                                                      (self.cell_size, self.cell_size))
+                    self._image = pygame.transform.scale(self._image,
+                                                         (self.cell_size, self.cell_size))
                 else:
-                    self.__original_image__ = pygame.transform.scale(self.__original_image__,(size[0],size[1]))
+                    self._image = pygame.transform.scale(self._image, (size[0], size[1]))
                 i=0
                 j=0
                 surface = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
                 while(i<self.__grid_width_in_pixels__):
                     j=0
                     while (j<self.__grid_height_in_pixels__):
-                        surface.blit(self.__original_image__, (i,j),(0,0, self.__original_image__.get_width(),
-                                                                     self.__original_image__.get_height()))
-                        j = j + self.__original_image__.get_height()+self.cell_margin
-                    i = i + self.__original_image__.get_width()+self.cell_margin
-                self.__original_image__= surface
+                        surface.blit(self._image, (i, j), (0, 0, self._image.get_width(),
+                                                           self._image.get_height()))
+                        j = j + self._image.get_height() + self.cell_margin
+                    i = i + self._image.get_width() + self.cell_margin
+                self._image= surface
         else:
             self._cell_transparency = None
-            self.__original_image__ = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+            self._image = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
 
         # Crop surface
         cropped_surface = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
         cropped_surface.fill((255,255,255))
-        cropped_surface.blit(self.__original_image__, (0, 0),
+        cropped_surface.blit(self._image, (0, 0),
                              (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
         self._image = cropped_surface
 
@@ -364,7 +371,7 @@ class GameGrid(object):
         """
         return self.__grid_width_in_pixels__, self.__grid_height_in_pixels__
 
-    def __check_colliding_cell__(self, actor1, actor2) -> bool:
+    def __check_collision_cell__(self, actor1, actor2) -> bool:
         """
         Checks if two actors are in the same cell
         :param actor1: first actor
@@ -372,13 +379,13 @@ class GameGrid(object):
         :return: true if both actors are on the same cell
         """
         if actor1.is_in_grid(self) and actor2.is_in_grid(self):
-            self._logging.debug("gamegrid.colliding() : Colliding? A1:" + str(actor1.location) + ",A2:" + str(actor2.location))
+            self._logging.debug("gamegrid.collision_cell() : Collision? A1:" + str(actor1.location) + ",A2:" + str(actor2.location))
             if actor1.location == actor2.location:
                 return True
             else:
                 return False
 
-    def __check_colliding_bounding_box__(self, actor1, actor2) -> bool:
+    def __check_collision_bounding_box__(self, actor1, actor2) -> bool:
         """
         Checks if the bounding boxes of two actors collide
         :param actor1: first actor
@@ -386,10 +393,10 @@ class GameGrid(object):
         :return: true if the bounding boxes collide
         """
         if actor1.bounding_box().colliderect(actor2.bounding_box()):
-            self._logging.debug("gamegrid.colliding_bounding_box: colliding")
+            self._logging.debug("gamegrid.collision_bounding_box: colliding")
             return True
         else:
-            self._logging.debug("gamegrid.colliding_bounding_box: not colliding")
+            self._logging.debug("gamegrid.collision_bounding_box: not colliding")
             return False
 
     def __get_bounding_box_collisions__(self, actor):
@@ -398,8 +405,8 @@ class GameGrid(object):
         :param actor:
         :return:
         """
-        for partner in actor._colliding_partners:
-            if self.__check_colliding_bounding_box__(actor, partner):
+        for partner in actor._collision_partners:
+            if self.__check_collision_bounding_box__(actor, partner):
                 return partner
         return None
 
@@ -409,8 +416,8 @@ class GameGrid(object):
         :param actor:
         :return:
         """
-        for partner in actor._colliding_partners:
-            if self.__check_colliding_cell__(actor, partner):
+        for partner in actor._collision_partners:
+            if self.__check_collision_cell__(actor, partner):
                 return partner
         return None
 
@@ -736,11 +743,17 @@ class GameGrid(object):
 
     def cell_rect(self, cell : tuple):
         """
-        transforms a pixel-coordinate into a cell coordinate in grid
-        :param pos: the position in pixels
+        gets the rectangle which describes the given cell
         """
         x=cell[0]*self.cell_size + cell[0] * self._cell_margin + self._cell_margin
         y=cell[1]*self.cell_size + cell[1] * self._cell_margin + self._cell_margin
         return pygame.Rect(x,y, self.cell_size, self.cell_size)
 
+    def cell_to_pixel(self, cell : tuple):
+        """
+        gets the top-left point of a cell
+        """
+        x=cell[0]*self.cell_size + cell[0] * self._cell_margin + self._cell_margin
+        y=cell[1]*self.cell_size + cell[1] * self._cell_margin + self._cell_margin
+        return pygame.Rect(x,y, self.cell_size, self.cell_size)
 
