@@ -19,9 +19,8 @@ class Robot(gamegridp.Actor):
 
 
     def act(self):
-        if self.is_valid_move():
-            self.move()
-        else:
+        valid = self.move()
+        if not valid:
             self.flip_x()
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)

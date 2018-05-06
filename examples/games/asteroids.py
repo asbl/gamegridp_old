@@ -10,7 +10,7 @@ class MyGrid(gamegridp.GameGrid):
         self.set_image("images/galaxy.jpg","scale")
         player1 = Player(grid=self, location=(40, 40))
         for i in range(5):
-            asteroid=Asteroid(grid=self, location=(random.randint(0,screen_x),random.randint(0,screen_y)))
+            asteroid=Asteroid(grid=self, location=(random.randint(30,screen_x-30),random.randint(0+30,screen_y-30)))
             player1.add_collision_partner(asteroid)
 
     def collision(self, partner1, partner2):
@@ -44,6 +44,7 @@ class Asteroid(gamegridp.Actor):
         self.set_rotatable()
         self.direction = random.randint(0, 360)
 
+
     def act(self):
         valid = self.move(4)
         if not valid:
@@ -57,5 +58,5 @@ random.seed()
 screen_x=400
 screen_y=300
 mygrid = MyGrid("My Grid", cell_size=1, columns=screen_x, rows=screen_y,
-                margin=0, speed=120)
+                margin=0, speed=60)
 mygrid.show()

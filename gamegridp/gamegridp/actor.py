@@ -32,17 +32,19 @@ class Actor(object):
         self._animations = []
         self._animation = ""
         self._blocked = False
-        self._colliding_partners=[]
+        self._collision_partners=[]
         # Set Actor image
         self._logging.debug("actor.__init__() : Target-Location:" + str(self.location))
         self._has_image=False
+        # Add image to actor
         if img_path is not None:
-            self._has_image = True
             self.add_image(img_path, img_action, size)
         else:
             self.delete_images()
         self._logging.debug("actor.__init__() : Actor: " + str(title) + "'s setup wurde ausgeführt" + str(self._is_rotatable))
+        # Add actor to grid
         grid.add_actor(self, location)
+        # set the bounding-box style (cell for cell-based games, image for pixel-based games
         if self.grid.cell_size == 1:
             self.__bounding_box_type__ = "image"
         else:
@@ -105,7 +107,7 @@ class Actor(object):
             self._animated = True
 
     def add_collision_partner(self, partner):
-        self._colliding_partners.append(partner)
+        self._collision_partners.append(partner)
 
     def stop(self):
         """
@@ -144,6 +146,30 @@ class Actor(object):
                 self._image) + "Index:" + str(self._image_index) )
             self.image = pygame.transform.rotate(self._original_images[self._image_index], direction)
             self.__grid__.repaint_area(pygame.Rect(self.image_rect))
+
+    def is_at_left_border(self):
+        if self.grid.is_at_left_border(self.bounding_box()):
+            return True
+        else:
+            return False
+
+    def is_at_bottom_border(self):
+        if self.grid.is_at_bottom_border(self.bounding_box()):
+            return True
+        else:
+            return False
+
+    def is_at_right_border(self):
+        if self.grid.is_at_right_border(self.bounding_box()):
+            return True
+        else:
+            return False
+
+    def is_at_top_border(self):
+        if self.grid.is_at_left_border(self.bounding_box()):
+            return True
+        else:
+            return False
 
     def is_in_grid(self, target: tuple = None) -> bool:
         if target == None:
@@ -401,7 +427,7 @@ class Actor(object):
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         self._location = value
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
-        self.__grid__.__update__(act_disabled=True, listen_disabled=True, collision_disabled = True)
+        self.__grid__.__update__(no_logic= True)
 
     def set_x(self, x):
         """
@@ -471,7 +497,10 @@ class Actor(object):
         if self.is_valid_move(target):
             self.location = target
             return True
-        return False
+        else:
+            return False
+
+
 
     def move(self, distance: int = 1):
         """
@@ -488,30 +517,44 @@ class Actor(object):
         self._logging.info("actor.move(): ..couldn't move")
         return False
 
+    def move_back(self, distance: int = 1):
+        """
+        Moves actor by x steps
+        :param distance : number of steps the actor should step forward.
+        """
+        target = self.look_back(distance)
+        self._logging.info("actor.move(): ...try to move from"+str(self.location) + " to target" + str(target))
+        if self.is_valid_move(target):
+            self._logging.info("actor.move(): self" + str(self.location) + ", target" + str(target))
+            self.location = target
+            self._logging.info("actor.move(): ...moved to:"+str(self.location))
+            return True
+        self._logging.info("actor.move(): ..couldn't move")
+        return False
 
-    def move_up(self):
+    def move_up(self, distance = 1):
         """
         Moves the actor one step up
         Sets the direction to 90° (North)
         """
         self.direction = 90
-        self.move()
+        return self.move(distance)
 
-    def move_right(self):
+    def move_right(self, distance = 1):
         """
         Moves the actor one step right
         Sets the direction to 0° (East)
         """
         self.direction = 0
-        self.move()
+        return self.move(distance)
 
-    def move_left(self):
+    def move_left(self, distance = 1):
         """
         Moves the actor one step left
         Sets the direction to 180° (West)
         """
         self.direction = 180
-        self.move()
+        self.move(distance)
 
     def move_down(self):
         """
@@ -519,7 +562,9 @@ class Actor(object):
         Sets the direction to 170° (South)
         """
         self.direction = 270
-        self.move()
+        return self.move()
+
+
 
     def look_forward(self, distance : int = 1) -> tuple:
         """
@@ -530,6 +575,17 @@ class Actor(object):
         self._logging.info("actor.look_forward() : Location:" + str(self.location) + "Direction" + str(self.direction))
         loc_x = round(self.location[0] + math.cos(math.radians(self.direction)) * distance)
         loc_y = round(self.location[1] - math.sin(math.radians(self.direction)) * distance)
+        return loc_x, loc_y
+
+    def look_back(self, distance : int = 1) -> tuple:
+        """
+        looks x steps forward
+        :param distance : Number of steps to look forward
+        :return location : Location as tuple (x_cell, y_cell)
+        """
+        self._logging.info("actor.look_forward() : Location:" + str(self.location) + "Direction" + str(self.direction))
+        loc_x = round(self.location[0] - math.cos(math.radians(self.direction)) * distance)
+        loc_y = round(self.location[1] + math.sin(math.radians(self.direction)) * distance)
         return loc_x, loc_y
 
     def is_valid_move(self, target: tuple = None):
@@ -556,6 +612,8 @@ class Actor(object):
                 valid = False
         return valid
 
+
+
     @property
     def has_image(self):
         """
@@ -575,19 +633,30 @@ class Actor(object):
             cell_left, cell_top = self.__get_image_coordinates_in_pixels__()
             self.__flip_x__()
             self.__rotate__(self.direction)
+            if self.grid._show_bounding_boxes:
+                pygame.draw.rect(self._image, (255, 0, 0), (0,0, self._image.get_width(), self._image.get_height()), 1)
+            if self.grid._show_direction_marker:
+                #self._logging.info("actor.draw() - Draw line from"+str(self._image.get_rect().center)+" to "+str(self._image.get_rect().topleft))
+                x = round(self._image.get_rect().center[0] + math.cos(math.radians(self.direction))*self._image.get_width())
+                y= round(self._image.get_rect().center[1] - math.sin(math.radians(self.direction))*self._image.get_height())
+                pygame.draw.line(self.image, (255, 0, 0), self._image.get_rect().center, (x,y), 1)
             pygame.screen.blit(self._image, (cell_left, cell_top))
 
     def remove(self):
         """
         removes the actor from grid
         """
-        self.__grid__.remove_actor(self)
+        self._remove_from_grid()
+        del(self)
+
 
     def _remove_from_grid(self):
         """
         removes the actor from grid
         """
+        self.grid._actors.remove(self)
         self.__grid__ = None
+
 
     @property
     def grid(self):

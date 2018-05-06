@@ -12,7 +12,12 @@ gamegridp.egg-info/SOURCES.txt
 gamegridp.egg-info/dependency_links.txt
 gamegridp.egg-info/requires.txt
 gamegridp.egg-info/top_level.txt
+gamegridp/data/down.png
+gamegridp/data/left.png
 gamegridp/data/pause.png
 gamegridp/data/play.png
+gamegridp/data/question.png
 gamegridp/data/reset.png
+gamegridp/data/right.png
 gamegridp/data/run.png
+gamegridp/data/up.png

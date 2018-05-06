@@ -10,14 +10,18 @@ class MyGrid(gamegridp.GameGrid):
 
     def setup(self):
         self.set_image("images/galaxy.jpg","scale")
-        for i in range(1):
-            asteroid=Asteroid(grid=self, location=(random.randint(0,screen_x),random.randint(0,screen_y)))
+        asteroids=[]
+        for i in range(5):
+            new_asteroid = Asteroid(grid=self, location=(random.randint(35,screen_x-35),random.randint(35,screen_y-35)))
+            for asteroid in asteroids:
+                new_asteroid.add_collision_partner(asteroid)
+            asteroids.append(new_asteroid)
+
+
 
     def collision(self, partner1, partner2):
-        Explosion(grid=self, location= partner1.location)
-        partner1.remove()
-        partner2.remove()
-        self.stop()
+        partner1.direction=partner1.direction+180
+        partner2.direction=partner2.direction+180
 
 
 class Asteroid(gamegridp.Actor):
@@ -32,10 +36,6 @@ class Asteroid(gamegridp.Actor):
             print("not valid")
             self.turn_left(180)
             self.move(4)
-
-class Explosion(gamegridp.Actor):
-    def setup(self):
-        self.add_image("images/explosion.png", "do_nothing")
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 random.seed()
