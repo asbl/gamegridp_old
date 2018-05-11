@@ -33,6 +33,6 @@ class Player(gamegridp.Actor):
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 ROWS=20
 COLUMNS=40
-mygrid = MyGrid("My Grid",    cell_size=16, columns=40, rows=20,
-                margin=0, speed=10, toolbar=True)
+mygrid = MyGrid("My Grid",    cell_size=16, columns=30, rows=20,
+                margin=0, speed=10, toolbar=True, console = True)
 mygrid.show()

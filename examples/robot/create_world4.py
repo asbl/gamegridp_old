@@ -9,6 +9,7 @@ class MyGrid(gamegridp.GameGrid):
 
     def setup(self):
         self.load(2)
+        self.toolbar.add_button("images/rock.png", "Speichern")
 
     def listen(self, event=None, data=None):
         self._logging.info(event)
@@ -80,5 +81,4 @@ logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 mygrid = MyGrid("My Grid", cell_size=60, columns=10, rows=10,
                 margin=0, speed=120,
                 background_color=(200, 0, 0), cell_color=(0, 0, 255), img_path="images/stone.jpg", toolbar=True)
-mygrid.add_toolbar_button("images/rock.png", "Speichern")
 mygrid.show()

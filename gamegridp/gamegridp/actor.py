@@ -7,13 +7,14 @@ Created on Mon Apr 16 21:50:48 2018
 
 import logging
 import math
+
 import pygame
-import typing
-import itertools
+
 
 class Actor(object):
 
-    def __init__(self, grid, location : list = (0, 0), color:tuple=(0,0,255), title : str ="Actor", img_path: str =None, size:tuple=(40,40), img_action: str="do_nothing"):
+    def __init__(self, grid, location: list = (0, 0), color: tuple = (0, 0, 255), title: str = "Actor",
+                 img_path: str = None, size: tuple = (40, 40), img_action: str = "do_nothing"):
         # define instance variables
         self.title = title
         self._logging = logging.getLogger('Actor:')
@@ -26,23 +27,24 @@ class Actor(object):
         self.__grid__ = grid
         self._location = location
         self._direction = 0
-        self.color=color
-        self.size=size
+        self.color = color
+        self.size = size
         self._animation_speed = 4
         self._animated = False
         self._animations = []
         self._animation = ""
         self._blocked = False
-        self._collision_partners=[]
+        self._collision_partners = []
         # Set Actor image
         self._logging.debug("actor.__init__() : Target-Location:" + str(self.location))
-        self._has_image=False
+        self._has_image = False
         # Add image to actor
         if img_path is not None:
             self.add_image(img_path, img_action, size)
         else:
             self.delete_images()
-        self._logging.debug("actor.__init__() : Actor: " + str(title) + "'s setup wurde ausgeführt" + str(self._is_rotatable))
+        self._logging.debug(
+            "actor.__init__() : Actor: " + str(title) + "'s setup wurde ausgeführt" + str(self._is_rotatable))
         # Add actor to grid
         grid.add_actor(self, location)
         # set the bounding-box style (cell for cell-based games, image for pixel-based games
@@ -54,14 +56,13 @@ class Actor(object):
         self.setup()
         self._logging.debug("actor.__init__() : Actor " + str(title) + " wurde initialisiert")
 
-
     def act(self):
         """
         The method should be overwritten in subclasses
         """
         pass
 
-    def set_image(self, img_path: str, img_action : str ="do nothing", size=None):
+    def set_image(self, img_path: str, img_action: str = "do nothing", size=None):
         """
         Adds an single image to an actor, deletes all other images
         :param img_path: The path of the image relative to the actual path
@@ -72,7 +73,7 @@ class Actor(object):
             self.delete_images()
         self.add_image(img_path, img_action, size)
 
-    def add_image(self, img_path: str, img_action : str ="do nothing", size=None):
+    def add_image(self, img_path: str, img_action: str = "do nothing", size=None):
         """ adds an image to the actor
         :param img_path: The path of the image relative to the actual path
         :param img_action: The image action (scale, do_nothing, crop)
@@ -81,13 +82,13 @@ class Actor(object):
         self._logging.info("add_image(): Start add image")
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         if not self.has_image:
-            self._original_images=[]
+            self._original_images = []
             self._logging.info("add_image(): list was cleared:" + str(self._original_images.__len__()))
         self._logging.info("add_image(): Has image:" + str(self.has_image))
         self._original_images.append(pygame.image.load(img_path).convert_alpha())
         self._logging.info("actor.add_image() : Number of Actor images:" + str(self._original_images.__len__()))
         self.__image_transform__(-1, img_action, size)
-        self.image = self._original_images[0] # overwrite image
+        self.image = self._original_images[0]  # overwrite image
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         self.has_image = True
 
@@ -96,10 +97,9 @@ class Actor(object):
         self._image = pygame.Surface(self.size)
         self._image.fill(self.color)
         self._original_images.append(self._image)
-        self.has_image=False
+        self.has_image = False
 
-
-    def animate(self, animation : str =""):
+    def animate(self, animation: str = ""):
         """
         Starts an animation
         :param animation: Type of animation (not implemented)
@@ -131,17 +131,17 @@ class Actor(object):
         return self._direction
 
     @direction.setter
-    def direction(self, value : int):
-        self._logging.debug("actor.rotation() : rotated by " + str(value) + " degrees. Is rotatable?: " + str(self._is_rotatable))
+    def direction(self, value: int):
+        self._logging.debug(
+            "actor.rotation() : rotated by " + str(value) + " degrees. Is rotatable?: " + str(self._is_rotatable))
         self.__rotate__(value)
         self._direction = value
-        #if value < 0:
+        # if value < 0:
         #    self.direction = 360 + value
-        #if value > 360:
+        # if value > 360:
         self._direction = value % 360
 
-
-    def __rotate__(self, direction : int):
+    def __rotate__(self, direction: int):
         """
         rotates the actor by _direction_ degrees
         :param direction:
@@ -150,7 +150,7 @@ class Actor(object):
             self.__grid__.repaint_area(self.image_rect)
             # rotate the original image to new direction
             self._logging.debug("actor.__rotate: rotate Image" + str(dir(self._original_images)) + ", Image: " + str(
-                self._image) + "Index:" + str(self._image_index) )
+                self._image) + "Index:" + str(self._image_index))
             self.image = pygame.transform.rotate(self._original_images[self._image_index], direction)
             self.__grid__.repaint_area(pygame.Rect(self.image_rect))
 
@@ -163,7 +163,7 @@ class Actor(object):
             return "bottom"
         elif self.is_at_top_border():
             return "top"
-        else :
+        else:
             return False
 
     def is_at_left_border(self):
@@ -203,20 +203,20 @@ class Actor(object):
     def bounce_against_line(self, line_axis):
         self.direction = (line_axis * 2 - self.direction) % 360
 
-    def bounce_from_border(self, border : str):
+    def bounce_from_border(self, border: str):
         if border == "top":
             deg_mirror = 0
         elif border == "bottom":
             deg_mirror = 180
         elif border == "left":
             deg_mirror = 90
-        elif  border == "right":
+        elif border == "right":
             deg_mirror = 270
         self.direction = deg_mirror * 2 - self.direction
 
     def is_in_grid(self, target: tuple = None) -> bool:
         if target == None:
-            target=self.location
+            target = self.location
         if self.grid.is_location_in_grid(target):
             return True
         return False
@@ -248,7 +248,8 @@ class Actor(object):
         try:
             if not self._is_flipped:
                 self.__grid__.repaint_area(pygame.Rect(self.image_rect))
-                self._logging.debug("actor.flip_x() : Flipping " + self.title + " image number " + str(self._image_index))
+                self._logging.debug(
+                    "actor.flip_x() : Flipping " + self.title + " image number " + str(self._image_index))
                 self.image = pygame.transform.flip(self._original_images[self._image_index], False, False)
                 self.__grid__.repaint_area(pygame.Rect(self.image_rect))
             else:
@@ -279,7 +280,7 @@ class Actor(object):
         return self._image
 
     @image.setter
-    def image(self, value : str):
+    def image(self, value: str):
         """
         sets the actual image
         :param value: the path to the image
@@ -298,7 +299,8 @@ class Actor(object):
         self.image = self._original_images[self._image_index]
         self.draw()
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
-        self._logging.debug("actor.image_next() : Image Index:" + str(self._image_index) + "/" + str(self._original_images.__len__() - 1))
+        self._logging.debug("actor.image_next() : Image Index:" + str(self._image_index) + "/" + str(
+            self._original_images.__len__() - 1))
 
     @property
     def is_rotatable(self):
@@ -308,7 +310,7 @@ class Actor(object):
         return self._is_rotatable
 
     @is_rotatable.setter
-    def is_rotatable(self, value : bool):
+    def is_rotatable(self, value: bool):
         """
         sets the actual image
         :param value: the path to the image
@@ -321,15 +323,14 @@ class Actor(object):
         """
         self._is_rotatable = True
 
-    def set_text(self,text,size):
+    def set_text(self, text, size):
         myfont = pygame.font.SysFont("monospace", size)
         label = myfont.render(text, 1, (0, 0, 0))
         self.image.blit(label, (0, 0))
-        self._original_images[0]=self._image
+        self._original_images[0] = self._image
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
 
-
-    def __image_transform__(self, index : int, img_action : str, data : str =None):
+    def __image_transform__(self, index: int, img_action: str, data: str = None):
         """
         Should be called before main-loop
         :type data: img_acton : "scale" -> data : location
@@ -338,23 +339,21 @@ class Actor(object):
         if img_action == "scale":
             if data is None:
                 self._original_images[index] = pygame.transform.scale(self._original_images[index],
-                                                                                  (cell_size, cell_size))
+                                                                      (cell_size, cell_size))
             else:
                 self._original_images[index] = pygame.transform.scale(self._original_images[index],
-                                                                                  (data[0], data[1]))
+                                                                      (data[0], data[1]))
         elif img_action == "center":
-            cropped_surface = pygame.Surface((self.grid.cell_size,self.grid.cell_size), pygame.SRCALPHA, 32)
-            width=self._original_images[self._image_index].get_width()
+            cropped_surface = pygame.Surface((self.grid.cell_size, self.grid.cell_size), pygame.SRCALPHA, 32)
+            width = self._original_images[self._image_index].get_width()
             height = self._original_images[self._image_index].get_height()
-            x_pos=(self.grid.cell_size-width) / 2
-            y_pos = (self.grid.cell_size-height) / 2
+            x_pos = (self.grid.cell_size - width) / 2
+            y_pos = (self.grid.cell_size - height) / 2
             cropped_surface.blit(self._original_images[self._image_index], (x_pos, y_pos),
                                  (0, 0, self.grid.cell_size, self.grid.cell_size))
             self._original_images[self._image_index] = cropped_surface
         elif img_action == "do_nothing":
             self._original_images[self._image_index] = self._original_images[self._image_index]
-
-
 
     @property
     def image_rect(self):
@@ -369,12 +368,12 @@ class Actor(object):
             left, top, width, height = 0, 0, 0, 0
         return pygame.Rect(left, top, width, height)
 
-    def __image_rect__(self,location=None):
+    def __image_rect__(self, location=None):
         """
             the image rect when drawn to another location
         """
         if location == None:
-            location=self.location
+            location = self.location
         try:
             width = self._image.get_width()
             height = self._image.get_height()
@@ -385,15 +384,15 @@ class Actor(object):
 
     def __cell_rect__(self, location: tuple = None):
         if location == None:
-            location=self.location
+            location = self.location
         return self.grid.cell_rect(location)
 
     def __custom_rect__(self, location: tuple = None):
         if location is None:
-            location=self.location
+            location = self.location
         width = self.__bounding_box_size__[0]
         height = self.__bounding_box_size__[1]
-        left, top = (location[0]-self.__bounding_box_size__[0]/2, location[1]-self.__bounding_box_size__[1]/2)
+        left, top = (location[0] - self.__bounding_box_size__[0] / 2, location[1] - self.__bounding_box_size__[1] / 2)
         return pygame.Rect(left, top, width, height)
 
     def bounding_box(self, location: tuple = None):
@@ -415,14 +414,14 @@ class Actor(object):
         self.__bounding_box_type__ = "custom"
         self.__bounding_box_size__ = value
 
-    def __get_image_coordinates_in_pixels__(self, location : tuple =None):
+    def __get_image_coordinates_in_pixels__(self, location: tuple = None):
         """
         Gets coordinates of top-left image position
         :return: (x-coordinate, y-coordinate)
         """
         if location == None:
-           column = self.location[0]
-           row = self.location[1]
+            column = self.location[0]
+            row = self.location[1]
         else:
             column = location[0]
             row = location[1]
@@ -479,7 +478,7 @@ class Actor(object):
         return self._location
 
     @location.setter
-    def location(self, value : list):
+    def location(self, value: list):
         """
         Sets the location
         :type value: tuple with x and y-coordinate
@@ -488,7 +487,7 @@ class Actor(object):
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         self._location = value
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
-        self.__grid__.__update__(no_logic= True)
+        self.__grid__.__update__(no_logic=True)
 
     def set_x(self, x):
         """
@@ -514,7 +513,6 @@ class Actor(object):
         """
         return self.location[1]
 
-
     def setup(self):
         """
         Should be overwritten by child-classes
@@ -530,22 +528,22 @@ class Actor(object):
         """
         self.location = location
 
-    def set_direction(self, degrees : int):
+    def set_direction(self, degrees: int):
         """
         Sets the direction of actor
         """
-        if degrees=="right":
-            degrees=0
-        if degrees=="left":
-            degrees=180
-        if degrees=="up":
-            degrees=90
-        if degrees=="down":
-            degrees=270
+        if degrees == "right":
+            degrees = 0
+        if degrees == "left":
+            degrees = 180
+        if degrees == "up":
+            degrees = 90
+        if degrees == "down":
+            degrees = 270
         self.direction = degrees
         self._logging.debug("Richtung:" + str(self.direction))
 
-    def turn_left(self, degrees : int = 90):
+    def turn_left(self, degrees: int = 90):
         """
         Turns the actor left by x degress
         """
@@ -553,7 +551,7 @@ class Actor(object):
         self.direction = direction
         self._logging.debug("Richtung:" + str(self.direction))
 
-    def turn_right(self, degrees : int = 90):
+    def turn_right(self, degrees: int = 90):
         """
         Turns the actor right by x degress
         """
@@ -561,16 +559,18 @@ class Actor(object):
         self.direction = direction
         self._logging.debug("Richtung:" + str(self.direction))
 
-    def move(self, distance: int = 1, move : bool = True):
+    def move(self, distance: int = 1, move: bool = True):
         """
         Moves actor by x steps
         :param distance : number of steps the actor should step forward.
         """
         target = self.look_forward(distance)
-        self._logging.info("actor"+str(self)+".move(): ...try to move from"+str(self.location) + " to target" + str(target)+" direction:"+str(self.direction))
+        self._logging.info(
+            "actor" + str(self) + ".move(): ...try to move from" + str(self.location) + " to target" + str(
+                target) + " direction:" + str(self.direction))
         return self.move_to(target, move)
 
-    def move_to(self, target : tuple, move: bool = True):
+    def move_to(self, target: tuple, move: bool = True):
         if self.is_valid_target(target):
             if move is True:
                 self.location = target
@@ -578,7 +578,7 @@ class Actor(object):
         else:
             return False
 
-    def move_back(self, distance: int = 1, move : bool = True):
+    def move_back(self, distance: int = 1, move: bool = True):
         """
         Moves actor by x steps
         :param distance : number of steps the actor should step forward.
@@ -586,7 +586,7 @@ class Actor(object):
         target = self.look_back(distance)
         return self.move_to(target, move)
 
-    def move_right(self, distance = 1, move : bool = True):
+    def move_right(self, distance=1, move: bool = True):
         """
         Moves the actor one step right
         Sets the direction to 0° (East)
@@ -594,7 +594,7 @@ class Actor(object):
         self.direction = 0
         return self.move(distance, move)
 
-    def move_left(self, distance = 1, move : bool = True):
+    def move_left(self, distance=1, move: bool = True):
         """
         Moves the actor one step left
         Sets the direction to 180° (West)
@@ -611,7 +611,7 @@ class Actor(object):
         self.direction = 270
         return self.move(distance, move)
 
-    def move_up(self, distance = 1, move : bool = True):
+    def move_up(self, distance=1, move: bool = True):
         """
         Moves the actor one step down
         Sets the direction to 170° (South)
@@ -619,7 +619,7 @@ class Actor(object):
         self.direction = 90
         return self.move(distance, move)
 
-    def look_forward(self, distance : int = 1) -> tuple:
+    def look_forward(self, distance: int = 1) -> tuple:
         """
         looks x steps forward
         :param distance : Number of steps to look forward
@@ -630,7 +630,7 @@ class Actor(object):
         loc_y = round(self.location[1] - math.sin(math.radians(self.direction)) * distance)
         return loc_x, loc_y
 
-    def look_back(self, distance : int = 1) -> tuple:
+    def look_back(self, distance: int = 1) -> tuple:
         """
         looks x steps back
         :param distance : Number of steps to look forward
@@ -641,7 +641,7 @@ class Actor(object):
         loc_y = round(self.location[1] + math.sin(math.radians(self.direction)) * distance)
         return loc_x, loc_y
 
-    def look_up(self, distance : int = 1) -> tuple:
+    def look_up(self, distance: int = 1) -> tuple:
         """
         looks x steps up
         :param distance : Number of steps to look forward
@@ -652,7 +652,7 @@ class Actor(object):
         loc_y = self.location[1] - distance
         return loc_x, loc_y
 
-    def look_down(self, distance : int = 1) -> tuple:
+    def look_down(self, distance: int = 1) -> tuple:
         """
         looks x steps down
         :param distance : Number of steps to look forward
@@ -663,7 +663,7 @@ class Actor(object):
         loc_y = self.location[1] + distance
         return loc_x, loc_y
 
-    def look_left(self, distance : int = 1) -> tuple:
+    def look_left(self, distance: int = 1) -> tuple:
         """
         looks x steps left
         :param distance : Number of steps to look forward
@@ -674,7 +674,7 @@ class Actor(object):
         loc_y = self.location[1]
         return loc_x, loc_y
 
-    def look_right(self, distance : int = 1) -> tuple:
+    def look_right(self, distance: int = 1) -> tuple:
         """
         looks x steps right
         :param distance : Number of steps to look forward
@@ -685,7 +685,7 @@ class Actor(object):
         loc_y = self.location[1]
         return loc_x, loc_y
 
-    def is_valid_move(self, move_func = None, distance = 1):
+    def is_valid_move(self, move_func=None, distance=1):
         if move_func == None:
             move_func = self.move
         return move_func(distance, False)
@@ -699,7 +699,7 @@ class Actor(object):
         if target is None:
             target = self.look_forward()
         if self.is_in_grid(target):
-            self._logging.debug("actor.is_valid_target() : target:" + str(target)+",true")
+            self._logging.debug("actor.is_valid_target() : target:" + str(target) + ",true")
             valid = True
         else:
             self._logging.debug("actor.is_valid_target() : target:" + str(target) + ",false")
@@ -718,9 +718,10 @@ class Actor(object):
         :return: true if actor has an image, else false
         """
         return self._has_image
+
     @has_image.setter
     def has_image(self, value):
-        self._has_image=value
+        self._has_image = value
 
     def draw(self):
         """
@@ -731,13 +732,16 @@ class Actor(object):
             self.__flip_x__()
             self.__rotate__(self.direction)
             if self.grid._show_bounding_boxes:
-                pygame.draw.rect(self._image, (255, 0, 0), (0,0, self.bounding_box().width, self.bounding_box().height),2)
+                pygame.draw.rect(self._image, (255, 0, 0),
+                                 (0, 0, self.bounding_box().width, self.bounding_box().height), 2)
             if self.grid._show_direction_marker:
-                #self._logging.debug("actor.draw() - Draw line from"+str(self._image.get_rect().center)+" to "+str(self._image.get_rect().topleft))
-                x = round(self.bounding_box().width/2 + math.cos(math.radians(self.direction))*self.bounding_box().width)
-                y= round(self.bounding_box().height/2 - math.sin(math.radians(self.direction))*self.bounding_box().height)
-                pygame.draw.line(self.image, (255, 0, 0), (self.bounding_box().width/2,
-                                                           self.bounding_box().height/2), (x, y), 2)
+                # self._logging.debug("actor.draw() - Draw line from"+str(self._image.get_rect().center)+" to "+str(self._image.get_rect().topleft))
+                x = round(
+                    self.bounding_box().width / 2 + math.cos(math.radians(self.direction)) * self.bounding_box().width)
+                y = round(self.bounding_box().height / 2 - math.sin(
+                    math.radians(self.direction)) * self.bounding_box().height)
+                pygame.draw.line(self.image, (255, 0, 0), (self.bounding_box().width / 2,
+                                                           self.bounding_box().height / 2), (x, y), 2)
             pygame.screen.blit(self._image, (cell_left, cell_top))
 
     def remove(self):

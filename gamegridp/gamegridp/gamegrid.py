@@ -5,12 +5,12 @@ Created on Mon Apr 16 21:49:29 2018
 @author: asieb
 """
 import logging
-from gamegridp import keys
-from gamegridp import toolbar
 import os
-import sys
-import pygame
 
+import pygame
+from gamegridp import keys
+from gamegridp import gamegrid_toolbar
+from gamegridp import gamegrid_console
 
 
 class GameGrid(object):
@@ -22,23 +22,23 @@ class GameGrid(object):
                  columns=8, rows=8, margin=0,
                  background_color=(255, 255, 255), cell_color=(0, 0, 0),
                  img_path=None, img_action="upscale", speed=60, toolbar=False):
-        self.grid=self
-        self.__is_setting_up__=False
+        self.grid = self
+        self.__is_setting_up__ = False
         # Define instance variables
-        self.title = title#
+        self.title = title  #
         self._logging = logging.getLogger('GameGrid')
         self.__done__ = False
         self._image = None
         self._grid = []
-        self._info=False
+        self._info = False
         self._actors = []
         self._frame = 0
-        self.colliding_actors=[]
-        self._key_holding_allowed=False
+        self.colliding_actors = []
+        self._key_holding_allowed = False
         self._resolution = ()
         self._running = False
         self._cell_margin = 0
-        self._collision_type= "cell"
+        self._collision_type = "cell"
         self._image = None
         self._cell_transparency = 0
         self._clock = None
@@ -54,9 +54,13 @@ class GameGrid(object):
         self._show_bounding_boxes = False
         self._show_direction_marker = False
         if toolbar is True:
-            self.toolbar = Toolbar()
-        toolbar_size= self.toolbar.size
-
+            self.toolbar = gamegrid_toolbar.Toolbar(self)
+        else:
+            self.toolbar = None
+        if console is True:
+            self.console = gamegrid_console.Console(self)
+        else:
+            self.console = None
         """
         Initialises the grid
         """
@@ -79,12 +83,24 @@ class GameGrid(object):
             for column in range(columns):
                 self._grid[row].append(0)
         # Init gui
-        x_res = self.__grid_width_in_pixels__ + self.toolbar_size
-        y_res = self.__grid_height_in_pixels__ + 30  # 100 pixels for actionbar
+        if self.toolbar is not None:
+            _toolbar_width = self.toolbar.width
+        else:
+            _toolbar_width = 0
+        if self.console is not None:
+            _console_height = self.console.height
+        else:
+            _console_height = 0
+        x_res = self.__grid_width_in_pixels__ + _toolbar_width
+        y_res = self.__grid_height_in_pixels__ + 30 + _console_height  # 100 pixels for actionbar
+        if self.toolbar is not None:
+            self.toolbar.set_height(y_res)
+            self.toolbar.set_posx(self.__grid_width_in_pixels__ )
         self._resolution = x_res, y_res
         WINDOW_SIZE = (self._resolution[0], self._resolution[1])
         self._logging.info(
-            "gamegrid.__init__(): Created windows of dimension: (" + str(self._resolution[0]) + "," + str(self._resolution[1]) + ")")
+            "gamegrid.__init__(): Created windows of dimension: (" + str(self._resolution[0]) + "," + str(
+                self._resolution[1]) + ")")
         # Init pygame
         pygame.screen = pygame.display.set_mode(WINDOW_SIZE)
         pygame.display.set_caption(title)
@@ -102,55 +118,56 @@ class GameGrid(object):
         # Draw_Qeue
         self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
-    def add_cell_image(self, img_path : str, location : tuple):
-        top_left=self.cell_to_pixel(location)
+    def add_cell_image(self, img_path: str, location: tuple):
+        top_left = self.cell_to_pixel(location)
         cell_image = pygame.image.load(img_path).convert()
         cell_image = pygame.transform.scale(cell_image, (self.cell_size, self.cell_size))
         self._image.blit(cell_image, (top_left[0], top_left[1], self.cell_size, self.cell_size))
 
-
-    def set_image(self, img_path : str, img_action : str = "upscale", size = None):
-        self._logging.info("gamegrid.set_image : Set new image with action:"+str(img_action)+" and path:"+str(img_path))
+    def set_image(self, img_path: str, img_action: str = "upscale", size=None):
+        self._logging.info(
+            "gamegrid.set_image : Set new image with action:" + str(img_action) + " and path:" + str(img_path))
         if img_path is not None:
             self._image = pygame.image.load(img_path).convert()
-            self._image=self._image
+            self._image = self._image
             self._cell_transparency = 0
             if img_path is not None and img_action == "scale":
                 if size is None:
                     self._image = pygame.transform.scale(self._image,
-                                                         (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+                                                         (
+                                                         self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
                 else:
                     self._image = pygame.transform.scale(self._image, (size[0], size[1]))
                 self._image = pygame.transform.scale(
                     self._image, (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
             elif img_path is not None and img_action == "upscale":
                 if self._image.get_width() < self.__grid_width_in_pixels__ or self._image.get_height() < self.__grid_height_in_pixels__:
-                        self._image = pygame.transform.scale(
-                            self._image, (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+                    self._image = pygame.transform.scale(
+                        self._image, (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
             elif img_path is not None and img_action == "fill":
                 if size is None:
                     self._image = pygame.transform.scale(self._image,
                                                          (self.cell_size, self.cell_size))
                 else:
                     self._image = pygame.transform.scale(self._image, (size[0], size[1]))
-                i=0
-                j=0
+                i = 0
+                j = 0
                 surface = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
-                while(i<self.__grid_width_in_pixels__):
-                    j=0
-                    while (j<self.__grid_height_in_pixels__):
+                while (i < self.__grid_width_in_pixels__):
+                    j = 0
+                    while (j < self.__grid_height_in_pixels__):
                         surface.blit(self._image, (i, j), (0, 0, self._image.get_width(),
                                                            self._image.get_height()))
                         j = j + self._image.get_height() + self.cell_margin
                     i = i + self._image.get_width() + self.cell_margin
-                self._image= surface
+                self._image = surface
         else:
             self._cell_transparency = None
             self._image = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
 
         # Crop surface
         cropped_surface = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
-        cropped_surface.fill((255,255,255))
+        cropped_surface.fill((255, 255, 255))
         cropped_surface.blit(self._image, (0, 0),
                              (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
         self._image = cropped_surface
@@ -205,24 +222,14 @@ class GameGrid(object):
         return self._cell_size
 
     @cell_size.setter
-    def cell_size(self, value : int):
+    def cell_size(self, value: int):
         """ Sets the cell-size"""
         self._cell_size = value
 
     def __draw_toolbaar__(self):
-        """
-        Creates a toolbar on the left side of the window
-        """
-        res_x = self._resolution[0]
-        res_y = self._resolution[1]
-        toolbar = pygame.Surface((self.toolbar_size, res_y))
-        toolbar.fill((255, 255, 255))
-        i = 0
-        for button in self._toolbar_buttons:
-            pygame.screen.blit(button, (self.__grid_width_in_pixels__, i * 20))
-            self._draw_queue.append(
-                pygame.Rect(0, 0, button.get_width(), button.get_height()))
-        self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+        if self.toolbar is not None:
+            self.toolbar.draw()
+            self.grid._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
     def __draw_actionbar__(self):
         """
@@ -279,13 +286,14 @@ class GameGrid(object):
         image = pygame.image.load(path)
         image = pygame.transform.scale(image, (20, 20))
         actionbar.blit(image, (285, 5))
-        label = myfont.render("Speed:"+str(self.speed), 1, (0, 0, 0))
+        label = myfont.render("Speed:" + str(self.speed), 1, (0, 0, 0))
         actionbar.blit(label, (305, 5))
         path = os.path.join(package_directory, "data", 'right.png')
         image = pygame.image.load(path)
         image = pygame.transform.scale(image, (20, 20))
         actionbar.blit(image, (380, 5))
-        pygame.screen.blit(actionbar, (0, self.__grid_height_in_pixels__, actionbar.get_width(), actionbar.get_height()))
+        pygame.screen.blit(actionbar,
+                           (0, self.__grid_height_in_pixels__, actionbar.get_width(), actionbar.get_height()))
 
     @property
     def cell_margin(self):
@@ -359,7 +367,8 @@ class GameGrid(object):
         :return: true if both actors are on the same cell
         """
         if actor1.is_in_grid(self) and actor2.is_in_grid(self):
-            self._logging.debug("gamegrid.collision_cell() : Collision? A1:" + str(actor1.location) + ",A2:" + str(actor2.location))
+            self._logging.debug(
+                "gamegrid.collision_cell() : Collision? A1:" + str(actor1.location) + ",A2:" + str(actor2.location))
             if actor1.location == actor2.location:
                 return True
             else:
@@ -402,37 +411,38 @@ class GameGrid(object):
         return None
 
     def __collision__(self):
-        self._logging.debug("gamegrid.__collision__() - Type:"+str(self._collision_type))
+        self._logging.debug("gamegrid.__collision__() - Type:" + str(self._collision_type))
         pairs = []
         for actor in self.actors:
-            if self._collision_type== "bounding_box":
+            if self._collision_type == "bounding_box":
                 partner2 = self.__get_bounding_box_collisions__(actor)
                 if partner2 is not None:
                     partner1 = actor
-                    if (partner2,partner1) not in pairs:
-                        pairs.append((partner1,partner2))
+                    if (partner2, partner1) not in pairs:
+                        pairs.append((partner1, partner2))
             else:
                 partner2 = self.__get_cell_collisions__(actor)
                 if partner2 is not None:
                     partner1 = actor
-                    if (partner2,partner1) not in pairs:
-                        pairs.append((partner1,partner2))
+                    if (partner2, partner1) not in pairs:
+                        pairs.append((partner1, partner2))
         for pair in pairs:
-            partner1=pair[0]
-            partner2=pair[1]
+            partner1 = pair[0]
+            partner2 = pair[1]
             if pair not in self.colliding_actors:
                 self.collision(partner1, partner2)
-        self.colliding_actors=pairs
+        self.colliding_actors = pairs
 
     def bounce(self, partner1, partner2):
         mirror_axis = (partner1.direction + partner2.direction) / 2
-        self._logging.info("Bouncing: actor1:"+str(partner1.direction)+", actor2:"+str(partner2.direction)+"mirror:"+str(mirror_axis))
+        self._logging.info(
+            "Bouncing: actor1:" + str(partner1.direction) + ", actor2:" + str(partner2.direction) + "mirror:" + str(
+                mirror_axis))
         self._logging.info(
             "Bouncing: actor2:" + str(partner2.direction) + ", actor2:" + str(partner1.direction) + "mirror:" + str(
                 mirror_axis))
         partner1.bounce_against_line(mirror_axis)
         partner2.bounce_against_line(mirror_axis)
-
 
     def collision(self, partner1, partner2):
         """
@@ -440,7 +450,7 @@ class GameGrid(object):
         :return:
         """
 
-    def get_actors_at_location(self, location:tuple) -> list:
+    def get_actors_at_location(self, location: tuple) -> list:
         """
         Get all actors at a specific location
         """
@@ -450,7 +460,7 @@ class GameGrid(object):
                 actors_at_location.append(actor)
         return actors_at_location
 
-    def get_actors_at_location_by_class(self, location : tuple, class_name : str):
+    def get_actors_at_location_by_class(self, location: tuple, class_name: str):
         """
         Geta all actors of a specific class at a specific location
         """
@@ -470,40 +480,40 @@ class GameGrid(object):
         else:
             return True
 
-    def is_at_left_border(self,rect):
+    def is_at_left_border(self, rect):
         if rect.topleft[0] <= 0:
             return True
         else:
             return False
 
-    def is_at_bottom_border(self,rect):
-        if rect.topleft[1] +rect.height >= self.__grid_height_in_pixels__:
+    def is_at_bottom_border(self, rect):
+        if rect.topleft[1] + rect.height >= self.__grid_height_in_pixels__:
             return True
         else:
             return False
 
-    def is_at_right_border(self,rect):
-        if rect.topleft[0]+rect.width >= self.__grid_width_in_pixels__:
+    def is_at_right_border(self, rect):
+        if rect.topleft[0] + rect.width >= self.__grid_width_in_pixels__:
             return True
         else:
             return False
 
-    def is_at_top_border(self,rect):
-        if rect.topleft[1]  <= 0:
+    def is_at_top_border(self, rect):
+        if rect.topleft[1] <= 0:
             return True
         else:
             return False
 
     def is_rectangle_in_grid(self, rect):
-            if rect.topleft[0] < 0 \
-                    or rect.topleft[1] < 0 \
-                    or rect.topleft[0]+rect.width > self.__grid_width_in_pixels__ \
-                    or rect.topleft[1]+rect.height > self.__grid_height_in_pixels__:
-                self._logging.info("is_rectangle_in_grid() : false)")
-                return False # rectangle is not in grid
-            else:
-                self._logging.info("is_rectangle_in_grid() : true)")
-                return True # rectangle is in grid
+        if rect.topleft[0] < 0 \
+                or rect.topleft[1] < 0 \
+                or rect.topleft[0] + rect.width > self.__grid_width_in_pixels__ \
+                or rect.topleft[1] + rect.height > self.__grid_height_in_pixels__:
+            self._logging.info("is_rectangle_in_grid() : false)")
+            return False  # rectangle is not in grid
+        else:
+            self._logging.info("is_rectangle_in_grid() : true)")
+            return True  # rectangle is in grid
 
     def is_empty_cell(self, cell: tuple) -> bool:
         if not self.get_actors_at_location(cell):
@@ -533,18 +543,20 @@ class GameGrid(object):
                 pos = pygame.mouse.get_pos()
                 self._logging.info("gamegrid.__listen__(): Mouseclick with button:" + str(event.button))
                 # Click is in gamegrid
-                if pos[0] < self.__grid_width_in_pixels__ and pos[1] < self.__grid_height_in_pixels__ and event.button == 1:
+                if pos[0] < self.__grid_width_in_pixels__ and pos[
+                    1] < self.__grid_height_in_pixels__ and event.button == 1:
                     cell_location = self.__pixel_to_cell__(pos)
-                    self._logging.info("gamegrid.__listen__() : "+str(cell_location))
+                    self._logging.info("gamegrid.__listen__() : " + str(cell_location))
                     column = cell_location[0]
                     row = cell_location[1]
                     cell_clicked = (column, row)
                     self.__listen_all__("mouse_left", cell_location)
                     self._logging.info("gamegrid.__listen__(): Mouseclick left at grid-position:" +
                                        str(cell_clicked))
-                elif pos[0] < self.__grid_width_in_pixels__ and pos[1] < self.__grid_height_in_pixels__ and event.button == 3:
+                elif pos[0] < self.__grid_width_in_pixels__ and pos[
+                    1] < self.__grid_height_in_pixels__ and event.button == 3:
                     cell_location = self.__pixel_to_cell__(pos)
-                    self._logging.info("gamegrid.__listen__() : "+str(cell_location))
+                    self._logging.info("gamegrid.__listen__() : " + str(cell_location))
                     column = cell_location[0]
                     row = cell_location[1]
                     cell_clicked = (column, row)
@@ -557,7 +569,8 @@ class GameGrid(object):
                         if not self._running:
                             self._logging.debug("gamegrid.__listen__(): : Act")
                             return True
-                    elif pos[1] >= self.__grid_height_in_pixels__ and pos[0] > 60 and pos[0] < 120 and not self._running:
+                    elif pos[1] >= self.__grid_height_in_pixels__ and pos[0] > 60 and pos[
+                        0] < 120 and not self._running:
                         self._running = True
                         self._logging.debug("gamegrid.__listen__(): : Play")
                     elif pos[1] >= self.__grid_height_in_pixels__ and pos[0] > 60 and pos[0] < 120 and self._running:
@@ -578,13 +591,12 @@ class GameGrid(object):
                             self._show_direction_marker = True
                             self._info = True
                     elif pos[1] >= self.__grid_height_in_pixels__ and pos[0] > 285 and pos[0] < 345:
-                        self.speed=self.speed-1
+                        self.speed = self.speed - 1
                     elif pos[1] >= self.__grid_height_in_pixels__ and pos[0] > 345 and pos[0] < 395:
-                        self.speed=self.speed+1
+                        self.speed = self.speed + 1
                 elif pos[0] > self.__grid_width_in_pixels__:
-                    if not pos[1] > len(self._toolbar_actions) * 20:
-                        button_index = pos[1] // 20
-                        self.__listen_all__("button", self._toolbar_actions[button_index])
+                    toolbar_event = self.toolbar.listen("mouse_left", position = (pos[0], pos[1]))
+                    self.__listen_all__(toolbar_event)
             elif event.type == pygame.KEYDOWN:
                 keys_pressed = pygame.key.get_pressed()
                 self.__listen_all__("key_down", keys.key_pressed_to_key(keys_pressed))
@@ -593,13 +605,13 @@ class GameGrid(object):
             self.__listen_all__("key", keys.key_pressed_to_key(keys_pressed))
         return False
 
-    def __listen_all__(self, event : str =None, data=None):
+    def __listen_all__(self, event: str = None, data=None):
         """ Calls listen of grid and all actors """
         self.listen(event, data)
         for actor in self._actors:
             actor.listen(event, data)
 
-    def listen(self, event : str =None, data=None):
+    def listen(self, event: str = None, data=None):
         """
         should be overwritten in sub classes
         :param event: The event which was triggered (e.g. mouse-left, key, mouse-right, button...
@@ -607,7 +619,7 @@ class GameGrid(object):
         """
         pass
 
-    def __update__(self, no_logic: bool = False, no_drawing : bool = False):
+    def __update__(self, no_logic: bool = False, no_drawing: bool = False):
         ''' Part 1:
         For grid an all actors
         listen to events
@@ -616,7 +628,7 @@ class GameGrid(object):
         if self.__is_setting_up__:
             no_logic = True
             no_drawing = True
-            max_speed=120
+            max_speed = 120
         else:
             max_speed = self._speed
         if not no_logic:
@@ -639,12 +651,11 @@ class GameGrid(object):
         self._logging.debug("gamegrid.update() : str(self.clock.tick()")
         if not no_logic:
             self.clock.tick(max_speed)
-            self._logging.debug("gamegrid.update() frame:"+ str(self._frame)+"speed:"+str(max_speed)+"tick:")
+            self._logging.debug("gamegrid.update() frame:" + str(self._frame) + "speed:" + str(max_speed) + "tick:")
         if self._frame % max_speed == 0:
             self._frame = 1
         else:
             self._frame = self._frame + 1
-
 
     def repaint_area(self, rect: pygame.Rect):
         """
@@ -661,13 +672,13 @@ class GameGrid(object):
         :return:
         """
         if cell == None:
-                actor.remove()
+            actor.remove()
         else:
             actors_at_cell = self.get_actors_at_location(cell)
             self._logging.info("gamegrid.remove_actor(): Remove actor at: " + str(cell))
             for actor in actors_at_cell:
                 try:
-                    self._logging.info("gamegrid.remove_actor() : remove_actor"+str(actor) + " wird gelöscht...")
+                    self._logging.info("gamegrid.remove_actor() : remove_actor" + str(actor) + " wird gelöscht...")
                     self._actors.remove(actor)
                     actor._remove_from_grid()
                 except ValueError:
@@ -678,7 +689,7 @@ class GameGrid(object):
         """
         for actor in self._actors:
             self.remove_actor(actor)
-        self._actors=[]
+        self._actors = []
 
     def reset(self):
         """ resets the grid:
@@ -691,10 +702,10 @@ class GameGrid(object):
         self.__update__(no_logic=True, no_drawing=True)
 
     def stop(self):
-        self._running=False
+        self._running = False
 
     def run(self):
-        self._running=True
+        self._running = True
 
     def show(self):
         """
@@ -725,7 +736,7 @@ class GameGrid(object):
     def speed(self, value):
         self._speed = value
 
-    def __pixel_to_cell__(self, pos : tuple):
+    def __pixel_to_cell__(self, pos: tuple):
         """
         transforms a pixel-coordinate into a cell coordinate in grid
         :param pos: the position in pixels
@@ -736,19 +747,18 @@ class GameGrid(object):
             (pos[1] - self._cell_margin) // (self.cell_size + self._cell_margin)
         return column, row
 
-    def cell_rect(self, cell : tuple):
+    def cell_rect(self, cell: tuple):
         """
         gets the rectangle which describes the given cell
         """
-        x=cell[0]*self.cell_size + cell[0] * self._cell_margin + self._cell_margin
-        y=cell[1]*self.cell_size + cell[1] * self._cell_margin + self._cell_margin
-        return pygame.Rect(x,y, self.cell_size, self.cell_size)
+        x = cell[0] * self.cell_size + cell[0] * self._cell_margin + self._cell_margin
+        y = cell[1] * self.cell_size + cell[1] * self._cell_margin + self._cell_margin
+        return pygame.Rect(x, y, self.cell_size, self.cell_size)
 
-    def cell_to_pixel(self, cell : tuple):
+    def cell_to_pixel(self, cell: tuple):
         """
         gets the top-left point of a cell
         """
-        x=cell[0]*self.cell_size + cell[0] * self._cell_margin + self._cell_margin
-        y=cell[1]*self.cell_size + cell[1] * self._cell_margin + self._cell_margin
-        return pygame.Rect(x,y, self.cell_size, self.cell_size)
-
+        x = cell[0] * self.cell_size + cell[0] * self._cell_margin + self._cell_margin
+        y = cell[1] * self.cell_size + cell[1] * self._cell_margin + self._cell_margin
+        return pygame.Rect(x, y, self.cell_size, self.cell_size)

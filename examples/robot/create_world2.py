@@ -1,6 +1,3 @@
-import logging
-import sys
-
 import gamegridp
 
 
@@ -14,13 +11,13 @@ class MyGrid(gamegridp.GameGrid):
         self._logging.info(event)
         if event == "mouse_left":
             if self.is_empty_cell((data[0], data[1])):
-                Wall(self, (data[0], data[1]))
+                Wall(self, [data[0], data[1]])
                 self._logging.info("Wall created at: " + str(data[0]) + "," + str(data[1]))
             else:
                 self.remove_actor(cell=(data[0], data[1]))
         elif event == "mouse_right":
             if self.is_empty_cell((data[0], data[1])):
-                Robot(self, (data[0], data[1]))
+                Robot(self, [data[0], data[1]])
                 self._logging.info("Robo created at: " + str(data[0]) + "," + str(data[1]))
             else:
                 self.remove_actor(cell=(data[0], data[1]))
@@ -41,8 +38,6 @@ class Wall(gamegridp.Actor):
         self.add_image("images/rock.png", img_action="scale")
 
 
-logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 mygrid = MyGrid("My Grid", cell_size=60, columns=10, rows=10,
-                margin=0, speed=120,
-                background_color=(200, 0, 0), cell_color=(0, 0, 255))
+                margin=0, speed=120,)
 mygrid.show()
