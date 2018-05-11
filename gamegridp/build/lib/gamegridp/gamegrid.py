@@ -6,6 +6,7 @@ Created on Mon Apr 16 21:49:29 2018
 """
 import logging
 from gamegridp import keys
+from gamegridp import toolbar
 import os
 import sys
 import pygame
@@ -50,15 +51,12 @@ class GameGrid(object):
         self._key = 0
         self._speed = speed
         self._animated = False
-        self._toolbar_buttons = []  # containts the toolbar buttons
-        self._toolbar_actions = []  # contains the corresponding actions as string
         self._show_bounding_boxes = False
         self._show_direction_marker = False
-        self.toolbar = toolbar
-        if self.toolbar == True:
-            self.toolbar_size = 200
-        else:
-            self.toolbar_size = 0
+        if toolbar is True:
+            self.toolbar = Toolbar()
+        toolbar_size= self.toolbar.size
+
         """
         Initialises the grid
         """
@@ -224,26 +222,6 @@ class GameGrid(object):
             pygame.screen.blit(button, (self.__grid_width_in_pixels__, i * 20))
             self._draw_queue.append(
                 pygame.Rect(0, 0, button.get_width(), button.get_height()))
-        self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
-
-    def add_toolbar_button(self, img_path, text):
-        """
-        adds a button to toolbar
-        :param img_path: image button
-        :param text: button text. This is also the text for the data variable in listen(event,data)
-        :return:
-        """
-        package_directory = os.path.dirname(os.path.abspath(__file__))
-        myfont = pygame.font.SysFont("monospace", 15)
-        image = pygame.image.load(img_path)
-        image = pygame.transform.scale(image, (20, 20))
-        button = pygame.Surface((self.toolbar_size, 20))
-        button.fill((255, 255, 255))
-        button.blit(image, (5, 5))
-        label = myfont.render(text, 1, (0, 0, 0))
-        button.blit(label, (25, 0))
-        self._toolbar_buttons.append(button)
-        self._toolbar_actions.append(text)
         self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
     def __draw_actionbar__(self):

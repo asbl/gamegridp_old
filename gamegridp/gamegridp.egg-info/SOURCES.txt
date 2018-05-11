@@ -6,6 +6,7 @@ gamegridp/__init__.py
 gamegridp/actor.py
 gamegridp/gamegrid.py
 gamegridp/keys.py
+gamegridp/toolbar.py
 gamegridp/window.py
 gamegridp.egg-info/PKG-INFO
 gamegridp.egg-info/SOURCES.txt
