@@ -32,6 +32,7 @@ class GameGrid(object):
         self._info=False
         self._actors = []
         self._frame = 0
+        self.colliding_actors=[]
         self._key_holding_allowed=False
         self._resolution = ()
         self._running = False
@@ -155,6 +156,7 @@ class GameGrid(object):
         cropped_surface.blit(self._image, (0, 0),
                              (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
         self._image = cropped_surface
+
 
 
         # draw grid around the cells
@@ -423,17 +425,35 @@ class GameGrid(object):
 
     def __collision__(self):
         self._logging.debug("gamegrid.__collision__() - Type:"+str(self._collision_type))
+        pairs = []
         for actor in self.actors:
             if self._collision_type== "bounding_box":
                 partner2 = self.__get_bounding_box_collisions__(actor)
                 if partner2 is not None:
                     partner1 = actor
-                    self.collision(partner1, partner2)
+                    if (partner2,partner1) not in pairs:
+                        pairs.append((partner1,partner2))
             else:
                 partner2 = self.__get_cell_collisions__(actor)
                 if partner2 is not None:
                     partner1 = actor
-                    self.collision(partner1, partner2)
+                    if (partner2,partner1) not in pairs:
+                        pairs.append((partner1,partner2))
+        for pair in pairs:
+            partner1=pair[0]
+            partner2=pair[1]
+            if pair not in self.colliding_actors:
+                self.collision(partner1, partner2)
+        self.colliding_actors=pairs
+
+    def bounce(self, partner1, partner2):
+        mirror_axis = (partner1.direction + partner2.direction) / 2
+        self._logging.info("Bouncing: actor1:"+str(partner1.direction)+", actor2:"+str(partner2.direction)+"mirror:"+str(mirror_axis))
+        self._logging.info(
+            "Bouncing: actor2:" + str(partner2.direction) + ", actor2:" + str(partner1.direction) + "mirror:" + str(
+                mirror_axis))
+        partner1.bounce_against_line(mirror_axis)
+        partner2.bounce_against_line(mirror_axis)
 
 
     def collision(self, partner1, partner2):
@@ -473,28 +493,28 @@ class GameGrid(object):
             return True
 
     def is_at_left_border(self,rect):
-        if rect.topleft[0] < 0:
-            return False
-        else:
+        if rect.topleft[0] <= 0:
             return True
+        else:
+            return False
 
     def is_at_bottom_border(self,rect):
-        if rect.topleft[0] < 0:
-            return False
-        else:
+        if rect.topleft[1] +rect.height >= self.__grid_height_in_pixels__:
             return True
+        else:
+            return False
 
     def is_at_right_border(self,rect):
-        if rect.topleft[0]+rect.width > self.__grid_width_in_pixels__:
-            return False
-        else:
+        if rect.topleft[0]+rect.width >= self.__grid_width_in_pixels__:
             return True
+        else:
+            return False
 
     def is_at_top_border(self,rect):
-        if rect.topleft[1]+rect.height > self.__grid_height_in_pixels__:
-            return False
-        else:
+        if rect.topleft[1]  <= 0:
             return True
+        else:
+            return False
 
     def is_rectangle_in_grid(self, rect):
             if rect.topleft[0] < 0 \
@@ -583,19 +603,16 @@ class GameGrid(object):
                         self.speed=self.speed-1
                     elif pos[1] >= self.__grid_height_in_pixels__ and pos[0] > 345 and pos[0] < 395:
                         self.speed=self.speed+1
-
                 elif pos[0] > self.__grid_width_in_pixels__:
                     if not pos[1] > len(self._toolbar_actions) * 20:
                         button_index = pos[1] // 20
                         self.__listen_all__("button", self._toolbar_actions[button_index])
-            # Event: Key down
-            #self._logging.info("gamegrid.__listen__():: keys_pressed count:"+str(pygame.key.get_pressed().count(1)))
+            elif event.type == pygame.KEYDOWN:
+                keys_pressed = pygame.key.get_pressed()
+                self.__listen_all__("key_down", keys.key_pressed_to_key(keys_pressed))
         if pygame.key.get_pressed().count(1) != 0:
             keys_pressed = pygame.key.get_pressed()
-            self._logging.info("gamegrid.__listen__():: keys_pressed : "+str(keys_pressed))
-            # self.key_pressed = False
             self.__listen_all__("key", keys.key_pressed_to_key(keys_pressed))
-            self._logging.debug("gamegrid.__listen() key-holding allows: "+str(self._key_holding_allowed))
         return False
 
     def __listen_all__(self, event : str =None, data=None):

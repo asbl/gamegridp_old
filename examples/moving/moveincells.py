@@ -9,7 +9,7 @@ class MyGrid(gamegridp.GameGrid):
 
     def setup(self):
         self.player1 = Player(grid=self, location=(3, 3), img_path="images/char_blue.png",
-                              img_action="do_nothing")
+                              img_action="center")
 
 
 
@@ -22,18 +22,23 @@ class Player(gamegridp.Actor):
         self.move()
 
     def listen(self, event, data):
-        if event == "key":
+        if event == "key_down":
             if "W" in data:
-                self.move_up()
+                self.set_direction("up")
+                self.move()
             elif "S" in data:
-                self.move_down()
+                self.set_direction("down")
+                self.move()
             elif "A" in data:
-                self.move_left()
+                self.set_direction("left")
+                self.move()
             elif "D" in data:
-                self.move_right()
+                self.set_direction("right")
+                self.move()
+
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-mygrid = MyGrid("My Grid",    cell_size=40, columns=5, rows=5,
-                margin=1, speed=10,
+mygrid = MyGrid("My Grid",    cell_size=40, columns=15, rows=5,
+                margin=1, speed=60,
                 background_color=(200, 0, 0),cell_color=(0, 0, 255), img_path="images/soccer_green.jpg")
 mygrid.show()
