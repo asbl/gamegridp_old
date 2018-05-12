@@ -218,24 +218,24 @@
       <find>for</find>
       <find>for</find>
       <find>collision</find>
-      <find>location, a</find>
+      <find />
       <find>update</find>
       <find>update(</find>
       <find>actors.i</find>
-      <find>location, acto</find>
-      <find>location, actor</find>
-      <find>actor, loc</find>
-      <find>actor in</find>
+      <find />
+      <find />
+      <find />
+      <find />
       <find>actors</find>
       <find>ac</find>
       <find>get_actors_at_position</find>
       <find>get_actors_at_location</find>
-      <find>actor, lo</find>
+      <find />
       <find>get_actor_</find>
     </findStrings>
     <replaceStrings>
       <replace>screen</replace>
-      <replace>actor, location</replace>
+      <replace />
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -297,7 +297,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1938" />
@@ -929,7 +929,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://C:/Program Files/Python36/Lib/site-packages/gamegridp-0.3.1.5-py3.6.egg/gamegridp/gamegrid.py</url>
+          <url />
           <line>6</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
