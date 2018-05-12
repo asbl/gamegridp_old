@@ -12,7 +12,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='gamegridp',
-    version='0.4.0.0',
+    version='0.4.0.2',
     description='A gamegrid clone for python',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -31,5 +31,5 @@ setup(
     ],
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),  # Required
     package_data={'gamegridp': ['data/*.png']},
-    install_requires=['pygame'],
+    install_requires=['pygame', 'easygui'],
 )

@@ -1,5 +1,4 @@
 import os
-
 import pygame
 
 
@@ -31,7 +30,7 @@ class Toolbar(object):
             height = height + element.height
 
 
-    def add_button(self, img_path, text):
+    def add_button(self, text, img_path=None):
         """
         adds a button to toolbar
         :param img_path: image button
@@ -51,7 +50,6 @@ class Toolbar(object):
     def listen(self, event, position : tuple):
         if event == "mouse_left":
             height=0
-            print("test" + str(self.elements))
             if not position[1] > self.__elements_height__():
                 for element in self.elements:
                     if height+element.height>position[1]:
@@ -81,15 +79,22 @@ class ToolbarButton(ToolbarElement):
         super().__init__()
         package_directory = os.path.dirname(os.path.abspath(__file__))
         myfont = pygame.font.SysFont("monospace", 15)
-        image = pygame.image.load(img_path)
-        image = pygame.transform.scale(image, (20, 20))
         button = pygame.Surface((width, 20))
-        button.fill((255, 0, 255))
-        button.blit(image, (5, 5))
+        button.fill((255, 255, 255))
         label = myfont.render(text, 1, (0, 0, 0))
-        button.blit(label, (25, 0))
+
+        if img_path != None:
+            image = pygame.image.load(img_path)
+            image = pygame.transform.scale(image, (20, 20))
+            button.blit(image, (5, 5))
+            button.blit(label, (25, 0))
+        else:
+            button.blit(label, (0, 0))
+
         self.surface=button
         self.event=text
 
+    def listen(self, event, position : tuple):
+        return self.event
 
 

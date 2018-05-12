@@ -14,7 +14,7 @@ import pygame
 class Actor(object):
 
     def __init__(self, grid, location: list = (0, 0), color: tuple = (0, 0, 255), title: str = "Actor",
-                 img_path: str = None, size: tuple = (40, 40), img_action: str = "do_nothing"):
+                 img_path: str = None, size: tuple = (40, 40), img_action: str = None):
         # define instance variables
         self.title = title
         self._logging = logging.getLogger('Actor:')
@@ -62,7 +62,7 @@ class Actor(object):
         """
         pass
 
-    def set_image(self, img_path: str, img_action: str = "do nothing", size=None):
+    def set_image(self, img_path: str, img_action: str = None, size=None):
         """
         Adds an single image to an actor, deletes all other images
         :param img_path: The path of the image relative to the actual path
@@ -73,7 +73,7 @@ class Actor(object):
             self.delete_images()
         self.add_image(img_path, img_action, size)
 
-    def add_image(self, img_path: str, img_action: str = "do nothing", size=None):
+    def add_image(self, img_path: str, img_action: str = None, size=None):
         """ adds an image to the actor
         :param img_path: The path of the image relative to the actual path
         :param img_action: The image action (scale, do_nothing, crop)
@@ -81,6 +81,12 @@ class Actor(object):
         """
         self._logging.info("add_image(): Start add image")
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
+        if img_action is None and self.grid.cell_size == 1:
+            img_action = "do_nothing"
+        if img_action is None and self.grid.cell_size > 1:
+            img_action = "scale"
+        self._logging.info(
+            "img_action:" + str(img_action))
         if not self.has_image:
             self._original_images = []
             self._logging.info("add_image(): list was cleared:" + str(self._original_images.__len__()))
@@ -221,18 +227,15 @@ class Actor(object):
             return True
         return False
 
-    def is_blocking(self):
+    def is_blocking(self, value : bool = None):
         """
         Checks if actor blocks a field for other actors
+        :type value: true: is blocked,  false: is not blocked
         :return : true if actor blocks a field
         """
+        if value is not None:
+            self._blocked = value
         return self._blocked
-
-    def set_blocked(self):
-        """
-        Sets the blocked-status of actor. If blocked is true, the field can't be passed by another actor
-        """
-        self._blocked = True
 
     def set_unblocked(self):
         """
@@ -330,27 +333,53 @@ class Actor(object):
         self._original_images[0] = self._image
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
 
-    def __image_transform__(self, index: int, img_action: str, data: str = None):
+    def get_all_actors_at_location(self, class_name, location=None):
+        if location == None:
+            location = self.location
+        actors = self.grid.get_actors_at_location(location, class_name)
+        if self in actors:
+            actors.remove(self)
+        return actors
+
+    def get_actor_at_location(self, class_name, location=None) -> list:
+        """
+        Get all actors at a specific location
+        """
+        if location == None:
+            location = self.location
+        actors_at_location = self.get_all_actors_at_location(class_name, location)
+        if actors_at_location:
+            return actors_at_location[0]
+
+    def get_actor_in_front(self, class_name, location=None) -> list:
+        """
+        Get all actors at a specific location
+        """
+        location=self.look_forward()
+        actors_at_location = self.get_all_actors_at_location(class_name, location)
+        if actors_at_location:
+            return actors_at_location[0]
+
+    def __image_transform__(self, index: int, img_action: str, size: str = None):
         """
         Should be called before main-loop
-        :type data: img_acton : "scale" -> data : location
+        :type size: img_acton : "scale" -> data : location
         """
-        cell_size = self.__grid__.cell_size
+        img_action=str.lower(img_action)
+        cell_size = self.grid.cell_size
         if img_action == "scale":
-            if data is None:
-                self._original_images[index] = pygame.transform.scale(self._original_images[index],
-                                                                      (cell_size, cell_size))
-            else:
-                self._original_images[index] = pygame.transform.scale(self._original_images[index],
-                                                                      (data[0], data[1]))
+            if size is None:
+                size = (cell_size, cell_size)
+            self._original_images[index] = pygame.transform.scale(self._original_images[index],
+                                                                      (size[0], size[1]))
         elif img_action == "center":
-            cropped_surface = pygame.Surface((self.grid.cell_size, self.grid.cell_size), pygame.SRCALPHA, 32)
+            cropped_surface = pygame.Surface((cell_size, cell_size), pygame.SRCALPHA, 32)
             width = self._original_images[self._image_index].get_width()
             height = self._original_images[self._image_index].get_height()
             x_pos = (self.grid.cell_size - width) / 2
             y_pos = (self.grid.cell_size - height) / 2
             cropped_surface.blit(self._original_images[self._image_index], (x_pos, y_pos),
-                                 (0, 0, self.grid.cell_size, self.grid.cell_size))
+                                 (0, 0, cell_size, cell_size))
             self._original_images[self._image_index] = cropped_surface
         elif img_action == "do_nothing":
             self._original_images[self._image_index] = self._original_images[self._image_index]
@@ -742,7 +771,7 @@ class Actor(object):
                     math.radians(self.direction)) * self.bounding_box().height)
                 pygame.draw.line(self.image, (255, 0, 0), (self.bounding_box().width / 2,
                                                            self.bounding_box().height / 2), (x, y), 2)
-            pygame.screen.blit(self._image, (cell_left, cell_top))
+            self.grid.grid_surface.blit(self._image, (cell_left, cell_top))
 
     def remove(self):
         """

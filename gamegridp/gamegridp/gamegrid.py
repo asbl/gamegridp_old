@@ -11,6 +11,7 @@ import pygame
 from gamegridp import keys
 from gamegridp import gamegrid_toolbar
 from gamegridp import gamegrid_console
+from gamegridp import gamegrid_actionbar
 
 
 class GameGrid(object):
@@ -21,7 +22,7 @@ class GameGrid(object):
     def __init__(self, title, cell_size=32,
                  columns=8, rows=8, margin=0,
                  background_color=(255, 255, 255), cell_color=(0, 0, 0),
-                 img_path=None, img_action="upscale", speed=60, toolbar=False):
+                 img_path=None, img_action="upscale", speed=60, toolbar=False, console=False, actionbar=True):
         self.grid = self
         self.__is_setting_up__ = False
         # Define instance variables
@@ -37,6 +38,7 @@ class GameGrid(object):
         self._key_holding_allowed = False
         self._resolution = ()
         self._running = False
+        self.effects = set()
         self._cell_margin = 0
         self._collision_type = "cell"
         self._image = None
@@ -57,8 +59,12 @@ class GameGrid(object):
             self.toolbar = gamegrid_toolbar.Toolbar(self)
         else:
             self.toolbar = None
+        if actionbar is True:
+            self.actionbar = gamegrid_actionbar.Actionbar(self)
+        else:
+            self.actionbar = None
         if console is True:
-            self.console = gamegrid_console.Console(self)
+            self.console = gamegrid_console.Console(self, 5)
         else:
             self.console = None
         """
@@ -87,15 +93,25 @@ class GameGrid(object):
             _toolbar_width = self.toolbar.width
         else:
             _toolbar_width = 0
+        if self.actionbar is not None:
+            _actionbar_height = self.actionbar.height
+        else:
+            _actionbar_height = 0
         if self.console is not None:
             _console_height = self.console.height
         else:
             _console_height = 0
         x_res = self.__grid_width_in_pixels__ + _toolbar_width
-        y_res = self.__grid_height_in_pixels__ + 30 + _console_height  # 100 pixels for actionbar
+        y_res = self.__grid_height_in_pixels__ + _actionbar_height + _console_height  # 100 pixels for actionbar
         if self.toolbar is not None:
             self.toolbar.set_height(y_res)
             self.toolbar.set_posx(self.__grid_width_in_pixels__ )
+        if self.actionbar is not None:
+            self.actionbar.set_width(x_res)
+            self.actionbar.set_posy(self.__grid_height_in_pixels__)
+        if self.console is not None:
+            self.console.set_width(x_res)
+            self.console.set_posy(self.__grid_height_in_pixels__+_actionbar_height)
         self._resolution = x_res, y_res
         WINDOW_SIZE = (self._resolution[0], self._resolution[1])
         self._logging.info(
@@ -103,6 +119,8 @@ class GameGrid(object):
                 self._resolution[1]) + ")")
         # Init pygame
         pygame.screen = pygame.display.set_mode(WINDOW_SIZE)
+        self.grid_surface = pygame.Surface((self.__grid_width_in_pixels__,self.__grid_height_in_pixels__))
+        self.grid_surface.fill((255,255,255))
         pygame.display.set_caption(title)
         pygame.screen.fill((255, 255, 255))
         # Init clock
@@ -116,6 +134,7 @@ class GameGrid(object):
         self.set_image(img_path, img_action)
         self._setup()
         # Draw_Qeue
+        pygame.screen.blit(self.grid_surface, (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
         self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
     def add_cell_image(self, img_path: str, location: tuple):
@@ -226,74 +245,7 @@ class GameGrid(object):
         """ Sets the cell-size"""
         self._cell_size = value
 
-    def __draw_toolbaar__(self):
-        if self.toolbar is not None:
-            self.toolbar.draw()
-            self.grid._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
-    def __draw_actionbar__(self):
-        """
-        Draws the action bar
-        """
-        package_directory = os.path.dirname(os.path.abspath(__file__))
-        myfont = pygame.font.SysFont("monospace", 15)
-        res_x = self._resolution[0]
-        res_y = self._resolution[1]
-        actionbar = pygame.Surface((res_x, 30))
-        actionbar.fill((255, 255, 255))
-        # Act Button:
-        path = os.path.join(package_directory, "data", 'play.png')
-        image = pygame.image.load(path)
-        image = pygame.transform.scale(image, (20, 20))
-        actionbar.blit(image, (5, 5))
-        label = myfont.render("Act", 1, (0, 0, 0))
-        actionbar.blit(label, (30, 5))
-        # Run Button:
-        if self._running is False:
-            path = os.path.join(package_directory, "data", 'run.png')
-            image = pygame.image.load(path)
-            image = pygame.transform.scale(image, (20, 20))
-            actionbar.blit(image, (60, 5))
-            label = myfont.render("Run", 1, (0, 0, 0))
-            actionbar.blit(label, (85, 5))
-            self._draw_queue.append(
-                pygame.Rect(0, self.__grid_height_in_pixels__, actionbar.get_width(), actionbar.get_height()))
-        if self._running is True:
-            path = os.path.join(package_directory, "data", 'pause.png')
-            image = pygame.image.load(path)
-            image = pygame.transform.scale(image, (20, 20))
-            actionbar.blit(image, (60, 5))
-            label = myfont.render("Pause", 1, (0, 0, 0))
-            actionbar.blit(label, (85, 5))
-            self._draw_queue.append(
-                pygame.Rect(0, self.__grid_height_in_pixels__, actionbar.get_width(), actionbar.get_height()))
-        # Reset Button:
-        path = os.path.join(package_directory, "data", 'reset.png')
-        image = pygame.image.load(path)
-        image = pygame.transform.scale(image, (20, 20))
-        actionbar.blit(image, (140, 5))
-        label = myfont.render("Reset", 1, (0, 0, 0))
-        actionbar.blit(label, (165, 5))
-        # Info-Button
-        path = os.path.join(package_directory, "data", 'question.png')
-        image = pygame.image.load(path)
-        image = pygame.transform.scale(image, (20, 20))
-        actionbar.blit(image, (225, 5))
-        label = myfont.render("Info", 1, (0, 0, 0))
-        actionbar.blit(label, (245, 5))
-        # Info-Button
-        path = os.path.join(package_directory, "data", 'left.png')
-        image = pygame.image.load(path)
-        image = pygame.transform.scale(image, (20, 20))
-        actionbar.blit(image, (285, 5))
-        label = myfont.render("Speed:" + str(self.speed), 1, (0, 0, 0))
-        actionbar.blit(label, (305, 5))
-        path = os.path.join(package_directory, "data", 'right.png')
-        image = pygame.image.load(path)
-        image = pygame.transform.scale(image, (20, 20))
-        actionbar.blit(image, (380, 5))
-        pygame.screen.blit(actionbar,
-                           (0, self.__grid_height_in_pixels__, actionbar.get_width(), actionbar.get_height()))
 
     @property
     def cell_margin(self):
@@ -310,6 +262,7 @@ class GameGrid(object):
         self.__draw_grid__()
         self.__draw_actionbar__()
         self.__draw_toolbaar__()
+        self.__draw_console__()
 
     def __draw_grid__(self):
         """
@@ -317,13 +270,30 @@ class GameGrid(object):
         """
         # Draw the gamegrid-cells
         if self._image is not None:
-            pygame.screen.blit(self._image, (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+            self.grid_surface.blit(self._image, (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
         for actor in self._actors:
             actor.next_sprite()
             actor.draw()
+        pygame.screen.blit(self.grid_surface, (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+
+    def __draw_toolbaar__(self):
+        if self.toolbar is not None:
+            self.toolbar.draw()
+            self.grid._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+
+    def __draw_console__(self):
+        if self.console is not None:
+            self.console.draw()
+            self.grid._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+
+    def __draw_actionbar__(self):
+        if self.actionbar is not None:
+            self.actionbar.draw()
+            self.grid._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+
 
     @property
-    def actors(self) -> list:
+    def actors(self) -> set:
         """
         returns all actors in grid
         :return: a list of all actors
@@ -450,24 +420,15 @@ class GameGrid(object):
         :return:
         """
 
-    def get_actors_at_location(self, location: tuple) -> list:
+    def get_actors_at_location(self, location: tuple, class_name: str = "") -> list:
         """
         Get all actors at a specific location
         """
         actors_at_location = []
         for actor in self._actors:
-            if actor.get_location() == location:
-                actors_at_location.append(actor)
-        return actors_at_location
-
-    def get_actors_at_location_by_class(self, location: tuple, class_name: str):
-        """
-        Geta all actors of a specific class at a specific location
-        """
-        actors_at_location = []
-        for actor in self._actors:
-            if actor.get_location == location and actor.__class__.__name__ == class_name:
-                actors_at_location.append(actor)
+            if actor.location == location:
+                if class_name is "" or actor.__class__.__name__ == class_name:
+                    actors_at_location.append(actor)
         return actors_at_location
 
     def is_location_in_grid(self, location):
@@ -603,6 +564,10 @@ class GameGrid(object):
         if pygame.key.get_pressed().count(1) != 0:
             keys_pressed = pygame.key.get_pressed()
             self.__listen_all__("key", keys.key_pressed_to_key(keys_pressed))
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        if mouse_x> self.__grid_width_in_pixels__:
+            toolbar_event = self.toolbar.listen("mouse_hover", position=(mouse_x, mouse_y))
+
         return False
 
     def __listen_all__(self, event: str = None, data=None):
@@ -707,6 +672,14 @@ class GameGrid(object):
     def run(self):
         self._running = True
 
+    @property
+    def is_running(self):
+        return self._running
+
+    @is_running.setter
+    def is_running(self, value):
+        self._running = value
+
     def show(self):
         """
         Starts the mainloop
@@ -762,3 +735,11 @@ class GameGrid(object):
         x = cell[0] * self.cell_size + cell[0] * self._cell_margin + self._cell_margin
         y = cell[1] * self.cell_size + cell[1] * self._cell_margin + self._cell_margin
         return pygame.Rect(x, y, self.cell_size, self.cell_size)
+
+    def play_sound(self, sound_path):
+        effect = pygame.mixer.Sound(sound_path)
+        effect.play()
+
+    def play_music(self, music_path):
+        pygame.mixer.music.load(music_path)
+        pygame.mixer.music.play(-1)
