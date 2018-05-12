@@ -8,10 +8,10 @@ import logging
 import os
 
 import pygame
-from gamegridp import keys
-from gamegridp import gamegrid_toolbar
-from gamegridp import gamegrid_console
 from gamegridp import gamegrid_actionbar
+from gamegridp import gamegrid_console
+from gamegridp import gamegrid_toolbar
+from gamegridp import keys
 
 
 class GameGrid(object):
@@ -105,13 +105,13 @@ class GameGrid(object):
         y_res = self.__grid_height_in_pixels__ + _actionbar_height + _console_height  # 100 pixels for actionbar
         if self.toolbar is not None:
             self.toolbar.set_height(y_res)
-            self.toolbar.set_posx(self.__grid_width_in_pixels__ )
+            self.toolbar.set_posx(self.__grid_width_in_pixels__)
         if self.actionbar is not None:
             self.actionbar.set_width(x_res)
             self.actionbar.set_posy(self.__grid_height_in_pixels__)
         if self.console is not None:
             self.console.set_width(x_res)
-            self.console.set_posy(self.__grid_height_in_pixels__+_actionbar_height)
+            self.console.set_posy(self.__grid_height_in_pixels__ + _actionbar_height)
         self._resolution = x_res, y_res
         WINDOW_SIZE = (self._resolution[0], self._resolution[1])
         self._logging.info(
@@ -119,8 +119,8 @@ class GameGrid(object):
                 self._resolution[1]) + ")")
         # Init pygame
         pygame.screen = pygame.display.set_mode(WINDOW_SIZE)
-        self.grid_surface = pygame.Surface((self.__grid_width_in_pixels__,self.__grid_height_in_pixels__))
-        self.grid_surface.fill((255,255,255))
+        self.grid_surface = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+        self.grid_surface.fill((255, 255, 255))
         pygame.display.set_caption(title)
         pygame.screen.fill((255, 255, 255))
         # Init clock
@@ -154,7 +154,8 @@ class GameGrid(object):
                 if size is None:
                     self._image = pygame.transform.scale(self._image,
                                                          (
-                                                         self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+                                                             self.__grid_width_in_pixels__,
+                                                             self.__grid_height_in_pixels__))
                 else:
                     self._image = pygame.transform.scale(self._image, (size[0], size[1]))
                 self._image = pygame.transform.scale(
@@ -244,8 +245,6 @@ class GameGrid(object):
     def cell_size(self, value: int):
         """ Sets the cell-size"""
         self._cell_size = value
-
-
 
     @property
     def cell_margin(self):
@@ -556,7 +555,7 @@ class GameGrid(object):
                     elif pos[1] >= self.__grid_height_in_pixels__ and pos[0] > 345 and pos[0] < 395:
                         self.speed = self.speed + 1
                 elif pos[0] > self.__grid_width_in_pixels__:
-                    toolbar_event = self.toolbar.listen("mouse_left", position = (pos[0], pos[1]))
+                    toolbar_event = self.toolbar.listen("mouse_left", position=(pos[0], pos[1]))
                     self.__listen_all__(toolbar_event)
             elif event.type == pygame.KEYDOWN:
                 keys_pressed = pygame.key.get_pressed()
@@ -565,7 +564,7 @@ class GameGrid(object):
             keys_pressed = pygame.key.get_pressed()
             self.__listen_all__("key", keys.key_pressed_to_key(keys_pressed))
         mouse_x, mouse_y = pygame.mouse.get_pos()
-        if mouse_x> self.__grid_width_in_pixels__:
+        if mouse_x > self.__grid_width_in_pixels__:
             toolbar_event = self.toolbar.listen("mouse_hover", position=(mouse_x, mouse_y))
 
         return False

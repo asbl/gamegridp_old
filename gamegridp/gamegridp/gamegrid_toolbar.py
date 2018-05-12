@@ -1,4 +1,5 @@
 import os
+
 import pygame
 
 
@@ -10,12 +11,11 @@ class Toolbar(object):
         self.height = 0
         self.elements = []
 
-
     def set_height(self, height):
-        self.height=height
+        self.height = height
 
     def set_posx(self, posx):
-        self.posx=posx
+        self.posx = posx
 
     def draw(self):
         """
@@ -29,7 +29,6 @@ class Toolbar(object):
             pygame.screen.blit(element.get_surface(), (self.posx, height))
             height = height + element.height
 
-
     def add_button(self, text, img_path=None):
         """
         adds a button to toolbar
@@ -37,39 +36,40 @@ class Toolbar(object):
         :param text: button text. This is also the text for the data variable in listen(event,data)
         :return:
         """
-        button = ToolbarButton(self.width,20, img_path=img_path, text=text)
+        button = ToolbarButton(self.width, 20, img_path=img_path, text=text)
         self.elements.append(button)
         return button
 
     def __elements_height__(self):
-        height=0
+        height = 0
         for element in self.elements:
             height += element.height
         return height
 
-    def listen(self, event, position : tuple):
+    def listen(self, event, position: tuple):
         if event == "mouse_left":
-            height=0
+            height = 0
             if not position[1] > self.__elements_height__():
                 for element in self.elements:
-                    if height+element.height>position[1]:
+                    if height + element.height > position[1]:
                         return element.listen(event, position)
-                    else :
+                    else:
                         height = height + element.height
         else:
             return "no toolbar event"
+
 
 class ToolbarElement():
     def __init__(self):
         self.height = 20
         self.surface = None
-        self.title=""
-        self.event =  "no event"
+        self.title = ""
+        self.event = "no event"
 
     def get_surface(self):
         return self.surface
 
-    def listen(self, event, position : tuple):
+    def listen(self, event, position: tuple):
         return self.event
 
 
@@ -91,10 +91,8 @@ class ToolbarButton(ToolbarElement):
         else:
             button.blit(label, (0, 0))
 
-        self.surface=button
-        self.event=text
+        self.surface = button
+        self.event = text
 
-    def listen(self, event, position : tuple):
+    def listen(self, event, position: tuple):
         return self.event
-
-

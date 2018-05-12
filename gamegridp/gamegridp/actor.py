@@ -227,7 +227,7 @@ class Actor(object):
             return True
         return False
 
-    def is_blocking(self, value : bool = None):
+    def is_blocking(self, value: bool = None):
         """
         Checks if actor blocks a field for other actors
         :type value: true: is blocked,  false: is not blocked
@@ -355,7 +355,7 @@ class Actor(object):
         """
         Get all actors at a specific location
         """
-        location=self.look_forward()
+        location = self.look_forward()
         actors_at_location = self.get_all_actors_at_location(class_name, location)
         if actors_at_location:
             return actors_at_location[0]
@@ -365,13 +365,13 @@ class Actor(object):
         Should be called before main-loop
         :type size: img_acton : "scale" -> data : location
         """
-        img_action=str.lower(img_action)
+        img_action = str.lower(img_action)
         cell_size = self.grid.cell_size
         if img_action == "scale":
             if size is None:
                 size = (cell_size, cell_size)
             self._original_images[index] = pygame.transform.scale(self._original_images[index],
-                                                                      (size[0], size[1]))
+                                                                  (size[0], size[1]))
         elif img_action == "center":
             cropped_surface = pygame.Surface((cell_size, cell_size), pygame.SRCALPHA, 32)
             width = self._original_images[self._image_index].get_width()
