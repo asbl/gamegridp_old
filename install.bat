@@ -1,6 +1,6 @@
 cd gamegridp
 python setup.py install
 cd ..
-cd doc
+cd docs
 make html
 cd ..

@@ -2,6 +2,7 @@ Installation
 ============
 
 gamegridp kann installiert werden, indem du im Paketmanager folgendes eingibst:
-.. highlight:: python
-::
+
+.. code-block:: python
+
     pip install gamegridp
