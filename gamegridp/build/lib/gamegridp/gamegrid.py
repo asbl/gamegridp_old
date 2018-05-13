@@ -21,32 +21,30 @@ class GameGrid(object):
         Das **GameGrid** ist ein **Spielfeld**, welches in einzelne Zellen unterteilt ist.
         Es kann unterschieden werden zwischen zwei Arten von GameGrids:
 
-          * Die Zellengröße ist 1: Es handelt sich um ein pixelgenaues Spiel
+        * Die Zellengröße ist 1: Es handelt sich um ein pixelgenaues Spiel
             bei dem die exakte Position der Akteure von Bedeutung ist.
-          * Die Zellengröße ist größer als 1: Es handelt sich um ein Spiel, das auf einzelnen
+        * Die Zellengröße ist größer als 1: Es handelt sich um ein Spiel, das auf einzelnen
             Feldern basiert.
 
         Für beide Arten von Spielen gibt es einige Subklassen, die Spezialfunktionen zur Verfügung stellen.
 
-        **Attribute:**
+    **Attribute:**
 
-        Attribute
-        ---------
-        cell_size: int
+        * cell_size: int
             Die Größe einer einzelnen Zelle in Pixeln.
-        toolbar : gamegridp.Toolbar
+        * toolbar : gamegridp.Toolbar
             Die Toolbar auf der rechten Seite
-        actionbar : gamegridp.Actionbar
+        * actionbar : gamegridp.Actionbar
             Die Actionbar unterhalb des Spielfeldes.
-        console : gamegridp.Console
+        * console : gamegridp.Console
             Die Konsole unterhalb des Spielfeldes.
-        is_running : bool
+        * is_running : bool
             Bestimmt, ob Act() in jedem Durchlauf der Mainloop ausgeführt wird.
-        speed: int
+        * speed: int
             Die Geschwindigkeit mit der das Spiel läuft (bisher nur als Max. Geschwindigkeit definiert)
-        rows: int
+        * rows: int
             Die Anzahl der Zeilen.
-        columns: int
+        * columns: int
             Die Anzahl der Spalten.
 
         **Methoden:**

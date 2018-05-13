@@ -169,32 +169,30 @@
 <span class="sd">        Das **GameGrid** ist ein **Spielfeld**, welches in einzelne Zellen unterteilt ist.</span>
 <span class="sd">        Es kann unterschieden werden zwischen zwei Arten von GameGrids:</span>
 
-<span class="sd">          * Die Zellengröße ist 1: Es handelt sich um ein pixelgenaues Spiel</span>
+<span class="sd">        * Die Zellengröße ist 1: Es handelt sich um ein pixelgenaues Spiel</span>
 <span class="sd">            bei dem die exakte Position der Akteure von Bedeutung ist.</span>
-<span class="sd">          * Die Zellengröße ist größer als 1: Es handelt sich um ein Spiel, das auf einzelnen</span>
+<span class="sd">        * Die Zellengröße ist größer als 1: Es handelt sich um ein Spiel, das auf einzelnen</span>
 <span class="sd">            Feldern basiert.</span>
 
 <span class="sd">        Für beide Arten von Spielen gibt es einige Subklassen, die Spezialfunktionen zur Verfügung stellen.</span>
 
-<span class="sd">        **Attribute:**</span>
+<span class="sd">    **Attribute:**</span>
 
-<span class="sd">        Attribute</span>
-<span class="sd">        ---------</span>
-<span class="sd">        cell_size: int</span>
+<span class="sd">        * cell_size: int</span>
 <span class="sd">            Die Größe einer einzelnen Zelle in Pixeln.</span>
-<span class="sd">        toolbar : gamegridp.Toolbar</span>
+<span class="sd">        * toolbar : gamegridp.Toolbar</span>
 <span class="sd">            Die Toolbar auf der rechten Seite</span>
-<span class="sd">        actionbar : gamegridp.Actionbar</span>
+<span class="sd">        * actionbar : gamegridp.Actionbar</span>
 <span class="sd">            Die Actionbar unterhalb des Spielfeldes.</span>
-<span class="sd">        console : gamegridp.Console</span>
+<span class="sd">        * console : gamegridp.Console</span>
 <span class="sd">            Die Konsole unterhalb des Spielfeldes.</span>
-<span class="sd">        is_running : bool</span>
+<span class="sd">        * is_running : bool</span>
 <span class="sd">            Bestimmt, ob Act() in jedem Durchlauf der Mainloop ausgeführt wird.</span>
-<span class="sd">        speed: int</span>
+<span class="sd">        * speed: int</span>
 <span class="sd">            Die Geschwindigkeit mit der das Spiel läuft (bisher nur als Max. Geschwindigkeit definiert)</span>
-<span class="sd">        rows: int</span>
+<span class="sd">        * rows: int</span>
 <span class="sd">            Die Anzahl der Zeilen.</span>
-<span class="sd">        columns: int</span>
+<span class="sd">        * columns: int</span>
 <span class="sd">            Die Anzahl der Spalten.</span>
 
 <span class="sd">        **Methoden:**</span>

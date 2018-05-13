@@ -179,37 +179,67 @@
 <dt>Das GameGrid</dt>
 <dd><p class="first">Das <strong>GameGrid</strong> ist ein <strong>Spielfeld</strong>, welches in einzelne Zellen unterteilt ist.
 Es kann unterschieden werden zwischen zwei Arten von GameGrids:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Die Zellengröße ist 1: Es handelt sich um ein pixelgenaues Spiel</dt>
+<dd>bei dem die exakte Position der Akteure von Bedeutung ist.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Die Zellengröße ist größer als 1: Es handelt sich um ein Spiel, das auf einzelnen</dt>
+<dd>Feldern basiert.</dd>
+</dl>
+</li>
+</ul>
+<p class="last">Für beide Arten von Spielen gibt es einige Subklassen, die Spezialfunktionen zur Verfügung stellen.</p>
+</dd>
+</dl>
+<p><strong>Attribute:</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>Die Zellengröße ist 1: Es handelt sich um ein pixelgenaues Spiel
-bei dem die exakte Position der Akteure von Bedeutung ist.</li>
-<li>Die Zellengröße ist größer als 1: Es handelt sich um ein Spiel, das auf einzelnen
-Feldern basiert.</li>
-</ul>
-</div></blockquote>
-<p>Für beide Arten von Spielen gibt es einige Subklassen, die Spezialfunktionen zur Verfügung stellen.</p>
-<p><strong>Attribute:</strong></p>
-<dl class="docutils">
+<li><dl class="first docutils">
 <dt>cell_size: int</dt>
 <dd>Die Größe einer einzelnen Zelle in Pixeln.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
 <dt>toolbar <span class="classifier-delimiter">:</span> <span class="classifier">gamegridp.Toolbar</span></dt>
 <dd>Die Toolbar auf der rechten Seite</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
 <dt>actionbar <span class="classifier-delimiter">:</span> <span class="classifier">gamegridp.Actionbar</span></dt>
 <dd>Die Actionbar unterhalb des Spielfeldes.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
 <dt>console <span class="classifier-delimiter">:</span> <span class="classifier">gamegridp.Console</span></dt>
 <dd>Die Konsole unterhalb des Spielfeldes.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
 <dt>is_running <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
 <dd>Bestimmt, ob Act() in jedem Durchlauf der Mainloop ausgeführt wird.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
 <dt>speed: int</dt>
 <dd>Die Geschwindigkeit mit der das Spiel läuft (bisher nur als Max. Geschwindigkeit definiert)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
 <dt>rows: int</dt>
 <dd>Die Anzahl der Zeilen.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
 <dt>columns: int</dt>
 <dd>Die Anzahl der Spalten.</dd>
 </dl>
-<p class="last"><strong>Methoden:</strong></p>
-</dd>
-</dl>
+</li>
+</ul>
+<p><strong>Methoden:</strong></p>
+</div></blockquote>
 <dl class="method">
 <dt id="gamegridp.gamegrid.GameGrid.act">
 <code class="descname">act</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.act"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.act" title="Link zu dieser Definition">¶</a></dt>

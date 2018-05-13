@@ -14,9 +14,8 @@ import pygame
 class Actor(object):
     """
         Die Klasse Akteur
-        -----------------
-        Ein Actor ist eine Spielfigur oder ein Objekt in der Welt,
-        z.B. ein Auto, eine Wand, ein Untergrund.
+            Ein Actor ist eine Spielfigur oder ein Objekt in der Welt,
+            z.B. ein Auto, eine Wand, ein Untergrund.
 
         Attributes
         ----------
