@@ -5,38 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint">
-      <change afterPath="$PROJECT_DIR$/doc/classes/actionbar.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/classes/console.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/classes/grid/CellGrid.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/classes/grid/PixelGrid.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/impressum.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/install.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/klassen.rst" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_actionbar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/install.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/upload.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gamegridp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gamegridp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/games/rpg.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/games/rpg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/moving/bouncing.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/moving/bouncing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/moving/bouncing2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/moving/moveincells.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/moving/moveincells.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/robot/create_world.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/robot/create_world.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/robot/create_world2.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/robot/create_world2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/robot/create_world3.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/robot/create_world3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/robot/create_world4.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/robot/create_world4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/robot/py_karol_the_robot.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/robot/py_karol_the_robot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/LICENSE.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/MANIFEST.in" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/MANIFEST.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid_actionbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid_actionbar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid_console.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid_console.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid_toolbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid_toolbar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/toolbar.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/window.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.1.tar.gz" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.2.1.1.tar.gz" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.2.1.2.tar.gz" beforeDir="false" />
@@ -51,7 +23,6 @@
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_console.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_console.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/keys.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/keys.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/test.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/toolbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py" afterDir="false" />
@@ -224,18 +195,18 @@
       <find>actors.append</find>
       <find>for</find>
       <find>collision</find>
-      <find>location, a</find>
+      <find />
       <find>update</find>
       <find>update(</find>
       <find>actors.i</find>
-      <find>location, acto</find>
-      <find>location, actor</find>
-      <find>actor, loc</find>
-      <find>actor in</find>
+      <find />
+      <find />
+      <find />
+      <find />
       <find>ac</find>
       <find>get_actors_at_position</find>
       <find>get_actors_at_location</find>
-      <find>actor, lo</find>
+      <find />
       <find>rows</find>
       <find>get_actor_</find>
       <find>bounding</find>
@@ -254,7 +225,7 @@
     </findStrings>
     <replaceStrings>
       <replace>screen</replace>
-      <replace>actor, location</replace>
+      <replace />
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -318,7 +289,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-2190" />
     <option name="y" value="-154" />
     <option name="width" value="1936" />
@@ -916,7 +887,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://C:/Program Files/Python36/Lib/site-packages/gamegridp-0.3.1.5-py3.6.egg/gamegridp/gamegrid.py</url>
+          <url />
           <line>6</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
