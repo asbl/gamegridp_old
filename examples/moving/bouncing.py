@@ -5,7 +5,7 @@ import sys
 import logging
 import sys
 
-class MyGrid(gamegridp.GameGrid):
+class MyGrid(gamegridp.PixelGrid):
     """My Grid with custom setup method."""
 
     def setup(self):
@@ -32,7 +32,7 @@ class Asteroid(gamegridp.Actor):
         self.move(2)
         border=self.is_at_border()
         if border is not False:
-            self.bounce_from_border(border)
+            self.grid.bounce_from_border(self, border)
             self.move(2)
 
 

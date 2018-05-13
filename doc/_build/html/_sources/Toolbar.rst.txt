@@ -1,0 +1,5 @@
+Toolbar
+========
+
+.. autoclass:: gamegridp.gamegrid_toolbar.Toolbar
+   :members:

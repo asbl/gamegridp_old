@@ -7,8 +7,8 @@ class MyGrid(gamegridp.GameGrid):
     """My Grid with custom setup method."""
     def setup(self):
         console=self.console
-        for i in range(ROWS):
-            for j in range(COLUMNS):
+        for i in range(self.rows):
+            for j in range(self.columns):
                 Grass(self,(j,i))
 
         Wall(self,(0,4))
@@ -61,7 +61,7 @@ class Player(gamegridp.Actor):
         if torch:
             message = "Du findest eine Fackel. Möchtest du sie aufheben?"
             choices = ["Ja", "Nein"]
-            reply = easygui.buttonbox(message, choices=choices)
+            reply = self.grid.msgbox(message,choices)
             if reply == "Ja":
                 self.inventory.append("Torch")
                 torch.remove()
@@ -73,14 +73,14 @@ class Player(gamegridp.Actor):
             if door.closed:
                 message = "Die Tür ist geschlossen... möchtest du sie öffnen"
                 choices = ["Ja", "Nein"]
-                reply = easygui.buttonbox(message, choices=choices)
+                reply = self.grid.msgbox(message,choices)
                 if reply == "Ja":
                     door.open()
                     self.grid.console.print("Du hast das Tor geöffnet.")
 
 class Wall(gamegridp.Actor):
     def setup(self):
-        self.is_blocking(True)
+        self.is_blocking = True
         self.set_image("rpgimages/wall.png")
 
 class Grass(gamegridp.Actor):
@@ -108,8 +108,7 @@ class Fireplace(gamegridp.Actor):
 class Door(gamegridp.Actor):
     def setup(self):
         self.set_image("rpgimages/door_closed.png")
-
-        self.is_blocking(True)
+        self.is_blocking = True
         self.closed = True
 
     def open(self):
@@ -117,12 +116,10 @@ class Door(gamegridp.Actor):
             self.set_image("rpgimages/door_open.png")
             self.grid.play_sound("rpgsounds/olddoor.wav")
             self.closed = False
-            self.set_unblocked()
+            self.is_blocking = False
 
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-ROWS=20
-COLUMNS=30
-mygrid = MyGrid("My Grid",    cell_size=20, columns=COLUMNS, rows=ROWS,
+mygrid = MyGrid("My Grid",    cell_size=20, columns=30, rows=20,
                 margin=1, speed=60, toolbar=True, console = True, actionbar = False)
 mygrid.show()

@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GameGrid &mdash; gamegridp 2018 Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="CellGrid" href="grid/CellGrid.html" />
+    <link rel="prev" title="Actor" href="Actor.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> gamegridp
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Inhalte</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../klassen.html">Klassen</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Actor.html">Actor</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GameGrid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="grid/CellGrid.html">CellGrid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grid/PixelGrid.html">PixelGrid</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Toolbar.html">Toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actionbar.html">Actionbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console.html">Console</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../impressum.html">Impressum</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">gamegridp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../klassen.html">Klassen</a> &raquo;</li>
+        
+      <li>GameGrid</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/classes/GameGrid.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gamegrid">
+<h1>GameGrid<a class="headerlink" href="#gamegrid" title="Link zu dieser Überschrift">¶</a></h1>
+<p>GameGrid hat zwei Kind-Klassen:</p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Kind-Klassen:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="grid/CellGrid.html">CellGrid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid/PixelGrid.html">PixelGrid</a></li>
+</ul>
+</div>
+<dl class="class">
+<dt id="gamegridp.gamegrid.GameGrid">
+<em class="property">class </em><code class="descclassname">gamegridp.gamegrid.</code><code class="descname">GameGrid</code><span class="sig-paren">(</span><em>title</em>, <em>cell_size=32</em>, <em>columns=8</em>, <em>rows=8</em>, <em>margin=0</em>, <em>background_color=(255</em>, <em>255</em>, <em>255)</em>, <em>cell_color=(0</em>, <em>0</em>, <em>0)</em>, <em>img_path=None</em>, <em>img_action='upscale'</em>, <em>speed=60</em>, <em>toolbar=False</em>, <em>console=False</em>, <em>actionbar=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid" title="Link zu dieser Definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Das GameGrid</dt>
+<dd><p class="first">Das <strong>GameGrid</strong> ist ein <strong>Spielfeld</strong>, welches in einzelne Zellen unterteilt ist.
+Es kann unterschieden werden zwischen zwei Arten von GameGrids:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Die Zellengröße ist 1: Es handelt sich um ein pixelgenaues Spiel
+bei dem die exakte Position der Akteure von Bedeutung ist.</li>
+<li>Die Zellengröße ist größer als 1: Es handelt sich um ein Spiel, das auf einzelnen
+Feldern basiert.</li>
+</ul>
+</div></blockquote>
+<p>Für beide Arten von Spielen gibt es einige Subklassen, die Spezialfunktionen zur Verfügung stellen.</p>
+<p><strong>Attribute:</strong></p>
+<dl class="docutils">
+<dt>cell_size: int</dt>
+<dd>Die Größe einer einzelnen Zelle in Pixeln.</dd>
+<dt>toolbar <span class="classifier-delimiter">:</span> <span class="classifier">gamegridp.Toolbar</span></dt>
+<dd>Die Toolbar auf der rechten Seite</dd>
+<dt>actionbar <span class="classifier-delimiter">:</span> <span class="classifier">gamegridp.Actionbar</span></dt>
+<dd>Die Actionbar unterhalb des Spielfeldes.</dd>
+<dt>console <span class="classifier-delimiter">:</span> <span class="classifier">gamegridp.Console</span></dt>
+<dd>Die Konsole unterhalb des Spielfeldes.</dd>
+<dt>is_running <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd>Bestimmt, ob Act() in jedem Durchlauf der Mainloop ausgeführt wird.</dd>
+<dt>speed: int</dt>
+<dd>Die Geschwindigkeit mit der das Spiel läuft (bisher nur als Max. Geschwindigkeit definiert)</dd>
+<dt>rows: int</dt>
+<dd>Die Anzahl der Zeilen.</dd>
+<dt>columns: int</dt>
+<dd>Die Anzahl der Spalten.</dd>
+</dl>
+<p class="last"><strong>Methoden:</strong></p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.act">
+<code class="descname">act</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.act"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.act" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überschreibe diese Methode in deinen Kind-Klassen</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.actors">
+<code class="descname">actors</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.actors" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>returns all actors in grid
+:return: a list of all actors</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.cell_margin">
+<code class="descname">cell_margin</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.cell_margin" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>returns the margin between cells</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.cell_rect">
+<code class="descname">cell_rect</code><span class="sig-paren">(</span><em>cell: tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.cell_rect"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.cell_rect" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt das Rechteck zurück, dass eine Zelle umschließt.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.cell_to_pixel">
+<code class="descname">cell_to_pixel</code><span class="sig-paren">(</span><em>cell: tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.cell_to_pixel"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.cell_to_pixel" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt die obere-linke Koordinate einer Zelle zurück.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.collision">
+<code class="descname">collision</code><span class="sig-paren">(</span><em>partner1</em>, <em>partner2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.collision"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.collision" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überschreibe diese Methoden, wenn du Kollisionen handhaben möchtest.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.columns">
+<code class="descname">columns</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.columns" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>returns the margin between cells</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.draw"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.draw" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>draws the entire window with grid, actionbar and toolbar
+:return:</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.frame">
+<code class="descname">frame</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.frame" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Returns the actual frame
+:return: the value of actual frame</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.get_actors_at_location">
+<code class="descname">get_actors_at_location</code><span class="sig-paren">(</span><em>location: tuple</em>, <em>class_name: str = ''</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.get_actors_at_location"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.get_actors_at_location" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gebe alle Akteure an den angegebenen Zellenkoordinaten zurück</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>location</strong> – Die Zellenkordinaten als Tupel (x,y)</li>
+<li><strong>class_name</strong> – Den Klassennamen, nachdem gefiltert werden soll</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">Eine Liste aller Akteure (mit der angegebenen Klasse) an der Position.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.is_at_bottom_border">
+<code class="descname">is_at_bottom_border</code><span class="sig-paren">(</span><em>rect</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.is_at_bottom_border"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.is_at_bottom_border" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüfe, ob das Rechteck über den unteren Rand hinausragt</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>rect</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body">True, falls Ja, ansonsten False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.is_at_left_border">
+<code class="descname">is_at_left_border</code><span class="sig-paren">(</span><em>rect</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.is_at_left_border"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.is_at_left_border" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüfe, ob das Rechteck über den linken Rand hinausragt</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>rect</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body">True, falls Ja, ansonsten False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.is_at_right_border">
+<code class="descname">is_at_right_border</code><span class="sig-paren">(</span><em>rect</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.is_at_right_border"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.is_at_right_border" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüfe, ob das Rechteck über den rechten Rand hinausragt</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>rect</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body">True, falls Ja, ansonsten False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.is_at_top_border">
+<code class="descname">is_at_top_border</code><span class="sig-paren">(</span><em>rect</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.is_at_top_border"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.is_at_top_border" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüfe, ob das Rechteck über den oberen Rand hinausragt</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>rect</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body">True, falls Ja, ansonsten False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.is_empty_cell">
+<code class="descname">is_empty_cell</code><span class="sig-paren">(</span><em>cell: tuple</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.is_empty_cell"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.is_empty_cell" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüfe, ob eine Zelle leer ist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>cell</strong> – Die Zellenkoordinaten als Tupel (x,y)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body">True, falls Ja, ansonsten False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.is_location_in_grid">
+<code class="descname">is_location_in_grid</code><span class="sig-paren">(</span><em>location</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.is_location_in_grid"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.is_location_in_grid" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt an, ob eine Zellenkoordinate im Grid liegt</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>location</strong> – Die Zellenkoordinate als Tupel (x,y)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body">True falls Koordinate im Grid, ansonsten False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.is_rectangle_in_grid">
+<code class="descname">is_rectangle_in_grid</code><span class="sig-paren">(</span><em>rect</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.is_rectangle_in_grid"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.is_rectangle_in_grid" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüfe, ob das Rechteck komplett im Grid ist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>rect</strong> – Ein Rechteck</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body">True, falls Ja, ansonsten False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.listen">
+<code class="descname">listen</code><span class="sig-paren">(</span><em>event: str = None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.listen"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.listen" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überschreibe diese Methode in deiner Kind-Klasse</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>event</strong> – Das Event, welches getriggert wurde. Mögliche Events:
+* mousedown
+* key_pressed / key - Eine taste wird gedrückt (gehalten)
+* key_down - Eine Taste wird gerade heruntergedrückt
+* button_name Falls ein Button geklickt wurde.</li>
+<li><strong>data</strong> – Zusätzliche Infos, wie z.B. die gedrückten Tasten oder
+die Koordinaten der Maus.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.play_music">
+<code class="descname">play_music</code><span class="sig-paren">(</span><em>music_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.play_music"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.play_music" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Spielt eine Musik in Endlosschleife</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>music_path</strong> – Der Pfad zur Musikdatei relativ zum aktuellen Verzeichnis.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.play_sound">
+<code class="descname">play_sound</code><span class="sig-paren">(</span><em>sound_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.play_sound"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.play_sound" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Spielt einen Sound</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>sound_path</strong> – Der Pfad zum Sound relativ zum aktuellen Verzeichnis.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.remove_actor">
+<code class="descname">remove_actor</code><span class="sig-paren">(</span><em>actor=None</em>, <em>cell: tuple = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.remove_actor"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.remove_actor" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Entfernt einen Akteur aus dem Grid</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>actor</strong> – Der zu entfernende Akteur</li>
+<li><strong>cell</strong> – Entfernt alle Akteure an einer Zelle (actor wird dann ignoriert)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.remove_all_actors">
+<code class="descname">remove_all_actors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.remove_all_actors"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.remove_all_actors" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Entfernt alle Akteure aus dem Grid.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.reset"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.reset" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Entfernt alle Akteure aus dem Grid und setzt sie an ihre Ursprungspositionen.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.rows">
+<code class="descname">rows</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.rows" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>returns the margin between cells</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.run"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.run" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Startet die Ausführung (equivalent zum Drücken des Run-Buttons).
+Wenn das Spiel läuft handeln die Akteure mit jedem Durchlauf der mainloop genau einmal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.set_image">
+<code class="descname">set_image</code><span class="sig-paren">(</span><em>img_path: str</em>, <em>img_action: str = 'upscale'</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.set_image"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.set_image" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Setzt das Hintergrundbild des Grids</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>img_path</strong> – Der Pfad zum Bild als relativer Dateipfad</li>
+<li><strong>img_action</strong> – Die Aktion, die mit dem Bild durchgeführt werden soll (scale, upscale, fill, crop</li>
+<li><strong>size</strong> – Die Größe auf die das Bild skaliert / zugeschnitten etc. werden soll</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.setup">
+<code class="descname">setup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.setup"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.setup" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Sollte in deiner Kind-Klasse überschrieben werden.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.show">
+<code class="descname">show</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.show"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.show" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Startet das Programm.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.stop"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.stop" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Stoppt die Ausführung (siehe auch run)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="grid/CellGrid.html" class="btn btn-neutral float-right" title="CellGrid" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Actor.html" class="btn btn-neutral" title="Actor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Andreas Siebel.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2018',
+            LANGUAGE:'de',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

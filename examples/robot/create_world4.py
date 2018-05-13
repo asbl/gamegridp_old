@@ -9,7 +9,7 @@ class MyGrid(gamegridp.GameGrid):
 
     def setup(self):
         self.load(2)
-        self.toolbar.add_button("images/rock.png", "Speichern")
+        self.toolbar.add_button("Speichern", "images/rock.png")
 
     def listen(self, event=None, data=None):
         self._logging.info(event)
@@ -62,7 +62,7 @@ class MyGrid(gamegridp.GameGrid):
 class Robot(gamegridp.Actor):
     def setup(self):
         self.title="Robot"
-        self.set_rotatable()
+        self.is_rotatable = True
         self.add_image("images/robo_green.png", "scale", (40, 40))
 
 
@@ -73,7 +73,7 @@ class Robot(gamegridp.Actor):
 class Wall(gamegridp.Actor):
     def setup(self):
         self.title="Wall"
-        self.set_blocked()
+        self.is_blocking = True
         self.add_image("images/rock.png", img_action="scale")
 
 

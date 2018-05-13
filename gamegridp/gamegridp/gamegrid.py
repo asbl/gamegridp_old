@@ -7,6 +7,7 @@ Created on Mon Apr 16 21:49:29 2018
 import logging
 import os
 
+import easygui
 import pygame
 from gamegridp import gamegrid_actionbar
 from gamegridp import gamegrid_console
@@ -15,14 +16,101 @@ from gamegridp import keys
 
 
 class GameGrid(object):
-    """The Main GameGrid."""
+    """
+    Das GameGrid
+        Das **GameGrid** ist ein **Spielfeld**, welches in einzelne Zellen unterteilt ist.
+        Es kann unterschieden werden zwischen zwei Arten von GameGrids:
 
-    grid = None
+          * Die Zellengröße ist 1: Es handelt sich um ein pixelgenaues Spiel
+            bei dem die exakte Position der Akteure von Bedeutung ist.
+          * Die Zellengröße ist größer als 1: Es handelt sich um ein Spiel, das auf einzelnen
+            Feldern basiert.
+
+        Für beide Arten von Spielen gibt es einige Subklassen, die Spezialfunktionen zur Verfügung stellen.
+
+        **Attribute:**
+
+        Attribute
+        ---------
+        cell_size: int
+            Die Größe einer einzelnen Zelle in Pixeln.
+        toolbar : gamegridp.Toolbar
+            Die Toolbar auf der rechten Seite
+        actionbar : gamegridp.Actionbar
+            Die Actionbar unterhalb des Spielfeldes.
+        console : gamegridp.Console
+            Die Konsole unterhalb des Spielfeldes.
+        is_running : bool
+            Bestimmt, ob Act() in jedem Durchlauf der Mainloop ausgeführt wird.
+        speed: int
+            Die Geschwindigkeit mit der das Spiel läuft (bisher nur als Max. Geschwindigkeit definiert)
+        rows: int
+            Die Anzahl der Zeilen.
+        columns: int
+            Die Anzahl der Spalten.
+
+        **Methoden:**
+
+        """
+
+    # Properties
+
+    @property
+    def is_running(self):
+        return self._running
+
+    @is_running.setter
+    def is_running(self, value):
+        self._running = value
+
+
+    @property
+    def cell_size(self):
+        """"""
+        return self._cell_size
+
+    @property
+    def cell_margin(self):
+        """
+        returns the margin between cells
+        """
+        return self._cell_margin
+
+    @cell_size.setter
+    def cell_size(self, value: int):
+        """ Sets the cell-size"""
+        self._cell_size = value
+
+    @property
+    def speed(self):
+        return self._speed
+
+    @speed.setter
+    def speed(self, value):
+        self._speed = value
+
+    @property
+    def rows(self):
+        """
+        returns the margin between cells
+        """
+        return self._grid_rows
+
+    @property
+    def columns(self):
+        """
+        returns the margin between cells
+        """
+        return self._grid_columns
+
+
+    # Methoden
 
     def __init__(self, title, cell_size=32,
                  columns=8, rows=8, margin=0,
                  background_color=(255, 255, 255), cell_color=(0, 0, 0),
                  img_path=None, img_action="upscale", speed=60, toolbar=False, console=False, actionbar=True):
+
         self.grid = self
         self.__is_setting_up__ = False
         # Define instance variables
@@ -35,7 +123,6 @@ class GameGrid(object):
         self._actors = []
         self._frame = 0
         self.colliding_actors = []
-        self._key_holding_allowed = False
         self._resolution = ()
         self._running = False
         self.effects = set()
@@ -76,10 +163,8 @@ class GameGrid(object):
         self._grid_rows = rows
         self._cell_size = cell_size
         if self.cell_size == 1:
-            self._key_holding_allowed = True
             self._collision_type = "bounding_box"
         else:
-            self._key_holding_allowed = False
             self._collision_type = "bounding_box"
         self._background_color = background_color
         self._cell_color = cell_color
@@ -137,13 +222,14 @@ class GameGrid(object):
         pygame.screen.blit(self.grid_surface, (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
         self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
-    def add_cell_image(self, img_path: str, location: tuple):
-        top_left = self.cell_to_pixel(location)
-        cell_image = pygame.image.load(img_path).convert()
-        cell_image = pygame.transform.scale(cell_image, (self.cell_size, self.cell_size))
-        self._image.blit(cell_image, (top_left[0], top_left[1], self.cell_size, self.cell_size))
-
     def set_image(self, img_path: str, img_action: str = "upscale", size=None):
+        """
+        Setzt das Hintergrundbild des Grids
+
+        :param img_path: Der Pfad zum Bild als relativer Dateipfad
+        :param img_action: Die Aktion, die mit dem Bild durchgeführt werden soll (scale, upscale, fill, crop
+        :param size: Die Größe auf die das Bild skaliert / zugeschnitten etc. werden soll
+        """
         self._logging.info(
             "gamegrid.set_image : Set new image with action:" + str(img_action) + " and path:" + str(img_path))
         if img_path is not None:
@@ -191,9 +277,6 @@ class GameGrid(object):
         cropped_surface.blit(self._image, (0, 0),
                              (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
         self._image = cropped_surface
-
-
-
         # draw grid around the cells
         if self._cell_margin > 0:
             i = 0
@@ -210,48 +293,22 @@ class GameGrid(object):
 
     def act(self):
         """
-        Should be overwritten in sub-classes. Act is called in every cycle of the mainloop
+        Überschreibe diese Methode in deinen Kind-Klassen
         """
         pass
 
     def add_actor(self, actor, location=None):
-        """
-        Adds an actor to the grid.
-        The method is called when a new actor is created.
-        """
         self._actors.append(actor)
         self.repaint_area(actor.image_rect)
         if location is not None:
             actor.location = location
 
     def __act_all__(self):
-        """
-        act_all() is called in every cycle of the game loop.
-        It acts in the following order:
-          1. All actors act
-          2. The grid acts
-        :param grid_act: Does the grid act
-        """
         for actor in self._actors:
             actor.act()
         self.act()
 
-    @property
-    def cell_size(self):
-        """"""
-        return self._cell_size
 
-    @cell_size.setter
-    def cell_size(self, value: int):
-        """ Sets the cell-size"""
-        self._cell_size = value
-
-    @property
-    def cell_margin(self):
-        """
-        returns the margin between cells
-        """
-        return self._cell_margin
 
     def draw(self):
         """
@@ -271,7 +328,7 @@ class GameGrid(object):
         if self._image is not None:
             self.grid_surface.blit(self._image, (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
         for actor in self._actors:
-            actor.next_sprite()
+            actor._next_sprite()
             actor.draw()
         pygame.screen.blit(self.grid_surface, (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
 
@@ -292,7 +349,7 @@ class GameGrid(object):
 
 
     @property
-    def actors(self) -> set:
+    def actors(self) -> list:
         """
         returns all actors in grid
         :return: a list of all actors
@@ -379,7 +436,7 @@ class GameGrid(object):
                 return partner
         return None
 
-    def __collision__(self):
+    def _collision(self):
         self._logging.debug("gamegrid.__collision__() - Type:" + str(self._collision_type))
         pairs = []
         for actor in self.actors:
@@ -402,26 +459,18 @@ class GameGrid(object):
                 self.collision(partner1, partner2)
         self.colliding_actors = pairs
 
-    def bounce(self, partner1, partner2):
-        mirror_axis = (partner1.direction + partner2.direction) / 2
-        self._logging.info(
-            "Bouncing: actor1:" + str(partner1.direction) + ", actor2:" + str(partner2.direction) + "mirror:" + str(
-                mirror_axis))
-        self._logging.info(
-            "Bouncing: actor2:" + str(partner2.direction) + ", actor2:" + str(partner1.direction) + "mirror:" + str(
-                mirror_axis))
-        partner1.bounce_against_line(mirror_axis)
-        partner2.bounce_against_line(mirror_axis)
-
     def collision(self, partner1, partner2):
         """
-        overwritten by main_method
-        :return:
+        Überschreibe diese Methoden, wenn du Kollisionen handhaben möchtest.
         """
 
     def get_actors_at_location(self, location: tuple, class_name: str = "") -> list:
         """
-        Get all actors at a specific location
+        Gebe alle Akteure an den angegebenen Zellenkoordinaten zurück
+
+        :param location: Die Zellenkordinaten als Tupel (x,y)
+        :param class_name: Den Klassennamen, nachdem gefiltert werden soll
+        :return: Eine Liste aller Akteure (mit der angegebenen Klasse) an der Position.
         """
         actors_at_location = []
         for actor in self._actors:
@@ -431,6 +480,12 @@ class GameGrid(object):
         return actors_at_location
 
     def is_location_in_grid(self, location):
+        """
+        Gibt an, ob eine Zellenkoordinate im Grid liegt
+
+        :param location: Die Zellenkoordinate als Tupel (x,y)
+        :return: True falls Koordinate im Grid, ansonsten False
+        """
         if location[0] > self._grid_columns - 1:
             return False
         elif location[1] > self._grid_rows - 1:
@@ -440,31 +495,61 @@ class GameGrid(object):
         else:
             return True
 
-    def is_at_left_border(self, rect):
+    def is_at_left_border(self, rect) -> bool:
+        """
+        Überprüfe, ob das Rechteck über den linken Rand hinausragt
+
+        :param rect:
+        :return: True, falls Ja, ansonsten False
+        """
         if rect.topleft[0] <= 0:
             return True
         else:
             return False
 
     def is_at_bottom_border(self, rect):
+        """
+        Überprüfe, ob das Rechteck über den unteren Rand hinausragt
+
+        :param rect:
+        :return: True, falls Ja, ansonsten False
+        """
         if rect.topleft[1] + rect.height >= self.__grid_height_in_pixels__:
             return True
         else:
             return False
 
     def is_at_right_border(self, rect):
+        """
+        Überprüfe, ob das Rechteck über den rechten Rand hinausragt
+
+        :param rect:
+        :return: True, falls Ja, ansonsten False
+        """
         if rect.topleft[0] + rect.width >= self.__grid_width_in_pixels__:
             return True
         else:
             return False
 
     def is_at_top_border(self, rect):
+        """
+        Überprüfe, ob das Rechteck über den oberen Rand hinausragt
+
+        :param rect:
+        :return: True, falls Ja, ansonsten False
+        """
         if rect.topleft[1] <= 0:
             return True
         else:
             return False
 
-    def is_rectangle_in_grid(self, rect):
+    def is_rectangle_in_grid(self, rect) -> bool:
+        """
+        Überprüfe, ob das Rechteck komplett im Grid ist.
+
+        :param rect: Ein Rechteck
+        :return: True, falls Ja, ansonsten False
+        """
         if rect.topleft[0] < 0 \
                 or rect.topleft[1] < 0 \
                 or rect.topleft[0] + rect.width > self.__grid_width_in_pixels__ \
@@ -476,6 +561,12 @@ class GameGrid(object):
             return True  # rectangle is in grid
 
     def is_empty_cell(self, cell: tuple) -> bool:
+        """
+        Überprüfe, ob eine Zelle leer ist.
+
+        :param cell: Die Zellenkoordinaten als Tupel (x,y)
+        :return: True, falls Ja, ansonsten False
+        """
         if not self.get_actors_at_location(cell):
             return True
         else:
@@ -577,9 +668,15 @@ class GameGrid(object):
 
     def listen(self, event: str = None, data=None):
         """
-        should be overwritten in sub classes
-        :param event: The event which was triggered (e.g. mouse-left, key, mouse-right, button...
-        :param data: The data submitted by the event (e.g. cell-location
+        Überschreibe diese Methode in deiner Kind-Klasse
+
+        :param event: Das Event, welches getriggert wurde. Mögliche Events:
+            * mousedown
+            * key_pressed / key - Eine taste wird gedrückt (gehalten)
+            * key_down - Eine Taste wird gerade heruntergedrückt
+            * button_name Falls ein Button geklickt wurde.
+        :param data: Zusätzliche Infos, wie z.B. die gedrückten Tasten oder
+            die Koordinaten der Maus.
         """
         pass
 
@@ -607,7 +704,7 @@ class GameGrid(object):
             Draw actors in every frame, regardless of speed
         '''
         if not no_logic:
-            self.__collision__()
+            self._collision()
         if not no_drawing:
             self.draw()
             pygame.display.update(self._draw_queue)
@@ -622,17 +719,14 @@ class GameGrid(object):
             self._frame = self._frame + 1
 
     def repaint_area(self, rect: pygame.Rect):
-        """
-        Repaints area on next update
-        :param rect: The rectangle which should be redrawn
-        """
         self._draw_queue.append(pygame.Rect(rect))
 
     def remove_actor(self, actor=None, cell: tuple = None):
         """
-        Removes actor from grid
-        :param actor: Removes the actor from the grid
-        :param cell: Removes all actors in one cell from the grid
+        Entfernt einen Akteur aus dem Grid
+
+        :param actor: Der zu entfernende Akteur
+        :param cell: Entfernt alle Akteure an einer Zelle (actor wird dann ignoriert)
         :return:
         """
         if cell == None:
@@ -649,16 +743,16 @@ class GameGrid(object):
                     self._logging.warning("gamegrid.remove_actor() : Nicht in Liste vorhanden")
 
     def remove_all_actors(self):
-        """ remove all actors from the grid
+        """
+        Entfernt alle Akteure aus dem Grid.
         """
         for actor in self._actors:
             self.remove_actor(actor)
         self._actors = []
 
     def reset(self):
-        """ resets the grid:
-        Sets all actors to their starting positions.
-        May not work if custom variables where set
+        """
+        Entfernt alle Akteure aus dem Grid und setzt sie an ihre Ursprungspositionen.
         """
         self.remove_all_actors()
         self._setup()
@@ -666,24 +760,23 @@ class GameGrid(object):
         self.__update__(no_logic=True, no_drawing=True)
 
     def stop(self):
+        """
+        Stoppt die Ausführung (siehe auch run)
+        """
         self._running = False
 
     def run(self):
+        """
+        Startet die Ausführung (equivalent zum Drücken des Run-Buttons).
+        Wenn das Spiel läuft handeln die Akteure mit jedem Durchlauf der mainloop genau einmal.
+        """
         self._running = True
 
-    @property
-    def is_running(self):
-        return self._running
-
-    @is_running.setter
-    def is_running(self, value):
-        self._running = value
 
     def show(self):
         """
-        Starts the mainloop
+        Startet das Programm.
         """
-        # Start Mainloop
         self.__update__()
         while not self.__done__:
             self.__update__()
@@ -696,17 +789,9 @@ class GameGrid(object):
 
     def setup(self):
         """
-        should be overwritten in sub_classes
+        Sollte in deiner Kind-Klasse überschrieben werden.
         """
         pass
-
-    @property
-    def speed(self):
-        return self._speed
-
-    @speed.setter
-    def speed(self, value):
-        self._speed = value
 
     def __pixel_to_cell__(self, pos: tuple):
         """
@@ -721,7 +806,7 @@ class GameGrid(object):
 
     def cell_rect(self, cell: tuple):
         """
-        gets the rectangle which describes the given cell
+        Gibt das Rechteck zurück, dass eine Zelle umschließt.
         """
         x = cell[0] * self.cell_size + cell[0] * self._cell_margin + self._cell_margin
         y = cell[1] * self.cell_size + cell[1] * self._cell_margin + self._cell_margin
@@ -729,16 +814,98 @@ class GameGrid(object):
 
     def cell_to_pixel(self, cell: tuple):
         """
-        gets the top-left point of a cell
+        Gibt die obere-linke Koordinate einer Zelle zurück.
         """
         x = cell[0] * self.cell_size + cell[0] * self._cell_margin + self._cell_margin
         y = cell[1] * self.cell_size + cell[1] * self._cell_margin + self._cell_margin
         return pygame.Rect(x, y, self.cell_size, self.cell_size)
 
     def play_sound(self, sound_path):
+        """
+        Spielt einen Sound
+
+        :param sound_path: Der Pfad zum Sound relativ zum aktuellen Verzeichnis.
+        """
         effect = pygame.mixer.Sound(sound_path)
         effect.play()
 
     def play_music(self, music_path):
+        """
+        Spielt eine Musik in Endlosschleife
+
+        :param music_path: Der Pfad zur Musikdatei relativ zum aktuellen Verzeichnis.
+        """
         pygame.mixer.music.load(music_path)
         pygame.mixer.music.play(-1)
+
+    def msgbox(self, message :str, choices : list) -> str:
+        reply = easygui.buttonbox(message, choices=choices)
+        return reply
+
+
+
+class PixelGrid(GameGrid):
+    """
+    Das Pixel-Grid ist gedacht für Grids, deren Zellen genau 1 Pixel groß sind, d.h.
+    für Spiele in denen Pixelgenaue Informationen wichtig sind.
+    """
+    def bounce(self, partner1, partner2):
+        mirror_axis = (partner1.direction + partner2.direction) / 2
+        self._logging.info(
+            "Bouncing: actor1:" + str(partner1.direction) + ", actor2:" + str(partner2.direction) + "mirror:" + str(
+                mirror_axis))
+        self._logging.info(
+            "Bouncing: actor2:" + str(partner2.direction) + ", actor2:" + str(partner1.direction) + "mirror:" + str(
+                mirror_axis))
+        self.bounce_against_line(partner1, mirror_axis)
+        self.bounce_against_line(partner2, mirror_axis)
+
+    def bounce_against_line(self, actor, line_axis):
+        """
+        Pralle gegen eine (gedachte) Linie mit dem angegebenen
+        Winkel nach der Formel Enfallswinkel=Ausfallswinkel
+
+        :param actor: Der Actor, der abprallt.
+        :param line_axis: Der Winkel in dem die Linie steht.
+            0° bezeichnet eine horizontale Linie (von links nach rechts verlaufend,
+            der Winkel wird gegen den Uhrzeigersinn angegeben.
+
+        """
+        actor.direction = (line_axis * 2 - actor.direction) % 360
+
+    def bounce_from_border(self, actor, border: str):
+        """
+        Pralle gegen einen Rand und ändere dabei den Winkel nach der Formel
+        Einfallswinkel = Ausfallswinkel.
+
+        :param actor: Der Actor der abprallen soll.
+        :param border: Der Rand als String ("left", "right", "top", "border")
+
+        """
+        deg_mirror = 0
+        if border == "top":
+            deg_mirror = 0
+        elif border == "bottom":
+            deg_mirror = 180
+        elif border == "left":
+            deg_mirror = 90
+        elif border == "right":
+            deg_mirror = 270
+        actor.direction = deg_mirror * 2 - actor.direction
+
+
+class CellGrid(GameGrid):
+    """
+    Das Cell-Grid ist gedacht für Grids, deren Zellen größer als 1 Pixel sind.
+    """
+    def add_cell_image(self, img_path: str, location: tuple):
+        """
+        Fügt ein Bild zu einer einzelnen Zelle hinzu
+
+        :param img_path: Der Pfad zum Bild relativ zum aktuellen Verzeichnis
+        :param location: Die Zelle, die "angemalt" werden soll.
+        """
+        top_left = self.cell_to_pixel(location)
+        cell_image = pygame.image.load(img_path).convert()
+        cell_image = pygame.transform.scale(cell_image, (self.cell_size, self.cell_size))
+        self._image.blit(cell_image, (top_left[0], top_left[1], self.cell_size, self.cell_size))

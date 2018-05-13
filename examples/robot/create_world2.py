@@ -25,7 +25,7 @@ class MyGrid(gamegridp.GameGrid):
 
 class Robot(gamegridp.Actor):
     def setup(self):
-        self.set_rotatable()
+        self.is_rotatable = True
         self.add_image("images/robo_green.png", "scale", (40, 40))
 
     def act(self):
@@ -34,7 +34,7 @@ class Robot(gamegridp.Actor):
 
 class Wall(gamegridp.Actor):
     def setup(self):
-        self.set_blocked()
+        self.is_blocking = True
         self.add_image("images/rock.png", img_action="scale")
 
 

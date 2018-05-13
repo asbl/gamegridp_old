@@ -61,7 +61,7 @@ class Toolbar(object):
 
 class ToolbarElement():
     def __init__(self):
-        self.height = 20
+        self.height = 25
         self.surface = None
         self.title = ""
         self.event = "no event"
@@ -79,15 +79,15 @@ class ToolbarButton(ToolbarElement):
         super().__init__()
         package_directory = os.path.dirname(os.path.abspath(__file__))
         myfont = pygame.font.SysFont("monospace", 15)
-        button = pygame.Surface((width, 20))
+        button = pygame.Surface((width, 25))
         button.fill((255, 255, 255))
         label = myfont.render(text, 1, (0, 0, 0))
 
         if img_path != None:
             image = pygame.image.load(img_path)
-            image = pygame.transform.scale(image, (20, 20))
-            button.blit(image, (5, 5))
-            button.blit(label, (25, 0))
+            image = pygame.transform.scale(image, (25, 25))
+            button.blit(image, (2, 0))
+            button.blit(label, (25, 5))
         else:
             button.blit(label, (0, 0))
 

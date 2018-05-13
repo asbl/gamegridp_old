@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Toolbar &mdash; gamegridp 2018 Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Actionbar" href="actionbar.html" />
+    <link rel="prev" title="PixelGrid" href="grid/PixelGrid.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> gamegridp
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Inhalte</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../klassen.html">Klassen</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Actor.html">Actor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GameGrid.html">GameGrid</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actionbar.html">Actionbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console.html">Console</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../impressum.html">Impressum</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">gamegridp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../klassen.html">Klassen</a> &raquo;</li>
+        
+      <li>Toolbar</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/classes/Toolbar.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="toolbar">
+<h1>Toolbar<a class="headerlink" href="#toolbar" title="Link zu dieser Überschrift">¶</a></h1>
+<dl class="class">
+<dt id="gamegridp.gamegrid_toolbar.Toolbar">
+<em class="property">class </em><code class="descclassname">gamegridp.gamegrid_toolbar.</code><code class="descname">Toolbar</code><span class="sig-paren">(</span><em>grid</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid_toolbar.html#Toolbar"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid_toolbar.Toolbar" title="Link zu dieser Definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="gamegridp.gamegrid_toolbar.Toolbar.add_button">
+<code class="descname">add_button</code><span class="sig-paren">(</span><em>text</em>, <em>img_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid_toolbar.html#Toolbar.add_button"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid_toolbar.Toolbar.add_button" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>adds a button to toolbar
+:param img_path: image button
+:param text: button text. This is also the text for the data variable in listen(event,data)
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid_toolbar.Toolbar.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid_toolbar.html#Toolbar.draw"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid_toolbar.Toolbar.draw" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Creates a toolbar on the left side of the window</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="actionbar.html" class="btn btn-neutral float-right" title="Actionbar" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="grid/PixelGrid.html" class="btn btn-neutral" title="PixelGrid" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Andreas Siebel.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2018',
+            LANGUAGE:'de',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

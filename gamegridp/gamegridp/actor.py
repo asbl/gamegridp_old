@@ -12,8 +12,43 @@ import pygame
 
 
 class Actor(object):
+    """
+        Die Klasse Akteur
+        -----------------
+        Ein Actor ist eine Spielfigur oder ein Objekt in der Welt,
+        z.B. ein Auto, eine Wand, ein Untergrund.
 
-    def __init__(self, grid, location: list = (0, 0), color: tuple = (0, 0, 255), title: str = "Actor",
+        Attributes
+        ----------
+        grid: Grid
+            Das Spielfeld in dem der Actor sich befindet.
+        color: (r,g,b)
+            Die Farbe des Actors (falls dieser über k
+            ein Hintergrundbild verfügt.
+        title: str
+            Der Name des Actors
+        size: (x,y):
+            Die größe des Actors in Pixeln (x und y)
+        direction: int
+            Die Richtung als int-Wert zwischen 0° und 360°
+            0° bezeichnet dabei einen Blick nach rechts und der Winkel verläuft
+            gegen den Uhrzeigersinn.
+        is_blocking: bool
+            Legt fest, ob der Akteur das Feld für andere Akteure blockiert. Wenn die Variable wahr ist,
+            ist es nicht möglich sich über das Feld des Akteurs zu bewegen.
+        image_rect: Rect
+            Das Rechteck (Rectangle), welches das Objekt umschließt.
+        is_rotatable: bool
+            Wahr, wenn sich das Bild mit der Richtung mitdrehen soll.
+        grid
+            Das Grid in dem der Akteur sich befindet.
+
+        Methoden
+        --------
+        """
+
+    # Konstruktor
+    def __init__(self, grid, location: tuple = (0, 0), color: tuple = (0, 0, 255), title: str = "Actor",
                  img_path: str = None, size: tuple = (40, 40), img_action: str = None):
         # define instance variables
         self.title = title
@@ -33,7 +68,7 @@ class Actor(object):
         self._animated = False
         self._animations = []
         self._animation = ""
-        self._blocked = False
+        self._is_blocking = False
         self._collision_partners = []
         # Set Actor image
         self._logging.debug("actor.__init__() : Target-Location:" + str(self.location))
@@ -56,28 +91,147 @@ class Actor(object):
         self.setup()
         self._logging.debug("actor.__init__() : Actor " + str(title) + " wurde initialisiert")
 
+    # Properties
+    @property
+    def is_blocking(self):
+        return self._is_blocking
+
+    @is_blocking.setter
+    def is_blocking(self, value: bool):
+        self._is_blocking = value
+
+    @property
+    def direction(self) -> int:
+        return self._direction
+
+    @direction.setter
+    def direction(self, value: int):
+        if value == "right":
+            value = 0
+        if value == "left":
+            value = 180
+        if value == "up":
+            value = 90
+        if value == "down":
+            value = 270
+        self._logging.debug(
+            "actor.rotation() : rotated by " + str(value) + " degrees. Is rotatable?: " + str(self._is_rotatable))
+        self.__rotate__(value)
+        self._direction = value
+        # if value < 0:
+        #    self.direction = 360 + value
+        # if value > 360:
+        self._direction = value % 360
+
+    @property
+    def image_rect(self):
+        """
+            :return: The surrounding Rectangle used for redrawing and image manipulation
+        """
+        try:
+            left, top = self.__get_image_coordinates_in_pixels__()
+            width = self._image.get_width()
+            height = self._image.get_height()
+        except AttributeError:
+            left, top, width, height = 0, 0, 0, 0
+        return pygame.Rect(left, top, width, height)
+
+    @property
+    def image(self):
+        """
+        Gets the actual image of the actor.
+        """
+        return self._image
+
+    @image.setter
+    def image(self, value: str):
+        """
+        sets the actual image
+        :param value: the path to the image
+        """
+        self._image = value
+
+    @property
+    def is_rotatable(self):
+        """
+        : return true if actor-image is rotatable, else false
+         """
+        return self._is_rotatable
+
+    @is_rotatable.setter
+    def is_rotatable(self, value: bool):
+        """
+        sets the actual image
+        :param value: the path to the image
+        """
+        self.__rotatable = value
+
+    @property
+    def grid(self):
+        return self.__grid__
+
+    @property
+    def location(self) -> tuple:
+        """
+        returns the location of object
+        """
+        return self._location
+
+    @location.setter
+    def location(self, value: tuple):
+        """
+        Sets the location
+        :type value: tuple with x and y-coordinate
+        """
+        self._logging.debug("actor.location: Location set")
+        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
+        self._location = value
+        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
+        self.__grid__.__update__(no_logic=True)
+
+    @property
+    def has_image(self):
+        """
+        Checks if actor has an image
+        :return: true if actor has an image, else false
+        """
+        return self._has_image
+
+    @has_image.setter
+    def has_image(self, value):
+        self._has_image = value
+
+
+    # Methoden
+
     def act(self):
         """
-        The method should be overwritten in subclasses
+        Überschreibe diese Methode in deinen eigenen Actor-Klassen
         """
         pass
 
     def set_image(self, img_path: str, img_action: str = None, size=None):
         """
-        Adds an single image to an actor, deletes all other images
-        :param img_path: The path of the image relative to the actual path
-        :param img_action: The image action (scale, do_nothing, crop)
-        :param size: scale/crop : Size as 2-Tuple
+
+        Fügt ein einzelnes Bild zu einem Actor hinzu.
+
+        :param img_path: Der Pfad des Bildes relativ zum eigenen Dateipfad.
+        :param img_action: Die Aktion die durchgeführt werden soll: *scale*, *crop*, *do_nothing*
+        :param size: scale/crop : Die Größe des veränderten Bildes as 2-Tupel
         """
+
         if self.has_image:
             self.delete_images()
         self.add_image(img_path, img_action, size)
 
     def add_image(self, img_path: str, img_action: str = None, size=None):
-        """ adds an image to the actor
-        :param img_path: The path of the image relative to the actual path
-        :param img_action: The image action (scale, do_nothing, crop)
-        :param size: scale/crop : Size as 2-Tuple
+        """
+        Ergänzt ein einzelnes Bild zu einem Actor. Auf diese Weise können mehrere Bilder hinzugefügt werden.
+        Die Animation kann dann mit *animate()* gestartet werdeb
+
+        :param img_path: Der Pfad des Bildes relativ zum eigenen Dateipfad.
+        :param img_action: Die Aktion die durchgeführt werden soll: *scale*, *crop*, *do_nothing*
+        :param size: scale/crop : Die Größe des veränderten Bildes as 2-Tupel
         """
         self._logging.info("add_image(): Start add image")
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
@@ -99,57 +253,69 @@ class Actor(object):
         self.has_image = True
 
     def delete_images(self):
+        """
+        Löscht alle Bilder eines Akteurs. Dies kann z.B. sinnvoll sein,
+        wenn eine neue Animation festgelegt werden soll und dafür die alte
+        Animation zuvor gelöscht werden muss.
+        """
         self._original_images = []
         self._image = pygame.Surface(self.size)
         self._image.fill(self.color)
         self._original_images.append(self._image)
         self.has_image = False
 
-    def animate(self, animation: str = ""):
+    def animate(self):
         """
-        Starts an animation
+        Startet eine Animation.
         :param animation: Type of animation (not implemented)
         """
         if not self._animated:
-            self._animation = animation
             self._animated = True
 
     def add_collision_partner(self, partner):
+        """
+        Fügt einen Collision-Partner hinzu.
+        Aus Performance-Gründen werden nicht alle Akteure miteinander
+        auf Kollissionen überprüft, sondern nur solche, die als
+        Collision-Partners eingetragen sind.
+
+        :param partner: Ein zweiter Akteur.
+        """
         self._collision_partners.append(partner)
 
     def stop(self):
         """
-        Stops all animations
+        Stopt die Animation eines Akteurs.
         """
         self._animated = False
 
-    def next_sprite(self):
+    def _next_sprite(self):
         """
-        Loads the next sprite in the current animation
+        Läd das nächste Sprite in einer Animation.
         """
         if self._animated:
             if self.__grid__.frame % self._animation_speed == 0:
-                self.image_next()
+                self.__next_image_by_index__()
 
-    @property
-    def direction(self) -> int:
-        """ Gets the direction of actor """
-        return self._direction
 
-    @direction.setter
-    def direction(self, value: int):
-        self._logging.debug(
-            "actor.rotation() : rotated by " + str(value) + " degrees. Is rotatable?: " + str(self._is_rotatable))
-        self.__rotate__(value)
-        self._direction = value
-        # if value < 0:
-        #    self.direction = 360 + value
-        # if value > 360:
-        self._direction = value % 360
+
+    def __next_image_by_index__(self):
+        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
+        if self._image_index < self._original_images.__len__() - 1:
+            self._image_index = self._image_index + 1
+        else:
+            self._image_index = 0
+        self.image = self._original_images[self._image_index]
+        self.draw()
+        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
+        self._logging.debug("actor.image_next() : Image Index:" + str(self._image_index) + "/" + str(
+            self._original_images.__len__() - 1))
+
 
     def __rotate__(self, direction: int):
         """
         rotates the actor by _direction_ degrees
+
         :param direction:
         """
         if self.is_rotatable:
@@ -160,7 +326,25 @@ class Actor(object):
             self.image = pygame.transform.rotate(self._original_images[self._image_index], direction)
             self.__grid__.repaint_area(pygame.Rect(self.image_rect))
 
-    def is_at_border(self):
+    def is_in_grid(self, target: tuple = None) -> bool:
+        """
+        Überprüft ob ein Akteur (bzw. eine gegebene Zellen-Koordinate im Grid ist.
+
+        :param target Überprüft eine beliebige Zellen-Koordinate, ob diese in Grid liegt
+        (Falls kein Ziel angegeben ist, wird die Zellen-Koordinate des Akteurs selbst verwendet)
+        """
+        if target == None:
+            target = self.location
+        if self.grid.is_location_in_grid(target):
+            return True
+        return False
+
+    def is_at_border(self) -> str:
+        """
+        Überprüft, ob der Akteur an der Grenze zum Rand ist.
+
+        :return: Die zugehörige Grenze als String ("left", "right", "top" oder "bottom")
+        """
         if self.is_at_left_border():
             return "left"
         elif self.is_at_right_border():
@@ -172,31 +356,56 @@ class Actor(object):
         else:
             return False
 
-    def is_at_left_border(self):
+    def is_at_left_border(self) -> bool:
+        """
+        Überprüft, ob der Akteur an der Grenze zum linken Rand ist.
+
+        :return: True oder False
+        """
         if self.grid.is_at_left_border(self.bounding_box()):
             return True
         else:
             return False
 
-    def is_at_bottom_border(self):
+    def is_at_bottom_border(self) -> bool:
+        """
+        Überprüft, ob der Akteur an der Grenze zum unteren Rand ist.
+
+        :return: True oder False
+        """
         if self.grid.is_at_bottom_border(self.bounding_box()):
             return True
         else:
             return False
 
-    def is_at_right_border(self):
+    def is_at_right_border(self) -> bool:
+        """
+        Überprüft, ob der Akteur an der Grenze zum rechten Rand ist.
+
+        :return: True oder False
+        """
         if self.grid.is_at_right_border(self.bounding_box()):
             return True
         else:
             return False
 
-    def is_at_top_border(self):
+    def is_at_top_border(self) -> bool:
+        """
+        Überprüft, ob der Akteur an der Grenze zum oberen Rand ist.
+
+        :return: True oder False
+        """
         if self.grid.is_at_top_border(self.bounding_box()):
             return True
         else:
             return False
 
-    def is_near_edge(self, target: tuple = None) -> bool:
+    def bounding_box_is_in_grid(self, target: tuple = None) -> bool:
+        """
+        Überprüft, ob die Bounding-Box eines Akteurs (komplett) im Grid ist.
+
+        :return: True oder False
+        """
         if target == None:
             box = self.bounding_box
         else:
@@ -206,47 +415,22 @@ class Actor(object):
         else:
             return False
 
-    def bounce_against_line(self, line_axis):
-        self.direction = (line_axis * 2 - self.direction) % 360
 
-    def bounce_from_border(self, border: str):
-        if border == "top":
-            deg_mirror = 0
-        elif border == "bottom":
-            deg_mirror = 180
-        elif border == "left":
-            deg_mirror = 90
-        elif border == "right":
-            deg_mirror = 270
-        self.direction = deg_mirror * 2 - self.direction
-
-    def is_in_grid(self, target: tuple = None) -> bool:
-        if target == None:
-            target = self.location
-        if self.grid.is_location_in_grid(target):
-            return True
-        return False
-
-    def is_blocking(self, value: bool = None):
+    def flip_x(self):
         """
-        Checks if actor blocks a field for other actors
-        :type value: true: is blocked,  false: is not blocked
-        :return : true if actor blocks a field
+        Spiegelt das Bild des Akteurs über die y-Achse.
+        Der Akteur selbst wird dabei um 180° gedreht.
         """
-        if value is not None:
-            self._blocked = value
-        return self._blocked
-
-    def set_unblocked(self):
-        """
-        Unsets the blocked-status of actor. If blocked is true, the field can't be passed by another actor
-        """
-        self._blocked = False
+        if not self._is_flipped:
+            self._is_flipped = True
+        else:
+            self._is_flipped = False
+        self.__flip_x__()
+        self.turn_left(180)
 
     def __flip_x__(self):
         """
-        Doesn't change status.
-        Used for flipping all sprites according to flipped state
+        Flipped das Element in x-Richtung
         """
         try:
             if not self._is_flipped:
@@ -262,67 +446,10 @@ class Actor(object):
         except IndexError:
             self._logging.warning("actor.flip_x : Index Error in __flip_x__() in: Image Index is out of bounds")
 
-    def flip_x(self):
-        """
-        Mirrors image over y-axis. x-Coordinates are flipped.
-        Actor is turned by 180 degrees.
-        is_rotatable should be False.
-        """
-        if not self._is_flipped:
-            self._is_flipped = True
-        else:
-            self._is_flipped = False
-        self.__flip_x__()
-        self.turn_left(180)
-
-    @property
-    def image(self):
-        """
-        Gets the actual image of the actor.
-        """
-        return self._image
-
-    @image.setter
-    def image(self, value: str):
-        """
-        sets the actual image
-        :param value: the path to the image
-        """
-        self._image = value
-
-    def image_next(self):
-        """
-        switches to the next image by image_index
-        """
-        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
-        if self._image_index < self._original_images.__len__() - 1:
-            self._image_index = self._image_index + 1
-        else:
-            self._image_index = 0
-        self.image = self._original_images[self._image_index]
-        self.draw()
-        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
-        self._logging.debug("actor.image_next() : Image Index:" + str(self._image_index) + "/" + str(
-            self._original_images.__len__() - 1))
-
-    @property
-    def is_rotatable(self):
-        """
-        : return true if actor-image is rotatable, else false
-         """
-        return self._is_rotatable
-
-    @is_rotatable.setter
-    def is_rotatable(self, value: bool):
-        """
-        sets the actual image
-        :param value: the path to the image
-        """
-        self.__rotatable = value
 
     def set_rotatable(self):
         """
-        Sets the actor-image rotatable.
+        DEPRECATED / VERALTET Achtung: Verwende stattdessen das Attribut: is_rotatable
         """
         self._is_rotatable = True
 
@@ -333,7 +460,18 @@ class Actor(object):
         self._original_images[0] = self._image
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
 
-    def get_all_actors_at_location(self, class_name, location=None):
+    def get_all_actors_at_location(self, class_name, location=None) -> list:
+        """
+        Gibt *alle* Akteure einer bestimmten Klasse an der selben Position
+        wie der aktuelle Akteur zurück
+        (Alternativ kann auch eine beliebige Position abgefragt werden).
+
+        :param class_name: Der Klassenname nachdem gesucht werden soll als String
+            (z.B. alle Akteure vom Typ "Wall").
+        :param location: Optional kann eine andere Zellen-Koordinate als
+            Tupel (x,y) angegeben werden.
+        :return: Eine Liste aller Akteure vom angegebenen Typ
+        """
         if location == None:
             location = self.location
         actors = self.grid.get_actors_at_location(location, class_name)
@@ -343,19 +481,33 @@ class Actor(object):
 
     def get_actor_at_location(self, class_name, location=None) -> list:
         """
-        Get all actors at a specific location
+        Gibt *einen* Akteur  an der Position zurück.
+
+        :param class_name: Der Klassenname nachdem gesucht werden soll als String
+            (z.B. alle Akteure vom Typ "Wall").
+        :param location: Optional kann eine andere Zellen-Koordinate als
+            Tupel (x,y) angegeben werden.
+        :return: Der erste Akteur vom angegegebenen Typ.
         """
         if location == None:
             location = self.location
         actors_at_location = self.get_all_actors_at_location(class_name, location)
         if actors_at_location:
             return actors_at_location[0]
+        else:
+            return None
 
-    def get_actor_in_front(self, class_name, location=None) -> list:
+    def get_actor_in_front(self, class_name, distance=1) -> list:
         """
-        Get all actors at a specific location
+        Gibt einen Akteur in x-Feldern Entfernung vor dem aktuellen Akteur zurück.
+        (Alternativ kann auch eine beliebige Position abgefragt werden).
+
+        :param class_name: Der Klassenname nachdem gesucht werden soll als String
+            (z.B. alle Akteure vom Typ "Wall").
+        :param distance: Anzahl an Feldern, die nach vorne geschaut werden soll.
+        :return: Eine Liste aller Akteure vom angegebenen Typ
         """
-        location = self.look_forward()
+        location = self.look_forward(distance)
         actors_at_location = self.get_all_actors_at_location(class_name, location)
         if actors_at_location:
             return actors_at_location[0]
@@ -363,7 +515,7 @@ class Actor(object):
     def __image_transform__(self, index: int, img_action: str, size: str = None):
         """
         Should be called before main-loop
-        :type size: img_acton : "scale" -> data : location
+        :param size: img_acton : "scale" -> data : location
         """
         img_action = str.lower(img_action)
         cell_size = self.grid.cell_size
@@ -384,22 +536,11 @@ class Actor(object):
         elif img_action == "do_nothing":
             self._original_images[self._image_index] = self._original_images[self._image_index]
 
-    @property
-    def image_rect(self):
-        """
-            :return: The surrounding Rectangle used for redrawing and image manipulation
-        """
-        try:
-            left, top = self.__get_image_coordinates_in_pixels__()
-            width = self._image.get_width()
-            height = self._image.get_height()
-        except AttributeError:
-            left, top, width, height = 0, 0, 0, 0
-        return pygame.Rect(left, top, width, height)
+
 
     def __image_rect__(self, location=None):
         """
-            the image rect when drawn to another location
+        the image rect when drawn to another location
         """
         if location == None:
             location = self.location
@@ -426,7 +567,9 @@ class Actor(object):
 
     def bounding_box(self, location: tuple = None):
         """
-        :return: The surrounding Rectangle if actor is placed at location
+        Gibt die umgebene Bounding-Box um den Akteur zurück.
+
+        :return: Die umgebende Bounding-Box.
         """
         if location == None:
             location = self.location
@@ -440,13 +583,19 @@ class Actor(object):
             return self.__cell_rect__(location)
 
     def set_bounding_box_size(self, value):
+        """
+        Legt die Größ0e der umgebenen Bounding-Box fest.
+
+        :param value: Eine Größe (width, height) als Tupel.
+        """
         self.__bounding_box_type__ = "custom"
         self.__bounding_box_size__ = value
 
     def __get_image_coordinates_in_pixels__(self, location: tuple = None):
         """
-        Gets coordinates of top-left image position
-        :return: (x-coordinate, y-coordinate)
+        Gibt die Bildkoordinaten der oberen linken Recke des Akteur-Bildes zurück.
+
+        :return: Tupel (x,y) mit Pixelkoordinaten der linken oberen Ecke
         """
         if location == None:
             column = self.location[0]
@@ -472,7 +621,9 @@ class Actor(object):
 
     def get_neighbour_cells(self) -> list:
         """
-        :rtype: all neighbour cells in a list.
+        Gibt alle 8 umgebenen Zellen zurück.
+
+        :return: Alle Nachbarzellen als Liste.
         """
         locations = []
         y_pos = self.location[0]
@@ -488,110 +639,92 @@ class Actor(object):
         return locations
 
     def listen(self, key, data):
-        """ Should be overwritten in child-classes
+        """
+        Diese Methode sollte in deiner Kind-Klasse überschrieben werden.
         """
         pass
 
-    def get_location(self) -> list:
+    def get_location(self) -> tuple:
         """
-        Returns the location of actor
+        Gibt die aktuelle Position des Akteurs zurück
+
         :return: the location as tuple
         """
         return self.location
 
-    @property
-    def location(self) -> list:
-        """
-        returns the location of object
-        """
-        return self._location
 
-    @location.setter
-    def location(self, value: list):
-        """
-        Sets the location
-        :type value: tuple with x and y-coordinate
-        """
-        self._logging.debug("actor.location: Location set")
-        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
-        self._location = value
-        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
-        self.__grid__.__update__(no_logic=True)
 
     def set_x(self, x):
         """
-        :param x: the x-coordinate
+        Setzt die x-Koordinate der Akteurs.
+        :param x: Die x-Koordinate die gesetzt werden soll.
         """
-        self.location[0] = x
+        self.location = (x, self.location[1])
 
     def set_y(self, y):
         """
-        :param y: the y-coordinate
+        Setzt die y-Koordinate der Akteurs.
+        :param y: Die y-Koordinate die gesetzt werden soll.
         """
-        self.location[1] = y
+
+        self.location = (self.location[0], y)
 
     def get_x(self):
         """
-        :param x: the x-coordinate
+        Gibt die x-Koordinate des Akteuers zurück.
+
+        :param x: Gibt die x-Koordinate des Akteurs zurück.
         """
         return self.location[0]
 
     def get_y(self):
         """
-        :param y: the y-coordinate
+        Gibt die y-Koordinate des Akteuers zurück.
+
+        :param y: Gibt die y-Koordinate des Akteurs zurück
         """
         return self.location[1]
 
     def setup(self):
         """
-        Should be overwritten by child-classes
+        Sollte in deiner Kind-Klasse überschrieben werden.
         """
         pass
 
-    def __deprecated_set_location__(self, location):
-        """
-        sets the location
-        deprecated: use location-proberty instead
-        :param location:
-        :return:
-        """
-        self.location = location
-
-    def set_direction(self, degrees: int):
-        """
-        Sets the direction of actor
-        """
-        if degrees == "right":
-            degrees = 0
-        if degrees == "left":
-            degrees = 180
-        if degrees == "up":
-            degrees = 90
-        if degrees == "down":
-            degrees = 270
-        self.direction = degrees
-        self._logging.debug("Richtung:" + str(self.direction))
-
     def turn_left(self, degrees: int = 90):
         """
-        Turns the actor left by x degress
+        Dreht den Akteur um degrees Grad nach links.
+
+        :param degrees: Die Gradzahl um die der Akteur gedreht wird.
+
+        :return: Die neue Richtung in Grad.
         """
         direction = self.direction + degrees
         self.direction = direction
         self._logging.debug("Richtung:" + str(self.direction))
+        return self.direction
 
     def turn_right(self, degrees: int = 90):
         """
-        Turns the actor right by x degress
+        Dreht den Akteur um degrees Grad nach links.
+
+        :param degrees: Die Gradzahl um die der Akteur gedreht wird.
+
+        :return: Die neue Richtung in Grad.
         """
         direction = self.direction - degrees
         self.direction = direction
         self._logging.debug("Richtung:" + str(self.direction))
+        return self.direction
 
     def move(self, distance: int = 1, move: bool = True):
         """
-        Moves actor by x steps
-        :param distance : number of steps the actor should step forward.
+        Bewegt den Akteur **distance** Schritte vorwärts. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.
+
+        :param distance: Die Anzahl an Schritten die der Akteur vorgehen soll
+        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.
+
+        :return: Ist der Zug ein valider Zug? True/False
         """
         target = self.look_forward(distance)
         self._logging.info(
@@ -600,6 +733,14 @@ class Actor(object):
         return self.move_to(target, move)
 
     def move_to(self, target: tuple, move: bool = True):
+        """
+        Bewegt den Akteur an die angegebene Position. Wenn der Zug nicht valide ist wird er nicht durchgeführt.
+
+        :param target: Die Ziel Zellenkoordinaten
+        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.
+
+        :return: Ist der Zug ein valider Zug? True/False
+        """
         if self.is_valid_target(target):
             if move is True:
                 self.location = target
@@ -609,50 +750,71 @@ class Actor(object):
 
     def move_back(self, distance: int = 1, move: bool = True):
         """
-        Moves actor by x steps
-        :param distance : number of steps the actor should step forward.
+        Bewegt den Akteur **distance** Schritte rückwärts. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.
+
+        :param distance: Die Anzahl an Schritten die der Akteur vorgehen soll
+        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.
+
+        :return: Ist der Zug ein valider Zug? True/False
         """
         target = self.look_back(distance)
         return self.move_to(target, move)
 
     def move_right(self, distance=1, move: bool = True):
         """
-        Moves the actor one step right
-        Sets the direction to 0° (East)
+        Bewegt den Akteur **distance** Schritte nach rechts. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.
+
+        :param distance: Die Anzahl an Schritten die der Akteur vorgehen soll
+        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.
+
+        :return: Ist der Zug ein valider Zug? True/False
         """
         self.direction = 0
         return self.move(distance, move)
 
     def move_left(self, distance=1, move: bool = True):
         """
-        Moves the actor one step left
-        Sets the direction to 180° (West)
+        Bewegt den Akteur **distance** Schritte nach links. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.
+
+        :param distance: Die Anzahl an Schritten die der Akteur vorgehen soll
+        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.
+
+        :return: Ist der Zug ein valider Zug? True/False
         """
         self.direction = 180
         self.move(distance, move)
 
     def move_down(self, distance=1, move: bool = True):
         """
-        Moves the actor one step down
-        Sets the direction to 170° (South)
-        :type move: object
+        Bewegt den Akteur **distance** Schritte nach unten. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.
+
+        :param distance: Die Anzahl an Schritten die der Akteur vorgehen soll
+        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.
+
+        :return: Ist der Zug ein valider Zug? True/False
         """
         self.direction = 270
         return self.move(distance, move)
 
     def move_up(self, distance=1, move: bool = True):
         """
-        Moves the actor one step down
-        Sets the direction to 170° (South)
+        Bewegt den Akteur **distance** Schritte nach oben. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.
+
+        :param distance: Die Anzahl an Schritten die der Akteur vorgehen soll
+        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.
+
+        :return: Ist der Zug ein valider Zug? True/False
         """
         self.direction = 90
         return self.move(distance, move)
 
     def look_forward(self, distance: int = 1) -> tuple:
         """
-        looks x steps forward
-        :param distance : Number of steps to look forward
-        :return location : Location as tuple (x_cell, y_cell)
+        Schaut *distance* Felder nach vorne und gibt die zugehörige Koordinate zurück.
+
+        :param distance : Anzahl an Felder die voraus geschaut wird.
+
+        :return location : Zellenkoordinate als Tuple (x,y)
         """
         self._logging.debug("actor.look_forward() : Location:" + str(self.location) + "Direction" + str(self.direction))
         loc_x = round(self.location[0] + math.cos(math.radians(self.direction)) * distance)
@@ -661,9 +823,11 @@ class Actor(object):
 
     def look_back(self, distance: int = 1) -> tuple:
         """
-        looks x steps back
-        :param distance : Number of steps to look forward
-        :return location : Location as tuple (x_cell, y_cell)
+        Schaut *distance* Felder nach hinten und gibt die zugehörige Koordinate zurück.
+
+        :param distance : Anzahl an Felder die voraus geschaut wird.
+
+        :return location : Zellenkoordinate als Tuple (x,y)
         """
         self._logging.debug("actor.look_forward() : Location:" + str(self.location) + "Direction" + str(self.direction))
         loc_x = round(self.location[0] - math.cos(math.radians(self.direction)) * distance)
@@ -672,9 +836,11 @@ class Actor(object):
 
     def look_up(self, distance: int = 1) -> tuple:
         """
-        looks x steps up
-        :param distance : Number of steps to look forward
-        :return location : Location as tuple (x_cell, y_cell)
+        Schaut *distance* Felder nach oben und gibt die zugehörige Koordinate zurück.
+
+        :param distance : Anzahl an Felder die voraus geschaut wird.
+
+        :return location : Zellenkoordinate als Tuple (x,y)
         """
         self._logging.debug("actor.look_forward() : Location:" + str(self.location) + "Direction" + str(self.direction))
         loc_x = self.location[0]
@@ -683,9 +849,11 @@ class Actor(object):
 
     def look_down(self, distance: int = 1) -> tuple:
         """
-        looks x steps down
-        :param distance : Number of steps to look forward
-        :return location : Location as tuple (x_cell, y_cell)
+        Schaut *distance* Felder nach unten und gibt die zugehörige Koordinate zurück.
+
+        :param distance : Anzahl an Felder die voraus geschaut wird.
+
+        :return location : Zellenkoordinate als Tuple (x,y)
         """
         self._logging.debug("actor.look_forward() : Location:" + str(self.location) + "Direction" + str(self.direction))
         loc_x = self.location[0]
@@ -694,9 +862,11 @@ class Actor(object):
 
     def look_left(self, distance: int = 1) -> tuple:
         """
-        looks x steps left
-        :param distance : Number of steps to look forward
-        :return location : Location as tuple (x_cell, y_cell)
+        Schaut *distance* Felder nach links und gibt die zugehörige Koordinate zurück.
+
+        :param distance : Anzahl an Felder die voraus geschaut wird.
+
+        :return location : Zellenkoordinate als Tuple (x,y)
         """
         self._logging.debug("actor.look_forward() : Location:" + str(self.location) + "Direction" + str(self.direction))
         loc_x = self.location[0] - distance
@@ -705,9 +875,11 @@ class Actor(object):
 
     def look_right(self, distance: int = 1) -> tuple:
         """
-        looks x steps right
-        :param distance : Number of steps to look forward
-        :return location : Location as tuple (x_cell, y_cell)
+        Schaut *distance* Felder nach rechts und gibt die zugehörige Koordinate zurück.
+
+        :param distance : Anzahl an Felder die voraus geschaut wird.
+
+        :return location : Zellenkoordinate als Tuple (x,y)
         """
         self._logging.debug("actor.look_forward() : Location:" + str(self.location) + "Direction" + str(self.direction))
         loc_x = self.location[0] + distance
@@ -715,14 +887,26 @@ class Actor(object):
         return loc_x, loc_y
 
     def is_valid_move(self, move_func=None, distance=1):
+        """
+        Überprüft, ob ein Zug legal ist.
+
+        :param move_func: Eine move-Funktion, z.B. move, move_back, move_left,...
+        :param distance: Die Anzahl an Schritten, die der move-Funktion als Parameter übergeben werden sollen.
+
+        :return: True falls Zug legal ist, ansonsten False.
+        """
         if move_func == None:
             move_func = self.move
         return move_func(distance, False)
 
     def is_valid_target(self, target: tuple = None):
         """
-        Checks is a move to a specific target is valid
-        :return true if move is legal, else false
+        Gibt zurück, ob die angegebene Position einen legalen Zug erlaubt.
+
+        :param target: Das zu überprüfende Ziel als (x,y)-Tupel
+            Wenn kein Ziel angegeben wird, schaut der Akteur ein Feld nach vorne.
+
+        :return True, falls Zug legal ist, ansonsten False
         """
         valid = False
         if target is None:
@@ -736,25 +920,15 @@ class Actor(object):
         # check if target is not blocked
         actors_at_position = self.__grid__.get_actors_at_location(target)
         for actor in actors_at_position:
-            if actor.is_blocking():
+            if actor.is_blocking:
                 valid = False
         return valid
 
-    @property
-    def has_image(self):
-        """
-        Checks if actor has an image
-        :return: true if actor has an image, else false
-        """
-        return self._has_image
 
-    @has_image.setter
-    def has_image(self, value):
-        self._has_image = value
 
     def draw(self):
         """
-        Draws the actor to the grid
+        Zeichnet den Akteur auf das Spielfeld.
         """
         if self.has_image:
             cell_left, cell_top = self.__get_image_coordinates_in_pixels__()
@@ -775,7 +949,7 @@ class Actor(object):
 
     def remove(self):
         """
-        removes the actor from grid
+        Entfernt den Akteur vom Grid.
         """
         self._remove_from_grid()
         del (self)
@@ -787,6 +961,4 @@ class Actor(object):
         self.grid._actors.remove(self)
         self.__grid__ = None
 
-    @property
-    def grid(self):
-        return self.__grid__
+

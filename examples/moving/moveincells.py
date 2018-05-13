@@ -24,16 +24,16 @@ class Player(gamegridp.Actor):
     def listen(self, event, data):
         if event == "key_down":
             if "W" in data:
-                self.set_direction("up")
+                self.direction = "up"
                 self.move()
             elif "S" in data:
-                self.set_direction("down")
+                self.direction = "down"
                 self.move()
             elif "A" in data:
-                self.set_direction("left")
+                self.direction = "left"
                 self.move()
             elif "D" in data:
-                self.set_direction("right")
+                self.direction = "right"
                 self.move()
 
 

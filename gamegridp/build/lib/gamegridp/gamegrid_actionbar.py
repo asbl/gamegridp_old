@@ -1,5 +1,7 @@
 import os
+
 import pygame
+
 
 class Actionbar(object):
     def __init__(self, grid):
@@ -8,7 +10,7 @@ class Actionbar(object):
         self.posy = 0
 
     def set_width(self, width):
-        self.width= width
+        self.width = width
 
     def set_posy(self, posy):
         self.posy = posy
@@ -68,5 +70,4 @@ class Actionbar(object):
         image = pygame.image.load(path)
         image = pygame.transform.scale(image, (20, 20))
         actionbar.blit(image, (380, 5))
-        pygame.screen.blit(actionbar,(0, self.posy, self.width, self.height))
-
+        pygame.screen.blit(actionbar, (0, self.posy, self.width, self.height))
