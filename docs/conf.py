@@ -16,8 +16,6 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-import sphinx_bootstrap_theme
-
 # -- Project information -----------------------------------------------------
 
 project = 'gamegridp'
