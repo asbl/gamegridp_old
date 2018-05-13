@@ -8,30 +8,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint">
+      <change afterPath="$PROJECT_DIR$/docs/examples.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/tutorial/03_animations.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/tutorial/04_tastatureingaben.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/tutorial/05_maus_eingaben.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/tutorial/07 Kollisionen" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_actionbar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/classes/Actor.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/classes/Actor.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/classes/GameGrid.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/classes/GameGrid.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/tutorial.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/tutorial.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/actor.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/actor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-sphinx.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-sphinx.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/classes/Actor.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/classes/Actor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/classes/GameGrid.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/classes/GameGrid.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/klassen.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/klassen.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/01_first_step.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/01_first_step.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/conf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/02_basic_framework.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/02_basic_framework.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/debug/debug_script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/debug/debug_script2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/background1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/backgrounds.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/basicframework.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/char_blue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/first_program.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/fish.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/movingactor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/python.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/roboracing.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/soccer_green.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/t7t5yD3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/water.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/images/water.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/moving/roboanimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/snippets/moving/roboanimation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/LICENSE.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/MANIFEST.in" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/MANIFEST.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.1.tar.gz" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.2.1.1.tar.gz" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.2.1.2.tar.gz" beforeDir="false" />
@@ -39,7 +42,6 @@
       <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.2.1.5.tar.gz" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.2.1.6.tar.gz" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.2.1.tar.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.4.0.4-py3.6.egg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.4.0.4-py3.6.egg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/PKG-INFO" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/SOURCES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/SOURCES.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/requires.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp.egg-info/requires.txt" afterDir="false" />
@@ -63,77 +65,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="actor.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/actor.py">
+      <file leaf-file-name="rpg.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/games/rpg/rpg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+            <state relative-caret-position="2205">
+              <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gamegridp/setup.py">
+      <file leaf-file-name="flipthefish.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+            <state relative-caret-position="252">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gamegrid.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="50" selection-start-line="50" selection-end-line="50" />
-              <folding>
-                <element signature="e#84#98#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="conf.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/conf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="91" selection-start-line="91" selection-end-line="91" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.rst" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/index.rst">
+      <file leaf-file-name="roboanimation.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/snippets/moving/roboanimation.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="378">
-              <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+              <caret line="18" column="18" selection-end-line="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="install.bat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/install.bat">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-            </state>
-          </provider>
+      <file leaf-file-name="03_animations.rst" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/tutorial/03_animations.rst">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="install.rst" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/install.rst">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="22" />
-            </state>
-          </provider>
+      <file leaf-file-name="04_tastatureingaben.rst" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/tutorial/04_tastatureingaben.rst">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="02_basic_framework.rst" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docs/tutorial/02_basic_framework.rst">
+      <file leaf-file-name="05_maus_eingaben.rst" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/tutorial/05_maus_eingaben.rst">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="07 Kollisionen" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/tutorial/07 Kollisionen">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="examples.rst" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/examples.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+            <state relative-caret-position="147">
+              <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -141,17 +124,17 @@
       <file leaf-file-name="tutorial.rst" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/tutorial.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+            <state relative-caret-position="63">
+              <caret line="3" selection-start-line="3" selection-end-line="7" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="01_first_step.rst" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/tutorial/01_first_step.rst">
+      <file leaf-file-name="index.rst" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/index.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" selection-start-line="11" selection-end-line="12" selection-end-column="12" />
+            <state relative-caret-position="420">
+              <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -210,8 +193,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/gamegridp/MANIFEST.in" />
-        <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_console.py" />
         <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_actionbar.py" />
         <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py" />
         <option value="$PROJECT_DIR$/tutorial.rst" />
@@ -252,7 +233,6 @@
         <option value="$PROJECT_DIR$/gamegridp/upload" />
         <option value="$PROJECT_DIR$/upload.bat" />
         <option value="$PROJECT_DIR$/gamegridp/setup.py" />
-        <option value="$PROJECT_DIR$/docs/index.rst" />
         <option value="$PROJECT_DIR$/install.bat" />
         <option value="$PROJECT_DIR$/docs/install.rst" />
         <option value="$PROJECT_DIR$/examples/basics/basicframework.py" />
@@ -261,6 +241,9 @@
         <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" />
         <option value="$PROJECT_DIR$/docs/conf.py" />
         <option value="$PROJECT_DIR$/docs/tutorial/02_basic_framework.rst" />
+        <option value="$PROJECT_DIR$/examples/snippets/moving/roboanimation.py" />
+        <option value="$PROJECT_DIR$/docs/index.rst" />
+        <option value="$PROJECT_DIR$/docs/examples.rst" />
       </list>
     </option>
   </component>
@@ -292,31 +275,7 @@
             <path>
               <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
               <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="tutorial" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
               <item name="examples" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
-              <item name="examples" type="462c0819:PsiDirectoryNode" />
-              <item name="basics" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
-              <item name="examples" type="462c0819:PsiDirectoryNode" />
-              <item name="moving" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
-              <item name="examples" type="462c0819:PsiDirectoryNode" />
-              <item name="pixelbased" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
@@ -354,11 +313,11 @@
       <recent name="D:\Code\gamegridp\examples\robot" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Code\gamegridp\examples\games\asteroids" />
+      <recent name="D:\Code\gamegridp\examples\games\rpg" />
+      <recent name="D:\Code\gamegridp\examples\snippets" />
       <recent name="D:\Code\gamegridp" />
       <recent name="D:\Code\gamegridp\doc\classes" />
-      <recent name="D:\Code\gamegridp\doc" />
-      <recent name="D:\Code\gamegridp\doc\classes\grid" />
-      <recent name="D:\Code\gamegridp\examples\games" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -373,7 +332,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.rpg">
+  <component name="RunManager" selected="Python.rpg (1)">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python">
       <module name="gamegridp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -698,6 +657,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="rpg (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="gamegridp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples/games/rpg" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/games/rpg/rpg.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="rpg" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="gamegridp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -755,9 +732,11 @@
       <item itemvalue="Python.bouncing" />
       <item itemvalue="Python.rpg" />
       <item itemvalue="Python.bouncing2" />
+      <item itemvalue="Python.rpg (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.rpg (1)" />
         <item itemvalue="Python.rpg" />
         <item itemvalue="Python.bouncing2" />
         <item itemvalue="Python.bouncing" />
@@ -905,55 +884,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/examples/moving/flipthefish.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/moving/bouncing2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="21" selection-start-line="21" selection-end-line="22" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/MANIFEST.in">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/keys.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="4" selection-start-line="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/gamegridp-0.4.0.0-py3.6.egg/gamegridp/gamegrid_toolbar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="75" selection-start-line="75" selection-end-line="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/gamegridp-0.4.0.0-py3.6.egg/gamegridp/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/gamegridp-0.4.0.0-py3.6.egg/gamegridp/actor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="340" selection-start-line="340" selection-end-line="340" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_console.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -1090,14 +1020,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/robot/create_world.py">
+    <entry file="file://$PROJECT_DIR$/examples/snippets/robot/create_world.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
           <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/robot/py_karol_the_robot.py">
+    <entry file="file://$PROJECT_DIR$/examples/snippets/robot/py_karol_the_robot.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
           <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
@@ -1107,7 +1037,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/robot/create_world2.py">
+    <entry file="file://$PROJECT_DIR$/examples/snippets/robot/create_world2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
           <caret line="36" column="24" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="24" />
@@ -1124,7 +1054,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/robot/create_world3.py">
+    <entry file="file://$PROJECT_DIR$/examples/snippets/robot/create_world3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="9" column="62" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
@@ -1138,14 +1068,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/robot/create_world4.py">
+    <entry file="file://$PROJECT_DIR$/examples/snippets/robot/create_world4.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-651">
           <caret line="11" column="62" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/moving/moveincells.py">
+    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/moveincells.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
           <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
@@ -1169,17 +1099,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/moving/bouncing.py">
+    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/bouncing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
           <caret line="34" column="47" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/games/rpg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="109" column="51" selection-start-line="109" selection-start-column="51" selection-end-line="109" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -1221,24 +1144,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/tutorial.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/install.rst">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/index.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -1270,6 +1179,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/games/rpg/rpg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2205">
+          <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/roboanimation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="18" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial/03_animations.rst">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial/04_tastatureingaben.rst">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial/05_maus_eingaben.rst">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial/07 Kollisionen">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/index.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" selection-start-line="3" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/examples.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
       </provider>
     </entry>
