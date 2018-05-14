@@ -24,6 +24,7 @@ Eigenschaften
    :caption: Inhalte
 
    install
+   examples
    tutorial
    klassen
    impressum

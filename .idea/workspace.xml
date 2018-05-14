@@ -8,30 +8,219 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint">
-      <change afterPath="$PROJECT_DIR$/docs/examples.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/03_animations.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/04_tastatureingaben.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/05_maus_eingaben.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/07 Kollisionen" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/examples/rpg.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/tutorial/10_pixel_games.rst" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_actionbar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/Actor.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/GameGrid.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/Toolbar.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/grid/CellGrid.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/grid/PixelGrid.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/tutorial.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/tutorial.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/tutorial/first_step.doctree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/Actor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/GameGrid.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/Toolbar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/actor.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/actor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid_toolbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid_toolbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/Actor.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/GameGrid.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/Toolbar.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/grid/CellGrid.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/grid/PixelGrid.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/first_step.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/alabaster.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-2.3.2/css/bootstrap-responsive.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-2.3.2/css/bootstrap-responsive.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-2.3.2/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-2.3.2/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-2.3.2/img/glyphicons-halflings-white.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-2.3.2/img/glyphicons-halflings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-2.3.2/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-2.3.2/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/css/bootstrap-theme.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/css/bootstrap-theme.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/css/bootstrap-theme.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/css/bootstrap-theme.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/css/bootstrap.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/css/bootstrap.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-3.3.7/js/npm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-sphinx.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootstrap-sphinx.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/amelia/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/cerulean/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/cosmo/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/cyborg/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/flatly/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/img/glyphicons-halflings-white.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/img/glyphicons-halflings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/journal/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/readable/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/simplex/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/slate/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/spacelab/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/spruce/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/superhero/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-2.3.2/united/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/cerulean/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/cosmo/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/cyborg/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/darkly/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/flatly/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/journal/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/lumen/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/paper/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/readable/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/sandstone/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/simplex/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/slate/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/solar/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/spacelab/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/superhero/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/united/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/bootswatch-3.3.7/yeti/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/bootstrap-theme.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/custom.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Bold-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Bold-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Bold-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Bold-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-BoldItalic-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-BoldItalic-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-BoldItalic-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-BoldItalic-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBold-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBold-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBold-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBold-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBoldItalic-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBoldItalic-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBoldItalic-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBoldItalic-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Italic-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Italic-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Italic-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Italic-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Light-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Light-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Light-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Light-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-LightItalic-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-LightItalic-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-LightItalic-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-LightItalic-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Regular-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Regular-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Regular-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Regular-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Semibold-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Semibold-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Semibold-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-Semibold-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-SemiboldItalic-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-SemiboldItalic-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-SemiboldItalic-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/fonts/OpenSans-SemiboldItalic-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/open-sans/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/EOT/SourceSerifPro-Black.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/EOT/SourceSerifPro-Bold.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/EOT/SourceSerifPro-ExtraLight.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/EOT/SourceSerifPro-Light.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/EOT/SourceSerifPro-Regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/EOT/SourceSerifPro-Semibold.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/OTF/SourceSerifPro-Black.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/OTF/SourceSerifPro-Bold.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/OTF/SourceSerifPro-ExtraLight.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/OTF/SourceSerifPro-Light.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/OTF/SourceSerifPro-Regular.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/OTF/SourceSerifPro-Semibold.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/ReadMe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/SourceSerifProReadMe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/TTF/SourceSerifPro-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/TTF/SourceSerifPro-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/TTF/SourceSerifPro-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/TTF/SourceSerifPro-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/TTF/SourceSerifPro-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/TTF/SourceSerifPro-Semibold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/WOFF/OTF/SourceSerifPro-Black.otf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/WOFF/OTF/SourceSerifPro-Bold.otf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/WOFF/OTF/SourceSerifPro-ExtraLight.otf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/WOFF/OTF/SourceSerifPro-Light.otf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/WOFF/OTF/SourceSerifPro-Regular.otf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/WOFF/OTF/SourceSerifPro-Semibold.otf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/WOFF/TTF/SourceSerifPro-Black.ttf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/WOFF/TTF/SourceSerifPro-Bold.ttf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/WOFF/TTF/SourceSerifPro-ExtraLight.ttf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/WOFF/TTF/SourceSerifPro-Light.ttf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/WOFF/TTF/SourceSerifPro-Regular.ttf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/WOFF/TTF/SourceSerifPro-Semibold.ttf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/bower.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/source-serif-pro/source-serif-pro.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/guzzle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/jquery.min.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/js/jquery-1.11.0.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/js/jquery-fix.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/class_actor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/class_gamegrid.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/class_toolbar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/classes/Actor.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/classes/Actor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/classes/GameGrid.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/classes/GameGrid.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/classes/Toolbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/classes/Toolbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/classes/actionbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/classes/actionbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/classes/console.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/classes/console.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/classes/grid/CellGrid.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/classes/grid/CellGrid.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/classes/grid/PixelGrid.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/classes/grid/PixelGrid.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/grid/CellGrid.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/grid/PixelGrid.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/impressum.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/impressum.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/install.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/install.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/klassen.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/klassen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/01_first_step.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/01_first_step.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/02_basic_framework.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/02_basic_framework.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/first_step.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/examples/rpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/debug/debug_script.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/debug/debug_script2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/background1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/backgrounds.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/basicframework.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/char_blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/first_program.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/fish.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/movingactor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/python.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/roboracing.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/soccer_green.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/t7t5yD3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/water.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/images/water.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/moving/roboanimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/snippets/moving/roboanimation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tutorial/03_animations.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/03_animations.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tutorial/04_tastatureingaben.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/04_tastatureingaben.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tutorial/05_maus_eingaben.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/05_maus_eingaben.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tutorial/06_pixel_games.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/06_Bewegungen im Grid.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tutorial/07 Kollisionen" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/07 Kollisionen" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/LICENSE.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/MANIFEST.in" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/MANIFEST.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/README.md" afterDir="false" />
@@ -65,67 +254,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="rpg.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/games/rpg/rpg.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2205">
-              <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="flipthefish.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="roboanimation.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/snippets/moving/roboanimation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="18" column="18" selection-end-line="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="03_animations.rst" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/tutorial/03_animations.rst">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file leaf-file-name="04_tastatureingaben.rst" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/tutorial/04_tastatureingaben.rst">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="239">
+              <caret line="26" selection-start-line="26" selection-end-line="42" selection-end-column="27" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="05_maus_eingaben.rst" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/tutorial/05_maus_eingaben.rst">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="07 Kollisionen" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/tutorial/07 Kollisionen">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="examples.rst" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docs/examples.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+            <state>
+              <caret selection-end-line="2" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tutorial.rst" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/tutorial.rst">
+      <file leaf-file-name="moveincells.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/snippets/moving/moveincells.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="3" selection-start-line="3" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="241">
+              <caret line="23" selection-start-line="23" selection-end-line="36" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="06_Bewegungen im Grid.rst" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/tutorial/06_Bewegungen im Grid.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="588">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gamegridp/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="336">
+                <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -133,8 +305,49 @@
       <file leaf-file-name="index.rst" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/index.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+            <state relative-caret-position="294">
+              <caret line="20" column="52" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="move_in_pixels.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/snippets/pixelbased/move_in_pixels.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="roboracing.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/snippets/pixelbased/roboracing.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="20" selection-start-line="20" selection-end-line="28" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="07 Kollisionen" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/tutorial/07 Kollisionen">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="11" selection-start-column="11" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="02_basic_framework.rst" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/tutorial/02_basic_framework.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="6" selection-start-line="6" selection-end-line="7" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -151,18 +364,18 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>collision</find>
-      <find />
+      <find>location, a</find>
       <find>update</find>
       <find>update(</find>
       <find>actors.i</find>
-      <find />
-      <find />
-      <find />
-      <find />
+      <find>location, acto</find>
+      <find>location, actor</find>
+      <find>actor, loc</find>
+      <find>actor in</find>
       <find>ac</find>
       <find>get_actors_at_position</find>
       <find>get_actors_at_location</find>
-      <find />
+      <find>actor, lo</find>
       <find>rows</find>
       <find>get_actor_</find>
       <find>bounding</find>
@@ -183,7 +396,7 @@
     </findStrings>
     <replaceStrings>
       <replace>screen</replace>
-      <replace />
+      <replace>actor, location</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -193,14 +406,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_actionbar.py" />
-        <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py" />
-        <option value="$PROJECT_DIR$/tutorial.rst" />
-        <option value="$PROJECT_DIR$/doc/GameGrid.rst" />
-        <option value="$PROJECT_DIR$/doc/Actor.rst" />
-        <option value="$PROJECT_DIR$/doc/Toolbar.rst" />
-        <option value="$PROJECT_DIR$/doc/install" />
-        <option value="$PROJECT_DIR$/doc/classes/console.rst" />
         <option value="$PROJECT_DIR$/doc/classes/Toolbar.rst" />
         <option value="$PROJECT_DIR$/doc/classes/actionbar.rst" />
         <option value="$PROJECT_DIR$/install.sh" />
@@ -242,16 +447,24 @@
         <option value="$PROJECT_DIR$/docs/conf.py" />
         <option value="$PROJECT_DIR$/docs/tutorial/02_basic_framework.rst" />
         <option value="$PROJECT_DIR$/examples/snippets/moving/roboanimation.py" />
-        <option value="$PROJECT_DIR$/docs/index.rst" />
         <option value="$PROJECT_DIR$/docs/examples.rst" />
+        <option value="$PROJECT_DIR$/docs/examples/rpg" />
+        <option value="$PROJECT_DIR$/docs/tutorial/06_pixel_games.rst" />
+        <option value="$PROJECT_DIR$/docs/tutorial/07 Kollisionen" />
+        <option value="$PROJECT_DIR$/docs/tutorial/03_animations.rst" />
+        <option value="$PROJECT_DIR$/docs/tutorial/04_tastatureingaben.rst" />
+        <option value="$PROJECT_DIR$/docs/tutorial/05_maus_eingaben.rst" />
+        <option value="$PROJECT_DIR$/docs/tutorial/06_Bewegungen im Grid.rst" />
+        <option value="$PROJECT_DIR$/gamegridp/README.md" />
+        <option value="$PROJECT_DIR$/docs/index.rst" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1687" />
-    <option name="y" value="-145" />
-    <option name="width" value="1694" />
-    <option name="height" value="1018" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-1835" />
+    <option name="y" value="-172" />
+    <option name="width" value="1932" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -275,16 +488,42 @@
             <path>
               <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
               <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name="examples" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
               <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
-              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="tutorial" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
               <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="snippets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="snippets" type="462c0819:PsiDirectoryNode" />
+              <item name="moving" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="snippets" type="462c0819:PsiDirectoryNode" />
+              <item name="pixelbased" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
               <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
               <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -803,17 +1042,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1687" y="-145" width="1694" height="1018" extended-state="0" />
+    <frame x="-1688" y="-153" width="1696" height="1026" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.88461536" visible="true" weight="0.22041063" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.88450706" visible="true" weight="0.22014475" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5048309" side_tool="true" visible="true" weight="0.18655851" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5048251" side_tool="true" visible="true" weight="0.184845" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49698433" weight="0.32032147" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.329927" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49516907" visible="true" weight="0.18655851" />
-      <window_info id="Structure" order="1" sideWeight="0.115384616" side_tool="true" visible="true" weight="0.22041063" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4951749" visible="true" weight="0.184845" />
+      <window_info id="Structure" order="1" sideWeight="0.115492955" side_tool="true" visible="true" weight="0.22014475" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49939686" weight="0.3295063" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49966952" weight="0.3970803" />
@@ -875,7 +1114,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://C:/Program Files/Python36/Lib/site-packages/gamegridp-0.3.1.5-py3.6.egg/gamegridp/gamegrid.py</url>
           <line>6</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
@@ -884,55 +1123,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_console.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="14" selection-end-line="37" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_actionbar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#316#376#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/gamegridp-0.4.0.0-py3.6.egg/gamegridp/gamegrid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1291">
-          <caret line="574" selection-start-line="574" selection-end-line="574" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" selection-start-line="5" selection-end-line="6" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tutorial.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/GameGrid.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="4" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/doc/Actor.rst">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -975,13 +1165,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
           <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/impressum.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
@@ -1075,13 +1258,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/moveincells.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -1144,13 +1320,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/install.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/actor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1175,20 +1344,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/tutorial/02_basic_framework.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/games/rpg/rpg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2205">
-          <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1196,36 +1351,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/roboanimation.py">
+    <entry file="file://$PROJECT_DIR$/docs/impressum.rst">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="18" selection-end-line="27" />
+        <state relative-caret-position="105">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/tutorial/03_animations.rst">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/tutorial/04_tastatureingaben.rst">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/tutorial/05_maus_eingaben.rst">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/tutorial/07 Kollisionen">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/index.rst">
+    <entry file="file://$PROJECT_DIR$/docs/install.rst">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+        <state relative-caret-position="105">
+          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/games/rpg/rpg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="68" column="77" selection-start-line="59" selection-start-column="1" selection-end-line="68" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/examples/rpg.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/tutorial.rst">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" selection-start-line="3" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="147">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial/10_pixel_games.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial/03_animations.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/roboanimation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" selection-start-line="11" selection-end-line="15" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1233,6 +1411,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial/02_basic_framework.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" selection-start-line="6" selection-end-line="7" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial/05_maus_eingaben.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/moveincells.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="23" selection-start-line="23" selection-end-line="36" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial/04_tastatureingaben.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="26" selection-start-line="26" selection-end-line="42" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/snippets/pixelbased/move_in_pixels.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/snippets/pixelbased/roboracing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="20" selection-start-line="20" selection-end-line="28" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/index.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="20" column="52" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="336">
+            <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial/06_Bewegungen im Grid.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial/07 Kollisionen">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
         </state>
       </provider>
     </entry>

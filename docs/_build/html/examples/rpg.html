@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ein Rollenspiel &mdash; gamegridp 2018 Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Tutorial" href="../tutorial.html" />
+    <link rel="prev" title="Beispiele" href="../examples.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> gamegridp
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Inhalte</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Beispiele</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ein Rollenspiel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../klassen.html">Klassen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../impressum.html">Impressum</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">gamegridp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../examples.html">Beispiele</a> &raquo;</li>
+        
+      <li>Ein Rollenspiel</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/rpg.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ein-rollenspiel">
+<h1>Ein Rollenspiel<a class="headerlink" href="#ein-rollenspiel" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Das Beispiel &lt;<a class="reference external" href="https://github.com/asbl/gamegridp/tree/0.4/examples/games/rpg">https://github.com/asbl/gamegridp/tree/0.4/examples/games/rpg</a>&gt;‘_ zeigt Grundbestandteile zum Erstellen
+eines Rollenspiels:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Wall</span><span class="p">(</span><span class="n">gamegridp</span><span class="o">.</span><span class="n">Actor</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_blocking</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_image</span><span class="p">(</span><span class="s2">&quot;rpgimages/wall.png&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Grass</span><span class="p">(</span><span class="n">gamegridp</span><span class="o">.</span><span class="n">Actor</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_image</span><span class="p">(</span><span class="s2">&quot;rpgimages/grass.png&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Torch</span><span class="p">(</span><span class="n">gamegridp</span><span class="o">.</span><span class="n">Actor</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_image</span><span class="p">(</span><span class="s2">&quot;rpgimages/torch.png&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Fireplace</span><span class="p">(</span><span class="n">gamegridp</span><span class="o">.</span><span class="n">Actor</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_image</span><span class="p">(</span><span class="s2">&quot;rpgimages/fireplace_0.png&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">burning</span> <span class="o">=</span> <span class="bp">False</span>
+</pre></div>
+</div>
+<p>Verschiedene Objekte können einfach als einzelne Akteure hinzugefügt werden. Über self.xyz werden Attribute wie z.B.
+burning hinzugefügt.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">listen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+     <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;key_down&quot;</span><span class="p">:</span>
+         <span class="k">if</span> <span class="s2">&quot;W&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_valid_move</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">move_up</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+                 <span class="bp">self</span><span class="o">.</span><span class="n">move_up</span><span class="p">()</span>
+         <span class="k">elif</span> <span class="s2">&quot;S&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">move_down</span><span class="p">()</span>
+         <span class="k">elif</span> <span class="s2">&quot;A&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">move_left</span><span class="p">()</span>
+         <span class="k">elif</span> <span class="s2">&quot;D&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">move_right</span><span class="p">()</span>
+     <span class="c1"># Wird auf den Button Torch gedrückt?</span>
+</pre></div>
+</div>
+<p>Über die Tasten kann die Figur gesteuert werden (Wichtig: Verwende das Event key_down, nicht key oder key_pressed).</p>
+<p>Die folgende Abfrage überpüft, ob auf dem aktuellen Feld eine Fackel liegt und öffnet ein Pop-Up Fenster um abzufragen, ob diese aufgehoben werden soll.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_actor_at_location</span><span class="p">(</span><span class="s2">&quot;Torch&quot;</span><span class="p">)</span>
+ <span class="k">if</span> <span class="n">torch</span><span class="p">:</span>
+     <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Du findest eine Fackel. Möchtest du sie aufheben?&quot;</span>
+     <span class="n">choices</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ja&quot;</span><span class="p">,</span> <span class="s2">&quot;Nein&quot;</span><span class="p">]</span>
+     <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">msgbox</span><span class="p">(</span><span class="n">message</span><span class="p">,</span><span class="n">choices</span><span class="p">)</span>
+     <span class="k">if</span> <span class="n">reply</span> <span class="o">==</span> <span class="s2">&quot;Ja&quot;</span><span class="p">:</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Torch&quot;</span><span class="p">)</span>
+         <span class="n">torch</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">console</span><span class="o">.</span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Du hebst die Fackel auf.&quot;</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">add_button</span><span class="p">(</span><span class="s2">&quot;Fackel&quot;</span><span class="p">,</span> <span class="s2">&quot;rpgimages/torch.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tutorial.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../examples.html" class="btn btn-neutral" title="Beispiele" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Andreas Siebel.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2018',
+            LANGUAGE:'de',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
