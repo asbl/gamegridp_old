@@ -1,6 +1,3 @@
-import logging
-import sys
-
 import gamegridp
 from gamegridp import keys
 
@@ -33,9 +30,6 @@ class Robot(gamegridp.Actor):
             if "W" in data:
                 self.move(3)
 
-
-logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-mygrid = MyGrid("My Grid", cell_size=1, columns=200, rows=400,
-                margin=2, speed=40,
-                background_color=(200, 0, 0),cell_color=(0, 0, 255))
+MyGrid.log()
+mygrid = MyGrid("My Grid", cell_size=1, columns=200, rows=200,margin=1)
 mygrid.show()

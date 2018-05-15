@@ -1,0 +1,22 @@
+Kollisionen
+------------------
+
+Bei Kollisionen muss man unterscheiden zwischen unterschiedlichen Arten von Kollisionen:
+
+  * **Zellen-Kollisionen**: Wenn dein Spiel Zellenbasiert ist, 
+  dann bedeutet eine  Zellen-Kollision, das zwei Akteure in der selben Zelle stehen.
+  
+  * **Bounding-Box-Kollisionen**: Wenn zwei Akteure auf einem Grid mit Zellgröße 1 kollidieren,
+  ist die erste Art der Abfrage natürlich ungeeignet. Hier müsste man theoretisch Pixel für Pixel 
+  auf eine Kollision miteinander vergleichen. 
+  Daher überorüft das Grid die umgebenden Bounding-Boxen, ob diese sich schneiden 
+  (In der ersten Version handelt es sich dabei immer um Rechtecke). Diese Variante ist zwar etwas ungenau,
+  ist aber effizent berechenbar.
+  
+### Zellen-Kollisionen
+
+Auch hier gibt es mehrere Varianten:
+
+#### Zellen-Kollisionen direkt abfragen:
+
+In der act oder listen()-Methode kann mit Hilfe der Funktion [get_actors_at_location](/classes/GameGrid.html#gamegridp.gamegrid.GameGrid.get_actors_at_location) überprüft werden..

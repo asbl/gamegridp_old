@@ -17,6 +17,6 @@ class Player(gamegridp.Actor):
         self.move()
         if not self.is_valid_move():
             self.turn_left()
-
-my_grid = MyGrid("My Grid", cell_size=12, columns=16, rows=16, margin=5, speed=60)
+MyGrid.log()
+my_grid = MyGrid("My Grid", cell_size=16, columns=80, rows=16, margin=1, speed=60)
 my_grid.show()

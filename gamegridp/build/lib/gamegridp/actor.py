@@ -7,15 +7,14 @@ Created on Mon Apr 16 21:50:48 2018
 
 import logging
 import math
-
+import cProfile
 import pygame
 
 
-class Actor(object):
-    """
-        Die Klasse Akteur
-            Ein Actor ist eine Spielfigur oder ein Objekt in der Welt,
+class Actor(pygame.sprite.Sprite):
+    """ Ein Actor ist eine Spielfigur oder ein Objekt in der Welt,
             z.B. ein Auto, eine Wand, ein Untergrund.
+
 
         Attributes
         ----------
@@ -39,8 +38,10 @@ class Actor(object):
             Das Rechteck (Rectangle), welches das Objekt umschließt.
         is_rotatable: bool
             Wahr, wenn sich das Bild mit der Richtung mitdrehen soll.
-        grid
-            Das Grid in dem der Akteur sich befindet.
+        class_name
+            Der Typ des Akteurs - entspricht dem Klassennamen.
+        actor_id
+            Jeder Akteur hat eine eindeutige ID.
 
         Methoden
         --------
@@ -49,8 +50,10 @@ class Actor(object):
     # Konstruktor
     def __init__(self, grid, location: tuple = (0, 0), color: tuple = (0, 0, 255), title: str = "Actor",
                  img_path: str = None, size: tuple = (40, 40), img_action: str = None):
+        pygame.sprite.Sprite.__init__(self)
         # define instance variables
         self.title = title
+        self._actor_id = 0
         self._logging = logging.getLogger('Actor:')
         # Define instance variables
         self._original_images = []  # All images stores for actor
@@ -68,7 +71,7 @@ class Actor(object):
         self._animations = []
         self._animation = ""
         self._is_blocking = False
-        self._collision_partners = []
+        self._collision_partners = pygame.sprite.Group()
         # Set Actor image
         self._logging.debug("actor.__init__() : Target-Location:" + str(self.location))
         self._has_image = False
@@ -83,9 +86,9 @@ class Actor(object):
         grid.add_actor(self, location)
         # set the bounding-box style (cell for cell-based games, image for pixel-based games
         if self.grid.cell_size == 1:
-            self.__bounding_box_type__ = "image"
+            self._bounding_box_type = "image"
         else:
-            self.__bounding_box_type__ = "cell"
+            self._bounding_box_type = "cell"
         self.__bounding_box_size__ = None
         self.setup()
         self._logging.debug("actor.__init__() : Actor " + str(title) + " wurde initialisiert")
@@ -93,6 +96,9 @@ class Actor(object):
     # Properties
     @property
     def is_blocking(self):
+        """bool: Legt fest, ob der Akteur das Feld "blockt", d.h. für
+        andere Akteure unpassierbar macht.
+        """
         return self._is_blocking
 
     @is_blocking.setter
@@ -101,6 +107,10 @@ class Actor(object):
 
     @property
     def direction(self) -> int:
+        """int: Legt die Richtung fest, in die der Akteur "schaut"
+            0° bezeichnet dabei nach Osten, andere Winkel werden gegen den Uhrzeigersinn angegeben.
+            Die Direction kann alternativ auch als String ("left", "right", "top", "bottom"  festgelegt werden.
+        """
         return self._direction
 
     @direction.setter
@@ -200,9 +210,32 @@ class Actor(object):
     def has_image(self, value):
         self._has_image = value
 
+    @property
+    def class_name(self) -> str:
+        return self.__class__.__name__
+
+    @property
+    def actor_id(self) -> int:
+        return self._actor_id
+
+    @actor_id.setter
+    def actor_id(self, value:int):
+        self._actor_id = value
+
+    @property
+    def rect(self,):
+        """
+        Gibt die umgebene Bounding-Box um den Akteur zurück.
+
+        :return: Die umgebende Bounding-Box.
+        """
+        if self._bounding_box_type == "image":
+            rect = self.__image_rect__()
+            return rect
+        else:
+            return self.__cell_rect__()
 
     # Methoden
-
     def act(self):
         """
         Überschreibe diese Methode in deinen eigenen Actor-Klassen
@@ -273,14 +306,10 @@ class Actor(object):
 
     def add_collision_partner(self, partner):
         """
-        Fügt einen Collision-Partner hinzu.
-        Aus Performance-Gründen werden nicht alle Akteure miteinander
-        auf Kollissionen überprüft, sondern nur solche, die als
-        Collision-Partners eingetragen sind.
-
-        :param partner: Ein zweiter Akteur.
+        .. deprecated:: 0.4.0
+          `add_collision_partner` wird in GameGrid 0.6 ersetzt werden.
         """
-        self._collision_partners.append(partner)
+        self._collision_partners.add(partner)
 
     def stop(self):
         """
@@ -361,7 +390,7 @@ class Actor(object):
 
         :return: True oder False
         """
-        if self.grid.is_at_left_border(self.bounding_box()):
+        if self.grid.is_at_left_border(self.rect):
             return True
         else:
             return False
@@ -372,7 +401,7 @@ class Actor(object):
 
         :return: True oder False
         """
-        if self.grid.is_at_bottom_border(self.bounding_box()):
+        if self.grid.is_at_bottom_border(self.rect):
             return True
         else:
             return False
@@ -383,7 +412,7 @@ class Actor(object):
 
         :return: True oder False
         """
-        if self.grid.is_at_right_border(self.bounding_box()):
+        if self.grid.is_at_right_border(self.rect):
             return True
         else:
             return False
@@ -394,7 +423,7 @@ class Actor(object):
 
         :return: True oder False
         """
-        if self.grid.is_at_top_border(self.bounding_box()):
+        if self.grid.is_at_top_border(self.rect):
             return True
         else:
             return False
@@ -406,9 +435,9 @@ class Actor(object):
         :return: True oder False
         """
         if target == None:
-            box = self.bounding_box
+            box = self.rect
         else:
-            box = self.bounding_box(target)
+            box = self.rect(target)
         if self.grid.is_rectangle_in_grid(box):
             return True
         else:
@@ -473,7 +502,7 @@ class Actor(object):
         """
         if location == None:
             location = self.location
-        actors = self.grid.get_actors_at_location(location, class_name)
+        actors = self.grid.get_all_actors_at_location(location, class_name)
         if self in actors:
             actors.remove(self)
         return actors
@@ -510,6 +539,9 @@ class Actor(object):
         actors_at_location = self.get_all_actors_at_location(class_name, location)
         if actors_at_location:
             return actors_at_location[0]
+
+
+
 
     def __image_transform__(self, index: int, img_action: str, size: str = None):
         """
@@ -556,38 +588,12 @@ class Actor(object):
             location = self.location
         return self.grid.cell_rect(location)
 
-    def __custom_rect__(self, location: tuple = None):
-        if location is None:
-            location = self.location
-        width = self.__bounding_box_size__[0]
-        height = self.__bounding_box_size__[1]
-        left, top = (location[0] - self.__bounding_box_size__[0] / 2, location[1] - self.__bounding_box_size__[1] / 2)
-        return pygame.Rect(left, top, width, height)
-
-    def bounding_box(self, location: tuple = None):
-        """
-        Gibt die umgebene Bounding-Box um den Akteur zurück.
-
-        :return: Die umgebende Bounding-Box.
-        """
-        if location == None:
-            location = self.location
-        if self.__bounding_box_type__ == "image":
-            rect = self.__image_rect__(location)
-            return rect
-        if self.__bounding_box_type__ == "custom":
-            rect = self.__custom_rect__(location)
-            return rect
-        else:
-            return self.__cell_rect__(location)
-
     def set_bounding_box_size(self, value):
         """
-        Legt die Größ0e der umgebenen Bounding-Box fest.
+        Legt die Größe der umgebenen Bounding-Box fest.
 
         :param value: Eine Größe (width, height) als Tupel.
         """
-        self.__bounding_box_type__ = "custom"
         self.__bounding_box_size__ = value
 
     def __get_image_coordinates_in_pixels__(self, location: tuple = None):
@@ -726,7 +732,7 @@ class Actor(object):
         :return: Ist der Zug ein valider Zug? True/False
         """
         target = self.look_forward(distance)
-        self._logging.info(
+        self._logging.debug(
             "actor" + str(self) + ".move(): ...try to move from" + str(self.location) + " to target" + str(
                 target) + " direction:" + str(self.direction))
         return self.move_to(target, move)
@@ -917,7 +923,7 @@ class Actor(object):
             self._logging.debug("actor.is_valid_target() : target:" + str(target) + ",false")
             valid = False
         # check if target is not blocked
-        actors_at_position = self.__grid__.get_actors_at_location(target)
+        actors_at_position = self.__grid__.get_all_actors_at_location(target)
         for actor in actors_at_position:
             if actor.is_blocking:
                 valid = False
@@ -935,15 +941,15 @@ class Actor(object):
             self.__rotate__(self.direction)
             if self.grid._show_bounding_boxes:
                 pygame.draw.rect(self._image, (255, 0, 0),
-                                 (0, 0, self.bounding_box().width, self.bounding_box().height), 2)
+                                 (0, 0, self.rect.width, self.rect.height), 2)
             if self.grid._show_direction_marker:
                 # self._logging.debug("actor.draw() - Draw line from"+str(self._image.get_rect().center)+" to "+str(self._image.get_rect().topleft))
                 x = round(
-                    self.bounding_box().width / 2 + math.cos(math.radians(self.direction)) * self.bounding_box().width)
-                y = round(self.bounding_box().height / 2 - math.sin(
-                    math.radians(self.direction)) * self.bounding_box().height)
-                pygame.draw.line(self.image, (255, 0, 0), (self.bounding_box().width / 2,
-                                                           self.bounding_box().height / 2), (x, y), 2)
+                    self.rect.width / 2 + math.cos(math.radians(self.direction)) * self.rect.width)
+                y = round(self.rect.height / 2 - math.sin(
+                    math.radians(self.direction)) * self.rect.height)
+                pygame.draw.line(self.image, (255, 0, 0), (self.rect.width / 2,
+                                                           self.rect.height / 2), (x, y), 2)
             self.grid.grid_surface.blit(self._image, (cell_left, cell_top))
 
     def remove(self):

@@ -22,6 +22,6 @@ class Robot(gamegridp.Actor):
             self.flip_x()
 
 mygrid = MyGrid("My Grid", cell_size=1, columns=200, rows=150,
-                margin=0, speed=40,
+                margin=0, speed=60,
                 background_color=(200, 0, 0), cell_color=(0, 0, 255), img_path="images/water.png")
 mygrid.show()

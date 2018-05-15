@@ -175,72 +175,69 @@
 </div>
 <dl class="class">
 <dt id="gamegridp.gamegrid.GameGrid">
-<em class="property">class </em><code class="descclassname">gamegridp.gamegrid.</code><code class="descname">GameGrid</code><span class="sig-paren">(</span><em>title</em>, <em>cell_size=32</em>, <em>columns=8</em>, <em>rows=8</em>, <em>margin=0</em>, <em>background_color=(255</em>, <em>255</em>, <em>255)</em>, <em>cell_color=(0</em>, <em>0</em>, <em>0)</em>, <em>img_path=None</em>, <em>img_action='upscale'</em>, <em>speed=60</em>, <em>toolbar=False</em>, <em>console=False</em>, <em>actionbar=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid" title="Link zu dieser Definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">gamegridp.gamegrid.</code><code class="descname">GameGrid</code><span class="sig-paren">(</span><em>title</em>, <em>cell_size=32</em>, <em>columns=8</em>, <em>rows=8</em>, <em>margin=0</em>, <em>background_color=(255</em>, <em>255</em>, <em>255)</em>, <em>cell_color=(0</em>, <em>0</em>, <em>0)</em>, <em>img_path=None</em>, <em>img_action='upscale'</em>, <em>speed=10</em>, <em>toolbar=False</em>, <em>console=False</em>, <em>actionbar=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid" title="Link zu dieser Definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>Das GameGrid</dt>
 <dd><p class="first">Das <strong>GameGrid</strong> ist ein <strong>Spielfeld</strong>, welches in einzelne Zellen unterteilt ist.
 Es kann unterschieden werden zwischen zwei Arten von GameGrids:</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>Die Zellengröße ist 1: Es handelt sich um ein pixelgenaues Spiel</dt>
-<dd>bei dem die exakte Position der Akteure von Bedeutung ist.</dd>
+<dl class="docutils">
+<dt>Die Zellengröße ist 1:</dt>
+<dd>Es handelt sich um ein pixelgenaues Spiel bei dem die exakte Position
+der Akteure von Bedeutung ist.</dd>
+<dt>Die Zellengröße ist größer als 1:</dt>
+<dd>Es handelt sich um ein Spiel, das auf einzelnen Feldern basiert.</dd>
 </dl>
-</li>
-<li><dl class="first docutils">
-<dt>Die Zellengröße ist größer als 1: Es handelt sich um ein Spiel, das auf einzelnen</dt>
-<dd>Feldern basiert.</dd>
-</dl>
-</li>
-</ul>
 <p class="last">Für beide Arten von Spielen gibt es einige Subklassen, die Spezialfunktionen zur Verfügung stellen.</p>
 </dd>
 </dl>
-<p><strong>Attribute:</strong></p>
-<blockquote>
-<div><ul class="simple">
-<li><dl class="first docutils">
-<dt>cell_size: int</dt>
-<dd>Die Größe einer einzelnen Zelle in Pixeln.</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>toolbar <span class="classifier-delimiter">:</span> <span class="classifier">gamegridp.Toolbar</span></dt>
-<dd>Die Toolbar auf der rechten Seite</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>actionbar <span class="classifier-delimiter">:</span> <span class="classifier">gamegridp.Actionbar</span></dt>
-<dd>Die Actionbar unterhalb des Spielfeldes.</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>console <span class="classifier-delimiter">:</span> <span class="classifier">gamegridp.Console</span></dt>
-<dd>Die Konsole unterhalb des Spielfeldes.</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>is_running <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd>Bestimmt, ob Act() in jedem Durchlauf der Mainloop ausgeführt wird.</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>speed: int</dt>
-<dd>Die Geschwindigkeit mit der das Spiel läuft (bisher nur als Max. Geschwindigkeit definiert)</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>rows: int</dt>
-<dd>Die Anzahl der Zeilen.</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>columns: int</dt>
-<dd>Die Anzahl der Spalten.</dd>
-</dl>
-</li>
-</ul>
-<p><strong>Methoden:</strong></p>
-</div></blockquote>
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.cell_size">
+<code class="descname">cell_size</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.cell_size" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>int</em> – Die Größe einer einzelnen Zelle in Pixeln.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.toolbar">
+<code class="descname">toolbar</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.toolbar" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>gamegridp.Toolbar</em> – Die Toolbar auf der rechten Seite</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.actionbar">
+<code class="descname">actionbar</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.actionbar" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>gamegridp.Actionbar</em> – Die Actionbar unterhalb des Spielfeldes.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.console">
+<code class="descname">console</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.console" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>gamegridp.Console</em> – Die Konsole unterhalb des Spielfeldes.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.is_running">
+<code class="descname">is_running</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.is_running" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>bool</em> – Bestimmt, ob Act() in jedem Durchlauf der Mainloop ausgeführt wird.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.speed">
+<code class="descname">speed</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.speed" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>int</em> – Die Geschwindigkeit mit der das Spiel läuft (bisher nur als Max. Geschwindigkeit definiert)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.rows">
+<code class="descname">rows</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.rows" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>int</em> – Die Anzahl der Zeilen.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.gamegrid.GameGrid.columns">
+<code class="descname">columns</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.columns" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>int</em> – Die Anzahl der Spalten.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="gamegridp.gamegrid.GameGrid.act">
 <code class="descname">act</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.act"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.act" title="Link zu dieser Definition">¶</a></dt>
@@ -254,6 +251,48 @@ Es kann unterschieden werden zwischen zwei Arten von GameGrids:</p>
 :return: a list of all actors</p>
 </dd></dl>
 
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.add_actor">
+<code class="descname">add_actor</code><span class="sig-paren">(</span><em>actor</em>, <em>location=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.add_actor"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.add_actor" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Fügt einen Actor zum Grid hinzu</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>actor</strong> (<em>gamegridp.Actor</em>) – Der Actor, der hinzugefügt werden soll</li>
+<li><strong>location</strong> – Der Ort, an dem der Actor hinzugefügt werden soll.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.button_box">
+<code class="descname">button_box</code><span class="sig-paren">(</span><em>message: str</em>, <em>choices: list</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.button_box"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.button_box" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zeigt eine Box mit selbst gewählten Buttons an.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – Die Nachricht, die angezeigt werden soll.</li>
+<li><strong>choices</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a>) – Texte, die in Auswahlmöglichkeiten übersetzt werden.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first">Die gewählte Antwortmöglichkeit als Text.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)">str</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="gamegridp.gamegrid.GameGrid.cell_margin">
 <code class="descname">cell_margin</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.cell_margin" title="Link zu dieser Definition">¶</a></dt>
@@ -264,6 +303,12 @@ Es kann unterschieden werden zwischen zwei Arten von GameGrids:</p>
 <dt id="gamegridp.gamegrid.GameGrid.cell_rect">
 <code class="descname">cell_rect</code><span class="sig-paren">(</span><em>cell: tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.cell_rect"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.cell_rect" title="Link zu dieser Definition">¶</a></dt>
 <dd><p>Gibt das Rechteck zurück, dass eine Zelle umschließt.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">cell_size</code></dt>
+<dd><p>die Größe der einzelne Zellen des Grids.</p>
 </dd></dl>
 
 <dl class="method">
@@ -279,8 +324,8 @@ Es kann unterschieden werden zwischen zwei Arten von GameGrids:</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="gamegridp.gamegrid.GameGrid.columns">
-<code class="descname">columns</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.columns" title="Link zu dieser Definition">¶</a></dt>
+<dt>
+<code class="descname">columns</code></dt>
 <dd><p>returns the margin between cells</p>
 </dd></dl>
 
@@ -299,8 +344,8 @@ Es kann unterschieden werden zwischen zwei Arten von GameGrids:</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="gamegridp.gamegrid.GameGrid.get_actors_at_location">
-<code class="descname">get_actors_at_location</code><span class="sig-paren">(</span><em>location: tuple</em>, <em>class_name: str = ''</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.get_actors_at_location"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.get_actors_at_location" title="Link zu dieser Definition">¶</a></dt>
+<dt id="gamegridp.gamegrid.GameGrid.get_all_actors_at_location">
+<code class="descname">get_all_actors_at_location</code><span class="sig-paren">(</span><em>location: tuple</em>, <em>class_name: str = ''</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.get_all_actors_at_location"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.get_all_actors_at_location" title="Link zu dieser Definition">¶</a></dt>
 <dd><p>Gebe alle Akteure an den angegebenen Zellenkoordinaten zurück</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -313,6 +358,32 @@ Es kann unterschieden werden zwischen zwei Arten von GameGrids:</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">Eine Liste aller Akteure (mit der angegebenen Klasse) an der Position.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.get_all_bounding_box_collisions">
+<code class="descname">get_all_bounding_box_collisions</code><span class="sig-paren">(</span><em>actor</em>, <em>class_name: str = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.get_all_bounding_box_collisions"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.get_all_bounding_box_collisions" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt alle mit dem Akteure zurück, deren Bounding-Boxes mit dem angegebenen Akteur
+kollidieren.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>actor</strong> – Der Actor für den Kollisionen überprüft werden sollen.</li>
+<li><strong>class_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – Die Klasse nach der gefiltert werden soll.
+(z.B. Gebe nur Kollisionen mit Akteuren der Klasse „Wall“ zurück.)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first">Alle Akeure, die mit dem aktuellen Akteur kollidieren</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)">list</a>(gamegrid.Actor)</p>
 </td>
 </tr>
 </tbody>
@@ -510,14 +581,28 @@ die Koordinaten der Maus.</li>
 </dd></dl>
 
 <dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.repaint_area">
+<code class="descname">repaint_area</code><span class="sig-paren">(</span><em>rect: pygame.Rect</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.repaint_area"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.repaint_area" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zeichnet den gewählten Bereich neu</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>rect</strong> – Ein Rechteck, welches neu gezeichnet werden soll.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="gamegridp.gamegrid.GameGrid.reset">
 <code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.reset"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.reset" title="Link zu dieser Definition">¶</a></dt>
 <dd><p>Entfernt alle Akteure aus dem Grid und setzt sie an ihre Ursprungspositionen.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="gamegridp.gamegrid.GameGrid.rows">
-<code class="descname">rows</code><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.rows" title="Link zu dieser Definition">¶</a></dt>
+<dt>
+<code class="descname">rows</code></dt>
 <dd><p>returns the margin between cells</p>
 </dd></dl>
 

@@ -57,6 +57,7 @@ class Explosion(gamegridp.Actor):
 random.seed()
 screen_x=400
 screen_y=300
+MyGrid.log()
 mygrid = MyGrid("My Grid", cell_size=1, columns=screen_x, rows=screen_y,
                 margin=0, speed=60)
 mygrid.show()

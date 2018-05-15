@@ -2,8 +2,6 @@ import gamegridp
 from gamegridp import keys
 import random
 import sys
-import logging
-import sys
 
 class MyGrid(gamegridp.PixelGrid):
     """My Grid with custom setup method."""
@@ -12,7 +10,7 @@ class MyGrid(gamegridp.PixelGrid):
         self.set_image("images/galaxy.jpg","scale")
         asteroids=[]
         for i in range(5):
-            new_asteroid = Asteroid(grid=self, location=(random.randint(35,screen_x-35),random.randint(35,screen_y-35)))
+            new_asteroid = Asteroid(grid=self, location=(random.randint(35,self.columns-35),random.randint(35,self.rows-35)))
             for asteroid in asteroids:
                 new_asteroid.add_collision_partner(asteroid)
             asteroids.append(new_asteroid)
@@ -35,11 +33,14 @@ class Asteroid(gamegridp.Actor):
             self.grid.bounce_from_border(self, border)
             self.move(2)
 
-
-logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-random.seed()
-screen_x=400
-screen_y=300
-mygrid = MyGrid("My Grid", cell_size=1, columns=screen_x, rows=screen_y,
+def main(argv):
+    random.seed()
+    MyGrid.log()
+    mygrid = MyGrid("My Grid", cell_size=1, columns=400, rows=300,
                 margin=0, speed=120)
-mygrid.show()
+    mygrid.log()
+    mygrid.show()
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

@@ -61,7 +61,7 @@ class Player(gamegridp.Actor):
         if torch:
             message = "Du findest eine Fackel. Möchtest du sie aufheben?"
             choices = ["Ja", "Nein"]
-            reply = self.grid.msgbox(message,choices)
+            reply = self.grid.button_box(message, choices)
             if reply == "Ja":
                 self.inventory.append("Torch")
                 torch.remove()
@@ -73,7 +73,7 @@ class Player(gamegridp.Actor):
             if door.closed:
                 message = "Die Tür ist geschlossen... möchtest du sie öffnen"
                 choices = ["Ja", "Nein"]
-                reply = self.grid.msgbox(message,choices)
+                reply = self.grid.button_box(message, choices)
                 if reply == "Ja":
                     door.open()
                     self.grid.console.print("Du hast das Tor geöffnet.")

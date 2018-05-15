@@ -13,11 +13,12 @@ bzw. 'Greenfoot <https://www.greenfoot.org/door>'_ übernommen. Im Gegensatz zu 
 gamegridp keine grafische Benutzeroberfläche.
 
 Eigenschaften
-  * gamegridp unterstützt sowohl Pixel-basierte Spiele als auch Spiele mit quadratischen Zellen (z.B. Rouge-Likes
-  * Einfache Animationen
+  * gamegridp unterstützt sowohl Pixel-basierte Spiele als auch Spiele mit
+  quadratischen Zellen (z.B. Rouge-Likes)
+  * Einfaches Erstellen von Animationen
   * Musik und Soundeffekte
   * Integrierte Konsole für Ausgaben
-  * Einfache GUI-Elemente und Popups
+  * Einfaches Erstellen von GUI-Elementen und Popups
 
 .. toctree::
    :maxdepth: 2

@@ -165,34 +165,83 @@
 <dt id="gamegridp.actor.Actor">
 <em class="property">class </em><code class="descclassname">gamegridp.actor.</code><code class="descname">Actor</code><span class="sig-paren">(</span><em>grid</em>, <em>location: tuple = (0</em>, <em>0)</em>, <em>color: tuple = (0</em>, <em>0</em>, <em>255)</em>, <em>title: str = 'Actor'</em>, <em>img_path: str = None</em>, <em>size: tuple = (40</em>, <em>40)</em>, <em>img_action: str = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor" title="Link zu dieser Definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Die Klasse Akteur</dt>
-<dd>Ein Actor ist eine Spielfigur oder ein Objekt in der Welt,
-z.B. ein Auto, eine Wand, ein Untergrund.</dd>
+<dt>Ein Actor ist eine Spielfigur oder ein Objekt in der Welt,</dt>
+<dd>z.B. ein Auto, eine Wand, ein Untergrund.</dd>
 </dl>
-<dl class="docutils">
-<dt>grid: Grid</dt>
-<dd>Das Spielfeld in dem der Actor sich befindet.</dd>
-<dt>color: (r,g,b)</dt>
-<dd>Die Farbe des Actors (falls dieser über k
-ein Hintergrundbild verfügt.</dd>
-<dt>title: str</dt>
-<dd>Der Name des Actors</dd>
-<dt>size: (x,y):</dt>
-<dd>Die größe des Actors in Pixeln (x und y)</dd>
-<dt>direction: int</dt>
-<dd>Die Richtung als int-Wert zwischen 0° und 360°
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.grid">
+<code class="descname">grid</code><a class="headerlink" href="#gamegridp.actor.Actor.grid" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>Grid</em> – Das Spielfeld in dem der Actor sich befindet.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.color">
+<code class="descname">color</code><a class="headerlink" href="#gamegridp.actor.Actor.color" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>(r,g,b)</em> – Die Farbe des Actors (falls dieser über k
+ein Hintergrundbild verfügt.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.title">
+<code class="descname">title</code><a class="headerlink" href="#gamegridp.actor.Actor.title" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>str</em> – Der Name des Actors</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.size">
+<code class="descname">size</code><a class="headerlink" href="#gamegridp.actor.Actor.size" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>(x,y):</em> – Die größe des Actors in Pixeln (x und y)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.direction">
+<code class="descname">direction</code><a class="headerlink" href="#gamegridp.actor.Actor.direction" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>int</em> – Die Richtung als int-Wert zwischen 0° und 360°
 0° bezeichnet dabei einen Blick nach rechts und der Winkel verläuft
-gegen den Uhrzeigersinn.</dd>
-<dt>is_blocking: bool</dt>
-<dd>Legt fest, ob der Akteur das Feld für andere Akteure blockiert. Wenn die Variable wahr ist,
-ist es nicht möglich sich über das Feld des Akteurs zu bewegen.</dd>
-<dt>image_rect: Rect</dt>
-<dd>Das Rechteck (Rectangle), welches das Objekt umschließt.</dd>
-<dt>is_rotatable: bool</dt>
-<dd>Wahr, wenn sich das Bild mit der Richtung mitdrehen soll.</dd>
-<dt>grid</dt>
-<dd>Das Grid in dem der Akteur sich befindet.</dd>
-</dl>
+gegen den Uhrzeigersinn.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.is_blocking">
+<code class="descname">is_blocking</code><a class="headerlink" href="#gamegridp.actor.Actor.is_blocking" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>bool</em> – Legt fest, ob der Akteur das Feld für andere Akteure blockiert. Wenn die Variable wahr ist,
+ist es nicht möglich sich über das Feld des Akteurs zu bewegen.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.image_rect">
+<code class="descname">image_rect</code><a class="headerlink" href="#gamegridp.actor.Actor.image_rect" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>Rect</em> – Das Rechteck (Rectangle), welches das Objekt umschließt.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.is_rotatable">
+<code class="descname">is_rotatable</code><a class="headerlink" href="#gamegridp.actor.Actor.is_rotatable" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>bool</em> – Wahr, wenn sich das Bild mit der Richtung mitdrehen soll.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.class_name">
+<code class="descname">class_name</code><a class="headerlink" href="#gamegridp.actor.Actor.class_name" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Typ des Akteurs - entspricht dem Klassennamen.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.actor_id">
+<code class="descname">actor_id</code><a class="headerlink" href="#gamegridp.actor.Actor.actor_id" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Jeder Akteur hat eine eindeutige ID.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.Methoden">
+<code class="descname">Methoden</code><a class="headerlink" href="#gamegridp.actor.Actor.Methoden" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">--------</code></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="gamegridp.actor.Actor.act">
 <code class="descname">act</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.act"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.act" title="Link zu dieser Definition">¶</a></dt>
@@ -202,18 +251,9 @@ ist es nicht möglich sich über das Feld des Akteurs zu bewegen.</dd>
 <dl class="method">
 <dt id="gamegridp.actor.Actor.add_collision_partner">
 <code class="descname">add_collision_partner</code><span class="sig-paren">(</span><em>partner</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.add_collision_partner"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.add_collision_partner" title="Link zu dieser Definition">¶</a></dt>
-<dd><p>Fügt einen Collision-Partner hinzu.
-Aus Performance-Gründen werden nicht alle Akteure miteinander
-auf Kollissionen überprüft, sondern nur solche, die als
-Collision-Partners eingetragen sind.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>partner</strong> – Ein zweiter Akteur.</td>
-</tr>
-</tbody>
-</table>
+<dd><div class="deprecated">
+<p><span class="versionmodified">Veraltet ab Version 0.4.0: </span><cite>add_collision_partner</cite> wird in GameGrid 0.6 ersetzt werden.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -244,20 +284,6 @@ Die Animation kann dann mit <em>animate()</em> gestartet werdeb</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="gamegridp.actor.Actor.bounding_box">
-<code class="descname">bounding_box</code><span class="sig-paren">(</span><em>location: tuple = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.bounding_box"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.bounding_box" title="Link zu dieser Definition">¶</a></dt>
-<dd><p>Gibt die umgebene Bounding-Box um den Akteur zurück.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">Die umgebende Bounding-Box.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
 <dt id="gamegridp.actor.Actor.bounding_box_is_in_grid">
 <code class="descname">bounding_box_is_in_grid</code><span class="sig-paren">(</span><em>target: tuple = None</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.bounding_box_is_in_grid"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.bounding_box_is_in_grid" title="Link zu dieser Definition">¶</a></dt>
 <dd><p>Überprüft, ob die Bounding-Box eines Akteurs (komplett) im Grid ist.</p>
@@ -277,6 +303,14 @@ Die Animation kann dann mit <em>animate()</em> gestartet werdeb</p>
 <dd><p>Löscht alle Bilder eines Akteurs. Dies kann z.B. sinnvoll sein,
 wenn eine neue Animation festgelegt werden soll und dafür die alte
 Animation zuvor gelöscht werden muss.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">direction</code></dt>
+<dd><p><em>int</em> – Legt die Richtung fest, in die der Akteur „schaut“
+0° bezeichnet dabei nach Osten, andere Winkel werden gegen den Uhrzeigersinn angegeben.
+Die Direction kann alternativ auch als String („left“, „right“, „top“, „bottom“  festgelegt werden.</p>
 </dd></dl>
 
 <dl class="method">
@@ -433,16 +467,9 @@ Tupel (x,y) angegeben werden.</li>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="gamegridp.actor.Actor.image_rect">
-<code class="descname">image_rect</code><a class="headerlink" href="#gamegridp.actor.Actor.image_rect" title="Link zu dieser Definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">The surrounding Rectangle used for redrawing and image manipulation</td>
-</tr>
-</tbody>
-</table>
+<dt>
+<code class="descname">image_rect</code></dt>
+<dd><p><em>return</em> – The surrounding Rectangle used for redrawing and image manipulation</p>
 </dd></dl>
 
 <dl class="method">
@@ -515,6 +542,13 @@ Tupel (x,y) angegeben werden.</li>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt>
+<code class="descname">is_blocking</code></dt>
+<dd><p><em>bool</em> – Legt fest, ob der Akteur das Feld „blockt“, d.h. für
+andere Akteure unpassierbar macht.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="gamegridp.actor.Actor.is_in_grid">
 <code class="descname">is_in_grid</code><span class="sig-paren">(</span><em>target: tuple = None</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.is_in_grid"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.is_in_grid" title="Link zu dieser Definition">¶</a></dt>
@@ -524,9 +558,9 @@ Tupel (x,y) angegeben werden.</li>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="gamegridp.actor.Actor.is_rotatable">
-<code class="descname">is_rotatable</code><a class="headerlink" href="#gamegridp.actor.Actor.is_rotatable" title="Link zu dieser Definition">¶</a></dt>
-<dd><p>: return true if actor-image is rotatable, else false</p>
+<dt>
+<code class="descname">is_rotatable</code></dt>
+<dd><p>return true if actor-image is rotatable, else false</p>
 </dd></dl>
 
 <dl class="method">
@@ -773,6 +807,20 @@ Wenn kein Ziel angegeben wird, schaut der Akteur ein Feld nach vorne.</td>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.rect">
+<code class="descname">rect</code><a class="headerlink" href="#gamegridp.actor.Actor.rect" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt die umgebene Bounding-Box um den Akteur zurück.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">Die umgebende Bounding-Box.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="gamegridp.actor.Actor.remove">
 <code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.remove"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.remove" title="Link zu dieser Definition">¶</a></dt>
@@ -782,7 +830,7 @@ Wenn kein Ziel angegeben wird, schaut der Akteur ein Feld nach vorne.</td>
 <dl class="method">
 <dt id="gamegridp.actor.Actor.set_bounding_box_size">
 <code class="descname">set_bounding_box_size</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.set_bounding_box_size"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.set_bounding_box_size" title="Link zu dieser Definition">¶</a></dt>
-<dd><p>Legt die Größ0e der umgebenen Bounding-Box fest.</p>
+<dd><p>Legt die Größe der umgebenen Bounding-Box fest.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
