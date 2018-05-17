@@ -11,5 +11,10 @@ schnell zwischen den einzelnen Bildern umgeschaltet.
     def setup(self):
         self.add_image("images/robot_blue1.png", "scale", size=(20,20))
         self.add_image("images/robot_blue2.png", "scale", size=(20,20))
-        self.animation_speed = 20
+        self._animation_speed = 2
         self.animate()
+
+Siehe Beispiel **Roboanimation** auf `Github <https://github.com/asbl/gamegridp/blob/latest/examples/snippets/moving/roboanimation.py>`_
+
+.. image:: /_images/roboanimation.gif
+

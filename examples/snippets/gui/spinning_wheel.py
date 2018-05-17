@@ -50,5 +50,5 @@ class Chip(gamegridp.Actor):
     def setup(self):
         self.set_image("images/chip.png")
 
-mygrid = MyGrid("My Grid",    cell_size=100, columns=3, rows=3, margin=1, speed=60, toolbar=True)
+mygrid = MyGrid("My Grid",    cell_size=100, columns=3, rows=3, margin=1,toolbar=True)
 mygrid.show()

@@ -93,7 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="07 Drehungen.html">Drehungen</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Kollisionen</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#zellen-kollisionen">Zellen-Kollisionen</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pixel-kollisionen">Pixel-Kollisionen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bounding-box-kollisionen">Bounding-Box-Kollisionen</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#alternative">Alternative</a></li>
 </ul>
 </li>
@@ -216,8 +216,8 @@ ist aber effizent berechenbar.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="section" id="pixel-kollisionen">
-<h2>Pixel-Kollisionen<a class="headerlink" href="#pixel-kollisionen" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="bounding-box-kollisionen">
+<h2>Bounding-Box-Kollisionen<a class="headerlink" href="#bounding-box-kollisionen" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Da es aufwendig ist, alle Kollisionen pixelgenau zu überprüfen, werden jeweils Rechtecke miteinander verglichen.
 Dazu sind zwei Schritte notwendig:</p>
 <ul class="simple">
@@ -251,6 +251,8 @@ aufrufen, um dein gewünschtes Verhalten zu programmieren.</p>
 </span>    <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
+<img alt="../_images/boxes.png" src="../_images/boxes.png" />
+<p>Siehe Beispiel <strong>Bouncing</strong> auf <a class="reference external" href="https://github.com/asbl/gamegridp/blob/latest/examples/snippets/moving/bouncing.py">Github</a></p>
 <div class="section" id="alternative">
 <h3>Alternative<a class="headerlink" href="#alternative" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Alternativ dazu ist es auch möglich Kollisionen manuell z.B. in der act() oder in der listen()-Methode abzufragen.

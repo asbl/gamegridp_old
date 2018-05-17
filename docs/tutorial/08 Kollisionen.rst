@@ -36,11 +36,13 @@ Beide Methoden geben jeweils eine Liste an Akteuren zurück. Man kann auch direk
         if gegenstand: # Abkürzung für if gegenstand is not None:
             #... tue etwas
 
-Pixel-Kollisionen
+Bounding-Box-Kollisionen
 ^^^^^^^^^^^^^^^^^^
 
 Da es aufwendig ist, alle Kollisionen pixelgenau zu überprüfen, werden jeweils Rechtecke miteinander verglichen.
 Dazu sind zwei Schritte notwendig:
+
+
 
 * In der setup()-Methode des jeweiligen Akteurs wird festgelegt, mit welchem Akteur der Akteur kollidieren kann.
 Dafür ist die Methode actor.add_collision_partner() von Bedeutung.
@@ -72,6 +74,10 @@ Beispiel: Das Schiff aus Beispiel 1 soll mit den Asteroiden kollidieren
         partner1.remove()
         partner2.remove()
         self.stop()
+
+.. image:: /_images/boxes.png
+
+Siehe Beispiel **Bouncing** auf `Github <https://github.com/asbl/gamegridp/blob/latest/examples/snippets/moving/bouncing.py>`_
 
 Alternative
 """""""""""

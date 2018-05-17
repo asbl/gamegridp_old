@@ -25,6 +25,16 @@ Eigenschaften
 
 * Einfaches Erstellen von GUI-Elementen und Popups
 
+* Datenbankanbindung
+
+Links
+"""""
+
+* `Dokumentation <https://gamegridp.it-teaching.de>`
+* `Github <https://github.com/asbl/gamegridp>`
+* `Pypi <https://pypi.python.org/pypi/gamegridp>`
+
+
 .. toctree::
    :maxdepth: 2
    :caption: Inhalte

@@ -66,10 +66,8 @@ class Actor(pygame.sprite.Sprite):
         self._direction = 0
         self.color = color
         self.size = size
-        self._animation_speed = 4
+        self.animation_speed = self.grid.speed/2
         self._animated = False
-        self._animations = []
-        self._animation = ""
         self._is_blocking = False
         self._collision_partners = pygame.sprite.Group()
         # Set Actor image
@@ -300,7 +298,6 @@ class Actor(pygame.sprite.Sprite):
     def animate(self):
         """
         Startet eine Animation.
-        :param animation: Type of animation (not implemented)
         """
         if not self._animated:
             self._animated = True
@@ -323,22 +320,18 @@ class Actor(pygame.sprite.Sprite):
         Läd das nächste Sprite in einer Animation.
         """
         if self._animated:
-            if self.__grid__.frame % self._animation_speed == 0:
-                self.__next_image_by_index__()
-
-
-
-    def __next_image_by_index__(self):
-        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
-        if self._image_index < self._original_images.__len__() - 1:
-            self._image_index = self._image_index + 1
-        else:
-            self._image_index = 0
-        self.image = self._original_images[self._image_index]
-        self.draw()
-        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
-        self._logging.debug("actor.image_next() : Image Index:" + str(self._image_index) + "/" + str(
-            self._original_images.__len__() - 1))
+            if self.grid.frame % self.animation_speed == 0:
+                # every n-th frame (n: animation speed) do:
+                self.grid.repaint_area(pygame.Rect(self.image_rect))
+                if self._image_index < self._original_images.__len__() - 1:
+                    self._image_index = self._image_index + 1
+                else:
+                    self._image_index = 0
+                self.image = self._original_images[self._image_index]
+                self.draw()
+                self.grid.repaint_area(pygame.Rect(self.image_rect))
+                self._logging.info("actor.image_next() : Image Index:" + str(self._image_index) + "/" + str(
+                self._original_images.__len__() - 1))
 
 
     def __rotate__(self, direction: int):
@@ -348,7 +341,7 @@ class Actor(pygame.sprite.Sprite):
         :param direction:
         """
         if self.is_rotatable:
-            self.__grid__.repaint_area(self.image_rect)
+            self.__grid__.repaint_area(pygame.Rect(self.image_rect))
             # rotate the original image to new direction
             self._logging.debug("actor.__rotate: rotate Image" + str(dir(self._original_images)) + ", Image: " + str(
                 self._image) + "Index:" + str(self._image_index))

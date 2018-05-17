@@ -34,3 +34,8 @@ Die Toolbar wirft auch selbst Events. Ein Button Event sendet zum Beispiel ein E
 * data: Der Name des Buttons als String
 
 Das Event kann in der listen()-Methode wie jedes andere Element abgefangen und interpretiert werden.
+
+
+.. image:: /_images/rocket.png
+
+Siehe Beispiel **Rocket** auf `Github <https://github.com/asbl/gamegridp/blob/latest/examples/snippets/gui/toolbar_rocket.py

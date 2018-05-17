@@ -29,14 +29,14 @@ class Toolbar(object):
             pygame.screen.blit(element.get_surface(), (self.posx, height))
             height = height + element.height
 
-    def add_button(self, text, img_path=None):
+    def add_button(self, text, img_path=None, color=(255,255,255), border=(255,255,255)):
         """
         adds a button to toolbar
         :param img_path: image button
         :param text: button text. This is also the text for the data variable in listen(event,data)
         :return:
         """
-        button = ToolbarButton(self.width, 20, img_path=img_path, text=text)
+        button = ToolbarButton(self.width, 25, img_path=img_path, text=text, color=color, border=border)
         self.elements.append(button)
         return button
 
@@ -75,19 +75,21 @@ class ToolbarElement():
 
 class ToolbarButton(ToolbarElement):
 
-    def __init__(self, width, height, text, img_path):
+    def __init__(self, width, height, text, img_path, color=(255,255,255), border=(255,255,255)):
         super().__init__()
         package_directory = os.path.dirname(os.path.abspath(__file__))
         myfont = pygame.font.SysFont("monospace", 15)
-        button = pygame.Surface((width, 25))
-        button.fill((255, 255, 255))
+        button = pygame.Surface((width, height))
+        button.fill(color)
         label = myfont.render(text, 1, (0, 0, 0))
+        border_rect = pygame.Rect(0,0,width, height-2)
 
         if img_path != None:
             image = pygame.image.load(img_path)
             image = pygame.transform.scale(image, (22, 22))
             button.blit(image, (2, 0))
             button.blit(label, (25, 5))
+            pygame.draw.rect(button,border, border_rect,2)
         else:
             button.blit(label, (0, 0))
 

@@ -55,7 +55,7 @@ class GameGrid(object):
     def __init__(self, title, cell_size=32,
                  columns=8, rows=8, margin=0,
                  background_color=(255, 255, 255), cell_color=(0, 0, 0),
-                 img_path=None, img_action="upscale", speed=10, toolbar=False, console=False, actionbar=True):
+                 img_path=None, img_action="upscale", speed=60, toolbar=False, console=False, actionbar=True):
 
         self.__is_setting_up__ = False
         # Define instance variables
@@ -69,6 +69,7 @@ class GameGrid(object):
         self._collision_partners = pygame.sprite.Group()
         self._current_colliding_actors_pairs = []
         self._frame = 0
+        self._tick = 0
         self._resolution = ()
         self._running = False
         self.effects = set()
@@ -164,9 +165,9 @@ class GameGrid(object):
         # image
         self.set_image(img_path, img_action)
         self._setup()
-        # Draw_Qeue
+        # Draw_Qset
         pygame.screen.blit(self.grid_surface, (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
-        self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+        self.schedule_repaint(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
     # Properties
     # -------------------------------------------------
@@ -220,6 +221,9 @@ class GameGrid(object):
         """
         return self._grid_columns
 
+    def schedule_repaint(self, rect):
+        if rect not in self._draw_queue:
+            self._draw_queue.append(rect)
 
     # Methoden
 
@@ -290,7 +294,7 @@ class GameGrid(object):
                 pygame.draw.rect(self._image, self._background_color,
                                  [0, i, self.__grid_width_in_pixels__, self._cell_margin])
                 i += self.cell_size + self._cell_margin
-        self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+        self.schedule_repaint(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
     def act(self):
         """
@@ -333,6 +337,8 @@ class GameGrid(object):
         self.__draw_actionbar__()
         self.__draw_toolbaar__()
         self.__draw_console__()
+        pygame.display.update(self._draw_queue)
+        self._draw_queue= []
 
     def __draw_grid__(self):
         """
@@ -349,21 +355,21 @@ class GameGrid(object):
     def __draw_toolbaar__(self):
         if self.toolbar is not None:
             self.toolbar.draw()
-            self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+            self.schedule_repaint(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
     def __draw_console__(self):
         if self.console is not None:
             self.console.draw()
-            self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+            self.schedule_repaint(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
     def __draw_actionbar__(self):
         if self.actionbar is not None:
             self.actionbar.draw()
-            self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+            self.schedule_repaint(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
 
     @property
-    def actors(self) -> list:
+    def actors(self):
         """
         returns all actors in grid
         :return: a list of all actors
@@ -764,13 +770,11 @@ class GameGrid(object):
             '''
         if not no_logic:
             if (self._running or do_act) and (not no_logic):
-                self._frame = self._frame + 1
-                if self.frame > 60-self.speed:
+                self._tick = self._tick + 1
+                if self._tick > 60-self.speed:
                     self.__act_all__()
-                    self._frame = 0
-
-
-
+                    self._tick = 0
+        self._logging.debug("gamegrid.update() - frame: "+str(self.frame))
 
         ''' Part 3: Draw actors
             Draw actors in every frame, regardless of speed
@@ -779,8 +783,9 @@ class GameGrid(object):
             self._collision()
         if not no_drawing:
             self.draw()
-            pygame.display.update(self._draw_queue)
-            self._draw_queue = []
+            self._frame = self._frame + 1
+            if self._frame == 60:
+                self._frame = 0
         if not no_logic:
             self.clock.tick(60)
 
@@ -798,7 +803,7 @@ class GameGrid(object):
         -------
 
         """
-        self._draw_queue.append(rect)
+        self.schedule_repaint(rect)
 
     def remove_actor(self, actor=None, cell: tuple = None):
         """
@@ -837,7 +842,7 @@ class GameGrid(object):
         """
         self.remove_all_actors()
         self._setup()
-        self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+        self.schedule_repaint(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
         self.__update__(no_logic=True, no_drawing=True)
 
     def stop(self):
@@ -920,11 +925,44 @@ class GameGrid(object):
         pygame.mixer.music.play(-1)
 
 class DatabaseGrid(GameGrid):
+    """
+    Ein Grid mit Datenbank-Anbindung.
+
+    Achtung: Die Funktionen müssen immer in folgender Reihenfolge ausgeführt werden:
+    connect
+    select/insert (beliebig viele)
+    commit
+    close
+    """
     def connect(self, database):
+        """
+        Verbindet sich zu einer sqlite Datanbank
+        Parameters
+        ----------
+        database
+            Die Datenbank, zu der sich das Programm verbinden soll
+
+        Returns
+        -------
+
+        """
         self.connection = lite.connect(database)
         self.cursor = self.connection.cursor()
 
     def insert(self, table, row):
+        """
+        Fügt Werte in die Datenbank ein.
+        Parameters
+        ----------
+        table : str
+            Die Tabelle, in die eingefügt werden soll.
+        row : dict
+            Die Zeile die eingefügt werden soll als Dictionary Spaltenname : Wert
+
+        Returns
+        -------
+
+        """
         cols = ', '.join('{}'.format(col) for col in row.keys())
         vals = ""
         for col in row.values():
@@ -937,17 +975,54 @@ class DatabaseGrid(GameGrid):
         self.connection.execute(sql)
 
     def close_connection(self):
+        """
+        Schließt die Verbindung zur Datenbank
+        Returns
+        -------
+
+        """
         self.connection.close()
 
     def select_single_row(self, statement: str):
+        """
+        Gibt einen Datensätze einer SELECT-Abfrage als Liste ( zurück
+        Parameters
+        ----------
+        statement: str
+            Das SELECT Statement
+
+        Returns
+        -------
+        list
+            Der Datensatz als Liste von einzelnen Werten.
+        """
         self.cursor.execute(statement)
         return self.cursor.fetchone()
 
     def select_all_rows(self, statement: str):
+        """
+        Gibt alle Datensätze einer SELECT-Abfrage als Liste (von Listen) zurück
+        Parameters
+        ----------
+        statement: str
+            Das SELECT Statement
+
+        Returns
+        -------
+        list
+            Die Datensätze als Liste von Listen
+        """
         self.cursor.execute(statement)
         return self.cursor.fetchone()
 
     def commit(self):
+        """
+        Commited alle getätigten Änderungen
+
+        Returns
+        -------
+
+        """
         self.connection.commit()
 
 class PixelGrid(GameGrid):
@@ -1018,6 +1093,10 @@ class CellGrid(GameGrid):
 
 
 class GUIGrid(GameGrid):
+    """
+    Das GUI-Grid erlaubt es Pop-Up Fenster mit GUI Elementen einzublenden.
+    """
+
     def button_box(self, message: str, choices: list) -> str:
         """
         Zeigt ein Pop-Up mit selbst gewählten Buttons an.
@@ -1038,7 +1117,7 @@ class GUIGrid(GameGrid):
         reply = easygui.buttonbox(message, choices=choices)
         return reply
 
-    def integer_box(self, message: str, min: int = 0, max: int = sys.maxsize) -> str:
+    def integer_box(self, message: str, title="", min: int = 0, max: int = sys.maxsize, image="None") -> str:
         """
         Zeigt ein Pop-Up zur Eingabe einer Zahl ein.
 
@@ -1046,17 +1125,58 @@ class GUIGrid(GameGrid):
         ----------
         message : int
             Die Nachricht, die angezeigt werden soll
+        title: String
+            Der Fenster-Titel.
         min : int
             Der minimale Wert
         max : int
             Der maximale Wert
+        image : str
+            Optional: Pfad zu einem Bild.
+
+
+        Returns
+        -------
+        int
+            Der Wert, der eingegeben wurde.
+
+        """
+        reply = easygui.integerbox(message, title=title, lowerbound=min, upperbound=max, image=image)
+        return reply
+
+    def string_box(self, message: str, default="", title="", strip=False, image=None) -> str:
+        """
+        Zeigt ein Pop-Up zur Eingabe einer Zahl ein.
+
+        Parameters
+        ----------
+        message : int
+            Die Nachricht, die angezeigt werden soll.
+        title: String
+            Der Fenster-Titel.
+        strip : bool
+            Sollen Whitespaces (Leerzeichen) aus dem String herausgelöscht werden?
+        image : str
+            Optional: Pfad zu einem Bild.
+
+        Returns
+        -------
+        str
+            Der eingegebene Wert als String.
+        """
+        reply = easygui.string_box(message, title=title, default=default, strip=strip, image=image)
+        return reply
+
+    def message_box(self, message):
+        """
+        Zeigt eine Nachrichtenbox
+        Parameters
+        ----------
+        message
+            Die Nachricht, die angezeigt werden soll.
 
         Returns
         -------
 
         """
-        reply = easygui.integerbox(message, lowerbound=min, upperbound=max)
-        return reply
-
-    def message_box(self, message):
         easygui.msgbox(message)

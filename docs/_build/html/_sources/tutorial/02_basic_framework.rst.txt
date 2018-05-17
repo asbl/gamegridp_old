@@ -8,7 +8,6 @@ Als nächstes sollen zwei Akteure erstellt werden:
    :linenos:
 
     import gamegridp
-    import gamegridp
 
 
     class MyGrid(gamegridp.GameGrid):
@@ -31,17 +30,17 @@ Als nächstes sollen zwei Akteure erstellt werden:
 
 **Was macht der Code?**
 
-  * In Zeile 5-9 wird ein Bauplan für ein neues Grid mit dem Namen MyGrid
-    erstellt:
+* In Zeile 5-9 wird ein Bauplan für ein neues Grid mit dem Namen MyGrid erstellt:
 
-  * In Zeile 12-18 wird ein Bauplan für einen Akteur mit dem Namen Player
-    erstellt.
+* In Zeile 12-18 wird ein Bauplan für einen Akteur mit dem Namen Player erstellt.
 
-  * In Zeile 7 ist die setup-Methode angegeben, die das Spielfeld einrichtet.
-    Darin werden zwei Player Objekte an unterschiedlichen Positionen erzeugt.
+* In Zeile 7 ist die setup-Methode angegeben, die das Spielfeld einrichtet.
+  Darin werden zwei Player Objekte an unterschiedlichen Positionen erzeugt.
 
-  * In Zeile 14-17 wird die act()-Methode des Akteurs festgelegt. Sobald man auf den Button
-    run klickt wird diese Methode immer wieder aufgerufen und sorgt dafür, dass die beiden Player-Objekte
-    immer weiterlaufen, bis sie auf ein Hindernis stoßen und sich dann nach links drehen.
+* In Zeile 14-17 wird die act()-Methode des Akteurs festgelegt. Sobald man auf den Button
+  run klickt wird diese Methode immer wieder aufgerufen und sorgt dafür, dass die beiden Player-Objekte
+  immer weiterlaufen, bis sie auf ein Hindernis stoßen und sich dann nach links drehen.
 
-  * Am Ende wird wieder das MyGrid-Objekt erzeugt, welches wiederum nach seinem Bauplan die beiden Player-Objekte mit erzeugt.
+* Am Ende wird wieder das MyGrid-Objekt erzeugt, welches wiederum nach seinem Bauplan die beiden Player-Objekte mit erzeugt.
+
+.. image:: /_images/basis_framework.png

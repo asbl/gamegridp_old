@@ -37,7 +37,7 @@ def main(argv):
     random.seed()
     MyGrid.log()
     mygrid = MyGrid("My Grid", cell_size=1, columns=400, rows=300,
-                margin=0, speed=120)
+                margin=0)
     mygrid.log()
     mygrid.show()
 

@@ -10,18 +10,18 @@ class MyGrid(gamegridp.GameGrid):
 class Robot(gamegridp.Actor):
 
     def setup(self):
-        self.add_image("images/robot_blue1.png", "scale", size=(20,20))
-        self.add_image("images/robot_blue2.png", "scale", size=(20,20))
-        self.animation_speed = 20
+        self.add_image("images/robot_blue1.png", "scale", size=(120,120))
+        self.add_image("images/robot_blue2.png", "scale", size=(120,120))
+        self.animation_speed = 30
         self.animate()
 
 
     def act(self):
-        valid = self.move()
+        valid = self.move(1)
         if not valid:
             self.flip_x()
 
-mygrid = MyGrid("My Grid", cell_size=1, columns=200, rows=150,
-                margin=0, speed=60,
-                background_color=(200, 0, 0), cell_color=(0, 0, 255), img_path="images/water.png")
+MyGrid.log()
+mygrid = MyGrid("My Grid", cell_size=1, columns=500, rows=150,
+                margin=0,  img_path="images/water.png")
 mygrid.show()
