@@ -15,6 +15,7 @@ class MyGrid(gamegridp.DatabaseGrid, gamegridp.GUIGrid):
         self.toolbar.add_button("gold", "images/stone_gold.png")
         self.toolbar.add_button("diamond", "images/stone_blue.png")
         self.toolbar.add_button("emerald", "images/stone_green.png")
+        self.state= "wall"
 
     def listen(self, event=None, data=None):
         self._logging.info(event)
@@ -46,7 +47,7 @@ class MyGrid(gamegridp.DatabaseGrid, gamegridp.GUIGrid):
             elif data=="Speichern":
                 self._logging.info("Create the World: event -save")
                 game_id = self.save()
-                self.messageBox("Neues Spiel mit id "+str(game_id)+" erstellt")
+                self.message_box("Neues Spiel mit id "+str(game_id)+" erstellt")
             if data=="Laden":
                 self._logging.info("Create the World: event - load")
                 game_id=self.integer_box("Gebe das Spiel ein, das geladen werden soll")

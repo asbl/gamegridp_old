@@ -66,6 +66,9 @@ class Player(gamegridp.Actor):
         door = self.get_actor_in_front("Door")
         if door:
             if door.closed:
+                message = "Die Tür ist geschlossen... möchtest du sie öffnen"
+                choices = ["Ja", "Nein"]
+                reply = self.grid.button_box(message, choices)
                 if reply == "Ja":
                     door.open()
                     self.grid.console.print("Du hast das Tor geöffnet.")

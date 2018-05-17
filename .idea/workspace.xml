@@ -8,69 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint">
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/07 Drehungen.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/09 Die Toolbar.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/10 Die Konsole.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/11 Pop Ups.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/13 Datenbankanbindung.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/snippets/gui/spinning_wheel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/snippets/robot/create_the_world.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_actionbar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/classes/Actor.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/classes/Actor.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/classes/GameGrid.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/classes/GameGrid.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/classes/Toolbar.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/classes/Toolbar.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/classes/actionbar.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/classes/actionbar.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/classes/console.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/classes/console.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/classes/grid/CellGrid.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/classes/grid/CellGrid.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/classes/grid/PixelGrid.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/classes/grid/PixelGrid.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/tutorial.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/tutorial.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/tutorial/06_Bewegungen im Grid.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/tutorial/07 Kollisionen.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/tutorial/10_pixel_games.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/actor.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/actor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid_toolbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid_toolbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/06_Bewegungen im Grid.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/07 Kollisionen.md.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/07 Kollisionen.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/10_pixel_games.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/classes/GameGrid.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/classes/GameGrid.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/genindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/klassen.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/klassen.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/01_first_step.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/01_first_step.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/02_basic_framework.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/02_basic_framework.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/03_animations.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/03_animations.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/04_tastatureingaben.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/04_tastatureingaben.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/05_maus_eingaben.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/05_maus_eingaben.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/06_Bewegungen im Grid.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/07 Kollisionen.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/10_pixel_games.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/06_Bewegungen im Grid.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/06 Bewegungen im Grid.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/07 Kollisionen.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/10_pixel_games.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/12 pixel_games.rst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/games/rpg/rpg.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/games/rpg/rpg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/pixelbased/roboracing.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/snippets/pixelbased/roboracing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/robot/create_world.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/robot/create_world2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/robot/create_world3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/snippets/robot/create_world4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/snippets/robot/create_the_world.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/snippets/robot/create_the_world.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/snippets/robot/robodatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/examples/snippets/robot/robodatabase.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/LICENSE.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/MANIFEST.in" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/MANIFEST.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid_toolbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid_toolbar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.1.tar.gz" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.2.1.1.tar.gz" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/dist/gamegridp-0.2.1.2.tar.gz" beforeDir="false" />
@@ -85,7 +29,6 @@
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_console.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_console.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/keys.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/keys.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/test.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/toolbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py" afterDir="false" />
@@ -133,11 +76,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gamegridp/setup.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="231">
               <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rpg.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/games/rpg/rpg.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-588">
+              <caret line="65" column="29" lean-forward="true" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -185,11 +137,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_the_world.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="create_the_world.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/examples/snippets/robot/create_the_world.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="68" column="21" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
+            <state relative-caret-position="-441">
+              <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -205,8 +157,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>collision</find>
-      <find>clock.tick</find>
       <find>.info</find>
       <find>print(</find>
       <find>update(</find>
@@ -235,15 +185,17 @@
       <find>is_rotatabl</find>
       <find>get_ac</find>
       <find>in_front</find>
+      <find>message</find>
+      <find>state</find>
     </findStrings>
     <replaceStrings>
       <replace>screen</replace>
-      <replace />
+      <replace>actor, location</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/gamegridp" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -295,14 +247,14 @@
         <option value="$PROJECT_DIR$/docs/tutorial/12 pixel_games.rst" />
         <option value="$PROJECT_DIR$/docs/tutorial/Datenbankanbindung.py" />
         <option value="$PROJECT_DIR$/docs/tutorial/Datenbankanbindung.rst" />
-        <option value="$PROJECT_DIR$/examples/games/rpg/rpg.py" />
-        <option value="$PROJECT_DIR$/examples/snippets/robot/create_the_world.py" />
         <option value="$PROJECT_DIR$/docs/tutorial/13 Datenbankanbindung.rst" />
         <option value="$PROJECT_DIR$/gamegridp/setup.py" />
+        <option value="$PROJECT_DIR$/examples/games/rpg/rpg.py" />
+        <option value="$PROJECT_DIR$/examples/snippets/robot/create_the_world.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1938" />
@@ -326,12 +278,6 @@
               <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
               <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="tutorial" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
@@ -453,7 +399,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.bouncing">
+  <component name="RunManager" selected="Python.GUI">
     <configuration name="Create the world" type="PythonConfigurationType" factoryName="Python">
       <module name="gamegridp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -767,14 +713,14 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8685714" visible="true" weight="0.22670192" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8685065" visible="true" weight="0.22670192" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5069398" side_tool="true" weight="0.23357664" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4937211" weight="0.39150402" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.329927" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49306014" visible="true" weight="0.23357664" />
-      <window_info id="Structure" order="1" sideWeight="0.13142857" side_tool="true" visible="true" weight="0.22670192" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49306014" visible="true" weight="0.10072993" />
+      <window_info id="Structure" order="1" sideWeight="0.13149351" side_tool="true" visible="true" weight="0.22670192" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49939686" weight="0.3295063" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.32980832" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49966952" weight="0.39562044" />
@@ -836,7 +782,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
+          <url>file://C:/Program Files/Python36/Lib/site-packages/gamegridp-0.3.1.5-py3.6.egg/gamegridp/gamegrid.py</url>
           <line>6</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
@@ -1176,13 +1122,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/games/rpg/rpg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="67" column="27" selection-start-line="67" selection-start-column="27" selection-end-line="67" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/tutorial/07 Drehungen.rst">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -1225,13 +1164,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/snippets/robot/create_the_world.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="68" column="21" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/tutorial/13 Datenbankanbindung.rst">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -1243,6 +1175,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/games/rpg/rpg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-588">
+          <caret line="65" column="29" lean-forward="true" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/snippets/robot/create_the_world.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-441">
+          <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
         </state>
       </provider>
     </entry>
