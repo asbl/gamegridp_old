@@ -8,11 +8,13 @@ import logging
 import os
 import easygui
 import pygame
+import math
 from gamegridp import gamegrid_actionbar
 from gamegridp import gamegrid_console
 from gamegridp import gamegrid_toolbar
 from gamegridp import keys
 import sys
+import sqlite3 as lite
 
 
 class GameGrid(object):
@@ -55,7 +57,6 @@ class GameGrid(object):
                  background_color=(255, 255, 255), cell_color=(0, 0, 0),
                  img_path=None, img_action="upscale", speed=10, toolbar=False, console=False, actionbar=True):
 
-        self.grid = self
         self.__is_setting_up__ = False
         # Define instance variables
         self.title = title  #
@@ -348,17 +349,17 @@ class GameGrid(object):
     def __draw_toolbaar__(self):
         if self.toolbar is not None:
             self.toolbar.draw()
-            self.grid._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+            self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
     def __draw_console__(self):
         if self.console is not None:
             self.console.draw()
-            self.grid._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+            self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
     def __draw_actionbar__(self):
         if self.actionbar is not None:
             self.actionbar.draw()
-            self.grid._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+            self._draw_queue.append(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
 
     @property
@@ -553,7 +554,8 @@ class GameGrid(object):
                             self.speed = self.speed + 1
                 elif pos[0] > self.__grid_width_in_pixels__:
                     toolbar_event = self.toolbar.listen("mouse_left", position=(pos[0], pos[1]))
-                    self.__listen_all__(toolbar_event)
+                    if toolbar_event:
+                        self.__listen_all__(toolbar_event[0],toolbar_event[1])
             elif event.type == pygame.KEYDOWN:
                 keys_pressed = pygame.key.get_pressed()
                 self.__listen_all__("key_down", keys.key_pressed_to_key(keys_pressed))
@@ -600,8 +602,7 @@ class GameGrid(object):
         """
         Wird aus update() heraus aufgerufen.
         Erstellt alle Kollisionspaare mit Hilfe von
-          * self.get_all_bounding_box_collisions (Bounding-Box Grid)
-          * self.__get_actor_at_location() (Cell_Collisions)
+          * self.get_all_bounding_box_collisions
         """
         colliding_actors_pairs = []
         # Erstelle alle Kollisionspaare
@@ -627,12 +628,22 @@ class GameGrid(object):
         self._logging.debug("gamegrid.__collision__() - 2collision-actors:" + str(
             colliding_actors_pairs) + ", current_colliding:" + str(self._current_colliding_actors_pairs))
 
-    def __actors_are_colliding__(self, actor1, actor2) -> bool:
+    def actors_are_colliding(self, actor1, actor2) -> bool:
         """
-        Checks if the bounding boxes of two actors collide
-        :param actor1: first actor
-        :param actor2: partner
-        :return: true if the bounding boxes collide
+        Überprüft, ob zwei Actors kollidieren
+
+        Parameters
+        ----------
+        actor1 gamegrid.Actor
+            Der erste Actor
+        actor2 gamegrid.Actor
+            Der zweite Actor
+
+        Returns
+        -------
+        bool
+            True, falls es eine Überschneidung gibt.
+
         """
         if actor1 is not actor2:
             if actor1.rect.colliderect(actor2.rect):
@@ -642,9 +653,30 @@ class GameGrid(object):
                 self._logging.debug("gamegrid.collision_bounding_box: not colliding")
                 return False
 
+    def get_bounding_box_collision(self, actor, class_name : str = None):
+        """
+        Gibt einen Actor zurück, dessen Bounding-Boxes mit dem angegebenen Akteur
+        kollidieren.
+
+        Parameters
+        ----------
+        actor Ein Actor vom angegebenen Klassennahmen, der mit dem angegebenen Actor kollidiert.
+        class_name Den Klassennamen nach dem gefiltert werden soll.
+
+        Returns
+        -------
+
+        """
+
+        for collision_partner in actor._collision_partners:
+            if self.actors_are_colliding(actor, collision_partner):
+                    return collision_partner
+        return None
+
+
     def get_all_bounding_box_collisions(self, actor, class_name: str = None):
         """
-        Gibt alle mit dem Akteure zurück, deren Bounding-Boxes mit dem angegebenen Akteur
+        Gibt alle Actors zurück, deren Bounding-Boxes mit dem angegebenen Akteur
         kollidieren.
 
         Parameters
@@ -665,7 +697,7 @@ class GameGrid(object):
             pass
             # Todo: Filter actor._collision_partners by class_name
         for collision_partner in actor._collision_partners:
-            if self.__actors_are_colliding__(actor, collision_partner):
+            if self.actors_are_colliding(actor, collision_partner):
                     colliding_actors.append(collision_partner)
                     # Add to global colliding partners so that actor is checked only once per collision
         # Remove all not colliding actors from self.current_colliding_actors
@@ -680,12 +712,9 @@ class GameGrid(object):
           `get_all_bounding_box_collisions` ist die (etwas mächtigere) Alternative.
         """
         for partner in actor.collision_partners:
-            if self.__actors_are_colliding__(actor, partner):
+            if self.actors_are_colliding(actor, partner):
                 return partner
         return None
-
-
-
 
     def get_all_actors_at_location(self, location: tuple, class_name: str = "") -> list:
         """
@@ -890,27 +919,36 @@ class GameGrid(object):
         pygame.mixer.music.load(music_path)
         pygame.mixer.music.play(-1)
 
-    def button_box(self, message :str, choices : list) -> str:
-        """
-        Zeigt eine Box mit selbst gewählten Buttons an.
+class DatabaseGrid(GameGrid):
+    def connect(self, database):
+        self.connection = lite.connect(database)
+        self.cursor = self.connection.cursor()
 
-        Parameters
-        ----------
-        message : int
-            Die Nachricht, die angezeigt werden soll.
-        choices : list
-            Texte, die in Auswahlmöglichkeiten übersetzt werden.
+    def insert(self, table, row):
+        cols = ', '.join('{}'.format(col) for col in row.keys())
+        vals = ""
+        for col in row.values():
+            if isinstance(col,str):
+                col="'"+col+"'"
+            vals = vals+str(col)+","
+        vals=vals[:-1] # strip last character
+        sql = 'INSERT INTO '+table+'( '+str(cols)+') VALUES ('+str(vals)+')'
+        print(sql)
+        self.connection.execute(sql)
 
-        Returns
-        -------
-        str
-            Die gewählte Antwortmöglichkeit als Text.
+    def close_connection(self):
+        self.connection.close()
 
-        """
-        reply = easygui.buttonbox(message, choices=choices)
-        return reply
+    def select_single_row(self, statement: str):
+        self.cursor.execute(statement)
+        return self.cursor.fetchone()
 
+    def select_all_rows(self, statement: str):
+        self.cursor.execute(statement)
+        return self.cursor.fetchone()
 
+    def commit(self):
+        self.connection.commit()
 
 class PixelGrid(GameGrid):
     """
@@ -977,3 +1015,48 @@ class CellGrid(GameGrid):
         cell_image = pygame.image.load(img_path).convert()
         cell_image = pygame.transform.scale(cell_image, (self.cell_size, self.cell_size))
         self._image.blit(cell_image, (top_left[0], top_left[1], self.cell_size, self.cell_size))
+
+
+class GUIGrid(GameGrid):
+    def button_box(self, message: str, choices: list) -> str:
+        """
+        Zeigt ein Pop-Up mit selbst gewählten Buttons an.
+
+        Parameters
+        ----------
+        message : int
+            Die Nachricht, die angezeigt werden soll.
+        choices : list
+            Texte, die in Auswahlmöglichkeiten übersetzt werden.
+
+        Returns
+        -------
+        str
+            Die gewählte Antwortmöglichkeit als Text.
+
+        """
+        reply = easygui.buttonbox(message, choices=choices)
+        return reply
+
+    def integer_box(self, message: str, min: int = 0, max: int = sys.maxsize) -> str:
+        """
+        Zeigt ein Pop-Up zur Eingabe einer Zahl ein.
+
+        Parameters
+        ----------
+        message : int
+            Die Nachricht, die angezeigt werden soll
+        min : int
+            Der minimale Wert
+        max : int
+            Der maximale Wert
+
+        Returns
+        -------
+
+        """
+        reply = easygui.integerbox(message, lowerbound=min, upperbound=max)
+        return reply
+
+    def message_box(self, message):
+        easygui.msgbox(message)

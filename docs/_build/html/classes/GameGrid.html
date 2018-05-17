@@ -252,6 +252,30 @@ der Akteure von Bedeutung ist.</dd>
 </dd></dl>
 
 <dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.actors_are_colliding">
+<code class="descname">actors_are_colliding</code><span class="sig-paren">(</span><em>actor1</em>, <em>actor2</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.actors_are_colliding"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.actors_are_colliding" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob zwei Actors kollidieren</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>gamegrid.Actor</strong> (<em>actor2</em>) – Der erste Actor</li>
+<li><strong>gamegrid.Actor</strong> – Der zweite Actor</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first">True, falls es eine Überschneidung gibt.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)">bool</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="gamegridp.gamegrid.GameGrid.add_actor">
 <code class="descname">add_actor</code><span class="sig-paren">(</span><em>actor</em>, <em>location=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.add_actor"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.add_actor" title="Link zu dieser Definition">¶</a></dt>
 <dd><p>Fügt einen Actor zum Grid hinzu</p>
@@ -263,30 +287,6 @@ der Akteure von Bedeutung ist.</dd>
 <li><strong>actor</strong> (<em>gamegridp.Actor</em>) – Der Actor, der hinzugefügt werden soll</li>
 <li><strong>location</strong> – Der Ort, an dem der Actor hinzugefügt werden soll.</li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="gamegridp.gamegrid.GameGrid.button_box">
-<code class="descname">button_box</code><span class="sig-paren">(</span><em>message: str</em>, <em>choices: list</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.button_box"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.button_box" title="Link zu dieser Definition">¶</a></dt>
-<dd><p>Zeigt eine Box mit selbst gewählten Buttons an.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
-<li><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – Die Nachricht, die angezeigt werden soll.</li>
-<li><strong>choices</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a>) – Texte, die in Auswahlmöglichkeiten übersetzt werden.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first">Die gewählte Antwortmöglichkeit als Text.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)">str</a></p>
 </td>
 </tr>
 </tbody>
@@ -367,7 +367,7 @@ der Akteure von Bedeutung ist.</dd>
 <dl class="method">
 <dt id="gamegridp.gamegrid.GameGrid.get_all_bounding_box_collisions">
 <code class="descname">get_all_bounding_box_collisions</code><span class="sig-paren">(</span><em>actor</em>, <em>class_name: str = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.get_all_bounding_box_collisions"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.get_all_bounding_box_collisions" title="Link zu dieser Definition">¶</a></dt>
-<dd><p>Gibt alle mit dem Akteure zurück, deren Bounding-Boxes mit dem angegebenen Akteur
+<dd><p>Gibt alle Actors zurück, deren Bounding-Boxes mit dem angegebenen Akteur
 kollidieren.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -384,6 +384,25 @@ kollidieren.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)">list</a>(gamegrid.Actor)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.gamegrid.GameGrid.get_bounding_box_collision">
+<code class="descname">get_bounding_box_collision</code><span class="sig-paren">(</span><em>actor</em>, <em>class_name: str = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.get_bounding_box_collision"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.get_bounding_box_collision" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt einen Actor zurück, dessen Bounding-Boxes mit dem angegebenen Akteur
+kollidieren.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>Ein Actor vom angegebenen Klassennahmen</strong><strong>, </strong><strong>der mit dem angegebenen Actor kollidiert.</strong> (<em>actor</em>) – </li>
+<li><strong>Den Klassennamen nach dem gefiltert werden soll.</strong> (<em>class_name</em>) – </li>
+</ul>
 </td>
 </tr>
 </tbody>

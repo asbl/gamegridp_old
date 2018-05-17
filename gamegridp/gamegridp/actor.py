@@ -145,6 +145,7 @@ class Actor(pygame.sprite.Sprite):
             left, top, width, height = 0, 0, 0, 0
         return pygame.Rect(left, top, width, height)
 
+
     @property
     def image(self):
         """
@@ -173,7 +174,7 @@ class Actor(pygame.sprite.Sprite):
         sets the actual image
         :param value: the path to the image
         """
-        self.__rotatable = value
+        self._is_rotatable = value
 
     @property
     def grid(self):
@@ -443,6 +444,11 @@ class Actor(pygame.sprite.Sprite):
         else:
             return False
 
+    def get_bounding_box_collision(self, actor, class_name : str = None):
+        self.grid.get_bounding_box_collision(actor, class_name)
+
+    def get_all_bounding_box_collisions(self, actor, class_name : str = None):
+        self.grid.get_all_bounding_box_collisions(actor, class_name)
 
     def flip_x(self):
         """

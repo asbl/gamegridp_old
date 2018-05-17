@@ -70,7 +70,7 @@ class ToolbarElement():
         return self.surface
 
     def listen(self, event, position: tuple):
-        return self.event
+        return self.event, 0
 
 
 class ToolbarButton(ToolbarElement):
@@ -85,14 +85,15 @@ class ToolbarButton(ToolbarElement):
 
         if img_path != None:
             image = pygame.image.load(img_path)
-            image = pygame.transform.scale(image, (25, 25))
+            image = pygame.transform.scale(image, (22, 22))
             button.blit(image, (2, 0))
             button.blit(label, (25, 5))
         else:
             button.blit(label, (0, 0))
 
         self.surface = button
-        self.event = text
+        self.event = "button"
+        self.data = text
 
     def listen(self, event, position: tuple):
-        return self.event
+        return self.event, self.data

@@ -1,12 +1,8 @@
 import gamegridp
-import logging
-import sys
-import easygui
 
-class MyGrid(gamegridp.GameGrid):
+class MyGrid(gamegridp.GUIGrid):
     """My Grid with custom setup method."""
     def setup(self):
-        console=self.console
         for i in range(self.rows):
             for j in range(self.columns):
                 Grass(self,(j,i))
@@ -27,7 +23,7 @@ class MyGrid(gamegridp.GameGrid):
         Door(self, (6, 2))
         Player(self, (8, 2))
         self.play_music("rpgsounds/bensound-betterdays.mp3")
-        self.grid.run()
+        self.run()
 
 class Player(gamegridp.Actor):
     def setup(self):
@@ -42,8 +38,7 @@ class Player(gamegridp.Actor):
     def listen(self, event, data):
         if event == "key_down":
             if "W" in data:
-                if self.is_valid_move(self.move_up,1):
-                    self.move_up()
+                self.move_up()
             elif "S" in data:
                 self.move_down()
             elif "A" in data:
@@ -51,7 +46,7 @@ class Player(gamegridp.Actor):
             elif "D" in data:
                 self.move_right()
         # Wird auf den Button Torch gedrückt?
-        elif event == "Fackel":
+        elif event == "button" and data=="Fackel":
             fireplace = self.get_actor_at_location("Fireplace")
             if fireplace:
                 self.grid.console.print("Du zündest die Feuerstelle an.")
@@ -71,9 +66,6 @@ class Player(gamegridp.Actor):
         door = self.get_actor_in_front("Door")
         if door:
             if door.closed:
-                message = "Die Tür ist geschlossen... möchtest du sie öffnen"
-                choices = ["Ja", "Nein"]
-                reply = self.grid.button_box(message, choices)
                 if reply == "Ja":
                     door.open()
                     self.grid.console.print("Du hast das Tor geöffnet.")
@@ -119,7 +111,7 @@ class Door(gamegridp.Actor):
             self.is_blocking = False
 
 
-logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-mygrid = MyGrid("My Grid",    cell_size=20, columns=30, rows=20,
-                margin=1, speed=60, toolbar=True, console = True, actionbar = False)
+MyGrid.log()
+mygrid = MyGrid("My Grid", cell_size=20, columns=30, rows=20,
+                margin=1, toolbar=True, console = True, actionbar = False)
 mygrid.show()

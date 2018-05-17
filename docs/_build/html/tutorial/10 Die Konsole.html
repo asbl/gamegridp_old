@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Kollisionen &mdash; gamegridp 2018 Dokumentation</title>
+  <title>Die Konsole &mdash; gamegridp 2018 Dokumentation</title>
   
 
   
@@ -29,8 +29,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
-    <link rel="next" title="Pixel-Games" href="10_pixel_games.html" />
-    <link rel="prev" title="Bewegungen im Grid" href="06_Bewegungen im Grid.html" /> 
+    <link rel="next" title="GUI Elemente" href="11 Pop Ups.html" />
+    <link rel="prev" title="Die Toolbar" href="09 Die Toolbar.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -89,13 +89,14 @@
 <li class="toctree-l2"><a class="reference internal" href="03_animations.html">Animationen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_tastatureingaben.html">Tastatureingaben</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_maus_eingaben.html">Mauseingaben</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_Bewegungen im Grid.html">Bewegungen im Grid</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Kollisionen</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#zellen-kollisionen">Zellen-Kollisionen</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pixel-kollisionen">Pixel-Kollisionen</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="10_pixel_games.html">Pixel-Games</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06 Bewegungen im Grid.html">Bewegungen im Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07 Drehungen.html">Drehungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08 Kollisionen.html">Kollisionen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09 Die Toolbar.html">Die Toolbar</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Die Konsole</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11 Pop Ups.html">GUI Elemente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12 pixel_games.html">Pixel-Games</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13 Datenbankanbindung.html">Datenbankanbindung</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../klassen.html">Klassen</a></li>
@@ -147,13 +148,13 @@
         
           <li><a href="../tutorial.html">Tutorial</a> &raquo;</li>
         
-      <li>Kollisionen</li>
+      <li>Die Konsole</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/tutorial/07 Kollisionen.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/tutorial/10 Die Konsole.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -166,59 +167,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="kollisionen">
-<h1>Kollisionen<a class="headerlink" href="#kollisionen" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Bei Kollisionen muss man unterscheiden zwischen unterschiedlichen Arten von Kollisionen:</p>
-<ul class="simple">
-<li><strong>Zellen-Kollisionen</strong>: Wenn dein Spiel Zellenbasiert ist,</li>
-</ul>
-<p>dann bedeutet eine  Zellen-Kollision, das zwei Akteure in der selben Zelle stehen.</p>
-<ul class="simple">
-<li><strong>Bounding-Box-Kollisionen</strong>: Wenn zwei Akteure auf einem Grid mit Zellgröße 1 kollidieren,</li>
-</ul>
-<p>ist die erste Art der Abfrage natürlich ungeeignet. Hier müsste man theoretisch Pixel für Pixel
-auf eine Kollision miteinander vergleichen.
-Daher überorüft das Grid die umgebenden Bounding-Boxen, ob diese sich schneiden
-(In der ersten Version handelt es sich dabei immer um Rechtecke). Diese Variante ist zwar etwas ungenau,
-ist aber effizent berechenbar.</p>
-<div class="section" id="zellen-kollisionen">
-<h2>Zellen-Kollisionen<a class="headerlink" href="#zellen-kollisionen" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Es gibt zwar mehrere Arten, Kollisionen in zellbasierten Spielen zu verwalten. Die einfachste Methode ist abet oft folgende:</p>
-<ul class="simple">
-<li>In der <em>act</em> oder <em>listen</em>-Methode der Klasse <em>GameGrid</em> kann eine Kollision mit Hilfe der Funktion</li>
-</ul>
-<p><strong>get_all_actors_at_location()</strong> überprüft werden.
-(siehe <a class="reference internal" href="../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.get_all_actors_at_location" title="gamegridp.gamegrid.GameGrid.get_all_actors_at_location"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gamegridp.gamegrid.GameGrid.get_all_actors_at_location()</span></code></a>)</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>Alternativ können auch die Akteure selbst überprüfen, ob eine Kollision vorliegt.</dt>
-<dd>Jeder Akteur verfügt über die Methode <strong>get_all_actors_at_location()</strong>
-(siehe:py:meth:<cite>gamegridp.gamegrid.Actor.get_all_actors_at_location</cite>).</dd>
-</dl>
-</li>
-</ul>
-<p>Beide Methoden geben jeweils eine Liste an Akteuren zurück. Man kann auch direkt nach Klassen filtern;</p>
+  <div class="section" id="die-konsole">
+<h1>Die Konsole<a class="headerlink" href="#die-konsole" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die Konsole kann z.B. in Rollenspielen dabei helfen, Informationen als Text auszugeben.</p>
+<p>Du kannst eine Konsole zum GameGrid hinzufügen, in dem du beim Aufrufen des Konstruktors den Parameter console=True ergänzt.</p>
+<p>Beispiel</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">gegenstand</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_actor_at_location</span><span class="p">(</span><span class="s2">&quot;Gegenstand&quot;</span><span class="p">)</span>
-<span class="c1"># gegenstand ist eine Liste mit allen an der Position gefundenen Gegenständen.</span>
-    <span class="k">if</span> <span class="n">gegenstand</span><span class="p">:</span> <span class="c1"># Abkürzung für if gegenstand is not None:</span>
-        <span class="c1">#... tue etwas</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">mygrid</span> <span class="o">=</span> <span class="n">MyGrid</span><span class="p">(</span><span class="s2">&quot;My Grid&quot;</span><span class="p">,</span> <span class="n">cell_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+            <span class="n">margin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">console</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
-</div>
-<div class="section" id="pixel-kollisionen">
-<h2>Pixel-Kollisionen<a class="headerlink" href="#pixel-kollisionen" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Da es aufwendig ist, alle Kollisionen pixelgenau zu überprüfen, werden jeweils Rechtecke miteinander verglichen.
-Dazu sind zwei Schritte notwendig:</p>
-<ul class="simple">
-<li>In der setup()-Methode wird festgelegt, <strong>welche</strong>-Objekte überhaupt miteiannder kollidieren können</li>
-<li>Für alle Objekte wird in jedem Durchlauf überprüft, ob diese Kollidieren.</li>
-</ul>
-<p>Wenn diese kollidieren, wird die collision(self, partner1, partner2)-Methode aufgerufen. Du kannst diese Methode
-aufrufen, um dein gewünschtes Verhalten zu programmieren.</p>
-</div>
+<p>Du kannst folgendermaßen Informationen auf die Konsole schreiben:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">console</span><span class="o">.</span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Information für die Konsole&quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
 </div>
 
 
@@ -229,10 +191,10 @@ aufrufen, um dein gewünschtes Verhalten zu programmieren.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="10_pixel_games.html" class="btn btn-neutral float-right" title="Pixel-Games" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="11 Pop Ups.html" class="btn btn-neutral float-right" title="GUI Elemente" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="06_Bewegungen im Grid.html" class="btn btn-neutral" title="Bewegungen im Grid" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="09 Die Toolbar.html" class="btn btn-neutral" title="Die Toolbar" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

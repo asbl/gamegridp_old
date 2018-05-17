@@ -8,17 +8,22 @@ gamegridp - Dokumentation
 
 Gamegridp ist eine in Python programmierte 2D-Grafikengine die für Bildungszwecke gedacht ist.
 
-Viele Konzepte wurden von  'JGameGrid <http://www.aplu.ch/home/apluhomex.jsp?site=45>'_
-bzw. 'Greenfoot <https://www.greenfoot.org/door>'_ übernommen. Im Gegensatz zu Greenfoot bietet
+Viele Konzepte wurden von  `JGameGrid <http://www.aplu.ch/home/apluhomex.jsp?site=45>`_
+bzw. `Greenfoot <https://www.greenfoot.org/door>`_ übernommen. Im Gegensatz zu Greenfoot bietet
 gamegridp keine grafische Benutzeroberfläche.
 
 Eigenschaften
-  * gamegridp unterstützt sowohl Pixel-basierte Spiele als auch Spiele mit
-  quadratischen Zellen (z.B. Rouge-Likes)
-  * Einfaches Erstellen von Animationen
-  * Musik und Soundeffekte
-  * Integrierte Konsole für Ausgaben
-  * Einfaches Erstellen von GUI-Elementen und Popups
+""""""""""""""
+
+* GameGridP unterstützt sowohl Pixel-basierte Spiele als auch Spiele mit quadratischen Zellen (z.B. Rouge-Likes)
+
+* Einfaches Erstellen von Animationen
+
+* Musik und Soundeffekte
+
+* Integrierte Konsole für Ausgaben
+
+* Einfaches Erstellen von GUI-Elementen und Popups
 
 .. toctree::
    :maxdepth: 2

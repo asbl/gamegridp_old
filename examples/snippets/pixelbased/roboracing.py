@@ -15,7 +15,7 @@ class MyGrid(gamegridp.GameGrid):
 
 class Robot(gamegridp.Actor):
     def setup(self):
-        self.set_rotatable()
+        self.is_rotatable = True
         self._logging.info("Actor: "+ self.title + "'s setup wird ausgeführt, rotatable:"+str(self.is_rotatable))
 
     def act(self):
