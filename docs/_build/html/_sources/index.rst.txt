@@ -3,10 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-gamegridp - Dokumentation
+GameGridP - Dokumentation
 =====================================
 
-Gamegridp ist eine in Python programmierte 2D-Grafikengine die für Bildungszwecke gedacht ist.
+GameGridP ist eine in Python programmierte 2D-Grafikengine die für Bildungszwecke gedacht ist.
 
 Viele Konzepte wurden von  `JGameGrid <http://www.aplu.ch/home/apluhomex.jsp?site=45>`_
 bzw. `Greenfoot <https://www.greenfoot.org/door>`_ übernommen. Im Gegensatz zu Greenfoot bietet
@@ -27,12 +27,14 @@ Eigenschaften
 
 * Datenbankanbindung
 
+* Open-Source
+
 Links
 """""
 
-* `Dokumentation <https://gamegridp.it-teaching.de>`
-* `Github <https://github.com/asbl/gamegridp>`
-* `Pypi <https://pypi.python.org/pypi/gamegridp>`
+* `Dokumentation <https://gamegridp.it-teaching.de>`_
+* `Github <https://github.com/asbl/gamegridp>`_
+* `Pypi <https://pypi.python.org/pypi/gamegridp>`_
 
 
 .. toctree::

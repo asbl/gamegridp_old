@@ -11,16 +11,16 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 	long_description = f.read()
 
 setup(
-    name='gamegridp',
-    version='0.4.0.8',
-    description='A gamegrid clone for python',
+    name='GameGridP',
+    version='0.4.0.9',
+    description='A GameGrid/Greenfoot clone for python',
     long_description=long_description,
     long_description_content_type='text/markdown',
     keywords=['game', 'education'],  # arbitrary keywords
     author='Andreas Siebel',
     author_email='andreas.siebel@it-teaching.de',
-    url='https://github.com/asbl/gamegridp',  # use the URL to the github repo
-    download_url='https://github.com/asbl/gamegridp/archive/master.zip',  # I'll explain this in a second
+    url='https://github.com/asbl/gamegridp',  
+    download_url='https://github.com/asbl/gamegridp/archive/master.zip',
     license="MIT",
     classifiers=[
         "License :: MIT",
