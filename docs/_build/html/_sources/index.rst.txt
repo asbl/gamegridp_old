@@ -29,6 +29,8 @@ Eigenschaften
 
 * Open-Source
 
+
+
 Links
 """""
 
@@ -36,13 +38,13 @@ Links
 * `Github <https://github.com/asbl/gamegridp>`_
 * `Pypi <https://pypi.python.org/pypi/gamegridp>`_
 
+.. image:: /_images/createtheworld.png
 
 .. toctree::
    :maxdepth: 2
    :caption: Inhalte
 
    install
-   examples
    tutorial
    klassen
    impressum

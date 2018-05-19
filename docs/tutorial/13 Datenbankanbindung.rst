@@ -87,3 +87,6 @@ Zuletzt musst du die Daten in die Datenbank übertragen (committen) und die Verb
         self.commit()
         self.close_connection()
 
+Siehe Beispiel **Create the World** auf `Github <https://github.com/asbl/gamegridp/blob/latest/examples/snippets/robot/create_the_world.py>`_ . In dem Beispiel kannst du ein Level für eine Roboter-Welt erzeugen und das Beispiel in eine Datenbank speichern bzw. aus einer Datenbank laden.
+
+.. image:: /_images/createtheworld.png

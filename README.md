@@ -14,8 +14,8 @@ Eigenschaften
   * Musik und Soundeffekte
   * Integrierte Konsole für Ausgaben
   * Einfaches Erstellen von GUI-Elementen und Popups
-
-Das Framework steckt zur Zeit noch in den Kinderschuhen und wird in nächster Zeit weiterentwickelt.
+  * Einfache Datenbankanbindung
+  * Open-Source
 
 Github: https://github.com/asbl/gamegridp
 Dokumentation: https://gamegridp.it-teaching.de

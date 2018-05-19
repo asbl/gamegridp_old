@@ -99,3 +99,9 @@ class ToolbarButton(ToolbarElement):
 
     def listen(self, event, position: tuple):
         return self.event, self.data
+
+def DiceSimulator(ToolbarElement):
+
+    def roll(self) -> int:
+        pass
+

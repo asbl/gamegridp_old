@@ -1,6 +1,3 @@
-import logging
-import sys
-
 from gamegridp import actor
 from gamegridp import gamegrid
 
@@ -36,8 +33,7 @@ class Robot(actor.Actor):
     def act(self):
         self.move()
 
-
-logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+MyGrid.log()
 mygrid = MyGrid("My Grid", cell_size=40, columns=29, rows=1,
-                margin=0, speed=40)
+                margin=0,)
 mygrid.show()

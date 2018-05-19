@@ -19,7 +19,7 @@ setup(
     keywords=['game', 'education'],  # arbitrary keywords
     author='Andreas Siebel',
     author_email='andreas.siebel@it-teaching.de',
-    url='https://github.com/asbl/gamegridp',  
+    url='https://github.com/asbl/gamegridp',
     download_url='https://github.com/asbl/gamegridp/archive/master.zip',
     license="MIT",
     classifiers=[

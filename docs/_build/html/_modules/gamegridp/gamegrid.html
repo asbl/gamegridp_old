@@ -80,7 +80,6 @@
               <p class="caption"><span class="caption-text">Inhalte</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Beispiele</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../klassen.html">Klassen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../impressum.html">Impressum</a></li>
@@ -717,6 +716,7 @@
         <span class="k">if</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">keys_pressed</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">get_pressed</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__listen_all__</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="n">keys</span><span class="o">.</span><span class="n">key_pressed_to_key</span><span class="p">(</span><span class="n">keys_pressed</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__listen_all__</span><span class="p">(</span><span class="s2">&quot;key_pressed&quot;</span><span class="p">,</span> <span class="n">keys</span><span class="o">.</span><span class="n">key_pressed_to_key</span><span class="p">(</span><span class="n">keys_pressed</span><span class="p">))</span>
         <span class="n">mouse_x</span><span class="p">,</span> <span class="n">mouse_y</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pos</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">mouse_x</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__grid_width_in_pixels__</span><span class="p">:</span>
             <span class="n">toolbar_event</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="s2">&quot;mouse_hover&quot;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="n">mouse_x</span><span class="p">,</span> <span class="n">mouse_y</span><span class="p">))</span>

@@ -8,13 +8,13 @@ class MyGrid(gamegridp.DatabaseGrid, gamegridp.GUIGrid):
     """My Grid with custom setup method."""
 
     def setup(self):
-        self.toolbar.add_button("Speichern", "images/save.png")
-        self.toolbar.add_button("Laden", "images/save.png")
-        self.toolbar.add_button("wall", "images/rock.png")
-        self.toolbar.add_button("robot", "images/robo_green.png")
-        self.toolbar.add_button("gold", "images/stone_gold.png")
-        self.toolbar.add_button("diamond", "images/stone_blue.png")
-        self.toolbar.add_button("emerald", "images/stone_green.png")
+        self.toolbar.add_button("Speichern", "images/save.png", color=(255,255,255),border=(200,200,200))
+        self.toolbar.add_button("Laden", "images/save.png", color=(240,240,240),border=(200,200,200))
+        self.toolbar.add_button("Wall", "images/rock.png", color=(255,255,255),border=(200,200,200))
+        self.toolbar.add_button("Robot", "images/robo_green.png", color=(240,240,240),border=(200,200,200))
+        self.toolbar.add_button("Gold", "images/stone_gold.png", color=(255,255,255),border=(200,200,200))
+        self.toolbar.add_button("Diamond", "images/stone_blue.png", color=(240,240,240),border=(200,200,200))
+        self.toolbar.add_button("Emerald", "images/stone_green.png", color=(255,255,255),border=(200,200,200))
         self.state= "wall"
 
     def listen(self, event=None, data=None):
@@ -34,15 +34,15 @@ class MyGrid(gamegridp.DatabaseGrid, gamegridp.GUIGrid):
             else:
                 self.remove_actor(cell=(data[0], data[1]))
         elif event == "button":
-            if data == "robot":
+            if data == "Robot":
                 self.state="robot"
-            elif data == "wall":
+            elif data == "Wall":
                 self.state="wall"
-            elif data == "gold":
+            elif data == "Gold":
                 self.state="gold"
-            elif data == "emerald":
+            elif data == "Emerald":
                 self.state="emerald"
-            elif data == "diamond":
+            elif data == "Diamond":
                 self.state="diamond"
             elif data=="Speichern":
                 self._logging.info("Create the World: event -save")
@@ -117,8 +117,7 @@ class Emerald(gamegridp.Actor):
         self.add_image("images/stone_green.png", img_action="scale")
 
 
-logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+MyGrid.log()
 mygrid = MyGrid("My Grid", cell_size=60, columns=10, rows=10,
-                margin=0, speed=120,
-                background_color=(200, 0, 0), cell_color=(0, 0, 255), img_path="images/stone.jpg", toolbar=True)
+                margin=0, img_path="images/stone.jpg", toolbar=True)
 mygrid.show()

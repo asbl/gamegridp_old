@@ -568,6 +568,7 @@ class GameGrid(object):
         if pygame.key.get_pressed().count(1) != 0:
             keys_pressed = pygame.key.get_pressed()
             self.__listen_all__("key", keys.key_pressed_to_key(keys_pressed))
+            self.__listen_all__("key_pressed", keys.key_pressed_to_key(keys_pressed))
         mouse_x, mouse_y = pygame.mouse.get_pos()
         if mouse_x > self.__grid_width_in_pixels__:
             toolbar_event = self.toolbar.listen("mouse_hover", position=(mouse_x, mouse_y))

@@ -1,6 +1,11 @@
 MANIFEST.in
 README.md
 setup.py
+GameGridP.egg-info/PKG-INFO
+GameGridP.egg-info/SOURCES.txt
+GameGridP.egg-info/dependency_links.txt
+GameGridP.egg-info/requires.txt
+GameGridP.egg-info/top_level.txt
 gamegridp/__init__.py
 gamegridp/actor.py
 gamegridp/gamegrid.py

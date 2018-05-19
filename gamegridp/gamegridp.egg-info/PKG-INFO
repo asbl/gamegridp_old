@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
-Name: gamegridp
+Name: GameGridP
 Version: 0.4.0.9
-Summary: A gamegrid clone for python
+Summary: A GameGrid/Greenfoot clone for python
 Home-page: https://github.com/asbl/gamegridp
 Author: Andreas Siebel
 Author-email: andreas.siebel@it-teaching.de
