@@ -15,6 +15,7 @@ from gamegridp import gamegrid_toolbar
 from gamegridp import keys
 import sys
 import sqlite3 as lite
+from collections import defaultdict
 
 
 class GameGrid(object):
@@ -320,6 +321,20 @@ class GameGrid(object):
             actor.location = location
             actor.actor_id = self.__actor_id__
             self.__actor_id__ = self.__actor_id__ + 1
+
+    def _update_actor(self, actor, attribute, value):
+        """
+        Wird aufgerufen, wenn ein Actor eine Aktualisierung des Grids anfordert
+        (Beispiel: Umstellen der Eigenschaft is_static)
+        Parameters
+        ----------
+        actor
+
+        Returns
+        -------
+
+        """
+        pass
 
     def __act_all__(self):
         for actor in self._actors:
@@ -635,31 +650,6 @@ class GameGrid(object):
         self._logging.debug("gamegrid.__collision__() - 2collision-actors:" + str(
             colliding_actors_pairs) + ", current_colliding:" + str(self._current_colliding_actors_pairs))
 
-    def actors_are_colliding(self, actor1, actor2) -> bool:
-        """
-        Überprüft, ob zwei Actors kollidieren
-
-        Parameters
-        ----------
-        actor1 gamegrid.Actor
-            Der erste Actor
-        actor2 gamegrid.Actor
-            Der zweite Actor
-
-        Returns
-        -------
-        bool
-            True, falls es eine Überschneidung gibt.
-
-        """
-        if actor1 is not actor2:
-            if actor1.rect.colliderect(actor2.rect):
-                self._logging.debug("gamegrid.collision_bounding_box: colliding")
-                return True
-            else:
-                self._logging.debug("gamegrid.collision_bounding_box: not colliding")
-                return False
-
     def get_bounding_box_collision(self, actor, class_name : str = None):
         """
         Gibt einen Actor zurück, dessen Bounding-Boxes mit dem angegebenen Akteur
@@ -711,6 +701,31 @@ class GameGrid(object):
 
         return colliding_actors
 
+    def actors_are_colliding(self, actor1, actor2) -> bool:
+        """
+        Überprüft, ob zwei Actors kollidieren
+
+        Parameters
+        ----------
+        actor1 gamegrid.Actor
+            Der erste Actor
+        actor2 gamegrid.Actor
+            Der zweite Actor
+
+        Returns
+        -------
+        bool
+            True, falls es eine Überschneidung gibt.
+
+        """
+        if actor1 is not actor2:
+            if actor1.rect.colliderect(actor2.rect):
+                self._logging.debug("gamegrid.collision_bounding_box: colliding")
+                return True
+            else:
+                self._logging.debug("gamegrid.collision_bounding_box: not colliding")
+                return False
+
     # deprecated
     def __get_bounding_box_collisions__(self, actor):
         """
@@ -723,9 +738,12 @@ class GameGrid(object):
                 return partner
         return None
 
+    # deprecated
     def get_all_actors_at_location(self, location: tuple, class_name: str = "") -> list:
         """
         Gebe alle Akteure an den angegebenen Zellenkoordinaten zurück
+        .. deprecated:: 0.5.0
+            Use sublass cellgrid instead
 
         :param location: Die Zellenkordinaten als Tupel (x,y)
         :param class_name: Den Klassennamen, nachdem gefiltert werden soll
@@ -736,6 +754,9 @@ class GameGrid(object):
             if actor.location == location:
                 if class_name is "" or actor.__class__.__name__ == class_name:
                     actors_at_location.append(actor)
+
+
+
         return actors_at_location
 
     def is_location_in_grid(self, location):
@@ -790,7 +811,6 @@ class GameGrid(object):
         if not no_logic:
             self.clock.tick(60)
 
-
     def repaint_area(self, rect: pygame.Rect):
         """
         Zeichnet den gewählten Bereich neu
@@ -806,7 +826,7 @@ class GameGrid(object):
         """
         self.schedule_repaint(rect)
 
-    def remove_actor(self, actor=None, cell: tuple = None):
+    def remove_actor(self, actor):
         """
         Entfernt einen Akteur aus dem Grid
 
@@ -814,18 +834,11 @@ class GameGrid(object):
         :param cell: Entfernt alle Akteure an einer Zelle (actor wird dann ignoriert)
         :return:
         """
-        if cell == None:
-            actor.remove()
-        else:
-            actors_at_cell = self.get_all_actors_at_location(cell)
-            self._logging.info("gamegrid.remove_actor(): Remove actor at: " + str(cell))
-            for actor in actors_at_cell:
-                try:
-                    self._logging.info("gamegrid.remove_actor() : remove_actor" + str(actor) + " wird gelöscht...")
-                    self._actors.remove(actor)
-                    actor._remove_from_grid()
-                except ValueError:
-                    self._logging.warning("gamegrid.remove_actor() : Nicht in Liste vorhanden")
+        if actor:
+            self._actors.remove(actor)
+            actor.__grid__ = None
+            self._logging.info("Parameter actor can't be none (except cell is given)")
+
     @staticmethod
     def log():
         logging.basicConfig(stream=sys.stdout, level=logging.INFO)
@@ -1080,6 +1093,67 @@ class CellGrid(GameGrid):
     """
     Das Cell-Grid ist gedacht für Grids, deren Zellen größer als 1 Pixel sind.
     """
+    def __init__(self, title, cell_size=32,
+                 columns=8, rows=8, margin=0,
+                 background_color=(255, 255, 255), cell_color=(0, 0, 0),
+                 img_path=None, img_action="upscale", speed=60, toolbar=False, console=False, actionbar=True):
+        self._non_static_collision_actors = defaultdict(list)
+        self._static_collision_actors = defaultdict(list)
+        self._non_static_actors = []
+        super().__init__(title, cell_size, columns, rows, margin, background_color, cell_color,
+                         img_path,img_action, speed, toolbar, console, actionbar)
+
+
+    def _collision(self):
+        self._non_static_collision_actors.clear()
+        for actor in self._non_static_actors:
+            self._non_static_collision_actors[(actor.get_x(), actor.get_y())].append(actor)
+        super()._collision()
+
+    def remove_actor(self, actor):
+        if actor in self._non_static_actors:
+            self._non_static_actors.remove(actor)
+        if actor in  self._static_collision_actors[(actor.get_x(), actor.get_y())]:
+            self._static_collision_actors[(actor.get_x(), actor.get_y())].remove(actor)
+        super().remove_actor(actor)
+
+    def add_actor(self, actor, location=None):
+        if actor.is_static:
+            self._static_collision_actors[(actor.get_x(), actor.get_y())].append(actor)
+        else:
+            self._non_static_actors.append(actor)
+        super().add_actor(actor, location)
+
+    def update_actor(self, actor, attribute, value):
+        if attribute == "is_static" and value is True:
+            self._static_collision_actors[(actor.get_x(), actor.get_y())].append(actor)
+            if actor in self._non_static_collision_actors:
+                self._non_static_collision_actors.remove(actor)
+        else:
+            self._non_static_actors.append(actor)
+        super()._update_actor(actor, attribute, value)
+
+
+    def get_all_actors_at_location(self, location: tuple, class_name: str = "") -> list:
+        """
+        Gebe alle Akteure an den angegebenen Zellenkoordinaten zurück
+
+        :param location: Die Zellenkordinaten als Tupel (x,y)
+        :param class_name: Den Klassennamen, nachdem gefiltert werden soll
+        :return: Eine Liste aller Akteure (mit der angegebenen Klasse) an der Position.
+        """
+        actors_at_location = []
+        try:
+            if self._non_static_collision_actors[location[0], location[1]]:
+                actors_at_location.extend(self._non_static_collision_actors[(location[0], location[1])])
+            if self._static_collision_actors[location[0], location[1]]:
+                actors_at_location.extend(self._static_collision_actors[(location[0], location[1])])
+        except:
+            self.logging.info("Cellgrid: get_all_actors_at_location() : No actor at location")
+        if class_name is not "":
+            actors_at_location = [actor for actor in actors_at_location if actor.__class__.__name__ == class_name]
+        return actors_at_location
+
     def add_cell_image(self, img_path: str, location: tuple):
         """
         Fügt ein Bild zu einer einzelnen Zelle hinzu
@@ -1091,6 +1165,7 @@ class CellGrid(GameGrid):
         cell_image = pygame.image.load(img_path).convert()
         cell_image = pygame.transform.scale(cell_image, (self.cell_size, self.cell_size))
         self._image.blit(cell_image, (top_left[0], top_left[1], self.cell_size, self.cell_size))
+
 
 
 class GUIGrid(GameGrid):

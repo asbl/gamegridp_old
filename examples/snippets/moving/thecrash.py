@@ -2,7 +2,7 @@ from gamegridp import actor
 from gamegridp import gamegrid
 
 
-class MyGrid(gamegrid.GameGrid):
+class MyGrid(gamegrid.CellGrid):
     """My Grid with custom setup method."""
     def setup(self):
         self.robot1 = Robot(grid=self, location=(0, 0), img_path="images/robo_green.png", img_action="scale")

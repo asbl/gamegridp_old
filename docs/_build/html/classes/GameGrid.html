@@ -349,7 +349,10 @@ der Akteure von Bedeutung ist.</dd>
 <dl class="method">
 <dt id="gamegridp.gamegrid.GameGrid.get_all_actors_at_location">
 <code class="descname">get_all_actors_at_location</code><span class="sig-paren">(</span><em>location: tuple</em>, <em>class_name: str = ''</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.get_all_actors_at_location"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.get_all_actors_at_location" title="Link zu dieser Definition">¶</a></dt>
-<dd><p>Gebe alle Akteure an den angegebenen Zellenkoordinaten zurück</p>
+<dd><p>Gebe alle Akteure an den angegebenen Zellenkoordinaten zurück
+.. deprecated:: 0.5.0</p>
+<blockquote>
+<div>Use sublass cellgrid instead</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -577,7 +580,7 @@ die Koordinaten der Maus.</li>
 
 <dl class="method">
 <dt id="gamegridp.gamegrid.GameGrid.remove_actor">
-<code class="descname">remove_actor</code><span class="sig-paren">(</span><em>actor=None</em>, <em>cell: tuple = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.remove_actor"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.remove_actor" title="Link zu dieser Definition">¶</a></dt>
+<code class="descname">remove_actor</code><span class="sig-paren">(</span><em>actor</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/gamegrid.html#GameGrid.remove_actor"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.GameGrid.remove_actor" title="Link zu dieser Definition">¶</a></dt>
 <dd><p>Entfernt einen Akteur aus dem Grid</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

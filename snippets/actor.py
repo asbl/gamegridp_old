@@ -58,7 +58,6 @@ class Actor(pygame.sprite.Sprite):
         # Define instance variables
         self._original_images = []  # All images stores for actor
         self._image = None
-        self._is_static = False
         self._image_index = 0
         self._is_rotatable = False
         self._is_flipped = False
@@ -71,6 +70,7 @@ class Actor(pygame.sprite.Sprite):
         self._animated = False
         self._is_blocking = False
         self._collision_partners = pygame.sprite.Group()
+        self._is_static = False
         # Set Actor image
         self._logging.debug("actor.__init__() : Target-Location:" + str(self.location))
         self._has_image = False
@@ -105,21 +105,23 @@ class Actor(pygame.sprite.Sprite):
         self._is_blocking = value
 
     @property
+    def is_static(self):
+        return self._is_active
+
+    @is_static.setter
+    def is_static(self, value:bool):
+        if value:
+            self.__grid__._collision_actors[self.get_x(), self.get_y()] = self
+        if not value:
+            self.__grid__._collision_actors[self.get_x(), self.get_y()] = None
+
+    @property
     def direction(self) -> int:
         """int: Legt die Richtung fest, in die der Akteur "schaut"
             0° bezeichnet dabei nach Osten, andere Winkel werden gegen den Uhrzeigersinn angegeben.
             Die Direction kann alternativ auch als String ("left", "right", "top", "bottom"  festgelegt werden.
         """
         return self._direction
-
-    @property
-    def is_static(self):
-        return self._is_static
-
-    @is_static.setter
-    def is_static(self, value: bool):
-        self._is_static = True
-        self.grid.update_actor(self, "is_static", value)
 
     @direction.setter
     def direction(self, value: int):
@@ -934,7 +936,7 @@ class Actor(pygame.sprite.Sprite):
         # check if target is not blocked
         actors_at_position = self.__grid__.get_all_actors_at_location(target)
         for actor in actors_at_position:
-            if actor: #list is not none?
+            if not actor == None :
                 if actor.is_blocking:
                     valid = False
         return valid
@@ -966,8 +968,15 @@ class Actor(pygame.sprite.Sprite):
         """
         Entfernt den Akteur vom Grid.
         """
-        self.grid.remove_actor(self)
+        self._remove_from_grid()
         del (self)
 
+    def _remove_from_grid(self):
+        """
+        removes the actor from grid
+        """
+        self.__grid__._actors.remove(self)
+        self.__grid__._collision_actors[self.get_x(), self.get_y()] = None
+        self.__grid__ = None
 
 

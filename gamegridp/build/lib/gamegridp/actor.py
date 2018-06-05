@@ -58,6 +58,7 @@ class Actor(pygame.sprite.Sprite):
         # Define instance variables
         self._original_images = []  # All images stores for actor
         self._image = None
+        self._is_static = False
         self._image_index = 0
         self._is_rotatable = False
         self._is_flipped = False
@@ -110,6 +111,15 @@ class Actor(pygame.sprite.Sprite):
             Die Direction kann alternativ auch als String ("left", "right", "top", "bottom"  festgelegt werden.
         """
         return self._direction
+
+    @property
+    def is_static(self):
+        return self._is_static
+
+    @is_static.setter
+    def is_static(self, value: bool):
+        self._is_static = True
+        self.grid.update_actor(self, "is_static", value)
 
     @direction.setter
     def direction(self, value: int):
@@ -924,8 +934,9 @@ class Actor(pygame.sprite.Sprite):
         # check if target is not blocked
         actors_at_position = self.__grid__.get_all_actors_at_location(target)
         for actor in actors_at_position:
-            if actor.is_blocking:
-                valid = False
+            if actor: #list is not none?
+                if actor.is_blocking:
+                    valid = False
         return valid
 
 
@@ -955,14 +966,8 @@ class Actor(pygame.sprite.Sprite):
         """
         Entfernt den Akteur vom Grid.
         """
-        self._remove_from_grid()
+        self.grid.remove_actor(self)
         del (self)
 
-    def _remove_from_grid(self):
-        """
-        removes the actor from grid
-        """
-        self.grid._actors.remove(self)
-        self.__grid__ = None
 
 

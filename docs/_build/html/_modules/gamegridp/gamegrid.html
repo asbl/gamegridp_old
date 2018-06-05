@@ -163,6 +163,7 @@
 <span class="kn">from</span> <span class="nn">gamegridp</span> <span class="k">import</span> <span class="n">keys</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">sqlite3</span> <span class="k">as</span> <span class="nn">lite</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">defaultdict</span>
 
 
 <div class="viewcode-block" id="GameGrid"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid">[Doku]</a><span class="k">class</span> <span class="nc">GameGrid</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -468,6 +469,20 @@
             <span class="n">actor</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">location</span>
             <span class="n">actor</span><span class="o">.</span><span class="n">actor_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__actor_id__</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__actor_id__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__actor_id__</span> <span class="o">+</span> <span class="mi">1</span></div>
+
+    <span class="k">def</span> <span class="nf">_update_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wird aufgerufen, wenn ein Actor eine Aktualisierung des Grids anfordert</span>
+<span class="sd">        (Beispiel: Umstellen der Eigenschaft is_static)</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        actor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">__act_all__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">actor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actors</span><span class="p">:</span>
@@ -783,31 +798,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;gamegrid.__collision__() - 2collision-actors:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
             <span class="n">colliding_actors_pairs</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, current_colliding:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_colliding_actors_pairs</span><span class="p">))</span>
 
-<div class="viewcode-block" id="GameGrid.actors_are_colliding"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.actors_are_colliding">[Doku]</a>    <span class="k">def</span> <span class="nf">actors_are_colliding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor1</span><span class="p">,</span> <span class="n">actor2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Überprüft, ob zwei Actors kollidieren</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        actor1 gamegrid.Actor</span>
-<span class="sd">            Der erste Actor</span>
-<span class="sd">        actor2 gamegrid.Actor</span>
-<span class="sd">            Der zweite Actor</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        bool</span>
-<span class="sd">            True, falls es eine Überschneidung gibt.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">actor1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">actor2</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">actor1</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">colliderect</span><span class="p">(</span><span class="n">actor2</span><span class="o">.</span><span class="n">rect</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;gamegrid.collision_bounding_box: colliding&quot;</span><span class="p">)</span>
-                <span class="k">return</span> <span class="kc">True</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;gamegrid.collision_bounding_box: not colliding&quot;</span><span class="p">)</span>
-                <span class="k">return</span> <span class="kc">False</span></div>
-
 <div class="viewcode-block" id="GameGrid.get_bounding_box_collision"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.get_bounding_box_collision">[Doku]</a>    <span class="k">def</span> <span class="nf">get_bounding_box_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gibt einen Actor zurück, dessen Bounding-Boxes mit dem angegebenen Akteur</span>
@@ -859,6 +849,31 @@
 
         <span class="k">return</span> <span class="n">colliding_actors</span></div>
 
+<div class="viewcode-block" id="GameGrid.actors_are_colliding"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.actors_are_colliding">[Doku]</a>    <span class="k">def</span> <span class="nf">actors_are_colliding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor1</span><span class="p">,</span> <span class="n">actor2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft, ob zwei Actors kollidieren</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        actor1 gamegrid.Actor</span>
+<span class="sd">            Der erste Actor</span>
+<span class="sd">        actor2 gamegrid.Actor</span>
+<span class="sd">            Der zweite Actor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True, falls es eine Überschneidung gibt.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">actor1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">actor2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">actor1</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">colliderect</span><span class="p">(</span><span class="n">actor2</span><span class="o">.</span><span class="n">rect</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;gamegrid.collision_bounding_box: colliding&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;gamegrid.collision_bounding_box: not colliding&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span></div>
+
     <span class="c1"># deprecated</span>
     <span class="k">def</span> <span class="nf">__get_bounding_box_collisions__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -871,9 +886,12 @@
                 <span class="k">return</span> <span class="n">partner</span>
         <span class="k">return</span> <span class="kc">None</span>
 
+    <span class="c1"># deprecated</span>
 <div class="viewcode-block" id="GameGrid.get_all_actors_at_location"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.get_all_actors_at_location">[Doku]</a>    <span class="k">def</span> <span class="nf">get_all_actors_at_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gebe alle Akteure an den angegebenen Zellenkoordinaten zurück</span>
+<span class="sd">        .. deprecated:: 0.5.0</span>
+<span class="sd">            Use sublass cellgrid instead</span>
 
 <span class="sd">        :param location: Die Zellenkordinaten als Tupel (x,y)</span>
 <span class="sd">        :param class_name: Den Klassennamen, nachdem gefiltert werden soll</span>
@@ -884,6 +902,9 @@
             <span class="k">if</span> <span class="n">actor</span><span class="o">.</span><span class="n">location</span> <span class="o">==</span> <span class="n">location</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">class_name</span> <span class="ow">is</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">actor</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="n">class_name</span><span class="p">:</span>
                     <span class="n">actors_at_location</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+
+
+
         <span class="k">return</span> <span class="n">actors_at_location</span></div>
 
 <div class="viewcode-block" id="GameGrid.is_location_in_grid"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.is_location_in_grid">[Doku]</a>    <span class="k">def</span> <span class="nf">is_location_in_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
@@ -938,7 +959,6 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">no_logic</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">clock</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
 
-
 <div class="viewcode-block" id="GameGrid.repaint_area"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.repaint_area">[Doku]</a>    <span class="k">def</span> <span class="nf">repaint_area</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rect</span><span class="p">:</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Zeichnet den gewählten Bereich neu</span>
@@ -954,7 +974,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">schedule_repaint</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GameGrid.remove_actor"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.remove_actor">[Doku]</a>    <span class="k">def</span> <span class="nf">remove_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cell</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="GameGrid.remove_actor"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.remove_actor">[Doku]</a>    <span class="k">def</span> <span class="nf">remove_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Entfernt einen Akteur aus dem Grid</span>
 
@@ -962,18 +982,11 @@
 <span class="sd">        :param cell: Entfernt alle Akteure an einer Zelle (actor wird dann ignoriert)</span>
 <span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">cell</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">actor</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">actors_at_cell</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_actors_at_location</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;gamegrid.remove_actor(): Remove actor at: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">actor</span> <span class="ow">in</span> <span class="n">actors_at_cell</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;gamegrid.remove_actor() : remove_actor&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; wird gelöscht...&quot;</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_actors</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
-                    <span class="n">actor</span><span class="o">.</span><span class="n">_remove_from_grid</span><span class="p">()</span>
-                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;gamegrid.remove_actor() : Nicht in Liste vorhanden&quot;</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="n">actor</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_actors</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+            <span class="n">actor</span><span class="o">.</span><span class="n">__grid__</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Parameter actor can&#39;t be none (except cell is given)&quot;</span><span class="p">)</span></div>
+
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">log</span><span class="p">():</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
@@ -1228,6 +1241,67 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Das Cell-Grid ist gedacht für Grids, deren Zellen größer als 1 Pixel sind.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">cell_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+                 <span class="n">columns</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">background_color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">cell_color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                 <span class="n">img_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">img_action</span><span class="o">=</span><span class="s2">&quot;upscale&quot;</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">toolbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">console</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">actionbar</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_collision_actors</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_static_collision_actors</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_actors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cell_size</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">margin</span><span class="p">,</span> <span class="n">background_color</span><span class="p">,</span> <span class="n">cell_color</span><span class="p">,</span>
+                         <span class="n">img_path</span><span class="p">,</span><span class="n">img_action</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">toolbar</span><span class="p">,</span> <span class="n">console</span><span class="p">,</span> <span class="n">actionbar</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_collision_actors</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">actor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_actors</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_collision_actors</span><span class="p">[(</span><span class="n">actor</span><span class="o">.</span><span class="n">get_x</span><span class="p">(),</span> <span class="n">actor</span><span class="o">.</span><span class="n">get_y</span><span class="p">())]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_collision</span><span class="p">()</span>
+
+<div class="viewcode-block" id="CellGrid.remove_actor"><a class="viewcode-back" href="../../classes/grid/CellGrid.html#gamegridp.gamegrid.CellGrid.remove_actor">[Doku]</a>    <span class="k">def</span> <span class="nf">remove_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">actor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_actors</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_actors</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">actor</span> <span class="ow">in</span>  <span class="bp">self</span><span class="o">.</span><span class="n">_static_collision_actors</span><span class="p">[(</span><span class="n">actor</span><span class="o">.</span><span class="n">get_x</span><span class="p">(),</span> <span class="n">actor</span><span class="o">.</span><span class="n">get_y</span><span class="p">())]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_static_collision_actors</span><span class="p">[(</span><span class="n">actor</span><span class="o">.</span><span class="n">get_x</span><span class="p">(),</span> <span class="n">actor</span><span class="o">.</span><span class="n">get_y</span><span class="p">())]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">remove_actor</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CellGrid.add_actor"><a class="viewcode-back" href="../../classes/grid/CellGrid.html#gamegridp.gamegrid.CellGrid.add_actor">[Doku]</a>    <span class="k">def</span> <span class="nf">add_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">actor</span><span class="o">.</span><span class="n">is_static</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_static_collision_actors</span><span class="p">[(</span><span class="n">actor</span><span class="o">.</span><span class="n">get_x</span><span class="p">(),</span> <span class="n">actor</span><span class="o">.</span><span class="n">get_y</span><span class="p">())]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_actors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_actor</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">update_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="s2">&quot;is_static&quot;</span> <span class="ow">and</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_static_collision_actors</span><span class="p">[(</span><span class="n">actor</span><span class="o">.</span><span class="n">get_x</span><span class="p">(),</span> <span class="n">actor</span><span class="o">.</span><span class="n">get_y</span><span class="p">())]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">actor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_collision_actors</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_collision_actors</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_actors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_update_actor</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="CellGrid.get_all_actors_at_location"><a class="viewcode-back" href="../../classes/grid/CellGrid.html#gamegridp.gamegrid.CellGrid.get_all_actors_at_location">[Doku]</a>    <span class="k">def</span> <span class="nf">get_all_actors_at_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gebe alle Akteure an den angegebenen Zellenkoordinaten zurück</span>
+
+<span class="sd">        :param location: Die Zellenkordinaten als Tupel (x,y)</span>
+<span class="sd">        :param class_name: Den Klassennamen, nachdem gefiltert werden soll</span>
+<span class="sd">        :return: Eine Liste aller Akteure (mit der angegebenen Klasse) an der Position.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">actors_at_location</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_collision_actors</span><span class="p">[</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]]:</span>
+                <span class="n">actors_at_location</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_non_static_collision_actors</span><span class="p">[(</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_static_collision_actors</span><span class="p">[</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]]:</span>
+                <span class="n">actors_at_location</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_static_collision_actors</span><span class="p">[(</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Cellgrid: get_all_actors_at_location() : No actor at location&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">class_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">actors_at_location</span> <span class="o">=</span> <span class="p">[</span><span class="n">actor</span> <span class="k">for</span> <span class="n">actor</span> <span class="ow">in</span> <span class="n">actors_at_location</span> <span class="k">if</span> <span class="n">actor</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="n">class_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">actors_at_location</span></div>
+
 <div class="viewcode-block" id="CellGrid.add_cell_image"><a class="viewcode-back" href="../../classes/grid/CellGrid.html#gamegridp.gamegrid.CellGrid.add_cell_image">[Doku]</a>    <span class="k">def</span> <span class="nf">add_cell_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fügt ein Bild zu einer einzelnen Zelle hinzu</span>
@@ -1239,6 +1313,7 @@
         <span class="n">cell_image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
         <span class="n">cell_image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">cell_image</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">cell_image</span><span class="p">,</span> <span class="p">(</span><span class="n">top_left</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">top_left</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">))</span></div></div>
+
 
 
 <div class="viewcode-block" id="GUIGrid"><a class="viewcode-back" href="../../classes/grid/GUIGrid.html#gamegridp.gamegrid.GUIGrid">[Doku]</a><span class="k">class</span> <span class="nc">GUIGrid</span><span class="p">(</span><span class="n">GameGrid</span><span class="p">):</span>

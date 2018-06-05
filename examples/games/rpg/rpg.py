@@ -1,6 +1,6 @@
 import gamegridp
 
-class MyGrid(gamegridp.GUIGrid):
+class MyGrid(gamegridp.GUIGrid, gamegridp.CellGrid):
     """My Grid with custom setup method."""
     def setup(self):
         for i in range(self.rows):
@@ -90,6 +90,7 @@ class Fireplace(gamegridp.Actor):
     def setup(self):
         self.set_image("rpgimages/fireplace_0.png")
         self.burning = False
+        self.is_static = True
 
     def burn(self):
         if self.burning == False:
@@ -105,6 +106,7 @@ class Door(gamegridp.Actor):
         self.set_image("rpgimages/door_closed.png")
         self.is_blocking = True
         self.closed = True
+        self.is_static = True
 
     def open(self):
         if self.closed == True:
