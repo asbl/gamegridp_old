@@ -7,514 +7,7 @@
     <bookmark url="file://$PROJECT_DIR$/docs/tutorial/02_basic_framework.rst" line="39" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/classes/Actor.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/classes/GameGrid.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/classes/Toolbar.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/classes/actionbar.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/classes/console.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/classes/grid/CellGrid.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/classes/grid/DatabaseGrid.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/classes/grid/GUIGrid.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/classes/grid/PixelGrid.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/environment.pickle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/examples.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/examples/rpg.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/impressum.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/index.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/install.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/klassen.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/01_first_step.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/02_basic_framework.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/03_animations.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/04_tastatureingaben.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/05_maus_eingaben.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/06 Bewegungen im Grid.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/07 Drehungen.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/08 Kollisionen.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/09 Die Toolbar.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/10 Die Konsole.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/11 Pop Ups.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/12 pixel_games.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/doctrees/tutorial/13 Datenbankanbindung.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/.buildinfo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_images/basis_framework.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_images/boxes.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_images/createtheworld.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_images/roboanimation.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_images/rocket.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_images/winkel.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_modules/gamegridp/actor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_modules/gamegridp/gamegrid.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_modules/gamegridp/gamegrid_toolbar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_modules/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/classes/Actor.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/classes/GameGrid.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/classes/Toolbar.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/classes/actionbar.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/classes/console.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/classes/grid/CellGrid.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/classes/grid/DatabaseGrid.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/classes/grid/GUIGrid.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/classes/grid/PixelGrid.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/examples.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/examples/rpg.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/impressum.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/index.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/install.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/klassen.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/01_first_step.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/02_basic_framework.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/03_animations.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/04_tastatureingaben.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/05_maus_eingaben.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/06 Bewegungen im Grid.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/07 Drehungen.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/08 Kollisionen.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/09 Die Toolbar.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/10 Die Konsole.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/11 Pop Ups.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/12 pixel_games.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_sources/tutorial/13 Datenbankanbindung.rst.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/_stemmer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/ajax-loader.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/basic.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/comment-bright.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/comment-close.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/comment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/css/badge_only.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/css/theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/doctools.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/documentation_options.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/down-pressed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/down.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/Inconsolata-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/Inconsolata-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/Lato-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/Lato-BoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/Lato-Italic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/Lato-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/RobotoSlab-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/RobotoSlab-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/fonts/fontawesome-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/jquery-3.2.1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/js/modernizr.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/js/theme.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/minus.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/plus.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/pygments.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/searchtools.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/translations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/underscore-1.3.1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/underscore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/up-pressed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/up.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/_static/websupport.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/classes/Actor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/classes/GameGrid.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/classes/Toolbar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/classes/actionbar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/classes/console.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/classes/grid/CellGrid.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/classes/grid/DatabaseGrid.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/classes/grid/GUIGrid.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/classes/grid/PixelGrid.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/examples.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/examples/rpg.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/genindex.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/impressum.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/install.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/klassen.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/objects.inv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/search.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/searchindex.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/01_first_step.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/02_basic_framework.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/03_animations.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/04_tastatureingaben.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/05_maus_eingaben.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/06 Bewegungen im Grid.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/07 Drehungen.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/08 Kollisionen.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/09 Die Toolbar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/10 Die Konsole.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/11 Pop Ups.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/12 pixel_games.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/tutorial/13 Datenbankanbindung.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_images/asteroids.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_images/basis_framework.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_images/boxes.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_images/createtheworld.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_images/roboanimation.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_images/rocket.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/_images/winkel.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/classes/Actor.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/classes/GameGrid.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/classes/Toolbar.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/classes/actionbar.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/classes/console.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/classes/grid/CellGrid.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/classes/grid/DatabaseGrid.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/classes/grid/GUIGrid.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/classes/grid/PixelGrid.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/conf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/examples.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/examples/rpg.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/impressum.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/index.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/install.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/klassen.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/make.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/01_first_step.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/02_basic_framework.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/03_animations.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/04_tastatureingaben.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/05_maus_eingaben.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/06 Bewegungen im Grid.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/07 Drehungen.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/08 Kollisionen.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/09 Die Toolbar.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/10 Die Konsole.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/11 Pop Ups.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/12 pixel_games.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/docs/tutorial/13 Datenbankanbindung.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/asteroids/asteroids.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpg.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgimages/door_closed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgimages/door_open.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgimages/fireplace_0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgimages/fireplace_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgimages/fireplace_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgimages/grass.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgimages/knight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgimages/torch.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgimages/wall.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgsounds/bensound-betterdays.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgsounds/bensounds-betterdays-license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgsounds/fireplace.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/games/rpg/rpgsounds/olddoor.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/gui/images/arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/gui/images/chip.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/gui/images/ship.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/gui/spinning_wheel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/gui/toolbar_rocket.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/bouncing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/flipthefish.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/getkey.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/moveincells.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/profile.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/roboanimation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/thecrash.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/pixelbased/roboracing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/pixelbased/roboracing2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/robot/create_the_world.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/robot/images/save.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/robot/images/stone_blue.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/robot/images/stone_gold.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/robot/images/stone_green.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/robot/py_karol_the_robot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/robot/robodatabase.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/gamegrid_actionbar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/gamegrid_console.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/gamegrid_toolbar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/GameGridP-0.4.0.10-py3.6.egg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/GameGridP-0.4.0.10.tar.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/GameGridP-0.4.0.11-py3.6.egg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/GameGridP-0.4.0.11.tar.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/GameGridP-0.4.0.9.tar.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.0.5.tar.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.4.0.0-py3.6.egg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.4.0.0.tar.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.4.0.4-py3.6.egg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.4.0.4.tar.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.4.0.5-py3.6.egg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.4.0.5.tar.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.4.0.8-py3.6.egg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.4.0.8.tar.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.4.0.9-py3.6.egg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/basics/basicbackgrounds.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/basics/basicframework.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/basics/basicgridobject.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/games/images/asteroid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/games/images/explosion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/games/images/galaxy.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/games/images/ship.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/char_blue.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/soccer_green.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/water.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/images/asteroid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/images/char_blue.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/images/explosion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/images/fish.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/images/galaxy.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/images/robo_green.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/images/robo_yellow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/images/robot_blue1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/images/robot_blue2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/images/soccer_green.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/images/stone.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/images/water.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/pixelbased/images/char_blue.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/pixelbased/images/robo_green.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/pixelbased/images/soccer_green.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/pixelbased/images/stone.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/pixelbased/move_in_pixels.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/robot/images/robo_green.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/robot/images/rock.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/robot/images/stone.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/.idea/gamegridp.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/MANIFEST.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/actor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/data/down.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/data/left.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/data/question.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/data/right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/data/up.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/gamegrid.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/keys.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/datagrid.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/dist/gamegridp-0.3.1.9-py3.6.egg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/dist/gamegridp-0.3.1.9.tar.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegrid_actionbar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegrid_console.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegrid_toolbar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/actor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/down.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/down.xcf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/left.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/left.xcf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/pause.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/play.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/question.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/question.xcf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/reset.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/right.xcf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/run.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/template.xcf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/up.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/data/up.xcf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/gamegrid.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/window.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/keys.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/logo_small.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/gamegridp/logo_small.vsdx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/install.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/snippets/actor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/snippets/gamegridTest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamegridp/upload.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/actor.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/actor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid_toolbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/gamegridp/gamegrid_toolbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/.idea/gamegridp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/.idea/gamegridp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid_toolbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid_toolbar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/keys.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/keys.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/dist/GameGridP-0.4.0.11-py3.6.egg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/dist/GameGridP-0.4.0.11-py3.6.egg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/basics/basicframework.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/basics/basicframework.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/debug/debug_script.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/debug/debug_script.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/debug/debug_script.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/debug/debug_script2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/debug/debug_script2.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/debug/debug_script2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/asteroids.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/asteroids.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/games/asteroids.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/images/asteroid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/images/asteroid.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/games/asteroids/images/asteroid.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/images/explosion.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/images/explosion.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/games/asteroids/images/explosion.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/images/galaxy.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/images/galaxy.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/games/asteroids/images/galaxy.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/images/ship.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/images/ship.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/games/asteroids/images/ship.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/rpg.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/rpg.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/games/rpg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/rpgimages/stone.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/games/rpgimages/stone.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/games/rpgimages/stone.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/background1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/background1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/background1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/backgrounds.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/backgrounds.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/backgrounds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/basicframework.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/basicframework.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/basicframework.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/char_blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/char_blue.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/images/char_blue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/first_program.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/first_program.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/first_program.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/fish.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/fish.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/images/fish.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/movingactor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/movingactor.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/movingactor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/python.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/python.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/python.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/roboracing.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/roboracing.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/roboracing.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/soccer_green.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/soccer_green.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/images/soccer_green.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/t7t5yD3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/t7t5yD3.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/t7t5yD3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/water.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/water.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/basics/images/water.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/water.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/images/water.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/images/water.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/bouncing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/bouncing.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/bouncing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/bouncing2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/bouncing2.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/bouncing2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/flipthefish.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/flipthefish.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/flipthefish.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/asteroid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/asteroid.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/images/asteroid.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/char_blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/char_blue.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/pixelbased/images/char_blue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/explosion.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/explosion.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/images/explosion.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/fish.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/fish.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/fish.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/galaxy.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/galaxy.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/images/galaxy.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/robo_green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/robo_green.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/images/robo_green.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/robo_yellow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/robo_yellow.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/images/robo_yellow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/robot_blue1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/robot_blue1.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/images/robot_blue1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/robot_blue2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/robot_blue2.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/images/robot_blue2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/soccer_green.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/soccer_green.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/pixelbased/images/soccer_green.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/stone.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/stone.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/moving/images/stone.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/water.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/images/water.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/images/water.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/moveincells.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/moveincells.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/moveincells.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/roboanimation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/roboanimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/roboanimation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/thecrash.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/moving/thecrash.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/moving/thecrash.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/images/char_blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/images/char_blue.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/basics/images/char_blue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/images/robo_green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/images/robo_green.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/pixelbased/images/robo_green.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/images/soccer_green.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/images/soccer_green.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/basics/images/soccer_green.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/images/stone.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/images/stone.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/pixelbased/images/stone.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/move_in_pixels.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/move_in_pixels.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/pixelbased/move_in_pixels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/roboracing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/roboracing.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/pixelbased/roboracing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/roboracing2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/pixelbased/roboracing2.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/pixelbased/roboracing2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/create_world.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/create_world.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/robot/create_world.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/create_world2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/create_world2.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/robot/create_world2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/create_world3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/create_world3.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/robot/create_world3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/create_world4.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/create_world4.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/robot/create_world4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/images/robo_green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/images/robo_green.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/robot/images/robo_green.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/images/rock.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/images/rock.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/robot/images/rock.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/images/stone.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/images/stone.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/examples/snippets/robot/images/stone.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/py_karol_the_robot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/py_karol_the_robot.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/robot/py_karol_the_robot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/robodatabase.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/examples/robot/robodatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/examples/robot/robodatabase.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/gamegrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/gamegrid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/keys.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/keys.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/window.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/build/lib/gamegridp/window.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/docs/_build/html/.nojekyll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.0.30-py3.6.egg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.0.30-py3.6.egg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/dist/gamegridp-0.3.0.30-py3.6.egg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.0.30.tar.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.0.30.tar.gz" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/dist/gamegridp-0.3.0.30.tar.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.0.31-py3.6.egg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.0.31-py3.6.egg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/dist/gamegridp-0.3.0.31-py3.6.egg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.0.32-py3.6.egg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.0.32-py3.6.egg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/dist/gamegridp-0.3.0.32-py3.6.egg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.1.6-py3.6.egg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.1.6-py3.6.egg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/dist/gamegridp-0.3.1.6-py3.6.egg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.1.6.tar.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.1.6.tar.gz" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/dist/gamegridp-0.3.1.6.tar.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.1.7-py3.6.egg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.1.7-py3.6.egg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/dist/gamegridp-0.3.1.7-py3.6.egg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.1.8-py3.6.egg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.1.8-py3.6.egg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/dist/gamegridp-0.3.1.8-py3.6.egg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.1.8.tar.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/dist/gamegridp-0.3.1.8.tar.gz" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/dist/gamegridp-0.3.1.8.tar.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp.egg-info/PKG-INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp.egg-info/PKG-INFO" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp.egg-info/SOURCES.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp.egg-info/SOURCES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp.egg-info/SOURCES.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp.egg-info/dependency_links.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp.egg-info/dependency_links.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp.egg-info/dependency_links.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp.egg-info/requires.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp.egg-info/requires.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp.egg-info/requires.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp.egg-info/top_level.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp.egg-info/top_level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp.egg-info/top_level.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/data/pause.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/data/pause.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/data/pause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/data/play.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/data/play.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/data/play.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/data/reset.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/data/reset.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/data/reset.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/data/run.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/data/run.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/data/run.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegrid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/keys.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/gamegridp/keys.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/keys.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/keys.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/window.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/window.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/build/lib/gamegridp/window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/keys.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/keys.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/logo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/logo.vsdx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/logo.vsdx" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegridp/logo.vsdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/setup.py" afterDir="false" />
-    </list>
+    <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -541,8 +34,8 @@
       <file leaf-file-name="gamegrid.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="277">
+              <caret line="1133" column="65" selection-start-line="1133" selection-start-column="65" selection-end-line="1133" selection-end-column="65" />
               <folding>
                 <element signature="e#84#98#0" expanded="true" />
               </folding>
@@ -550,52 +43,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="987">
-              <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
-            </state>
-          </provider>
+      <file leaf-file-name="LICENSE.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gamegridp/LICENSE.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/__init__.py">
+      <file leaf-file-name="actor.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/actor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="10206">
+              <caret line="670" column="14" selection-start-line="670" selection-start-column="14" selection-end-line="670" selection-end-column="14" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#85#99#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/setup.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bouncing.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/snippets/moving/bouncing.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="asteroids.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/games/asteroids/asteroids.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1155">
-              <caret line="58" column="12" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -609,13 +69,40 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gamegridp/setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+            <state relative-caret-position="370">
+              <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MANIFEST.in" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gamegridp/MANIFEST.in">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="LICENSE.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LICENSE.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="357">
+                <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="install.bat" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/install.bat">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -629,14 +116,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>_actors_remo</find>
       <find>remove_from_gri</find>
       <find>_actors</find>
       <find>remove</find>
-      <find />
       <find>actor</find>
       <find>static</find>
-      <find />
+      <find>add_ac</find>
       <find>remove(</find>
       <find>get_x</find>
       <find>front</find>
@@ -646,19 +131,21 @@
       <find>add_</find>
       <find>add_act</find>
       <find>is_static</find>
-      <find>cellgrid</find>
       <find>cellGrid</find>
       <find>update_actorupda</find>
       <find>is_sta</find>
-      <find />
+      <find>if i</find>
       <find>update</find>
-      <find />
+      <find>def add_actor(self, actor, location=None):update</find>
       <find>update_ac</find>
       <find>collide</find>
       <find>collision_partners</find>
       <find>get_all_coll</find>
       <find>can</find>
       <find>get_lo</find>
+      <find>cellgrid</find>
+      <find>_call</find>
+      <find>call_coll</find>
     </findStrings>
     <replaceStrings>
       <replace>screen</replace>
@@ -668,17 +155,14 @@
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/gamegridp" />
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="0.4" />
-      </map>
-    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/docs/tutorial/06_Bewegungen im Grid.rst" />
         <option value="$PROJECT_DIR$/docs/conf.py" />
         <option value="$PROJECT_DIR$/docs/tutorial/07 Kollisionen.md" />
+        <option value="$PROJECT_DIR$/examples/games/asteroids/asteroids.py" />
         <option value="$PROJECT_DIR$/examples/snippets/pixelbased/roboracing2.py" />
         <option value="$PROJECT_DIR$/examples/snippets/moving/flipthefish.py" />
         <option value="$PROJECT_DIR$/upload.bat" />
@@ -724,14 +208,12 @@
         <option value="$PROJECT_DIR$/snippets/actor.py" />
         <option value="$PROJECT_DIR$/examples/games/rpg/rpg.py" />
         <option value="$PROJECT_DIR$/gamegridp/gamegridp/actor.py" />
-        <option value="$PROJECT_DIR$/gamegridp/setup.py" />
         <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" />
-        <option value="$PROJECT_DIR$/examples/games/asteroids/asteroids.py" />
-        <option value="$PROJECT_DIR$/gamegridp/gamegridp/setup.py" />
+        <option value="$PROJECT_DIR$/gamegridp/setup.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1940" />
@@ -749,6 +231,81 @@
             <path>
               <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
               <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="_images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="tutorial" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="games" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="games" type="462c0819:PsiDirectoryNode" />
+              <item name="rpg" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="snippets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="snippets" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="snippets" type="462c0819:PsiDirectoryNode" />
+              <item name="moving" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="snippets" type="462c0819:PsiDirectoryNode" />
+              <item name="pixelbased" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="snippets" type="462c0819:PsiDirectoryNode" />
+              <item name="robot" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
@@ -779,14 +336,14 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Course" />
       <pane id="Scope" />
+      <pane id="Course" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/gamegridp/gamegridp/actor.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/gamegridp/gamegridp/actor.py" />
   </component>
   <component name="RecentsManager">
@@ -813,7 +370,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.bouncing">
+  <component name="RunManager" selected="Python.thecrash">
     <configuration name="Create the world" type="PythonConfigurationType" factoryName="Python">
       <module name="gamegridp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -1158,29 +715,20 @@
       <option name="project" value="LOCAL" />
       <updated>1526055933542</updated>
     </task>
-    <task id="LOCAL-00007" summary="updated collision detection.">
-      <created>1528292377031</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1528292377031</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7166362" visible="true" weight="0.27891606" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7129799" visible="true" weight="0.27891606" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49966952" weight="0.26131386" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5089227" side_tool="true" visible="true" weight="0.20145985" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4970258" weight="0.31970802" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49107733" visible="true" weight="0.20145985" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49834764" weight="0.329927" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4957039" weight="0.31970802" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49107733" weight="0.20145985" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.329927" />
-      <window_info id="Structure" order="1" sideWeight="0.2833638" side_tool="true" visible="true" weight="0.27891606" />
+      <window_info id="Structure" order="1" sideWeight="0.28702012" side_tool="true" visible="true" weight="0.27891606" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4970258" weight="0.32846716" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -1188,6 +736,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.32918397" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.26211452" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -1218,11 +767,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="CHECK_NEW_TODO" value="false" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="foundation for animations" />
     <MESSAGE value="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint" />
-    <MESSAGE value="updated collision detection." />
-    <option name="LAST_COMMIT_MESSAGE" value="updated collision detection." />
+    <option name="LAST_COMMIT_MESSAGE" value="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1243,10 +791,10 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/examples/rpg.rst">
+    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="168">
+          <caret line="8" column="117" selection-start-line="8" selection-start-column="117" selection-end-line="8" selection-end-column="117" />
         </state>
       </provider>
     </entry>
@@ -1369,21 +917,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/bouncing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gamegridp/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="189">
             <caret line="9" selection-start-line="9" selection-end-line="9" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="294">
-            <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
           </first_editor>
           <second_editor />
         </state>
@@ -1471,9 +1016,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1495,9 +1044,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1524,20 +1070,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/games/rpg/rpg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
+        <state relative-caret-position="1827">
           <caret line="87" selection-start-line="87" selection-end-line="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/actor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="652" column="14" selection-start-line="652" selection-start-column="8" selection-end-line="652" selection-end-column="14" />
+        <state relative-caret-position="10206">
+          <caret line="670" column="14" selection-start-line="670" selection-start-column="14" selection-end-line="670" selection-end-column="14" />
+          <folding>
+            <element signature="e#85#99#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/datagrid.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/snippets/pixelbased/move_in_pixels.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1550,65 +1103,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="277">
+          <caret line="1133" column="65" selection-start-line="1133" selection-start-column="65" selection-end-line="1133" selection-end-column="65" />
           <folding>
             <element signature="e#84#98#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="987">
-          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+    <entry file="file://$PROJECT_DIR$/gamegridp/LICENSE.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/MANIFEST.in">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="357">
+            <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/bouncing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/games/asteroids/asteroids.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="58" column="12" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/install.bat">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/gamegridp/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="370">
+          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
         </state>
       </provider>
     </entry>

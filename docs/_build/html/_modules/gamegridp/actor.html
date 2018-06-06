@@ -155,7 +155,7 @@
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">math</span>
-
+<span class="kn">import</span> <span class="nn">cProfile</span>
 <span class="kn">import</span> <span class="nn">pygame</span>
 
 
@@ -215,7 +215,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">animation_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">speed</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">animation_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">speed</span><span class="o">/</span><span class="mi">2</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_animated</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_blocking</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_collision_partners</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Group</span><span class="p">()</span>
@@ -301,6 +301,7 @@
             <span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
         <span class="k">return</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
 
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -375,11 +376,11 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actor_id</span>
 
     <span class="nd">@actor_id</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">actor_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">actor_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_actor_id</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">rect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">rect</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gibt die umgebene Bounding-Box um den Akteur zurück.</span>
 
@@ -488,7 +489,8 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;actor.image_next() : Image Index:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
 
     <span class="k">def</span> <span class="nf">__rotate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -593,11 +595,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
-    <span class="k">def</span> <span class="nf">get_bounding_box_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_bounding_box_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">get_bounding_box_collision</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_all_bounding_box_collisions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">get_all_collisions_for_actor</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_all_bounding_box_collisions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">get_all_bounding_box_collisions</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Actor.flip_x"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.flip_x">[Doku]</a>    <span class="k">def</span> <span class="nf">flip_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -628,6 +630,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
         <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;actor.flip_x : Index Error in __flip_x__() in: Image Index is out of bounds&quot;</span><span class="p">)</span>
+
 
 <div class="viewcode-block" id="Actor.set_rotatable"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.set_rotatable">[Doku]</a>    <span class="k">def</span> <span class="nf">set_rotatable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -694,6 +697,9 @@
         <span class="k">if</span> <span class="n">actors_at_location</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">actors_at_location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
 
+
+
+
     <span class="k">def</span> <span class="nf">__image_transform__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Should be called before main-loop</span>
@@ -717,6 +723,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">cropped_surface</span>
         <span class="k">elif</span> <span class="n">img_action</span> <span class="o">==</span> <span class="s2">&quot;do_nothing&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">]</span>
+
+
 
     <span class="k">def</span> <span class="nf">__image_rect__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -805,6 +813,8 @@
 <span class="sd">        :return: the location as tuple</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span></div>
+
+
 
 <div class="viewcode-block" id="Actor.set_x"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.set_x">[Doku]</a>    <span class="k">def</span> <span class="nf">set_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1072,7 +1082,7 @@
         <span class="c1"># check if target is not blocked</span>
         <span class="n">actors_at_position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">get_all_actors_at_location</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">actor</span> <span class="ow">in</span> <span class="n">actors_at_position</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">actor</span><span class="p">:</span>  <span class="c1"># list is not none?</span>
+            <span class="k">if</span> <span class="n">actor</span><span class="p">:</span> <span class="c1">#list is not none?</span>
                 <span class="k">if</span> <span class="n">actor</span><span class="o">.</span><span class="n">is_blocking</span><span class="p">:</span>
                     <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="n">valid</span></div>
@@ -1106,6 +1116,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">remove_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">del</span> <span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+
+
+
 </pre></div>
 
            </div>
