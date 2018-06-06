@@ -1,0 +1,999 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Actor &mdash; gamegridp 2018 Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="GameGrid" href="GameGrid.html" />
+    <link rel="prev" title="Klassen" href="../klassen.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> gamegridp
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Inhalte</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../klassen.html">Klassen</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Actor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GameGrid.html">GameGrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Toolbar.html">Toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actionbar.html">Actionbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console.html">Console</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../impressum.html">Impressum</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">gamegridp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../klassen.html">Klassen</a> &raquo;</li>
+        
+      <li>Actor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/classes/Actor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="actor">
+<h1>Actor<a class="headerlink" href="#actor" title="Link zu dieser Überschrift">¶</a></h1>
+<dl class="class">
+<dt id="gamegridp.actor.Actor">
+<em class="property">class </em><code class="descclassname">gamegridp.actor.</code><code class="descname">Actor</code><span class="sig-paren">(</span><em>grid</em>, <em>location: tuple = (0</em>, <em>0)</em>, <em>color: tuple = (0</em>, <em>0</em>, <em>255)</em>, <em>title: str = 'Actor'</em>, <em>img_path: str = None</em>, <em>size: tuple = (40</em>, <em>40)</em>, <em>img_action: str = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor" title="Link zu dieser Definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Ein Actor ist eine Spielfigur oder ein Objekt in der Welt,</dt>
+<dd>z.B. ein Auto, eine Wand, ein Untergrund.</dd>
+</dl>
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.grid">
+<code class="descname">grid</code><a class="headerlink" href="#gamegridp.actor.Actor.grid" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>Grid</em> – Das Spielfeld in dem der Actor sich befindet.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.color">
+<code class="descname">color</code><a class="headerlink" href="#gamegridp.actor.Actor.color" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>(r,g,b)</em> – Die Farbe des Actors (falls dieser über k
+ein Hintergrundbild verfügt.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.title">
+<code class="descname">title</code><a class="headerlink" href="#gamegridp.actor.Actor.title" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>str</em> – Der Name des Actors</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.size">
+<code class="descname">size</code><a class="headerlink" href="#gamegridp.actor.Actor.size" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>(x,y):</em> – Die größe des Actors in Pixeln (x und y)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.direction">
+<code class="descname">direction</code><a class="headerlink" href="#gamegridp.actor.Actor.direction" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>int</em> – Die Richtung als int-Wert zwischen 0° und 360°
+0° bezeichnet dabei einen Blick nach rechts und der Winkel verläuft
+gegen den Uhrzeigersinn.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.is_blocking">
+<code class="descname">is_blocking</code><a class="headerlink" href="#gamegridp.actor.Actor.is_blocking" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>bool</em> – Legt fest, ob der Akteur das Feld für andere Akteure blockiert. Wenn die Variable wahr ist,
+ist es nicht möglich sich über das Feld des Akteurs zu bewegen.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.image_rect">
+<code class="descname">image_rect</code><a class="headerlink" href="#gamegridp.actor.Actor.image_rect" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>Rect</em> – Das Rechteck (Rectangle), welches das Objekt umschließt.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.is_rotatable">
+<code class="descname">is_rotatable</code><a class="headerlink" href="#gamegridp.actor.Actor.is_rotatable" title="Link zu dieser Definition">¶</a></dt>
+<dd><p><em>bool</em> – Wahr, wenn sich das Bild mit der Richtung mitdrehen soll.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.class_name">
+<code class="descname">class_name</code><a class="headerlink" href="#gamegridp.actor.Actor.class_name" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Der Typ des Akteurs - entspricht dem Klassennamen.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.actor_id">
+<code class="descname">actor_id</code><a class="headerlink" href="#gamegridp.actor.Actor.actor_id" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Jeder Akteur hat eine eindeutige ID.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.Methoden">
+<code class="descname">Methoden</code><a class="headerlink" href="#gamegridp.actor.Actor.Methoden" title="Link zu dieser Definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">--------</code></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.act">
+<code class="descname">act</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.act"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.act" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überschreibe diese Methode in deinen eigenen Actor-Klassen</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.add_collision_partner">
+<code class="descname">add_collision_partner</code><span class="sig-paren">(</span><em>partner</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.add_collision_partner"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.add_collision_partner" title="Link zu dieser Definition">¶</a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified">Veraltet ab Version 0.4.0: </span><cite>add_collision_partner</cite> wird in GameGrid 0.6 ersetzt werden.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.add_image">
+<code class="descname">add_image</code><span class="sig-paren">(</span><em>img_path: str</em>, <em>img_action: str = None</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.add_image"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.add_image" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Ergänzt ein einzelnes Bild zu einem Actor. Auf diese Weise können mehrere Bilder hinzugefügt werden.
+Die Animation kann dann mit <em>animate()</em> gestartet werdeb</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>img_path</strong> – Der Pfad des Bildes relativ zum eigenen Dateipfad.</li>
+<li><strong>img_action</strong> – Die Aktion die durchgeführt werden soll: <em>scale</em>, <em>crop</em>, <em>do_nothing</em></li>
+<li><strong>size</strong> – scale/crop : Die Größe des veränderten Bildes as 2-Tupel</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.animate">
+<code class="descname">animate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.animate"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.animate" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Startet eine Animation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.bounding_box_is_in_grid">
+<code class="descname">bounding_box_is_in_grid</code><span class="sig-paren">(</span><em>target: tuple = None</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.bounding_box_is_in_grid"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.bounding_box_is_in_grid" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob die Bounding-Box eines Akteurs (komplett) im Grid ist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.delete_images">
+<code class="descname">delete_images</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.delete_images"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.delete_images" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Löscht alle Bilder eines Akteurs. Dies kann z.B. sinnvoll sein,
+wenn eine neue Animation festgelegt werden soll und dafür die alte
+Animation zuvor gelöscht werden muss.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">direction</code></dt>
+<dd><p><em>int</em> – Legt die Richtung fest, in die der Akteur „schaut“
+0° bezeichnet dabei nach Osten, andere Winkel werden gegen den Uhrzeigersinn angegeben.
+Die Direction kann alternativ auch als String („left“, „right“, „top“, „bottom“  festgelegt werden.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.draw"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.draw" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Zeichnet den Akteur auf das Spielfeld.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.flip_x">
+<code class="descname">flip_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.flip_x"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.flip_x" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Spiegelt das Bild des Akteurs über die y-Achse.
+Der Akteur selbst wird dabei um 180° gedreht.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.get_actor_at_location">
+<code class="descname">get_actor_at_location</code><span class="sig-paren">(</span><em>class_name</em>, <em>location=None</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.get_actor_at_location"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.get_actor_at_location" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt <em>einen</em> Akteur  an der Position zurück.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>class_name</strong> – Der Klassenname nachdem gesucht werden soll als String
+(z.B. alle Akteure vom Typ „Wall“).</li>
+<li><strong>location</strong> – Optional kann eine andere Zellen-Koordinate als
+Tupel (x,y) angegeben werden.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">Der erste Akteur vom angegegebenen Typ.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.get_actor_in_front">
+<code class="descname">get_actor_in_front</code><span class="sig-paren">(</span><em>class_name</em>, <em>distance=1</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.get_actor_in_front"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.get_actor_in_front" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt einen Akteur in x-Feldern Entfernung vor dem aktuellen Akteur zurück.
+(Alternativ kann auch eine beliebige Position abgefragt werden).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>class_name</strong> – Der Klassenname nachdem gesucht werden soll als String
+(z.B. alle Akteure vom Typ „Wall“).</li>
+<li><strong>distance</strong> – Anzahl an Feldern, die nach vorne geschaut werden soll.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">Eine Liste aller Akteure vom angegebenen Typ</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.get_all_actors_at_location">
+<code class="descname">get_all_actors_at_location</code><span class="sig-paren">(</span><em>class_name</em>, <em>location=None</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.get_all_actors_at_location"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.get_all_actors_at_location" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt <em>alle</em> Akteure einer bestimmten Klasse an der selben Position
+wie der aktuelle Akteur zurück
+(Alternativ kann auch eine beliebige Position abgefragt werden).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>class_name</strong> – Der Klassenname nachdem gesucht werden soll als String
+(z.B. alle Akteure vom Typ „Wall“).</li>
+<li><strong>location</strong> – Optional kann eine andere Zellen-Koordinate als
+Tupel (x,y) angegeben werden.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">Eine Liste aller Akteure vom angegebenen Typ</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.get_location">
+<code class="descname">get_location</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; tuple<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.get_location"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.get_location" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt die aktuelle Position des Akteurs zurück</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">the location as tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.get_neighbour_cells">
+<code class="descname">get_neighbour_cells</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.get_neighbour_cells"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.get_neighbour_cells" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt alle 8 umgebenen Zellen zurück.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">Alle Nachbarzellen als Liste.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.get_x">
+<code class="descname">get_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.get_x"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.get_x" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt die x-Koordinate des Akteuers zurück.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>x</strong> – Gibt die x-Koordinate des Akteurs zurück.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.get_y">
+<code class="descname">get_y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.get_y"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.get_y" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt die y-Koordinate des Akteuers zurück.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>y</strong> – Gibt die y-Koordinate des Akteurs zurück</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.has_image">
+<code class="descname">has_image</code><a class="headerlink" href="#gamegridp.actor.Actor.has_image" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Checks if actor has an image
+:return: true if actor has an image, else false</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.image">
+<code class="descname">image</code><a class="headerlink" href="#gamegridp.actor.Actor.image" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gets the actual image of the actor.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">image_rect</code></dt>
+<dd><p><em>return</em> – The surrounding Rectangle used for redrawing and image manipulation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.is_at_border">
+<code class="descname">is_at_border</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.is_at_border"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.is_at_border" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob der Akteur an der Grenze zum Rand ist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">Die zugehörige Grenze als String („left“, „right“, „top“ oder „bottom“)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.is_at_bottom_border">
+<code class="descname">is_at_bottom_border</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.is_at_bottom_border"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.is_at_bottom_border" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob der Akteur an der Grenze zum unteren Rand ist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.is_at_left_border">
+<code class="descname">is_at_left_border</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.is_at_left_border"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.is_at_left_border" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob der Akteur an der Grenze zum linken Rand ist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.is_at_right_border">
+<code class="descname">is_at_right_border</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.is_at_right_border"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.is_at_right_border" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob der Akteur an der Grenze zum rechten Rand ist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.is_at_top_border">
+<code class="descname">is_at_top_border</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.is_at_top_border"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.is_at_top_border" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob der Akteur an der Grenze zum oberen Rand ist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">True oder False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">is_blocking</code></dt>
+<dd><p><em>bool</em> – Legt fest, ob der Akteur das Feld „blockt“, d.h. für
+andere Akteure unpassierbar macht.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.is_in_grid">
+<code class="descname">is_in_grid</code><span class="sig-paren">(</span><em>target: tuple = None</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.is_in_grid"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.is_in_grid" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft ob ein Akteur (bzw. eine gegebene Zellen-Koordinate im Grid ist.</p>
+<p>:param target Überprüft eine beliebige Zellen-Koordinate, ob diese in Grid liegt
+(Falls kein Ziel angegeben ist, wird die Zellen-Koordinate des Akteurs selbst verwendet)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">is_rotatable</code></dt>
+<dd><p>return true if actor-image is rotatable, else false</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.is_valid_move">
+<code class="descname">is_valid_move</code><span class="sig-paren">(</span><em>move_func=None</em>, <em>distance=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.is_valid_move"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.is_valid_move" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Überprüft, ob ein Zug legal ist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>move_func</strong> – Eine move-Funktion, z.B. move, move_back, move_left,…</li>
+<li><strong>distance</strong> – Die Anzahl an Schritten, die der move-Funktion als Parameter übergeben werden sollen.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">True falls Zug legal ist, ansonsten False.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.is_valid_target">
+<code class="descname">is_valid_target</code><span class="sig-paren">(</span><em>target: tuple = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.is_valid_target"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.is_valid_target" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt zurück, ob die angegebene Position einen legalen Zug erlaubt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>target</strong> – Das zu überprüfende Ziel als (x,y)-Tupel
+Wenn kein Ziel angegeben wird, schaut der Akteur ein Feld nach vorne.</td>
+</tr>
+</tbody>
+</table>
+<p>:return True, falls Zug legal ist, ansonsten False</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.listen">
+<code class="descname">listen</code><span class="sig-paren">(</span><em>key</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.listen"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.listen" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Diese Methode sollte in deiner Kind-Klasse überschrieben werden.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.location">
+<code class="descname">location</code><a class="headerlink" href="#gamegridp.actor.Actor.location" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>returns the location of object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.look_back">
+<code class="descname">look_back</code><span class="sig-paren">(</span><em>distance: int = 1</em><span class="sig-paren">)</span> &#x2192; tuple<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.look_back"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.look_back" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Schaut <em>distance</em> Felder nach hinten und gibt die zugehörige Koordinate zurück.</p>
+<p>:param distance : Anzahl an Felder die voraus geschaut wird.</p>
+<p>:return location : Zellenkoordinate als Tuple (x,y)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.look_down">
+<code class="descname">look_down</code><span class="sig-paren">(</span><em>distance: int = 1</em><span class="sig-paren">)</span> &#x2192; tuple<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.look_down"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.look_down" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Schaut <em>distance</em> Felder nach unten und gibt die zugehörige Koordinate zurück.</p>
+<p>:param distance : Anzahl an Felder die voraus geschaut wird.</p>
+<p>:return location : Zellenkoordinate als Tuple (x,y)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.look_forward">
+<code class="descname">look_forward</code><span class="sig-paren">(</span><em>distance: int = 1</em><span class="sig-paren">)</span> &#x2192; tuple<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.look_forward"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.look_forward" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Schaut <em>distance</em> Felder nach vorne und gibt die zugehörige Koordinate zurück.</p>
+<p>:param distance : Anzahl an Felder die voraus geschaut wird.</p>
+<p>:return location : Zellenkoordinate als Tuple (x,y)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.look_left">
+<code class="descname">look_left</code><span class="sig-paren">(</span><em>distance: int = 1</em><span class="sig-paren">)</span> &#x2192; tuple<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.look_left"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.look_left" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Schaut <em>distance</em> Felder nach links und gibt die zugehörige Koordinate zurück.</p>
+<p>:param distance : Anzahl an Felder die voraus geschaut wird.</p>
+<p>:return location : Zellenkoordinate als Tuple (x,y)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.look_right">
+<code class="descname">look_right</code><span class="sig-paren">(</span><em>distance: int = 1</em><span class="sig-paren">)</span> &#x2192; tuple<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.look_right"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.look_right" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Schaut <em>distance</em> Felder nach rechts und gibt die zugehörige Koordinate zurück.</p>
+<p>:param distance : Anzahl an Felder die voraus geschaut wird.</p>
+<p>:return location : Zellenkoordinate als Tuple (x,y)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.look_up">
+<code class="descname">look_up</code><span class="sig-paren">(</span><em>distance: int = 1</em><span class="sig-paren">)</span> &#x2192; tuple<a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.look_up"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.look_up" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Schaut <em>distance</em> Felder nach oben und gibt die zugehörige Koordinate zurück.</p>
+<p>:param distance : Anzahl an Felder die voraus geschaut wird.</p>
+<p>:return location : Zellenkoordinate als Tuple (x,y)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.move">
+<code class="descname">move</code><span class="sig-paren">(</span><em>distance: int = 1</em>, <em>move: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.move"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.move" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Bewegt den Akteur <strong>distance</strong> Schritte vorwärts. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>distance</strong> – Die Anzahl an Schritten die der Akteur vorgehen soll</li>
+<li><strong>move</strong> – Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">Ist der Zug ein valider Zug? True/False</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.move_back">
+<code class="descname">move_back</code><span class="sig-paren">(</span><em>distance: int = 1</em>, <em>move: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.move_back"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.move_back" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Bewegt den Akteur <strong>distance</strong> Schritte rückwärts. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>distance</strong> – Die Anzahl an Schritten die der Akteur vorgehen soll</li>
+<li><strong>move</strong> – Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">Ist der Zug ein valider Zug? True/False</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.move_down">
+<code class="descname">move_down</code><span class="sig-paren">(</span><em>distance=1</em>, <em>move: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.move_down"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.move_down" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Bewegt den Akteur <strong>distance</strong> Schritte nach unten. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>distance</strong> – Die Anzahl an Schritten die der Akteur vorgehen soll</li>
+<li><strong>move</strong> – Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">Ist der Zug ein valider Zug? True/False</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.move_left">
+<code class="descname">move_left</code><span class="sig-paren">(</span><em>distance=1</em>, <em>move: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.move_left"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.move_left" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Bewegt den Akteur <strong>distance</strong> Schritte nach links. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>distance</strong> – Die Anzahl an Schritten die der Akteur vorgehen soll</li>
+<li><strong>move</strong> – Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">Ist der Zug ein valider Zug? True/False</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.move_right">
+<code class="descname">move_right</code><span class="sig-paren">(</span><em>distance=1</em>, <em>move: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.move_right"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.move_right" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Bewegt den Akteur <strong>distance</strong> Schritte nach rechts. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>distance</strong> – Die Anzahl an Schritten die der Akteur vorgehen soll</li>
+<li><strong>move</strong> – Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">Ist der Zug ein valider Zug? True/False</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.move_to">
+<code class="descname">move_to</code><span class="sig-paren">(</span><em>target: tuple</em>, <em>move: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.move_to"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.move_to" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Bewegt den Akteur an die angegebene Position. Wenn der Zug nicht valide ist wird er nicht durchgeführt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>target</strong> – Die Ziel Zellenkoordinaten</li>
+<li><strong>move</strong> – Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">Ist der Zug ein valider Zug? True/False</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.move_up">
+<code class="descname">move_up</code><span class="sig-paren">(</span><em>distance=1</em>, <em>move: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.move_up"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.move_up" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Bewegt den Akteur <strong>distance</strong> Schritte nach oben. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>distance</strong> – Die Anzahl an Schritten die der Akteur vorgehen soll</li>
+<li><strong>move</strong> – Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first last">Ist der Zug ein valider Zug? True/False</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gamegridp.actor.Actor.rect">
+<code class="descname">rect</code><a class="headerlink" href="#gamegridp.actor.Actor.rect" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt die umgebene Bounding-Box um den Akteur zurück.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Rückgabe:</th><td class="field-body">Die umgebende Bounding-Box.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.remove"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.remove" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Entfernt den Akteur vom Grid.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.set_bounding_box_size">
+<code class="descname">set_bounding_box_size</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.set_bounding_box_size"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.set_bounding_box_size" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Legt die Größe der umgebenen Bounding-Box fest.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>value</strong> – Eine Größe (width, height) als Tupel.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.set_image">
+<code class="descname">set_image</code><span class="sig-paren">(</span><em>img_path: str</em>, <em>img_action: str = None</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.set_image"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.set_image" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Fügt ein einzelnes Bild zu einem Actor hinzu.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first last simple">
+<li><strong>img_path</strong> – Der Pfad des Bildes relativ zum eigenen Dateipfad.</li>
+<li><strong>img_action</strong> – Die Aktion die durchgeführt werden soll: <em>scale</em>, <em>crop</em>, <em>do_nothing</em></li>
+<li><strong>size</strong> – scale/crop : Die Größe des veränderten Bildes as 2-Tupel</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.set_rotatable">
+<code class="descname">set_rotatable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.set_rotatable"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.set_rotatable" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>DEPRECATED / VERALTET Achtung: Verwende stattdessen das Attribut: is_rotatable</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.set_x">
+<code class="descname">set_x</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.set_x"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.set_x" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Setzt die x-Koordinate der Akteurs.
+:param x: Die x-Koordinate die gesetzt werden soll.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.set_y">
+<code class="descname">set_y</code><span class="sig-paren">(</span><em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.set_y"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.set_y" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Setzt die y-Koordinate der Akteurs.
+:param y: Die y-Koordinate die gesetzt werden soll.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.setup">
+<code class="descname">setup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.setup"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.setup" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Sollte in deiner Kind-Klasse überschrieben werden.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.stop"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.stop" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Stopt die Animation eines Akteurs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.turn_left">
+<code class="descname">turn_left</code><span class="sig-paren">(</span><em>degrees: int = 90</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.turn_left"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.turn_left" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Dreht den Akteur um degrees Grad nach links.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>degrees</strong> – Die Gradzahl um die der Akteur gedreht wird.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body">Die neue Richtung in Grad.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gamegridp.actor.Actor.turn_right">
+<code class="descname">turn_right</code><span class="sig-paren">(</span><em>degrees: int = 90</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gamegridp/actor.html#Actor.turn_right"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.actor.Actor.turn_right" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Dreht den Akteur um degrees Grad nach links.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><strong>degrees</strong> – Die Gradzahl um die der Akteur gedreht wird.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body">Die neue Richtung in Grad.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="GameGrid.html" class="btn btn-neutral float-right" title="GameGrid" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../klassen.html" class="btn btn-neutral" title="Klassen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Andreas Siebel.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2018',
+            LANGUAGE:'de',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

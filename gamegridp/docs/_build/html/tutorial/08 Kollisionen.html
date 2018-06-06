@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Kollisionen &mdash; gamegridp 2018 Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Die Toolbar" href="09 Die Toolbar.html" />
+    <link rel="prev" title="Drehungen" href="07 Drehungen.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> gamegridp
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Inhalte</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Beispiele</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_first_step.html">Das Spielfenster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_basic_framework.html">Akteure im Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_animations.html">Animationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_tastatureingaben.html">Tastatureingaben</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_maus_eingaben.html">Mauseingaben</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06 Bewegungen im Grid.html">Bewegungen im Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07 Drehungen.html">Drehungen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Kollisionen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#zellen-kollisionen">Zellen-Kollisionen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bounding-box-kollisionen">Bounding-Box-Kollisionen</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#alternative">Alternative</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="09 Die Toolbar.html">Die Toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10 Die Konsole.html">Die Konsole</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11 Pop Ups.html">GUI Elemente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12 pixel_games.html">Pixel-Games</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13 Datenbankanbindung.html">Datenbankanbindung</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../klassen.html">Klassen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../impressum.html">Impressum</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">gamegridp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tutorial.html">Tutorial</a> &raquo;</li>
+        
+      <li>Kollisionen</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorial/08 Kollisionen.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="kollisionen">
+<h1>Kollisionen<a class="headerlink" href="#kollisionen" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Bei Kollisionen muss man unterscheiden zwischen unterschiedlichen Arten von Kollisionen:</p>
+<ul class="simple">
+<li><strong>Zellen-Kollisionen</strong>: Wenn dein Spiel Zellenbasiert ist,</li>
+</ul>
+<p>dann bedeutet eine  Zellen-Kollision, das zwei Akteure in der selben Zelle stehen.</p>
+<ul class="simple">
+<li><strong>Bounding-Box-Kollisionen</strong>: Wenn zwei Akteure auf einem Grid mit Zellgröße 1 kollidieren,</li>
+</ul>
+<p>ist die erste Art der Abfrage natürlich ungeeignet. Hier müsste man theoretisch Pixel für Pixel
+auf eine Kollision miteinander vergleichen.
+Daher überorüft das Grid die umgebenden Bounding-Boxen, ob diese sich schneiden
+(In der ersten Version handelt es sich dabei immer um Rechtecke). Diese Variante ist zwar etwas ungenau,
+ist aber effizent berechenbar.</p>
+<div class="section" id="zellen-kollisionen">
+<h2>Zellen-Kollisionen<a class="headerlink" href="#zellen-kollisionen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Es gibt zwar mehrere Arten, Kollisionen in zellbasierten Spielen zu verwalten. Die einfachste Methode ist abet oft folgende:</p>
+<ul class="simple">
+<li>In der <em>act</em> oder <em>listen</em>-Methode der Klasse <em>GameGrid</em> kann eine Kollision mit Hilfe der Funktion</li>
+</ul>
+<p><strong>get_all_actors_at_location()</strong> überprüft werden.
+(siehe auch: <a class="reference internal" href="../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.get_all_actors_at_location" title="gamegridp.gamegrid.GameGrid.get_all_actors_at_location"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gamegridp.gamegrid.GameGrid.get_all_actors_at_location()</span></code></a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Alternativ können auch die Akteure selbst überprüfen, ob eine Kollision vorliegt.</dt>
+<dd>Jeder Akteur verfügt über die Methode <strong>get_all_actors_at_location()</strong>
+(siehe auch: <code class="xref py py-meth docutils literal notranslate"><span class="pre">gamegridp.gamegrid.Actor.get_all_actors_at_location()</span></code>).</dd>
+</dl>
+</li>
+</ul>
+<p>Beide Methoden geben jeweils eine Liste an Akteuren zurück. Man kann auch direkt nach Klassen filtern;</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">gegenstand</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_actor_at_location</span><span class="p">(</span><span class="s2">&quot;Gegenstand&quot;</span><span class="p">)</span>
+<span class="c1"># gegenstand ist eine Liste mit allen an der Position gefundenen Gegenständen.</span>
+    <span class="k">if</span> <span class="n">gegenstand</span><span class="p">:</span> <span class="c1"># Abkürzung für if gegenstand is not None:</span>
+        <span class="c1">#... tue etwas</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="bounding-box-kollisionen">
+<h2>Bounding-Box-Kollisionen<a class="headerlink" href="#bounding-box-kollisionen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Da es aufwendig ist, alle Kollisionen pixelgenau zu überprüfen, werden jeweils Rechtecke miteinander verglichen.
+Dazu sind zwei Schritte notwendig:</p>
+<ul class="simple">
+<li>In der setup()-Methode des jeweiligen Akteurs wird festgelegt, mit welchem Akteur der Akteur kollidieren kann.</li>
+</ul>
+<p>Dafür ist die Methode actor.add_collision_partner() von Bedeutung.</p>
+<p><strong>Beispiel 1</strong>: Ein Schiff (player1 soll mit Asteroiden kollidieren können:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="n">player1</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">asteroid</span><span class="o">=</span><span class="n">Asteroid</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="n">screen_x</span><span class="o">-</span><span class="mi">30</span><span class="p">),</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span><span class="n">screen_y</span><span class="o">-</span><span class="mi">30</span><span class="p">)))</span>
+<span class="hll">        <span class="n">player1</span><span class="o">.</span><span class="n">add_collision_partner</span><span class="p">(</span><span class="n">asteroid</span><span class="p">)</span>
+</span></pre></div>
+</td></tr></table></div>
+<ul class="simple">
+<li>Für alle Objekte wird in jedem Durchlauf überprüft, ob diese Kollidieren.</li>
+</ul>
+<p>Wenn diese kollidieren, wird die collision(self, partner1, partner2)-Methode aufgerufen. Du kannst diese Methode
+aufrufen, um dein gewünschtes Verhalten zu programmieren.</p>
+<p>Beispiel: Das Schiff aus Beispiel 1 soll mit den Asteroiden kollidieren</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">partner1</span><span class="p">,</span> <span class="n">partner2</span><span class="p">):</span>
+    <span class="n">Explosion</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span> <span class="n">partner1</span><span class="o">.</span><span class="n">location</span><span class="p">)</span>
+    <span class="n">partner1</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+<span class="hll">    <span class="n">partner2</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+</span>    <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<img alt="../_images/boxes.png" src="../_images/boxes.png" />
+<p>Siehe Beispiel <strong>Bouncing</strong> auf <a class="reference external" href="https://github.com/asbl/gamegridp/blob/latest/examples/snippets/moving/bouncing.py">Github</a></p>
+<div class="section" id="alternative">
+<h3>Alternative<a class="headerlink" href="#alternative" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Alternativ dazu ist es auch möglich Kollisionen manuell z.B. in der act() oder in der listen()-Methode abzufragen.
+Hierfür kannst du entweder in der Klasse <strong>Grid</strong> folgende Methoden benutzen:</p>
+<ul class="simple">
+<li>get_all_bounding_box_collisions(actor, class_name: str = None): py:meth:<cite>gamegridp.get_all_bounding_box_collisions</cite>-
+Gibt alle Kollisionen eines Actors gefiltert nach Klassennamen zurück.</li>
+<li>get_bounding_box_collision <code class="xref py py-meth docutils literal notranslate"><span class="pre">gamegridp.get_bounding_box_collision()</span></code> -
+Gibt eine einzelne Kollision eines Actors gefiltert nach Klassennamen zurück.</li>
+</ul>
+<p>In der Klasse <strong>Actor</strong> kannst du folgende Methoden verwenden:</p>
+<ul class="simple">
+<li>get_all_bounding_box_collisions(actor, class_name: str = None): py:meth:<cite>gamegridp.get_all_bounding_box_collisions</cite>- Gibt alle Kollisionen eines Actors gefiltert nach Klassennamen zurück.</li>
+<li>get_bounding_box_collision : py:meth:<cite>gamegridp.get_bounding_box_collision</cite> - Gibt eine einzelne Kollision eines Actors gefiltert nach Klassennamen zurück.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="09 Die Toolbar.html" class="btn btn-neutral float-right" title="Die Toolbar" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="07 Drehungen.html" class="btn btn-neutral" title="Drehungen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Andreas Siebel.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2018',
+            LANGUAGE:'de',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1184 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>gamegridp.actor &mdash; gamegridp 2018 Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
+    <link rel="search" title="Suche" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> gamegridp
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Inhalte</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../klassen.html">Klassen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../impressum.html">Impressum</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">gamegridp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Modul-Quellcode</a> &raquo;</li>
+        
+      <li>gamegridp.actor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Quellcode für gamegridp.actor</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on Mon Apr 16 21:50:48 2018</span>
+
+<span class="sd">@author: asieb</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">cProfile</span>
+<span class="kn">import</span> <span class="nn">pygame</span>
+
+
+<div class="viewcode-block" id="Actor"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor">[Doku]</a><span class="k">class</span> <span class="nc">Actor</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Sprite</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Ein Actor ist eine Spielfigur oder ein Objekt in der Welt,</span>
+<span class="sd">            z.B. ein Auto, eine Wand, ein Untergrund.</span>
+
+
+<span class="sd">        Attributes</span>
+<span class="sd">        ----------</span>
+<span class="sd">        grid: Grid</span>
+<span class="sd">            Das Spielfeld in dem der Actor sich befindet.</span>
+<span class="sd">        color: (r,g,b)</span>
+<span class="sd">            Die Farbe des Actors (falls dieser über k</span>
+<span class="sd">            ein Hintergrundbild verfügt.</span>
+<span class="sd">        title: str</span>
+<span class="sd">            Der Name des Actors</span>
+<span class="sd">        size: (x,y):</span>
+<span class="sd">            Die größe des Actors in Pixeln (x und y)</span>
+<span class="sd">        direction: int</span>
+<span class="sd">            Die Richtung als int-Wert zwischen 0° und 360°</span>
+<span class="sd">            0° bezeichnet dabei einen Blick nach rechts und der Winkel verläuft</span>
+<span class="sd">            gegen den Uhrzeigersinn.</span>
+<span class="sd">        is_blocking: bool</span>
+<span class="sd">            Legt fest, ob der Akteur das Feld für andere Akteure blockiert. Wenn die Variable wahr ist,</span>
+<span class="sd">            ist es nicht möglich sich über das Feld des Akteurs zu bewegen.</span>
+<span class="sd">        image_rect: Rect</span>
+<span class="sd">            Das Rechteck (Rectangle), welches das Objekt umschließt.</span>
+<span class="sd">        is_rotatable: bool</span>
+<span class="sd">            Wahr, wenn sich das Bild mit der Richtung mitdrehen soll.</span>
+<span class="sd">        class_name</span>
+<span class="sd">            Der Typ des Akteurs - entspricht dem Klassennamen.</span>
+<span class="sd">        actor_id</span>
+<span class="sd">            Jeder Akteur hat eine eindeutige ID.</span>
+
+<span class="sd">        Methoden</span>
+<span class="sd">        --------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="c1"># Konstruktor</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Actor&quot;</span><span class="p">,</span>
+                 <span class="n">img_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">img_action</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Sprite</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># define instance variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actor_id</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;Actor:&#39;</span><span class="p">)</span>
+        <span class="c1"># Define instance variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># All images stores for actor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_static</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_rotatable</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_flipped</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span> <span class="o">=</span> <span class="n">grid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_location</span> <span class="o">=</span> <span class="n">location</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">animation_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">speed</span><span class="o">/</span><span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_animated</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_blocking</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_collision_partners</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">Group</span><span class="p">()</span>
+        <span class="c1"># Set Actor image</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;actor.__init__() : Target-Location:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_has_image</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># Add image to actor</span>
+        <span class="k">if</span> <span class="n">img_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">img_action</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">delete_images</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;actor.__init__() : Actor: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">title</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&#39;s setup wurde ausgeführt&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_is_rotatable</span><span class="p">))</span>
+        <span class="c1"># Add actor to grid</span>
+        <span class="n">grid</span><span class="o">.</span><span class="n">add_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
+        <span class="c1"># set the bounding-box style (cell for cell-based games, image for pixel-based games</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">cell_size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_bounding_box_type</span> <span class="o">=</span> <span class="s2">&quot;image&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_bounding_box_type</span> <span class="o">=</span> <span class="s2">&quot;cell&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__bounding_box_size__</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;actor.__init__() : Actor &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">title</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; wurde initialisiert&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Properties</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_blocking</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;bool: Legt fest, ob der Akteur das Feld &quot;blockt&quot;, d.h. für</span>
+<span class="sd">        andere Akteure unpassierbar macht.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_blocking</span>
+
+    <span class="nd">@is_blocking</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">is_blocking</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_blocking</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">direction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;int: Legt die Richtung fest, in die der Akteur &quot;schaut&quot;</span>
+<span class="sd">            0° bezeichnet dabei nach Osten, andere Winkel werden gegen den Uhrzeigersinn angegeben.</span>
+<span class="sd">            Die Direction kann alternativ auch als String (&quot;left&quot;, &quot;right&quot;, &quot;top&quot;, &quot;bottom&quot;  festgelegt werden.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_static</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_static</span>
+
+    <span class="nd">@is_static</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">is_static</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_static</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">update_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;is_static&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="nd">@direction</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="mi">180</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;up&quot;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="mi">90</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;down&quot;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="mi">270</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;actor.rotation() : rotated by &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; degrees. Is rotatable?: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_is_rotatable</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rotate__</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="c1"># if value &lt; 0:</span>
+        <span class="c1">#    self.direction = 360 + value</span>
+        <span class="c1"># if value &gt; 360:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="o">=</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">360</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">image_rect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            :return: The surrounding Rectangle used for redrawing and image manipulation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">left</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_image_coordinates_in_pixels__</span><span class="p">()</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the actual image of the actor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span>
+
+    <span class="nd">@image</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sets the actual image</span>
+<span class="sd">        :param value: the path to the image</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_rotatable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        : return true if actor-image is rotatable, else false</span>
+<span class="sd">         &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_rotatable</span>
+
+    <span class="nd">@is_rotatable</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">is_rotatable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sets the actual image</span>
+<span class="sd">        :param value: the path to the image</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_rotatable</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">location</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        returns the location of object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location</span>
+
+    <span class="nd">@location</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the location</span>
+<span class="sd">        :type value: tuple with x and y-coordinate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;actor.location: Location set&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_location</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">__update__</span><span class="p">(</span><span class="n">no_logic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if actor has an image</span>
+<span class="sd">        :return: true if actor has an image, else false</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_image</span>
+
+    <span class="nd">@has_image</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">has_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_has_image</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">class_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">actor_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actor_id</span>
+
+    <span class="nd">@actor_id</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">actor_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actor_id</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rect</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gibt die umgebene Bounding-Box um den Akteur zurück.</span>
+
+<span class="sd">        :return: Die umgebende Bounding-Box.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bounding_box_type</span> <span class="o">==</span> <span class="s2">&quot;image&quot;</span><span class="p">:</span>
+            <span class="n">rect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__image_rect__</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">rect</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__cell_rect__</span><span class="p">()</span>
+
+    <span class="c1"># Methoden</span>
+<div class="viewcode-block" id="Actor.act"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.act">[Doku]</a>    <span class="k">def</span> <span class="nf">act</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überschreibe diese Methode in deinen eigenen Actor-Klassen</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Actor.set_image"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.set_image">[Doku]</a>    <span class="k">def</span> <span class="nf">set_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">img_action</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Fügt ein einzelnes Bild zu einem Actor hinzu.</span>
+
+<span class="sd">        :param img_path: Der Pfad des Bildes relativ zum eigenen Dateipfad.</span>
+<span class="sd">        :param img_action: Die Aktion die durchgeführt werden soll: *scale*, *crop*, *do_nothing*</span>
+<span class="sd">        :param size: scale/crop : Die Größe des veränderten Bildes as 2-Tupel</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_image</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">delete_images</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">img_action</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Actor.add_image"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.add_image">[Doku]</a>    <span class="k">def</span> <span class="nf">add_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">img_action</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ergänzt ein einzelnes Bild zu einem Actor. Auf diese Weise können mehrere Bilder hinzugefügt werden.</span>
+<span class="sd">        Die Animation kann dann mit *animate()* gestartet werdeb</span>
+
+<span class="sd">        :param img_path: Der Pfad des Bildes relativ zum eigenen Dateipfad.</span>
+<span class="sd">        :param img_action: Die Aktion die durchgeführt werden soll: *scale*, *crop*, *do_nothing*</span>
+<span class="sd">        :param size: scale/crop : Die Größe des veränderten Bildes as 2-Tupel</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;add_image(): Start add image&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">img_action</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">cell_size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">img_action</span> <span class="o">=</span> <span class="s2">&quot;do_nothing&quot;</span>
+        <span class="k">if</span> <span class="n">img_action</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">cell_size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">img_action</span> <span class="o">=</span> <span class="s2">&quot;scale&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;img_action:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">img_action</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_image</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;add_image(): list was cleared:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;add_image(): Has image:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">has_image</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert_alpha</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;actor.add_image() : Number of Actor images:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__image_transform__</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">img_action</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># overwrite image</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">has_image</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Actor.delete_images"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.delete_images">[Doku]</a>    <span class="k">def</span> <span class="nf">delete_images</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Löscht alle Bilder eines Akteurs. Dies kann z.B. sinnvoll sein,</span>
+<span class="sd">        wenn eine neue Animation festgelegt werden soll und dafür die alte</span>
+<span class="sd">        Animation zuvor gelöscht werden muss.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">has_image</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Actor.animate"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.animate">[Doku]</a>    <span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Startet eine Animation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_animated</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_animated</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Actor.add_collision_partner"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.add_collision_partner">[Doku]</a>    <span class="k">def</span> <span class="nf">add_collision_partner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">partner</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. deprecated:: 0.4.0</span>
+<span class="sd">          `add_collision_partner` wird in GameGrid 0.6 ersetzt werden.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_collision_partners</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">partner</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Actor.stop"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.stop">[Doku]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stopt die Animation eines Akteurs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_animated</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+    <span class="k">def</span> <span class="nf">_next_sprite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Läd das nächste Sprite in einer Animation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_animated</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">frame</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">animation_speed</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># every n-th frame (n: animation speed) do:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;actor.image_next() : Image Index:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="nf">__rotate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        rotates the actor by _direction_ degrees</span>
+
+<span class="sd">        :param direction:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_rotatable</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+            <span class="c1"># rotate the original image to new direction</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;actor.__rotate: rotate Image&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;, Image: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;Index:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">],</span> <span class="n">direction</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+
+<div class="viewcode-block" id="Actor.is_in_grid"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.is_in_grid">[Doku]</a>    <span class="k">def</span> <span class="nf">is_in_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft ob ein Akteur (bzw. eine gegebene Zellen-Koordinate im Grid ist.</span>
+
+<span class="sd">        :param target Überprüft eine beliebige Zellen-Koordinate, ob diese in Grid liegt</span>
+<span class="sd">        (Falls kein Ziel angegeben ist, wird die Zellen-Koordinate des Akteurs selbst verwendet)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">is_location_in_grid</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Actor.is_at_border"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.is_at_border">[Doku]</a>    <span class="k">def</span> <span class="nf">is_at_border</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft, ob der Akteur an der Grenze zum Rand ist.</span>
+
+<span class="sd">        :return: Die zugehörige Grenze als String (&quot;left&quot;, &quot;right&quot;, &quot;top&quot; oder &quot;bottom&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_at_left_border</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s2">&quot;left&quot;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_at_right_border</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s2">&quot;right&quot;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_at_bottom_border</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s2">&quot;bottom&quot;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_at_top_border</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s2">&quot;top&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Actor.is_at_left_border"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.is_at_left_border">[Doku]</a>    <span class="k">def</span> <span class="nf">is_at_left_border</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft, ob der Akteur an der Grenze zum linken Rand ist.</span>
+
+<span class="sd">        :return: True oder False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">is_at_left_border</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Actor.is_at_bottom_border"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.is_at_bottom_border">[Doku]</a>    <span class="k">def</span> <span class="nf">is_at_bottom_border</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft, ob der Akteur an der Grenze zum unteren Rand ist.</span>
+
+<span class="sd">        :return: True oder False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">is_at_bottom_border</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Actor.is_at_right_border"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.is_at_right_border">[Doku]</a>    <span class="k">def</span> <span class="nf">is_at_right_border</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft, ob der Akteur an der Grenze zum rechten Rand ist.</span>
+
+<span class="sd">        :return: True oder False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">is_at_right_border</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Actor.is_at_top_border"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.is_at_top_border">[Doku]</a>    <span class="k">def</span> <span class="nf">is_at_top_border</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft, ob der Akteur an der Grenze zum oberen Rand ist.</span>
+
+<span class="sd">        :return: True oder False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">is_at_top_border</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Actor.bounding_box_is_in_grid"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.bounding_box_is_in_grid">[Doku]</a>    <span class="k">def</span> <span class="nf">bounding_box_is_in_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft, ob die Bounding-Box eines Akteurs (komplett) im Grid ist.</span>
+
+<span class="sd">        :return: True oder False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">box</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rect</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">box</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">is_rectangle_in_grid</span><span class="p">(</span><span class="n">box</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+    <span class="k">def</span> <span class="nf">get_bounding_box_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">get_bounding_box_collision</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_all_bounding_box_collisions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">get_all_collisions_for_actor</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Actor.flip_x"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.flip_x">[Doku]</a>    <span class="k">def</span> <span class="nf">flip_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Spiegelt das Bild des Akteurs über die y-Achse.</span>
+<span class="sd">        Der Akteur selbst wird dabei um 180° gedreht.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_flipped</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_is_flipped</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_is_flipped</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__flip_x__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">turn_left</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__flip_x__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flipped das Element in x-Richtung</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_flipped</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                    <span class="s2">&quot;actor.flip_x() : Flipping &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">+</span> <span class="s2">&quot; image number &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">],</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">],</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;actor.flip_x : Index Error in __flip_x__() in: Image Index is out of bounds&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Actor.set_rotatable"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.set_rotatable">[Doku]</a>    <span class="k">def</span> <span class="nf">set_rotatable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DEPRECATED / VERALTET Achtung: Verwende stattdessen das Attribut: is_rotatable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_rotatable</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+    <span class="k">def</span> <span class="nf">set_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="n">myfont</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">SysFont</span><span class="p">(</span><span class="s2">&quot;monospace&quot;</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">myfont</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">repaint_area</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_rect</span><span class="p">))</span>
+
+<div class="viewcode-block" id="Actor.get_all_actors_at_location"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.get_all_actors_at_location">[Doku]</a>    <span class="k">def</span> <span class="nf">get_all_actors_at_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gibt *alle* Akteure einer bestimmten Klasse an der selben Position</span>
+<span class="sd">        wie der aktuelle Akteur zurück</span>
+<span class="sd">        (Alternativ kann auch eine beliebige Position abgefragt werden).</span>
+
+<span class="sd">        :param class_name: Der Klassenname nachdem gesucht werden soll als String</span>
+<span class="sd">            (z.B. alle Akteure vom Typ &quot;Wall&quot;).</span>
+<span class="sd">        :param location: Optional kann eine andere Zellen-Koordinate als</span>
+<span class="sd">            Tupel (x,y) angegeben werden.</span>
+<span class="sd">        :return: Eine Liste aller Akteure vom angegebenen Typ</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">location</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span>
+        <span class="n">actors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">get_all_actors_at_location</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">in</span> <span class="n">actors</span><span class="p">:</span>
+            <span class="n">actors</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">actors</span></div>
+
+<div class="viewcode-block" id="Actor.get_actor_at_location"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.get_actor_at_location">[Doku]</a>    <span class="k">def</span> <span class="nf">get_actor_at_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gibt *einen* Akteur  an der Position zurück.</span>
+
+<span class="sd">        :param class_name: Der Klassenname nachdem gesucht werden soll als String</span>
+<span class="sd">            (z.B. alle Akteure vom Typ &quot;Wall&quot;).</span>
+<span class="sd">        :param location: Optional kann eine andere Zellen-Koordinate als</span>
+<span class="sd">            Tupel (x,y) angegeben werden.</span>
+<span class="sd">        :return: Der erste Akteur vom angegegebenen Typ.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">location</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span>
+        <span class="n">actors_at_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_actors_at_location</span><span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">actors_at_location</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">actors_at_location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="Actor.get_actor_in_front"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.get_actor_in_front">[Doku]</a>    <span class="k">def</span> <span class="nf">get_actor_in_front</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gibt einen Akteur in x-Feldern Entfernung vor dem aktuellen Akteur zurück.</span>
+<span class="sd">        (Alternativ kann auch eine beliebige Position abgefragt werden).</span>
+
+<span class="sd">        :param class_name: Der Klassenname nachdem gesucht werden soll als String</span>
+<span class="sd">            (z.B. alle Akteure vom Typ &quot;Wall&quot;).</span>
+<span class="sd">        :param distance: Anzahl an Feldern, die nach vorne geschaut werden soll.</span>
+<span class="sd">        :return: Eine Liste aller Akteure vom angegebenen Typ</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">look_forward</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+        <span class="n">actors_at_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_actors_at_location</span><span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">actors_at_location</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">actors_at_location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+
+
+    <span class="k">def</span> <span class="nf">__image_transform__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Should be called before main-loop</span>
+<span class="sd">        :param size: img_acton : &quot;scale&quot; -&gt; data : location</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">img_action</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="n">img_action</span><span class="p">)</span>
+        <span class="n">cell_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">cell_size</span>
+        <span class="k">if</span> <span class="n">img_action</span> <span class="o">==</span> <span class="s2">&quot;scale&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="n">cell_size</span><span class="p">,</span> <span class="n">cell_size</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="n">index</span><span class="p">],</span>
+                                                                  <span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">elif</span> <span class="n">img_action</span> <span class="o">==</span> <span class="s2">&quot;center&quot;</span><span class="p">:</span>
+            <span class="n">cropped_surface</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Surface</span><span class="p">((</span><span class="n">cell_size</span><span class="p">,</span> <span class="n">cell_size</span><span class="p">),</span> <span class="n">pygame</span><span class="o">.</span><span class="n">SRCALPHA</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">]</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">]</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+            <span class="n">x_pos</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">cell_size</span> <span class="o">-</span> <span class="n">width</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">y_pos</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">cell_size</span> <span class="o">-</span> <span class="n">height</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">cropped_surface</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">],</span> <span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cell_size</span><span class="p">,</span> <span class="n">cell_size</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">cropped_surface</span>
+        <span class="k">elif</span> <span class="n">img_action</span> <span class="o">==</span> <span class="s2">&quot;do_nothing&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_images</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_index</span><span class="p">]</span>
+
+
+
+    <span class="k">def</span> <span class="nf">__image_rect__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        the image rect when drawn to another location</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">location</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+            <span class="n">left</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_image_coordinates_in_pixels__</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__cell_rect__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">location</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">cell_rect</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Actor.set_bounding_box_size"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.set_bounding_box_size">[Doku]</a>    <span class="k">def</span> <span class="nf">set_bounding_box_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Legt die Größe der umgebenen Bounding-Box fest.</span>
+
+<span class="sd">        :param value: Eine Größe (width, height) als Tupel.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__bounding_box_size__</span> <span class="o">=</span> <span class="n">value</span></div>
+
+    <span class="k">def</span> <span class="nf">__get_image_coordinates_in_pixels__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gibt die Bildkoordinaten der oberen linken Recke des Akteur-Bildes zurück.</span>
+
+<span class="sd">        :return: Tupel (x,y) mit Pixelkoordinaten der linken oberen Ecke</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">location</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">column</span> <span class="o">=</span> <span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">cell_margin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">cell_margin</span>
+        <span class="n">cell_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">cell_size</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">cell_size</span><span class="p">:</span>
+            <span class="n">overlapping_x</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">-</span> <span class="n">cell_size</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">overlapping_x</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">cell_size</span><span class="p">:</span>
+            <span class="n">overlapping_y</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">-</span> <span class="n">cell_size</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">overlapping_y</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">cell_left</span> <span class="o">=</span> <span class="n">cell_margin</span> <span class="o">+</span> <span class="p">(</span><span class="n">cell_margin</span> <span class="o">+</span> <span class="n">cell_size</span><span class="p">)</span> <span class="o">*</span> <span class="n">column</span> <span class="o">-</span> <span class="n">overlapping_x</span>
+        <span class="n">cell_top</span> <span class="o">=</span> <span class="n">cell_margin</span> <span class="o">+</span> <span class="p">(</span><span class="n">cell_margin</span> <span class="o">+</span> <span class="n">cell_size</span><span class="p">)</span> <span class="o">*</span> <span class="n">row</span> <span class="o">-</span> <span class="n">overlapping_y</span>
+        <span class="k">return</span> <span class="n">cell_left</span><span class="p">,</span> <span class="n">cell_top</span>
+
+<div class="viewcode-block" id="Actor.get_neighbour_cells"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.get_neighbour_cells">[Doku]</a>    <span class="k">def</span> <span class="nf">get_neighbour_cells</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gibt alle 8 umgebenen Zellen zurück.</span>
+
+<span class="sd">        :return: Alle Nachbarzellen als Liste.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">locations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">y_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">x_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">locations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">])</span>
+        <span class="n">locations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">locations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">locations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x_pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">locations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x_pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">])</span>
+        <span class="n">locations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x_pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y_pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">locations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">locations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">x_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y_pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">locations</span></div>
+
+<div class="viewcode-block" id="Actor.listen"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.listen">[Doku]</a>    <span class="k">def</span> <span class="nf">listen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Diese Methode sollte in deiner Kind-Klasse überschrieben werden.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Actor.get_location"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.get_location">[Doku]</a>    <span class="k">def</span> <span class="nf">get_location</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gibt die aktuelle Position des Akteurs zurück</span>
+
+<span class="sd">        :return: the location as tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span></div>
+
+
+
+<div class="viewcode-block" id="Actor.set_x"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.set_x">[Doku]</a>    <span class="k">def</span> <span class="nf">set_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Setzt die x-Koordinate der Akteurs.</span>
+<span class="sd">        :param x: Die x-Koordinate die gesetzt werden soll.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Actor.set_y"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.set_y">[Doku]</a>    <span class="k">def</span> <span class="nf">set_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Setzt die y-Koordinate der Akteurs.</span>
+<span class="sd">        :param y: Die y-Koordinate die gesetzt werden soll.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Actor.get_x"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.get_x">[Doku]</a>    <span class="k">def</span> <span class="nf">get_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gibt die x-Koordinate des Akteuers zurück.</span>
+
+<span class="sd">        :param x: Gibt die x-Koordinate des Akteurs zurück.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Actor.get_y"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.get_y">[Doku]</a>    <span class="k">def</span> <span class="nf">get_y</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gibt die y-Koordinate des Akteuers zurück.</span>
+
+<span class="sd">        :param y: Gibt die y-Koordinate des Akteurs zurück</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Actor.setup"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.setup">[Doku]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sollte in deiner Kind-Klasse überschrieben werden.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Actor.turn_left"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.turn_left">[Doku]</a>    <span class="k">def</span> <span class="nf">turn_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">degrees</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">90</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dreht den Akteur um degrees Grad nach links.</span>
+
+<span class="sd">        :param degrees: Die Gradzahl um die der Akteur gedreht wird.</span>
+
+<span class="sd">        :return: Die neue Richtung in Grad.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">+</span> <span class="n">degrees</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Richtung:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span></div>
+
+<div class="viewcode-block" id="Actor.turn_right"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.turn_right">[Doku]</a>    <span class="k">def</span> <span class="nf">turn_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">degrees</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">90</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dreht den Akteur um degrees Grad nach links.</span>
+
+<span class="sd">        :param degrees: Die Gradzahl um die der Akteur gedreht wird.</span>
+
+<span class="sd">        :return: Die neue Richtung in Grad.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">-</span> <span class="n">degrees</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Richtung:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span></div>
+
+<div class="viewcode-block" id="Actor.move"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.move">[Doku]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">move</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Bewegt den Akteur **distance** Schritte vorwärts. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.</span>
+
+<span class="sd">        :param distance: Die Anzahl an Schritten die der Akteur vorgehen soll</span>
+<span class="sd">        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</span>
+
+<span class="sd">        :return: Ist der Zug ein valider Zug? True/False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">look_forward</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;actor&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.move(): ...try to move from&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; to target&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+                <span class="n">target</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; direction:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Actor.move_to"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.move_to">[Doku]</a>    <span class="k">def</span> <span class="nf">move_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">move</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Bewegt den Akteur an die angegebene Position. Wenn der Zug nicht valide ist wird er nicht durchgeführt.</span>
+
+<span class="sd">        :param target: Die Ziel Zellenkoordinaten</span>
+<span class="sd">        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</span>
+
+<span class="sd">        :return: Ist der Zug ein valider Zug? True/False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_valid_target</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">move</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">target</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Actor.move_back"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.move_back">[Doku]</a>    <span class="k">def</span> <span class="nf">move_back</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">move</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Bewegt den Akteur **distance** Schritte rückwärts. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.</span>
+
+<span class="sd">        :param distance: Die Anzahl an Schritten die der Akteur vorgehen soll</span>
+<span class="sd">        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</span>
+
+<span class="sd">        :return: Ist der Zug ein valider Zug? True/False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">look_back</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Actor.move_right"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.move_right">[Doku]</a>    <span class="k">def</span> <span class="nf">move_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">move</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Bewegt den Akteur **distance** Schritte nach rechts. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.</span>
+
+<span class="sd">        :param distance: Die Anzahl an Schritten die der Akteur vorgehen soll</span>
+<span class="sd">        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</span>
+
+<span class="sd">        :return: Ist der Zug ein valider Zug? True/False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Actor.move_left"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.move_left">[Doku]</a>    <span class="k">def</span> <span class="nf">move_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">move</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Bewegt den Akteur **distance** Schritte nach links. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.</span>
+
+<span class="sd">        :param distance: Die Anzahl an Schritten die der Akteur vorgehen soll</span>
+<span class="sd">        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</span>
+
+<span class="sd">        :return: Ist der Zug ein valider Zug? True/False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="mi">180</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Actor.move_down"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.move_down">[Doku]</a>    <span class="k">def</span> <span class="nf">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">move</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Bewegt den Akteur **distance** Schritte nach unten. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.</span>
+
+<span class="sd">        :param distance: Die Anzahl an Schritten die der Akteur vorgehen soll</span>
+<span class="sd">        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</span>
+
+<span class="sd">        :return: Ist der Zug ein valider Zug? True/False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="mi">270</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Actor.move_up"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.move_up">[Doku]</a>    <span class="k">def</span> <span class="nf">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">move</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Bewegt den Akteur **distance** Schritte nach oben. Wenn der Zug nicht valide ist, wird er nicht durchgeführt.</span>
+
+<span class="sd">        :param distance: Die Anzahl an Schritten die der Akteur vorgehen soll</span>
+<span class="sd">        :param move: Wenn der Parameter False ist, wird nur überprüft, ob der Zug legal ist.</span>
+
+<span class="sd">        :return: Ist der Zug ein valider Zug? True/False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="mi">90</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">move</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Actor.look_forward"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.look_forward">[Doku]</a>    <span class="k">def</span> <span class="nf">look_forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Schaut *distance* Felder nach vorne und gibt die zugehörige Koordinate zurück.</span>
+
+<span class="sd">        :param distance : Anzahl an Felder die voraus geschaut wird.</span>
+
+<span class="sd">        :return location : Zellenkoordinate als Tuple (x,y)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;actor.look_forward() : Location:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;Direction&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span>
+        <span class="n">loc_x</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span> <span class="o">*</span> <span class="n">distance</span><span class="p">)</span>
+        <span class="n">loc_y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span> <span class="o">*</span> <span class="n">distance</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">loc_x</span><span class="p">,</span> <span class="n">loc_y</span></div>
+
+<div class="viewcode-block" id="Actor.look_back"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.look_back">[Doku]</a>    <span class="k">def</span> <span class="nf">look_back</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Schaut *distance* Felder nach hinten und gibt die zugehörige Koordinate zurück.</span>
+
+<span class="sd">        :param distance : Anzahl an Felder die voraus geschaut wird.</span>
+
+<span class="sd">        :return location : Zellenkoordinate als Tuple (x,y)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;actor.look_forward() : Location:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;Direction&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span>
+        <span class="n">loc_x</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span> <span class="o">*</span> <span class="n">distance</span><span class="p">)</span>
+        <span class="n">loc_y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span> <span class="o">*</span> <span class="n">distance</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">loc_x</span><span class="p">,</span> <span class="n">loc_y</span></div>
+
+<div class="viewcode-block" id="Actor.look_up"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.look_up">[Doku]</a>    <span class="k">def</span> <span class="nf">look_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Schaut *distance* Felder nach oben und gibt die zugehörige Koordinate zurück.</span>
+
+<span class="sd">        :param distance : Anzahl an Felder die voraus geschaut wird.</span>
+
+<span class="sd">        :return location : Zellenkoordinate als Tuple (x,y)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;actor.look_forward() : Location:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;Direction&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span>
+        <span class="n">loc_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">loc_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">distance</span>
+        <span class="k">return</span> <span class="n">loc_x</span><span class="p">,</span> <span class="n">loc_y</span></div>
+
+<div class="viewcode-block" id="Actor.look_down"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.look_down">[Doku]</a>    <span class="k">def</span> <span class="nf">look_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Schaut *distance* Felder nach unten und gibt die zugehörige Koordinate zurück.</span>
+
+<span class="sd">        :param distance : Anzahl an Felder die voraus geschaut wird.</span>
+
+<span class="sd">        :return location : Zellenkoordinate als Tuple (x,y)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;actor.look_forward() : Location:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;Direction&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span>
+        <span class="n">loc_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">loc_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">distance</span>
+        <span class="k">return</span> <span class="n">loc_x</span><span class="p">,</span> <span class="n">loc_y</span></div>
+
+<div class="viewcode-block" id="Actor.look_left"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.look_left">[Doku]</a>    <span class="k">def</span> <span class="nf">look_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Schaut *distance* Felder nach links und gibt die zugehörige Koordinate zurück.</span>
+
+<span class="sd">        :param distance : Anzahl an Felder die voraus geschaut wird.</span>
+
+<span class="sd">        :return location : Zellenkoordinate als Tuple (x,y)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;actor.look_forward() : Location:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;Direction&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span>
+        <span class="n">loc_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">distance</span>
+        <span class="n">loc_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">loc_x</span><span class="p">,</span> <span class="n">loc_y</span></div>
+
+<div class="viewcode-block" id="Actor.look_right"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.look_right">[Doku]</a>    <span class="k">def</span> <span class="nf">look_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Schaut *distance* Felder nach rechts und gibt die zugehörige Koordinate zurück.</span>
+
+<span class="sd">        :param distance : Anzahl an Felder die voraus geschaut wird.</span>
+
+<span class="sd">        :return location : Zellenkoordinate als Tuple (x,y)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;actor.look_forward() : Location:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;Direction&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span>
+        <span class="n">loc_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">distance</span>
+        <span class="n">loc_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">loc_x</span><span class="p">,</span> <span class="n">loc_y</span></div>
+
+<div class="viewcode-block" id="Actor.is_valid_move"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.is_valid_move">[Doku]</a>    <span class="k">def</span> <span class="nf">is_valid_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">move_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Überprüft, ob ein Zug legal ist.</span>
+
+<span class="sd">        :param move_func: Eine move-Funktion, z.B. move, move_back, move_left,...</span>
+<span class="sd">        :param distance: Die Anzahl an Schritten, die der move-Funktion als Parameter übergeben werden sollen.</span>
+
+<span class="sd">        :return: True falls Zug legal ist, ansonsten False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">move_func</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">move_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">move</span>
+        <span class="k">return</span> <span class="n">move_func</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Actor.is_valid_target"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.is_valid_target">[Doku]</a>    <span class="k">def</span> <span class="nf">is_valid_target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gibt zurück, ob die angegebene Position einen legalen Zug erlaubt.</span>
+
+<span class="sd">        :param target: Das zu überprüfende Ziel als (x,y)-Tupel</span>
+<span class="sd">            Wenn kein Ziel angegeben wird, schaut der Akteur ein Feld nach vorne.</span>
+
+<span class="sd">        :return True, falls Zug legal ist, ansonsten False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">look_forward</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_in_grid</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;actor.is_valid_target() : target:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,true&quot;</span><span class="p">)</span>
+            <span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;actor.is_valid_target() : target:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,false&quot;</span><span class="p">)</span>
+            <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># check if target is not blocked</span>
+        <span class="n">actors_at_position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__grid__</span><span class="o">.</span><span class="n">get_all_actors_at_location</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">actor</span> <span class="ow">in</span> <span class="n">actors_at_position</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">actor</span><span class="p">:</span> <span class="c1">#list is not none?</span>
+                <span class="k">if</span> <span class="n">actor</span><span class="o">.</span><span class="n">is_blocking</span><span class="p">:</span>
+                    <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">valid</span></div>
+
+
+
+<div class="viewcode-block" id="Actor.draw"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.draw">[Doku]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Zeichnet den Akteur auf das Spielfeld.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_image</span><span class="p">:</span>
+            <span class="n">cell_left</span><span class="p">,</span> <span class="n">cell_top</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_image_coordinates_in_pixels__</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__flip_x__</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__rotate__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">_show_bounding_boxes</span><span class="p">:</span>
+                <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">height</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">_show_direction_marker</span><span class="p">:</span>
+                <span class="c1"># self._logging.debug(&quot;actor.draw() - Draw line from&quot;+str(self._image.get_rect().center)+&quot; to &quot;+str(self._image.get_rect().topleft))</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span>
+                    <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">))</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+                <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                                                           <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">grid_surface</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="p">,</span> <span class="p">(</span><span class="n">cell_left</span><span class="p">,</span> <span class="n">cell_top</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Actor.remove"><a class="viewcode-back" href="../../classes/Actor.html#gamegridp.actor.Actor.remove">[Doku]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Entfernt den Akteur vom Grid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">remove_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">del</span> <span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Andreas Siebel.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2018',
+            LANGUAGE:'de',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

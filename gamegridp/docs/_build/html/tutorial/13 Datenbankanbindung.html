@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Datenbankanbindung &mdash; gamegridp 2018 Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Klassen" href="../klassen.html" />
+    <link rel="prev" title="Pixel-Games" href="12 pixel_games.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> gamegridp
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Inhalte</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_first_step.html">Das Spielfenster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_basic_framework.html">Akteure im Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_animations.html">Animationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_tastatureingaben.html">Tastatureingaben</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_maus_eingaben.html">Mauseingaben</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06 Bewegungen im Grid.html">Bewegungen im Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07 Drehungen.html">Drehungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08 Kollisionen.html">Kollisionen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09 Die Toolbar.html">Die Toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10 Die Konsole.html">Die Konsole</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11 Pop Ups.html">GUI Elemente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12 pixel_games.html">Pixel-Games</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Datenbankanbindung</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tabelle-vorbereiten-und-in-python-laden">Tabelle vorbereiten und in Python laden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#daten-auslesen">Daten auslesen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#daten-in-die-tabelle-schreiben">Daten in die Tabelle schreiben</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#daten-ubertragen-und-verbindung-schlieszen">Daten übertragen und Verbindung schließen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../klassen.html">Klassen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../impressum.html">Impressum</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">gamegridp</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tutorial.html">Tutorial</a> &raquo;</li>
+        
+      <li>Datenbankanbindung</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorial/13 Datenbankanbindung.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="datenbankanbindung">
+<h1>Datenbankanbindung<a class="headerlink" href="#datenbankanbindung" title="Link zu dieser Überschrift">¶</a></h1>
+<p>GameGridP verfügt über eine  sqllite-Anbindung. Folgendermaßen kannst du Daten in sqllite speichern:</p>
+<div class="section" id="tabelle-vorbereiten-und-in-python-laden">
+<h2>Tabelle vorbereiten und in Python laden<a class="headerlink" href="#tabelle-vorbereiten-und-in-python-laden" title="Link zu dieser Überschrift">¶</a></h2>
+<ol class="arabic simple">
+<li>Erstelle eine Datenbank und lege die Tabellenstruktur an.</li>
+</ol>
+<blockquote>
+<div>Du kannst dafür den <a class="reference external" href="http://sqlitebrowser.org/">DB Browser for sqlite</a> oder <a class="reference external" href="https://sqlitestudio.pl/index.rvt">Sqlite Studio</a> verwenden.</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Deine Klasse muss eine Kindklasse der Klasse DatabaseGrid sein.</li>
+</ol>
+<p>Beispiel:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyGrid</span><span class="p">(</span><span class="n">gamegridp</span><span class="o">.</span><span class="n">DatabaseGrid</span><span class="p">,</span> <span class="n">gamegridp</span><span class="o">.</span><span class="n">GUIGrid</span><span class="p">):</span>
+</pre></div>
+</td></tr></table></div>
+<ol class="arabic simple" start="3">
+<li>Öffne eine Verbindung zur Datenbank.</li>
+</ol>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;robodatabase.db&quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>Jetzt kannst du folgendermaßen Daten aus der Datenbank auslesen und in die Datenbank schreiben.</p>
+</div>
+<div class="section" id="daten-auslesen">
+<h2>Daten auslesen<a class="headerlink" href="#daten-auslesen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Daten kannst du entweder mit der Anweisung self.select_single_row oder mit select_all_rows stellen.</p>
+<p>self.select_single_row fragt eine einzelne Zeile aus der Datenbank ab:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>
+</pre></div>
+</td></tr></table></div>
+<p>row = self.select_single_row(‚SELECT id FROM Game ORDER BY id DESC LIMIT 1‘)</p>
+<p>fragt z.B. aus der Tabelle GAME die GameID ab. Das Ergebnis wird in einer Liste gespeichert und kann z.B. über</p>
+<p>abgefragt werden.</p>
+<p>Mit self.select_all_rows können alle Werte einer Abfrage abgefragt werden.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_single_row</span><span class="p">(</span><span class="s1">&#39;SELECT id FROM Game ORDER BY id DESC&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>Mit folgendem Code kannst du die einzelnen Werte dann weiterverarbeiten</p>
+</div>
+<div class="section" id="daten-in-die-tabelle-schreiben">
+<h2>Daten in die Tabelle schreiben<a class="headerlink" href="#daten-in-die-tabelle-schreiben" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Daten kannst du mit Hilfe der Methode self.insert(Tabelle, Dictionary) einfügen.
+In dem Dictionary (Eine Datenstruktur vergleichbar mit einem Telefonbuch oder Wörterbuch)
+werden die Zuordnungen spaltenname : wert gespeichert.</p>
+<p>So soll z.B. in Spalte 4 und Zeile 4 der Actor vom Typ Wall mit der ID 1 gespeichert werden:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;column&quot;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+            <span class="s2">&quot;row&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+            <span class="s2">&quot;GameID&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;Actor&quot;</span> <span class="p">:</span> <span class="s2">&quot;Wall</span>
+            <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;Actors&quot;</span><span class="p">,</span> <span class="nb">dict</span> <span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="daten-ubertragen-und-verbindung-schlieszen">
+<h2>Daten übertragen und Verbindung schließen<a class="headerlink" href="#daten-ubertragen-und-verbindung-schlieszen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Zuletzt musst du die Daten in die Datenbank übertragen (committen) und die Verbindung schließen. Dies geht wie folgt:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="bp">self</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">close_connection</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>Siehe Beispiel <strong>Create the World</strong> auf <a class="reference external" href="https://github.com/asbl/gamegridp/blob/latest/examples/snippets/robot/create_the_world.py">Github</a> . In dem Beispiel kannst du ein Level für eine Roboter-Welt erzeugen und das Beispiel in eine Datenbank speichern bzw. aus einer Datenbank laden.</p>
+<img alt="../_images/createtheworld.png" src="../_images/createtheworld.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../klassen.html" class="btn btn-neutral float-right" title="Klassen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="12 pixel_games.html" class="btn btn-neutral" title="Pixel-Games" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Andreas Siebel.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2018',
+            LANGUAGE:'de',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

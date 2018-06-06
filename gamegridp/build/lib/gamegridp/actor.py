@@ -7,7 +7,7 @@ Created on Mon Apr 16 21:50:48 2018
 
 import logging
 import math
-import cProfile
+
 import pygame
 
 
@@ -67,7 +67,7 @@ class Actor(pygame.sprite.Sprite):
         self._direction = 0
         self.color = color
         self.size = size
-        self.animation_speed = self.grid.speed/2
+        self.animation_speed = self.grid.speed / 2
         self._animated = False
         self._is_blocking = False
         self._collision_partners = pygame.sprite.Group()
@@ -153,7 +153,6 @@ class Actor(pygame.sprite.Sprite):
             left, top, width, height = 0, 0, 0, 0
         return pygame.Rect(left, top, width, height)
 
-
     @property
     def image(self):
         """
@@ -228,11 +227,11 @@ class Actor(pygame.sprite.Sprite):
         return self._actor_id
 
     @actor_id.setter
-    def actor_id(self, value:int):
+    def actor_id(self, value: int):
         self._actor_id = value
 
     @property
-    def rect(self,):
+    def rect(self, ):
         """
         Gibt die umgebene Bounding-Box um den Akteur zurück.
 
@@ -341,8 +340,7 @@ class Actor(pygame.sprite.Sprite):
                 self.draw()
                 self.grid.repaint_area(pygame.Rect(self.image_rect))
                 self._logging.info("actor.image_next() : Image Index:" + str(self._image_index) + "/" + str(
-                self._original_images.__len__() - 1))
-
+                    self._original_images.__len__() - 1))
 
     def __rotate__(self, direction: int):
         """
@@ -447,10 +445,10 @@ class Actor(pygame.sprite.Sprite):
         else:
             return False
 
-    def get_bounding_box_collision(self, actor, class_name : str = None):
+    def get_bounding_box_collision(self, actor, class_name: str = None):
         self.grid.get_bounding_box_collision(actor, class_name)
 
-    def get_all_bounding_box_collisions(self, actor, class_name : str = None):
+    def get_all_bounding_box_collisions(self, actor, class_name: str = None):
         self.grid.get_all_collisions_for_actor(actor, class_name)
 
     def flip_x(self):
@@ -482,7 +480,6 @@ class Actor(pygame.sprite.Sprite):
                 self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         except IndexError:
             self._logging.warning("actor.flip_x : Index Error in __flip_x__() in: Image Index is out of bounds")
-
 
     def set_rotatable(self):
         """
@@ -549,9 +546,6 @@ class Actor(pygame.sprite.Sprite):
         if actors_at_location:
             return actors_at_location[0]
 
-
-
-
     def __image_transform__(self, index: int, img_action: str, size: str = None):
         """
         Should be called before main-loop
@@ -575,8 +569,6 @@ class Actor(pygame.sprite.Sprite):
             self._original_images[self._image_index] = cropped_surface
         elif img_action == "do_nothing":
             self._original_images[self._image_index] = self._original_images[self._image_index]
-
-
 
     def __image_rect__(self, location=None):
         """
@@ -665,8 +657,6 @@ class Actor(pygame.sprite.Sprite):
         :return: the location as tuple
         """
         return self.location
-
-
 
     def set_x(self, x):
         """
@@ -934,7 +924,7 @@ class Actor(pygame.sprite.Sprite):
         # check if target is not blocked
         actors_at_position = self.__grid__.get_all_actors_at_location(target)
         for actor in actors_at_position:
-            if actor: #list is not none?
+            if actor:  # list is not none?
                 if actor.is_blocking:
                     valid = False
         return valid
@@ -968,6 +958,3 @@ class Actor(pygame.sprite.Sprite):
         """
         self.grid.remove_actor(self)
         del (self)
-
-
-
