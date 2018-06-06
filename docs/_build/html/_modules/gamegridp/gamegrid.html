@@ -768,7 +768,7 @@
 <span class="sd">        Überschreibe diese Methoden, wenn du Kollisionen handhaben möchtest.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
-    <span class="k">def</span> <span class="nf">_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_call_collisions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Wird aus update() heraus aufgerufen.</span>
 <span class="sd">        Erstellt alle Kollisionspaare mit Hilfe von</span>
@@ -778,7 +778,7 @@
         <span class="c1"># Erstelle alle Kollisionspaare</span>
         <span class="n">checked</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">actor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">actors</span><span class="p">:</span>
-            <span class="n">colliding_actors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_bounding_box_collisions</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+            <span class="n">colliding_actors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_collisions_for_actor</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">colliding_actors</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">colliding_actor</span> <span class="ow">in</span> <span class="n">colliding_actors</span><span class="p">:</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">actor</span> <span class="ow">in</span> <span class="n">checked</span><span class="p">:</span>
@@ -798,10 +798,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;gamegrid.__collision__() - 2collision-actors:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
             <span class="n">colliding_actors_pairs</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, current_colliding:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_colliding_actors_pairs</span><span class="p">))</span>
 
+    <span class="c1"># deprecated</span>
 <div class="viewcode-block" id="GameGrid.get_bounding_box_collision"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.get_bounding_box_collision">[Doku]</a>    <span class="k">def</span> <span class="nf">get_bounding_box_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gibt einen Actor zurück, dessen Bounding-Boxes mit dem angegebenen Akteur</span>
 <span class="sd">        kollidieren.</span>
+<span class="sd">        . deprecated:: 0.5.0</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -819,7 +821,7 @@
         <span class="k">return</span> <span class="kc">None</span></div>
 
 
-<div class="viewcode-block" id="GameGrid.get_all_bounding_box_collisions"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.get_all_bounding_box_collisions">[Doku]</a>    <span class="k">def</span> <span class="nf">get_all_bounding_box_collisions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="GameGrid.get_all_collisions_for_actor"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.get_all_collisions_for_actor">[Doku]</a>    <span class="k">def</span> <span class="nf">get_all_collisions_for_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gibt alle Actors zurück, deren Bounding-Boxes mit dem angegebenen Akteur</span>
 <span class="sd">        kollidieren.</span>
@@ -838,15 +840,7 @@
 <span class="sd">            Alle Akeure, die mit dem aktuellen Akteur kollidieren</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">colliding_actors</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">class_name</span><span class="p">:</span>
-            <span class="k">pass</span>
-            <span class="c1"># Todo: Filter actor._collision_partners by class_name</span>
-        <span class="k">for</span> <span class="n">collision_partner</span> <span class="ow">in</span> <span class="n">actor</span><span class="o">.</span><span class="n">_collision_partners</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">actors_are_colliding</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="n">collision_partner</span><span class="p">):</span>
-                    <span class="n">colliding_actors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">collision_partner</span><span class="p">)</span>
-                    <span class="c1"># Add to global colliding partners so that actor is checked only once per collision</span>
-        <span class="c1"># Remove all not colliding actors from self.current_colliding_actors</span>
-
+        <span class="n">colliding_actors</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">spritecollide</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="n">actor</span><span class="o">.</span><span class="n">_collision_partners</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">colliding_actors</span></div>
 
 <div class="viewcode-block" id="GameGrid.actors_are_colliding"><a class="viewcode-back" href="../../classes/GameGrid.html#gamegridp.gamegrid.GameGrid.actors_are_colliding">[Doku]</a>    <span class="k">def</span> <span class="nf">actors_are_colliding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor1</span><span class="p">,</span> <span class="n">actor2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -950,7 +944,7 @@
 <span class="sd">            Draw actors in every frame, regardless of speed</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">no_logic</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_collision</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_call_collisions</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">no_drawing</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span> <span class="o">+</span> <span class="mi">1</span>
@@ -1251,12 +1245,11 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cell_size</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">margin</span><span class="p">,</span> <span class="n">background_color</span><span class="p">,</span> <span class="n">cell_color</span><span class="p">,</span>
                          <span class="n">img_path</span><span class="p">,</span><span class="n">img_action</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">toolbar</span><span class="p">,</span> <span class="n">console</span><span class="p">,</span> <span class="n">actionbar</span><span class="p">)</span>
 
-
-    <span class="k">def</span> <span class="nf">_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_call_collisions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_collision_actors</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">actor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_actors</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_collision_actors</span><span class="p">[(</span><span class="n">actor</span><span class="o">.</span><span class="n">get_x</span><span class="p">(),</span> <span class="n">actor</span><span class="o">.</span><span class="n">get_y</span><span class="p">())]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_collision</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_call_collisions</span><span class="p">()</span>
 
 <div class="viewcode-block" id="CellGrid.remove_actor"><a class="viewcode-back" href="../../classes/grid/CellGrid.html#gamegridp.gamegrid.CellGrid.remove_actor">[Doku]</a>    <span class="k">def</span> <span class="nf">remove_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">actor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_actors</span><span class="p">:</span>
@@ -1281,6 +1274,29 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_non_static_actors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_update_actor</span><span class="p">(</span><span class="n">actor</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
+<div class="viewcode-block" id="CellGrid.get_all_collisions_for_actor"><a class="viewcode-back" href="../../classes/grid/CellGrid.html#gamegridp.gamegrid.CellGrid.get_all_collisions_for_actor">[Doku]</a>    <span class="k">def</span> <span class="nf">get_all_collisions_for_actor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actor</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gibt alle Actors zurück, deren Bounding-Boxes mit dem angegebenen Akteur</span>
+<span class="sd">        kollidieren.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        actor</span>
+<span class="sd">            Der Actor für den Kollisionen überprüft werden sollen.</span>
+<span class="sd">        class_name : str</span>
+<span class="sd">            Die Klasse nach der gefiltert werden soll.</span>
+<span class="sd">            (z.B. Gebe nur Kollisionen mit Akteuren der Klasse &quot;Wall&quot; zurück.)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list(gamegrid.Actor)</span>
+<span class="sd">            Alle Akeure, die mit dem aktuellen Akteur kollidieren</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">colliding_actors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">colliding_actors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_actors_at_location</span><span class="p">(</span><span class="n">actor</span><span class="o">.</span><span class="n">get_location</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">actor</span> <span class="ow">in</span> <span class="n">colliding_actors</span><span class="p">:</span>
+            <span class="n">colliding_actors</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">colliding_actors</span></div>
 
 <div class="viewcode-block" id="CellGrid.get_all_actors_at_location"><a class="viewcode-back" href="../../classes/grid/CellGrid.html#gamegridp.gamegrid.CellGrid.get_all_actors_at_location">[Doku]</a>    <span class="k">def</span> <span class="nf">get_all_actors_at_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>

@@ -230,6 +230,32 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="gamegridp.gamegrid.CellGrid.get_all_collisions_for_actor">
+<code class="descname">get_all_collisions_for_actor</code><span class="sig-paren">(</span><em>actor</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/gamegridp/gamegrid.html#CellGrid.get_all_collisions_for_actor"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.CellGrid.get_all_collisions_for_actor" title="Link zu dieser Definition">¶</a></dt>
+<dd><p>Gibt alle Actors zurück, deren Bounding-Boxes mit dem angegebenen Akteur
+kollidieren.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body"><ul class="first simple">
+<li><strong>actor</strong> – Der Actor für den Kollisionen überprüft werden sollen.</li>
+<li><strong>class_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) – Die Klasse nach der gefiltert werden soll.
+(z.B. Gebe nur Kollisionen mit Akteuren der Klasse „Wall“ zurück.)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Rückgabe:</th><td class="field-body"><p class="first">Alle Akeure, die mit dem aktuellen Akteur kollidieren</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rückgabetyp:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)">list</a>(gamegrid.Actor)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="gamegridp.gamegrid.CellGrid.remove_actor">
 <code class="descname">remove_actor</code><span class="sig-paren">(</span><em>actor</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/gamegridp/gamegrid.html#CellGrid.remove_actor"><span class="viewcode-link">[Quellcode]</span></a><a class="headerlink" href="#gamegridp.gamegrid.CellGrid.remove_actor" title="Link zu dieser Definition">¶</a></dt>
 <dd><p>Entfernt einen Akteur aus dem Grid</p>
