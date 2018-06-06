@@ -1,7 +1,8 @@
 import pygame
 
+
 class Quadtree(object):
-    def __init__(self, level, rect, particles=[], color = (0,0,0)):
+    def __init__(self, level, rect, particles=[], color=(0, 0, 0)):
         self.maxlevel = 4
         self.level = level
         self.maxparticles = 3

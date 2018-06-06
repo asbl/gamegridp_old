@@ -1,8 +1,8 @@
-KEYS = {113 : "Q",
-        119 : "W",
-        101 : "E",
-        114 : "R",
-        116 : "T",
+KEYS = {113: "Q",
+        119: "W",
+        101: "E",
+        114: "R",
+        116: "T",
         121: "Z",
         117: "U",
         105: "I",
@@ -24,23 +24,21 @@ KEYS = {113 : "Q",
         98: "B",
         110: "N",
         109: "M",
-        21 : "SPACE",
-        273 : "UP",
-        274 : "DOWN",
-        276 : "LEFT",
-        275 : "RIGHT",
-        13 : "ENTER",
+        21: "SPACE",
+        273: "UP",
+        274: "DOWN",
+        276: "LEFT",
+        275: "RIGHT",
+        13: "ENTER",
         304: "L_SHIFT",
         303: "R_SHIFT"
         }
 
 
-
-
 def key_pressed_to_key(key_pressed_list: list):
-    keys = []
-    for index, item in enumerate(key_pressed_list):
-        if item:
-            if index in KEYS:
-                keys.append(KEYS.get(index))
-    return keys
+        keys = []
+        for index, item in enumerate(key_pressed_list):
+                if item:
+                        if index in KEYS:
+                                keys.append(KEYS.get(index))
+        return keys

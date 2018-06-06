@@ -6,16 +6,16 @@ Created on Mon Apr 16 21:49:29 2018
 """
 import logging
 import os
+import sqlite3 as lite
+import sys
+from collections import defaultdict
+
 import easygui
 import pygame
-import math
 from gamegridp import gamegrid_actionbar
 from gamegridp import gamegrid_console
 from gamegridp import gamegrid_toolbar
 from gamegridp import keys
-import sys
-import sqlite3 as lite
-from collections import defaultdict
 
 
 class GameGrid(object):
@@ -173,7 +173,7 @@ class GameGrid(object):
     # Properties
     # -------------------------------------------------
 
-    __actor_id__=0
+    __actor_id__ = 0
 
     @property
     def is_running(self):
@@ -341,8 +341,6 @@ class GameGrid(object):
             actor.act()
         self.act()
 
-
-
     def draw(self):
         """
         draws the entire window with grid, actionbar and toolbar
@@ -353,7 +351,7 @@ class GameGrid(object):
         self.__draw_toolbaar__()
         self.__draw_console__()
         pygame.display.update(self._draw_queue)
-        self._draw_queue= []
+        self._draw_queue = []
 
     def __draw_grid__(self):
         """
@@ -381,7 +379,6 @@ class GameGrid(object):
         if self.actionbar is not None:
             self.actionbar.draw()
             self.schedule_repaint(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
-
 
     @property
     def actors(self):
@@ -419,7 +416,6 @@ class GameGrid(object):
         :return:
         """
         return self.__grid_width_in_pixels__, self.__grid_height_in_pixels__
-
 
     def is_at_left_border(self, rect) -> bool:
         """
@@ -529,7 +525,7 @@ class GameGrid(object):
                     cell_clicked = (column, row)
                     self.__listen_all__("mouse_left", cell_location)
                     self._logging.debug("gamegrid.__listen__(): Mouseclick left at grid-position:" +
-                                       str(cell_clicked))
+                                        str(cell_clicked))
                 elif pos[0] < self.__grid_width_in_pixels__ and pos[
                     1] < self.__grid_height_in_pixels__ and event.button == 3:
                     cell_location = self.__pixel_to_cell__(pos)
@@ -571,12 +567,12 @@ class GameGrid(object):
                         if self.speed > 0:
                             self.speed = self.speed - 1
                     elif pos[1] >= self.__grid_height_in_pixels__ and pos[0] > 345 and pos[0] < 395:
-                        if self.speed<60:
+                        if self.speed < 60:
                             self.speed = self.speed + 1
                 elif pos[0] > self.__grid_width_in_pixels__:
                     toolbar_event = self.toolbar.listen("mouse_left", position=(pos[0], pos[1]))
                     if toolbar_event:
-                        self.__listen_all__(toolbar_event[0],toolbar_event[1])
+                        self.__listen_all__(toolbar_event[0], toolbar_event[1])
             elif event.type == pygame.KEYDOWN:
                 keys_pressed = pygame.key.get_pressed()
                 self.__listen_all__("key_down", keys.key_pressed_to_key(keys_pressed))
@@ -620,7 +616,7 @@ class GameGrid(object):
         Überschreibe diese Methoden, wenn du Kollisionen handhaben möchtest.
         """
 
-    def _collision(self):
+    def _call_collisions(self):
         """
         Wird aus update() heraus aufgerufen.
         Erstellt alle Kollisionspaare mit Hilfe von
@@ -630,11 +626,11 @@ class GameGrid(object):
         # Erstelle alle Kollisionspaare
         checked = []
         for actor in self.actors:
-            colliding_actors = self.get_all_bounding_box_collisions(actor)
+            colliding_actors = self.get_all_collisions_for_actor(actor)
             if colliding_actors:
                 for colliding_actor in colliding_actors:
                     if not actor in checked:
-                        pair, reversed =(actor,colliding_actor), (colliding_actor, actor)
+                        pair, reversed = (actor, colliding_actor), (colliding_actor, actor)
                         if not pair in self._current_colliding_actors_pairs and not reversed in self._current_colliding_actors_pairs:
                             self.collision(actor, colliding_actor)
                             self.listen("collision", pair)
@@ -645,15 +641,19 @@ class GameGrid(object):
                 colliding_actors_pairs) + ", current_colliding:" + str(
                 self._current_colliding_actors_pairs))
         self._current_colliding_actors_pairs = list(
-            set(self._current_colliding_actors_pairs) - (set(self._current_colliding_actors_pairs) - set(colliding_actors_pairs)))
-        self._current_colliding_actors_pairs = list(set(self._current_colliding_actors_pairs).union(set(colliding_actors_pairs)))
+            set(self._current_colliding_actors_pairs) - (
+                    set(self._current_colliding_actors_pairs) - set(colliding_actors_pairs)))
+        self._current_colliding_actors_pairs = list(
+            set(self._current_colliding_actors_pairs).union(set(colliding_actors_pairs)))
         self._logging.debug("gamegrid.__collision__() - 2collision-actors:" + str(
             colliding_actors_pairs) + ", current_colliding:" + str(self._current_colliding_actors_pairs))
 
-    def get_bounding_box_collision(self, actor, class_name : str = None):
+    # deprecated
+    def get_bounding_box_collision(self, actor, class_name: str = None):
         """
         Gibt einen Actor zurück, dessen Bounding-Boxes mit dem angegebenen Akteur
         kollidieren.
+        . deprecated:: 0.5.0
 
         Parameters
         ----------
@@ -667,11 +667,10 @@ class GameGrid(object):
 
         for collision_partner in actor._collision_partners:
             if self.actors_are_colliding(actor, collision_partner):
-                    return collision_partner
+                return collision_partner
         return None
 
-
-    def get_all_bounding_box_collisions(self, actor, class_name: str = None):
+    def get_all_collisions_for_actor(self, actor):
         """
         Gibt alle Actors zurück, deren Bounding-Boxes mit dem angegebenen Akteur
         kollidieren.
@@ -690,15 +689,7 @@ class GameGrid(object):
             Alle Akeure, die mit dem aktuellen Akteur kollidieren
         """
         colliding_actors = []
-        if class_name:
-            pass
-            # Todo: Filter actor._collision_partners by class_name
-        for collision_partner in actor._collision_partners:
-            if self.actors_are_colliding(actor, collision_partner):
-                    colliding_actors.append(collision_partner)
-                    # Add to global colliding partners so that actor is checked only once per collision
-        # Remove all not colliding actors from self.current_colliding_actors
-
+        colliding_actors = pygame.sprite.spritecollide(actor, actor._collision_partners, True)
         return colliding_actors
 
     def actors_are_colliding(self, actor1, actor2) -> bool:
@@ -755,8 +746,6 @@ class GameGrid(object):
                 if class_name is "" or actor.__class__.__name__ == class_name:
                     actors_at_location.append(actor)
 
-
-
         return actors_at_location
 
     def is_location_in_grid(self, location):
@@ -793,16 +782,16 @@ class GameGrid(object):
         if not no_logic:
             if (self._running or do_act) and (not no_logic):
                 self._tick = self._tick + 1
-                if self._tick > 60-self.speed:
+                if self._tick > 60 - self.speed:
                     self.__act_all__()
                     self._tick = 0
-        self._logging.debug("gamegrid.update() - frame: "+str(self.frame))
+        self._logging.debug("gamegrid.update() - frame: " + str(self.frame))
 
         ''' Part 3: Draw actors
             Draw actors in every frame, regardless of speed
         '''
         if not no_logic:
-            self._collision()
+            self._call_collisions()
         if not no_drawing:
             self.draw()
             self._frame = self._frame + 1
@@ -872,7 +861,6 @@ class GameGrid(object):
         """
         self._running = True
 
-
     def show(self):
         """
         Startet das Programm.
@@ -938,6 +926,7 @@ class GameGrid(object):
         pygame.mixer.music.load(music_path)
         pygame.mixer.music.play(-1)
 
+
 class DatabaseGrid(GameGrid):
     """
     Ein Grid mit Datenbank-Anbindung.
@@ -948,6 +937,7 @@ class DatabaseGrid(GameGrid):
     commit
     close
     """
+
     def connect(self, database):
         """
         Verbindet sich zu einer sqlite Datanbank
@@ -980,11 +970,11 @@ class DatabaseGrid(GameGrid):
         cols = ', '.join('{}'.format(col) for col in row.keys())
         vals = ""
         for col in row.values():
-            if isinstance(col,str):
-                col="'"+col+"'"
-            vals = vals+str(col)+","
-        vals=vals[:-1] # strip last character
-        sql = 'INSERT INTO '+table+'( '+str(cols)+') VALUES ('+str(vals)+')'
+            if isinstance(col, str):
+                col = "'" + col + "'"
+            vals = vals + str(col) + ","
+        vals = vals[:-1]  # strip last character
+        sql = 'INSERT INTO ' + table + '( ' + str(cols) + ') VALUES (' + str(vals) + ')'
         print(sql)
         self.connection.execute(sql)
 
@@ -1039,11 +1029,13 @@ class DatabaseGrid(GameGrid):
         """
         self.connection.commit()
 
+
 class PixelGrid(GameGrid):
     """
     Das Pixel-Grid ist gedacht für Grids, deren Zellen genau 1 Pixel groß sind, d.h.
     für Spiele in denen Pixelgenaue Informationen wichtig sind.
     """
+
     def bounce(self, partner1, partner2):
         mirror_axis = (partner1.direction + partner2.direction) / 2
         self._logging.debug(
@@ -1093,6 +1085,7 @@ class CellGrid(GameGrid):
     """
     Das Cell-Grid ist gedacht für Grids, deren Zellen größer als 1 Pixel sind.
     """
+
     def __init__(self, title, cell_size=32,
                  columns=8, rows=8, margin=0,
                  background_color=(255, 255, 255), cell_color=(0, 0, 0),
@@ -1101,19 +1094,18 @@ class CellGrid(GameGrid):
         self._static_collision_actors = defaultdict(list)
         self._non_static_actors = []
         super().__init__(title, cell_size, columns, rows, margin, background_color, cell_color,
-                         img_path,img_action, speed, toolbar, console, actionbar)
+                         img_path, img_action, speed, toolbar, console, actionbar)
 
-
-    def _collision(self):
+    def _call_collisions(self):
         self._non_static_collision_actors.clear()
         for actor in self._non_static_actors:
             self._non_static_collision_actors[(actor.get_x(), actor.get_y())].append(actor)
-        super()._collision()
+        super()._call_collisions()
 
     def remove_actor(self, actor):
         if actor in self._non_static_actors:
             self._non_static_actors.remove(actor)
-        if actor in  self._static_collision_actors[(actor.get_x(), actor.get_y())]:
+        if actor in self._static_collision_actors[(actor.get_x(), actor.get_y())]:
             self._static_collision_actors[(actor.get_x(), actor.get_y())].remove(actor)
         super().remove_actor(actor)
 
@@ -1133,6 +1125,29 @@ class CellGrid(GameGrid):
             self._non_static_actors.append(actor)
         super()._update_actor(actor, attribute, value)
 
+    def get_all_collisions_for_actor(self, actor):
+        """
+        Gibt alle Actors zurück, deren Bounding-Boxes mit dem angegebenen Akteur
+        kollidieren.
+
+        Parameters
+        ----------
+        actor
+            Der Actor für den Kollisionen überprüft werden sollen.
+        class_name : str
+            Die Klasse nach der gefiltert werden soll.
+            (z.B. Gebe nur Kollisionen mit Akteuren der Klasse "Wall" zurück.)
+
+        Returns
+        -------
+        list(gamegrid.Actor)
+            Alle Akeure, die mit dem aktuellen Akteur kollidieren
+        """
+        colliding_actors = []
+        colliding_actors = self.get_all_actors_at_location(actor.get_location())
+        if actor in colliding_actors:
+            colliding_actors.remove(actor)
+        return colliding_actors
 
     def get_all_actors_at_location(self, location: tuple, class_name: str = "") -> list:
         """
@@ -1165,7 +1180,6 @@ class CellGrid(GameGrid):
         cell_image = pygame.image.load(img_path).convert()
         cell_image = pygame.transform.scale(cell_image, (self.cell_size, self.cell_size))
         self._image.blit(cell_image, (top_left[0], top_left[1], self.cell_size, self.cell_size))
-
 
 
 class GUIGrid(GameGrid):

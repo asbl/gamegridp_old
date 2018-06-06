@@ -620,7 +620,7 @@ class GameGrid(object):
         Überschreibe diese Methoden, wenn du Kollisionen handhaben möchtest.
         """
 
-    def _collision(self):
+    def _call_collisions(self):
         """
         Wird aus update() heraus aufgerufen.
         Erstellt alle Kollisionspaare mit Hilfe von
@@ -630,7 +630,7 @@ class GameGrid(object):
         # Erstelle alle Kollisionspaare
         checked = []
         for actor in self.actors:
-            colliding_actors = self.get_all_bounding_box_collisions(actor)
+            colliding_actors = self.get_all_collisions_for_actor(actor)
             if colliding_actors:
                 for colliding_actor in colliding_actors:
                     if not actor in checked:
@@ -650,10 +650,12 @@ class GameGrid(object):
         self._logging.debug("gamegrid.__collision__() - 2collision-actors:" + str(
             colliding_actors_pairs) + ", current_colliding:" + str(self._current_colliding_actors_pairs))
 
+    # deprecated
     def get_bounding_box_collision(self, actor, class_name : str = None):
         """
         Gibt einen Actor zurück, dessen Bounding-Boxes mit dem angegebenen Akteur
         kollidieren.
+        . deprecated:: 0.5.0
 
         Parameters
         ----------
@@ -671,7 +673,7 @@ class GameGrid(object):
         return None
 
 
-    def get_all_bounding_box_collisions(self, actor, class_name: str = None):
+    def get_all_collisions_for_actor(self, actor):
         """
         Gibt alle Actors zurück, deren Bounding-Boxes mit dem angegebenen Akteur
         kollidieren.
@@ -690,15 +692,7 @@ class GameGrid(object):
             Alle Akeure, die mit dem aktuellen Akteur kollidieren
         """
         colliding_actors = []
-        if class_name:
-            pass
-            # Todo: Filter actor._collision_partners by class_name
-        for collision_partner in actor._collision_partners:
-            if self.actors_are_colliding(actor, collision_partner):
-                    colliding_actors.append(collision_partner)
-                    # Add to global colliding partners so that actor is checked only once per collision
-        # Remove all not colliding actors from self.current_colliding_actors
-
+        colliding_actors = pygame.sprite.spritecollide(actor, actor._collision_partners, True)
         return colliding_actors
 
     def actors_are_colliding(self, actor1, actor2) -> bool:
@@ -802,7 +796,7 @@ class GameGrid(object):
             Draw actors in every frame, regardless of speed
         '''
         if not no_logic:
-            self._collision()
+            self._call_collisions()
         if not no_drawing:
             self.draw()
             self._frame = self._frame + 1
@@ -1103,12 +1097,11 @@ class CellGrid(GameGrid):
         super().__init__(title, cell_size, columns, rows, margin, background_color, cell_color,
                          img_path,img_action, speed, toolbar, console, actionbar)
 
-
-    def _collision(self):
+    def _call_collisions(self):
         self._non_static_collision_actors.clear()
         for actor in self._non_static_actors:
             self._non_static_collision_actors[(actor.get_x(), actor.get_y())].append(actor)
-        super()._collision()
+        super()._call_collisions()
 
     def remove_actor(self, actor):
         if actor in self._non_static_actors:
@@ -1133,6 +1126,29 @@ class CellGrid(GameGrid):
             self._non_static_actors.append(actor)
         super()._update_actor(actor, attribute, value)
 
+    def get_all_collisions_for_actor(self, actor):
+        """
+        Gibt alle Actors zurück, deren Bounding-Boxes mit dem angegebenen Akteur
+        kollidieren.
+
+        Parameters
+        ----------
+        actor
+            Der Actor für den Kollisionen überprüft werden sollen.
+        class_name : str
+            Die Klasse nach der gefiltert werden soll.
+            (z.B. Gebe nur Kollisionen mit Akteuren der Klasse "Wall" zurück.)
+
+        Returns
+        -------
+        list(gamegrid.Actor)
+            Alle Akeure, die mit dem aktuellen Akteur kollidieren
+        """
+        colliding_actors = []
+        colliding_actors = self.get_all_actors_at_location(actor.get_location())
+        if actor in colliding_actors:
+            colliding_actors.remove(actor)
+        return colliding_actors
 
     def get_all_actors_at_location(self, location: tuple, class_name: str = "") -> list:
         """

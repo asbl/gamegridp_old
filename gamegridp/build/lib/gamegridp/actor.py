@@ -451,7 +451,7 @@ class Actor(pygame.sprite.Sprite):
         self.grid.get_bounding_box_collision(actor, class_name)
 
     def get_all_bounding_box_collisions(self, actor, class_name : str = None):
-        self.grid.get_all_bounding_box_collisions(actor, class_name)
+        self.grid.get_all_collisions_for_actor(actor, class_name)
 
     def flip_x(self):
         """
