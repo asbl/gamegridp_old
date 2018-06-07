@@ -1135,6 +1135,23 @@ class CellGrid(GameGrid):
             self._static_collision_actors[(actor.get_x(), actor.get_y())].remove(actor)
         super().remove_actor(actor)
 
+    def remove_actors_from_cell(self, location):
+        """
+        Entfernt alle Actors aus einer Zelle
+        Parameters
+        ----------
+        location : Die Zelle aus der der Akteur entfernt werden soll.
+
+        Returns
+        -------
+
+        """
+        for actor in self._non_static_collision_actors[location[0], location[1]]:
+            self.remove_actor(actor)
+        for actor in self._static_collision_actors[location[0], location[1]]:
+            self.remove_actor(actor)
+
+
     def add_actor(self, actor, location=None):
         if actor.is_static:
             self._static_collision_actors[(actor.get_x(), actor.get_y())].append(actor)

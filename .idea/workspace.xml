@@ -31,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gamegrid.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gamegrid.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="1133" column="65" selection-start-line="1133" selection-start-column="65" selection-end-line="1133" selection-end-column="65" />
+            <state relative-caret-position="116">
+              <caret line="1142" column="69" selection-start-line="1142" selection-start-column="69" selection-end-line="1142" selection-end-column="69" />
               <folding>
                 <element signature="e#84#98#0" expanded="true" />
               </folding>
@@ -43,66 +43,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LICENSE.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gamegridp/LICENSE.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file leaf-file-name="actor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/actor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10206">
-              <caret line="670" column="14" selection-start-line="670" selection-start-column="14" selection-end-line="670" selection-end-column="14" />
+            <state relative-caret-position="-2068">
+              <caret line="89" column="35" selection-start-line="89" selection-start-column="35" selection-end-line="89" selection-end-column="35" />
               <folding>
                 <element signature="e#85#99#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="flipthefish.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gamegridp/setup.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MANIFEST.in" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gamegridp/MANIFEST.in">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="LICENSE.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LICENSE.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="357">
-                <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="install.bat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/install.bat">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -116,8 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>remove_from_gri</find>
-      <find>_actors</find>
       <find>remove</find>
       <find>actor</find>
       <find>static</find>
@@ -126,7 +74,6 @@
       <find>get_x</find>
       <find>front</find>
       <find>get_all_ac</find>
-      <find>remove_actor</find>
       <find>remove_ac</find>
       <find>add_</find>
       <find>add_act</find>
@@ -134,9 +81,9 @@
       <find>cellGrid</find>
       <find>update_actorupda</find>
       <find>is_sta</find>
-      <find>if i</find>
+      <find />
       <find>update</find>
-      <find>def add_actor(self, actor, location=None):update</find>
+      <find />
       <find>update_ac</find>
       <find>collide</find>
       <find>collision_partners</find>
@@ -146,6 +93,9 @@
       <find>cellgrid</find>
       <find>_call</find>
       <find>call_coll</find>
+      <find>type</find>
+      <find>remove_actor</find>
+      <find>type(</find>
     </findStrings>
     <replaceStrings>
       <replace>screen</replace>
@@ -154,7 +104,7 @@
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/gamegridp" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -208,12 +158,12 @@
         <option value="$PROJECT_DIR$/snippets/actor.py" />
         <option value="$PROJECT_DIR$/examples/games/rpg/rpg.py" />
         <option value="$PROJECT_DIR$/gamegridp/gamegridp/actor.py" />
-        <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" />
         <option value="$PROJECT_DIR$/gamegridp/setup.py" />
+        <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1940" />
@@ -225,6 +175,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Course" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -336,8 +288,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Course" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -370,7 +320,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.thecrash">
+  <component name="RunManager" selected="Python.Create the world">
     <configuration name="Create the world" type="PythonConfigurationType" factoryName="Python">
       <module name="gamegridp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -720,18 +670,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7129799" visible="true" weight="0.27891606" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7111517" visible="true" weight="0.27891606" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5089227" side_tool="true" visible="true" weight="0.20145985" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4957039" weight="0.31970802" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49107733" weight="0.20145985" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5095836" side_tool="true" visible="true" weight="0.20145985" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.329927" />
-      <window_info id="Structure" order="1" sideWeight="0.28702012" side_tool="true" visible="true" weight="0.27891606" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49041638" visible="true" weight="0.20145985" />
+      <window_info id="Structure" order="1" sideWeight="0.28884825" side_tool="true" visible="true" weight="0.27891606" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4970258" weight="0.32846716" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4970258" weight="0.32846716" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -740,27 +690,28 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4957039" weight="0.31970802" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49966952" weight="0.3211679" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4970258" visible="true" weight="0.23503649" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.72328246" visible="true" weight="0.13020489" />
       <window_info id="Structure" order="1" sideWeight="0.27671754" side_tool="true" visible="true" weight="0.13020489" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32918397" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Python Console" order="8" weight="0.329927" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49966952" weight="0.3970803" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5029742" side_tool="true" visible="true" weight="0.23503649" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49966952" weight="0.3211679" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.26211452" />
-      <window_info anchor="bottom" id="Python Console" order="8" weight="0.329927" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -791,6 +742,40 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/actor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14070">
+          <caret line="670" column="14" selection-start-line="670" selection-start-column="14" selection-end-line="670" selection-end-column="14" />
+          <folding>
+            <element signature="e#85#99#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="357">
+            <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -1075,23 +1060,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/actor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10206">
-          <caret line="670" column="14" selection-start-line="670" selection-start-column="14" selection-end-line="670" selection-end-column="14" />
-          <folding>
-            <element signature="e#85#99#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/snippets/pixelbased/move_in_pixels.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1100,25 +1068,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="1133" column="65" selection-start-line="1133" selection-start-column="65" selection-end-line="1133" selection-end-column="65" />
-          <folding>
-            <element signature="e#84#98#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/LICENSE.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/MANIFEST.in">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE.txt">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -1130,13 +1079,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/install.bat">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/gamegridp/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
+        <state relative-caret-position="139">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/actor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2068">
+          <caret line="89" column="35" selection-start-line="89" selection-start-column="35" selection-end-line="89" selection-end-column="35" />
+          <folding>
+            <element signature="e#85#99#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="1142" column="69" selection-start-line="1142" selection-start-column="69" selection-end-line="1142" selection-end-column="69" />
+          <folding>
+            <element signature="e#84#98#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
