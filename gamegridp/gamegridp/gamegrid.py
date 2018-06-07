@@ -630,7 +630,7 @@ class GameGrid(object):
         # Erstelle alle Kollisionspaare
         checked = []
         for actor in self.actors:
-            colliding_actors = self.get_all_bounding_box_collisions(actor)
+            colliding_actors = self.get_all_collisions_for_actor(actor)
             if colliding_actors:
                 for colliding_actor in colliding_actors:
                     if not actor in checked:

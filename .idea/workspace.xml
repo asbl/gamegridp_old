@@ -7,7 +7,13 @@
     <bookmark url="file://$PROJECT_DIR$/docs/tutorial/02_basic_framework.rst" line="39" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint" />
+    <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamegridp/GameGridP.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/GameGridP.egg-info/PKG-INFO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamegridp/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/setup.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,13 +37,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gamegrid.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gamegrid.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="1142" column="69" selection-start-line="1142" selection-start-column="69" selection-end-line="1142" selection-end-column="69" />
+            <state relative-caret-position="5834">
+              <caret line="1134" column="87" selection-start-line="1134" selection-start-column="87" selection-end-line="1134" selection-end-column="87" />
               <folding>
                 <element signature="e#84#98#0" expanded="true" />
+                <element signature="e#41053#41166#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gg_project.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/snippets/Spiel Lars und Tim/gg_project/gg_project.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-29">
+              <caret line="54" column="33" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -46,11 +65,20 @@
       <file leaf-file-name="actor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/actor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2068">
-              <caret line="89" column="35" selection-start-line="89" selection-start-column="35" selection-end-line="89" selection-end-column="35" />
+            <state relative-caret-position="-5704">
+              <caret line="515" column="26" selection-start-line="515" selection-start-column="19" selection-end-line="515" selection-end-column="26" />
               <folding>
                 <element signature="e#85#99#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gamegridp/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -66,11 +94,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>remove</find>
       <find>actor</find>
       <find>static</find>
       <find>add_ac</find>
-      <find>remove(</find>
       <find>get_x</find>
       <find>front</find>
       <find>get_all_ac</find>
@@ -81,9 +107,9 @@
       <find>cellGrid</find>
       <find>update_actorupda</find>
       <find>is_sta</find>
-      <find />
+      <find>if i</find>
       <find>update</find>
-      <find />
+      <find>def add_actor(self, actor, location=None):update</find>
       <find>update_ac</find>
       <find>collide</find>
       <find>collision_partners</find>
@@ -92,10 +118,12 @@
       <find>get_lo</find>
       <find>cellgrid</find>
       <find>_call</find>
-      <find>call_coll</find>
       <find>type</find>
       <find>remove_actor</find>
       <find>type(</find>
+      <find>call_coll</find>
+      <find>get_all_</find>
+      <find>remove(</find>
     </findStrings>
     <replaceStrings>
       <replace>screen</replace>
@@ -109,7 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/docs/tutorial/06_Bewegungen im Grid.rst" />
         <option value="$PROJECT_DIR$/docs/conf.py" />
         <option value="$PROJECT_DIR$/docs/tutorial/07 Kollisionen.md" />
         <option value="$PROJECT_DIR$/examples/games/asteroids/asteroids.py" />
@@ -160,6 +187,7 @@
         <option value="$PROJECT_DIR$/gamegridp/gamegridp/actor.py" />
         <option value="$PROJECT_DIR$/gamegridp/setup.py" />
         <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" />
+        <option value="$PROJECT_DIR$/snippets/Spiel Lars und Tim/gg_project/gg_project.py" />
       </list>
     </option>
   </component>
@@ -277,6 +305,19 @@
             </path>
             <path>
               <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="snippets" type="462c0819:PsiDirectoryNode" />
+              <item name="Spiel Lars und Tim" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gamegridp" type="462c0819:PsiDirectoryNode" />
+              <item name="snippets" type="462c0819:PsiDirectoryNode" />
+              <item name="Spiel Lars und Tim" type="462c0819:PsiDirectoryNode" />
+              <item name="gg_project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gamegridp" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
             </path>
             <path>
@@ -320,7 +361,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Create the world">
+  <component name="RunManager" selected="Python.gg_project">
     <configuration name="Create the world" type="PythonConfigurationType" factoryName="Python">
       <module name="gamegridp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -442,6 +483,24 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/snippets/moving/getkey.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="gg_project" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="gamegridp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/snippets/Spiel Lars und Tim/gg_project" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/snippets/Spiel Lars und Tim/gg_project/gg_project.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -607,7 +666,13 @@
       <item itemvalue="Python.Create the world" />
       <item itemvalue="Python.GUI" />
       <item itemvalue="Python.rpg" />
+      <item itemvalue="Python.gg_project" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.gg_project" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="StructureViewFactory">
     <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
@@ -669,15 +734,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7111517" visible="true" weight="0.27891606" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7111517" visible="true" weight="0.27891606" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5095836" side_tool="true" visible="true" weight="0.20145985" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.329927" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49041638" visible="true" weight="0.20145985" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49041638" visible="true" weight="0.20145985" />
       <window_info id="Structure" order="1" sideWeight="0.28884825" side_tool="true" visible="true" weight="0.27891606" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -742,16 +807,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/actor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14070">
-          <caret line="670" column="14" selection-start-line="670" selection-start-column="14" selection-end-line="670" selection-end-column="14" />
-          <folding>
-            <element signature="e#85#99#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
@@ -1079,13 +1134,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="307">
@@ -1093,22 +1141,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5834">
+          <caret line="1134" column="87" selection-start-line="1134" selection-start-column="87" selection-end-line="1134" selection-end-column="87" />
+          <folding>
+            <element signature="e#84#98#0" expanded="true" />
+            <element signature="e#41053#41166#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/actor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2068">
-          <caret line="89" column="35" selection-start-line="89" selection-start-column="35" selection-end-line="89" selection-end-column="35" />
+        <state relative-caret-position="-5704">
+          <caret line="515" column="26" selection-start-line="515" selection-start-column="19" selection-end-line="515" selection-end-column="26" />
           <folding>
             <element signature="e#85#99#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py">
+    <entry file="file://$PROJECT_DIR$/snippets/Spiel Lars und Tim/gg_project/gg_project.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="1142" column="69" selection-start-line="1142" selection-start-column="69" selection-end-line="1142" selection-end-column="69" />
+        <state relative-caret-position="-29">
+          <caret line="54" column="33" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="33" />
           <folding>
-            <element signature="e#84#98#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
