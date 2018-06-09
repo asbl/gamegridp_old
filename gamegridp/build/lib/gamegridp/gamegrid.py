@@ -631,24 +631,25 @@ class GameGrid(object):
         # Erstelle alle Kollisionspaare
         checked = []
         for actor in self.actors:
-            colliding_actors = self.get_all_collisions_for_actor(actor)
-            if colliding_actors:
-                for colliding_actor in colliding_actors:
-                    if not actor in checked:
-                        pair, reversed =(actor,colliding_actor), (colliding_actor, actor)
-                        if not pair in self._current_colliding_actors_pairs and not reversed in self._current_colliding_actors_pairs:
-                            self.collision(actor, colliding_actor)
-                            self.listen("collision", pair)
-                        colliding_actors_pairs.append(pair)
-                    checked.append(actor)
-        self._logging.debug(
-            "gamegrid.__collision__() - 1collision-actors:" + str(
+            if actor._collision_partners:
+                colliding_actors = self.get_all_collisions_for_actor(actor)
+                if colliding_actors:
+                    for colliding_actor in colliding_actors:
+                        if not actor in checked:
+                            pair, reversed =(actor,colliding_actor), (colliding_actor, actor)
+                            if not pair in self._current_colliding_actors_pairs and not reversed in self._current_colliding_actors_pairs:
+                                self.collision(actor, colliding_actor)
+                                self.listen("collision", pair)
+                            colliding_actors_pairs.append(pair)
+                        checked.append(actor)
+            self._logging.debug(
+                "gamegrid.__collision__() - 1collision-actors:" + str(
                 colliding_actors_pairs) + ", current_colliding:" + str(
                 self._current_colliding_actors_pairs))
-        self._current_colliding_actors_pairs = list(
+            self._current_colliding_actors_pairs = list(
             set(self._current_colliding_actors_pairs) - (set(self._current_colliding_actors_pairs) - set(colliding_actors_pairs)))
-        self._current_colliding_actors_pairs = list(set(self._current_colliding_actors_pairs).union(set(colliding_actors_pairs)))
-        self._logging.debug("gamegrid.__collision__() - 2collision-actors:" + str(
+            self._current_colliding_actors_pairs = list(set(self._current_colliding_actors_pairs).union(set(colliding_actors_pairs)))
+            self._logging.debug("gamegrid.__collision__() - 2collision-actors:" + str(
             colliding_actors_pairs) + ", current_colliding:" + str(self._current_colliding_actors_pairs))
 
     def get_all_collisions_for_actor(self, actor):

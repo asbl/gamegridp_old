@@ -290,10 +290,10 @@ class Actor(pygame.sprite.Sprite):
             _image = self.grid.images_dict[img_path]
         else :
             _image = pygame.image.load(img_path).convert_alpha()
+            _image = self.__image_transform__(_image, img_action, size)
             self.grid.images_dict[img_path] = _image
         self._original_images.append(_image)
         self._logging.info("actor.add_image() : Number of Actor images:" + str(self._original_images.__len__()))
-        self.__image_transform__(-1, img_action, size)
         self.image = self._original_images[0]  # overwrite image
         self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         self.has_image = True
@@ -555,9 +555,7 @@ class Actor(pygame.sprite.Sprite):
             return actors_at_location[0]
 
 
-
-
-    def __image_transform__(self, index: int, img_action: str, size: str = None):
+    def __image_transform__(self, image: int, img_action: str, size: str = None) -> image:
         """
         Should be called before main-loop
         :param size: img_acton : "scale" -> data : location
@@ -567,19 +565,20 @@ class Actor(pygame.sprite.Sprite):
         if img_action == "scale":
             if size is None:
                 size = (cell_size, cell_size)
-            self._original_images[index] = pygame.transform.scale(self._original_images[index],
-                                                                  (size[0], size[1]))
+            #self._original_images[index] = pygame.transform.scale(self._original_images[index],
+            #                                                      (size[0], size[1]))
+            return pygame.transform.scale(image,(size[0], size[1]))
         elif img_action == "center":
             cropped_surface = pygame.Surface((cell_size, cell_size), pygame.SRCALPHA, 32)
-            width = self._original_images[self._image_index].get_width()
-            height = self._original_images[self._image_index].get_height()
+            width = image.get_width()
+            height = image.get_height()
             x_pos = (self.grid.cell_size - width) / 2
             y_pos = (self.grid.cell_size - height) / 2
-            cropped_surface.blit(self._original_images[self._image_index], (x_pos, y_pos),
-                                 (0, 0, cell_size, cell_size))
-            self._original_images[self._image_index] = cropped_surface
+            cropped_surface.blit(image, (x_pos, y_pos), 0, 0, cell_size, cell_size)
+            return cropped_surface
+            #self._original_images[self._image_index] = cropped_surface
         elif img_action == "do_nothing":
-            self._original_images[self._image_index] = self._original_images[self._image_index]
+            return image
 
 
 
