@@ -90,6 +90,7 @@ class GameGrid(object):
         self._animated = False
         self._show_bounding_boxes = False
         self._show_direction_marker = False
+        self.images_dict = {}
         if toolbar is True:
             self.toolbar = gamegrid_toolbar.Toolbar(self)
         else:

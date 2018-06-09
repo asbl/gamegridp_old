@@ -286,7 +286,12 @@ class Actor(pygame.sprite.Sprite):
             self._original_images = []
             self._logging.info("add_image(): list was cleared:" + str(self._original_images.__len__()))
         self._logging.info("add_image(): Has image:" + str(self.has_image))
-        self._original_images.append(pygame.image.load(img_path).convert_alpha())
+        if img_path in self.grid.images_dict:
+            _image = self.grid.images_dict[img_path]
+        else :
+            _image = pygame.image.load(img_path).convert_alpha()
+            self.grid.images_dict[img_path] = _image
+        self._original_images.append(_image)
         self._logging.info("actor.add_image() : Number of Actor images:" + str(self._original_images.__len__()))
         self.__image_transform__(-1, img_action, size)
         self.image = self._original_images[0]  # overwrite image
