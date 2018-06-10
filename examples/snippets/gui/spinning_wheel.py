@@ -8,6 +8,7 @@ class MyGrid(gamegridp.GUIGrid):
         self.arrow=Arrow(grid=self, location=(1,1))
         self.chip=None
         self.placed = False
+        self.set_image("images/greenfield.jpg")
         self.run()
 
     def listen(self, event, data):
@@ -50,5 +51,6 @@ class Chip(gamegridp.Actor):
     def setup(self):
         self.set_image("images/chip.png")
 
-mygrid = MyGrid("My Grid",    cell_size=100, columns=3, rows=3, margin=1,toolbar=True)
+MyGrid.log()
+mygrid = MyGrid("My Grid",    cell_size=100, columns=3, rows=3, margin=1,toolbar=True,actionbar=False)
 mygrid.show()

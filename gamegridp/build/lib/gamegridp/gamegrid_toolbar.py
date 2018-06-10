@@ -10,6 +10,7 @@ class Toolbar(object):
         self.grid = grid
         self.height = 0
         self.elements = []
+        self.dirty = 1
 
     def set_height(self, height):
         self.height = height
@@ -21,13 +22,17 @@ class Toolbar(object):
         """
         Creates a toolbar on the left side of the window
         """
-        toolbar = pygame.Surface((self.width, self.height))
-        toolbar.fill((255, 255, 255))
-        i = 0
-        height = 0
-        for element in self.elements:
-            pygame.screen.blit(element.get_surface(), (self.posx, height))
-            height = height + element.height
+        if self.dirty == 1:
+            toolbar = pygame.Surface((self.width, self.height))
+            toolbar.fill((255, 255, 255))
+            i = 0
+            height = 0
+            for element in self.elements:
+                toolbar.blit(element.get_surface(), (0, height))
+                height = height + element.height
+            self.grid.screen_surface.blit(toolbar, (self.posx, 0, self.width, self.height))
+            self.grid.schedule_repaint((self.posx, 0, self.width, self.height))
+            self.dirty = 0
 
     def add_button(self, text, img_path=None, color=(255,255,255), border=(255,255,255)):
         """
@@ -37,7 +42,9 @@ class Toolbar(object):
         :return:
         """
         button = ToolbarButton(self.width, 25, img_path=img_path, text=text, color=color, border=border)
+        button.parent = self
         self.elements.append(button)
+        self.dirty = 1
         return button
 
     def __elements_height__(self):
@@ -65,6 +72,8 @@ class ToolbarElement():
         self.surface = None
         self.title = ""
         self.event = "no event"
+        self.parent = None
+        self.dirty = 1
 
     def get_surface(self):
         return self.surface
@@ -99,9 +108,3 @@ class ToolbarButton(ToolbarElement):
 
     def listen(self, event, position: tuple):
         return self.event, self.data
-
-def DiceSimulator(ToolbarElement):
-
-    def roll(self) -> int:
-        pass
-

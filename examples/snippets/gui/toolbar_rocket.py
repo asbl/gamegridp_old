@@ -6,6 +6,7 @@ class MyGrid(gamegridp.GUIGrid):
         self.toolbar.add_button("Start Rocket", "images/ship.png", color=(200,200,200), border=(50,50,50))
         self.rocket=Rocket(grid=self, location=(100,180))
         self.run()
+        self.set_image("images/galaxy.jpg")
 
     def listen(self, event, data):
         if event=="button":

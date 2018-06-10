@@ -63,10 +63,9 @@ class GameGrid(object):
         self.title = title  #
         self._logging = logging.getLogger('GameGrid')
         self.__done__ = False
-        self._image = None
         self._grid = []
         self._info = False
-        self._actors = pygame.sprite.Group()
+        self._actors = pygame.sprite.LayeredDirty()
         self._collision_partners = pygame.sprite.Group()
         self._current_colliding_actors_pairs = []
         self._frame = 0
@@ -76,14 +75,13 @@ class GameGrid(object):
         self.effects = set()
         self._cell_margin = 0
         self._collision_type = "cell"
-        self._image = None
         self._cell_transparency = 0
         self._clock = None
         self._grid_rows = 0
         self._grid_columns = 0
         self._background_color = (255, 255, 255)
         self._cell_color = (0, 0, 0)
-        self._draw_queue = []  # a queue of rectangles
+        self._repaint_areas = []  # a list of rectangles
         self._key_pressed = False
         self._key = 0
         self._speed = speed
@@ -91,6 +89,17 @@ class GameGrid(object):
         self._show_bounding_boxes = False
         self._show_direction_marker = False
         self.images_dict = {}
+        self.screen_surface = pygame.display.get_surface()
+        self.dirty = 1
+        self._cell_size = cell_size
+        if self.cell_size == 1:
+            self._collision_type = "bounding_box"
+        else:
+            self._collision_type = "bounding_box"
+        if cell_size == 1:
+            self._type="pixel"
+        else:
+            self._type="cell"
         if toolbar is True:
             self.toolbar = gamegrid_toolbar.Toolbar(self)
         else:
@@ -110,11 +119,6 @@ class GameGrid(object):
         self._cell_margin = margin
         self._grid_columns = columns
         self._grid_rows = rows
-        self._cell_size = cell_size
-        if self.cell_size == 1:
-            self._collision_type = "bounding_box"
-        else:
-            self._collision_type = "bounding_box"
         self._background_color = background_color
         self._cell_color = cell_color
         # grid and grid-dimensions
@@ -152,11 +156,12 @@ class GameGrid(object):
             "gamegrid.__init__(): Created windows of dimension: (" + str(self._resolution[0]) + "," + str(
                 self._resolution[1]) + ")")
         # Init pygame
-        pygame.screen = pygame.display.set_mode(WINDOW_SIZE)
+        self.screen_surface = pygame.display.set_mode(WINDOW_SIZE)
         self.grid_surface = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
-        self.grid_surface.fill((255, 255, 255))
+        self.background = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+        self.background.fill((255, 255, 255))
         pygame.display.set_caption(title)
-        pygame.screen.fill((255, 255, 255))
+        self.screen_surface.fill((255, 255, 255))
         # Init clock
         self.clock = pygame.time.Clock()
         # time of last frame change
@@ -167,9 +172,7 @@ class GameGrid(object):
         # image
         self.set_image(img_path, img_action)
         self._setup()
-        # Draw_Qset
-        pygame.screen.blit(self.grid_surface, (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
-        self.schedule_repaint(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+        self.actors.clear(self.grid_surface, self.background)
 
     # Properties
     # -------------------------------------------------
@@ -224,8 +227,8 @@ class GameGrid(object):
         return self._grid_columns
 
     def schedule_repaint(self, rect):
-        if rect not in self._draw_queue:
-            self._draw_queue.append(rect)
+        if rect not in self._repaint_areas:
+            self._repaint_areas.append(rect)
 
     # Methoden
 
@@ -240,63 +243,63 @@ class GameGrid(object):
         self._logging.info(
             "gamegrid.set_image : Set new image with action:" + str(img_action) + " and path:" + str(img_path))
         if img_path is not None:
-            self._image = pygame.image.load(img_path).convert()
-            self._image = self._image
+            self.background = pygame.image.load(img_path).convert()
             self._cell_transparency = 0
             if img_path is not None and img_action == "scale":
                 if size is None:
-                    self._image = pygame.transform.scale(self._image,
+                    self.background = pygame.transform.scale(self.background,
                                                          (
                                                              self.__grid_width_in_pixels__,
                                                              self.__grid_height_in_pixels__))
                 else:
-                    self._image = pygame.transform.scale(self._image, (size[0], size[1]))
-                self._image = pygame.transform.scale(
-                    self._image, (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+                    self.background = pygame.transform.scale(self.background, (size[0], size[1]))
+                self.background = pygame.transform.scale(
+                    self.background, (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
             elif img_path is not None and img_action == "upscale":
-                if self._image.get_width() < self.__grid_width_in_pixels__ or self._image.get_height() < self.__grid_height_in_pixels__:
-                    self._image = pygame.transform.scale(
-                        self._image, (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+                if self.background.get_width() < self.__grid_width_in_pixels__ \
+                        or self.background.get_height() < self.__grid_height_in_pixels__:
+                    self.background = pygame.transform.scale(
+                        self.background, (self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
             elif img_path is not None and img_action == "fill":
                 if size is None:
-                    self._image = pygame.transform.scale(self._image,
+                    self.background = pygame.transform.scale(self.background,
                                                          (self.cell_size, self.cell_size))
                 else:
-                    self._image = pygame.transform.scale(self._image, (size[0], size[1]))
+                    self.background = pygame.transform.scale(self.background, (size[0], size[1]))
                 i = 0
                 j = 0
                 surface = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
                 while (i < self.__grid_width_in_pixels__):
                     j = 0
                     while (j < self.__grid_height_in_pixels__):
-                        surface.blit(self._image, (i, j), (0, 0, self._image.get_width(),
-                                                           self._image.get_height()))
-                        j = j + self._image.get_height() + self.cell_margin
-                    i = i + self._image.get_width() + self.cell_margin
-                self._image = surface
+                        surface.blit(self.background, (i, j), (0, 0, self.background.get_width(),
+                                                           self.background.get_height()))
+                        j = j + self.background.get_height() + self.cell_margin
+                    i = i + self.background.get_width() + self.cell_margin
+                self.background = surface
         else:
             self._cell_transparency = None
-            self._image = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+            self.backround = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
 
         # Crop surface
         cropped_surface = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
         cropped_surface.fill((255, 255, 255))
-        cropped_surface.blit(self._image, (0, 0),
+        cropped_surface.blit(self.background, (0, 0),
                              (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
-        self._image = cropped_surface
+        self.background = cropped_surface
         # draw grid around the cells
         if self._cell_margin > 0:
             i = 0
             while i <= self.__grid_width_in_pixels__:
-                pygame.draw.rect(self._image, self._background_color,
+                pygame.draw.rect(self.background, self._background_color,
                                  [i, 0, self._cell_margin, self.__grid_height_in_pixels__])
                 i += self.cell_size + self._cell_margin
             i = 0
             while i <= self.__grid_height_in_pixels__:
-                pygame.draw.rect(self._image, self._background_color,
+                pygame.draw.rect(self.background, self._background_color,
                                  [0, i, self.__grid_width_in_pixels__, self._cell_margin])
                 i += self.cell_size + self._cell_margin
-        self.schedule_repaint(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
+        self.actors.clear(self.grid_surface, self.background)
 
     def act(self):
         """
@@ -317,7 +320,7 @@ class GameGrid(object):
 
         """
         self._actors.add(actor)
-        self.repaint_area(actor.image_rect)
+        actor.dirty = 1
         if location is not None:
             actor.location = location
             actor.actor_id = self.__actor_id__
@@ -349,40 +352,36 @@ class GameGrid(object):
         draws the entire window with grid, actionbar and toolbar
         :return:
         """
-        self.__draw_grid__()
+        self.actors.update()
+        if self.dirty:
+            self._repaint_areas.append(pygame.Rect(0,0,self._resolution[0],self._resolution[1]))
+            for actor in self.actors:
+                actor.dirty = 1
+            self.dirty = 0
+        self._repaint_areas.extend(self.actors.draw(self.grid_surface))
+        self.__draw_grid()
         self.__draw_actionbar__()
         self.__draw_toolbaar__()
         self.__draw_console__()
-        pygame.display.update(self._draw_queue)
-        self._draw_queue= []
+        pygame.display.update(self._repaint_areas)
+        self._repaint_areas = []
 
-    def __draw_grid__(self):
-        """
-        Draws grid with all actors in it.
-        """
-        # Draw the gamegrid-cells
-        if self._image is not None:
-            self.grid_surface.blit(self._image, (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
+    def __draw_grid(self):
+        self.screen_surface.blit(self.grid_surface, (0, 0, self.grid_surface.get_width(), self.grid_surface.get_height()))
         for actor in self._actors:
             actor._next_sprite()
-            actor.draw()
-        pygame.screen.blit(self.grid_surface, (0, 0, self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
 
     def __draw_toolbaar__(self):
         if self.toolbar is not None:
             self.toolbar.draw()
-            self.schedule_repaint(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
     def __draw_console__(self):
         if self.console is not None:
             self.console.draw()
-            self.schedule_repaint(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
 
     def __draw_actionbar__(self):
         if self.actionbar is not None:
             self.actionbar.draw()
-            self.schedule_repaint(pygame.Rect(0, 0, self._resolution[0], self._resolution[1]))
-
 
     @property
     def actors(self):
@@ -543,6 +542,7 @@ class GameGrid(object):
                     self.__listen_all__("mouse_right", cell_location)
                 # Click is in status_bar
                 elif pos[1] >= self.__grid_height_in_pixels__:
+                    self.actionbar.dirty = 1
                     if pos[0] > 5 and pos[0] < 60:
                         if not self._running:
                             self._logging.debug("gamegrid.__listen__(): : Act")
@@ -564,9 +564,12 @@ class GameGrid(object):
                             self._show_bounding_boxes = False
                             self._show_direction_marker = False
                             self._info = False
+                            self.dirty = 1
+                            self.actionbar.dirty = 1
                         elif self._info == False:
                             self._show_bounding_boxes = True
                             self._show_direction_marker = True
+                            self.dirty = 1
                             self._info = True
                     elif pos[1] >= self.__grid_height_in_pixels__ and pos[0] > 285 and pos[0] < 345:
                         if self.speed > 0:
@@ -812,21 +815,6 @@ class GameGrid(object):
         if not no_logic:
             self.clock.tick(60)
 
-    def repaint_area(self, rect: pygame.Rect):
-        """
-        Zeichnet den gewählten Bereich neu
-
-        Parameters
-        ----------
-        rect
-            Ein Rechteck, welches neu gezeichnet werden soll.
-
-        Returns
-        -------
-
-        """
-        self.schedule_repaint(rect)
-
     def remove_actor(self, actor):
         """
         Entfernt einen Akteur aus dem Grid
@@ -938,6 +926,10 @@ class GameGrid(object):
         """
         pygame.mixer.music.load(music_path)
         pygame.mixer.music.play(-1)
+
+    @property
+    def type(self):
+        return self._type
 
 class DatabaseGrid(GameGrid):
     """
@@ -1203,6 +1195,9 @@ class CellGrid(GameGrid):
         cell_image = pygame.transform.scale(cell_image, (self.cell_size, self.cell_size))
         self._image.blit(cell_image, (top_left[0], top_left[1], self.cell_size, self.cell_size))
 
+    @property
+    def type(self):
+        return "cell"
 
 
 class GUIGrid(GameGrid):

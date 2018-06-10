@@ -11,7 +11,7 @@ import cProfile
 import pygame
 
 
-class Actor(pygame.sprite.Sprite):
+class Actor(pygame.sprite.DirtySprite):
     """ Ein Actor ist eine Spielfigur oder ein Objekt in der Welt,
             z.B. ein Auto, eine Wand, ein Untergrund.
 
@@ -50,46 +50,46 @@ class Actor(pygame.sprite.Sprite):
     # Konstruktor
     def __init__(self, grid, location: tuple = (0, 0), color: tuple = (0, 0, 255), title: str = "Actor",
                  img_path: str = None, size: tuple = (40, 40), img_action: str = None):
-        pygame.sprite.Sprite.__init__(self)
-        # define instance variables
+        print("location:"+str(location))
+        self.__grid__ = grid
+        self._logging = logging.getLogger('Actor:')
         self.title = title
         self._actor_id = 0
-        self._logging = logging.getLogger('Actor:')
         # Define instance variables
         self._original_images = []  # All images stores for actor
-        self._image = None
         self._is_static = False
         self._image_index = 0
         self._is_rotatable = False
         self._is_flipped = False
-        self.__grid__ = grid
         self._location = location
         self._direction = 0
         self.color = color
         self.size = size
-        self.animation_speed = self.grid.speed/2
+        self.animation_speed = self.grid.speed
         self._animated = False
         self._is_blocking = False
         self._collision_partners = pygame.sprite.Group()
         # Set Actor image
         self._logging.debug("actor.__init__() : Target-Location:" + str(self.location))
         self._has_image = False
-        # Add image to actor
+        if self.grid.type=="pixel":
+            self._bounding_box_type = "image"
+        else:
+            self._bounding_box_type = "cell"
         if img_path is not None:
             self.add_image(img_path, img_action, size)
         else:
-            self.delete_images()
+            self._image = pygame.Surface((1,1))
+        # define instance variables
+        pygame.sprite.DirtySprite.__init__(self)
+        # Add image to actor
+        self.setup()
         self._logging.debug(
             "actor.__init__() : Actor: " + str(title) + "'s setup wurde ausgeführt" + str(self._is_rotatable))
         # Add actor to grid
         grid.add_actor(self, location)
         # set the bounding-box style (cell for cell-based games, image for pixel-based games
-        if self.grid.cell_size == 1:
-            self._bounding_box_type = "image"
-        else:
-            self._bounding_box_type = "cell"
         self.__bounding_box_size__ = None
-        self.setup()
         self._logging.debug("actor.__init__() : Actor " + str(title) + " wurde initialisiert")
 
     # Properties
@@ -157,9 +157,26 @@ class Actor(pygame.sprite.Sprite):
     @property
     def image(self):
         """
-        Gets the actual image of the actor.
+        Zeichnet den Akteur auf das Spielfeld.
         """
-        return self._image
+        if self.has_image:
+            cell_left, cell_top = self.__get_image_coordinates_in_pixels__()
+            self.__flip_x__()
+            self.__rotate__(self.direction)
+            if self.grid._show_bounding_boxes:
+                pygame.draw.rect(self._image, (255, 0, 0),
+                                 (0, 0, self.rect.width, self.rect.height), 2)
+            if self.grid._show_direction_marker:
+                self._logging.info("actor.draw() - Draw line from"+str(self._image.get_rect().center)+" to "+str(self._image.get_rect().topleft))
+                x = round(
+                    self.rect.width / 2 + math.cos(math.radians(self.direction)) * self.rect.width)
+                y = round(self.rect.height / 2 - math.sin(
+                    math.radians(self.direction)) * self.rect.height)
+                pygame.draw.line(self._image, (255, 0, 0), (self.rect.width / 2,
+                                                           self.rect.height / 2), (x, y), 2)
+            return self._image
+        else :
+            return pygame.Surface((0,0))
 
     @image.setter
     def image(self, value: str):
@@ -202,10 +219,9 @@ class Actor(pygame.sprite.Sprite):
         :type value: tuple with x and y-coordinate
         """
         self._logging.debug("actor.location: Location set")
-        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         self._location = value
-        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         self.__grid__.__update__(no_logic=True)
+        self.dirty = 1
 
     @property
     def has_image(self):
@@ -238,11 +254,15 @@ class Actor(pygame.sprite.Sprite):
 
         :return: Die umgebende Bounding-Box.
         """
-        if self._bounding_box_type == "image":
-            rect = self.__image_rect__()
-            return rect
-        else:
-            return self.__cell_rect__()
+        self._logging.info(self.location)
+        self._logging.info(self.class_name)
+        try:
+            if self.grid.type == "cell":
+                return self.grid.cell_rect(self.location)
+            elif self.grid.type == "pixel":
+                return self.image_rect
+        except AttributeError:
+            return self.image_rect
 
     # Methoden
     def act(self):
@@ -275,7 +295,6 @@ class Actor(pygame.sprite.Sprite):
         :param size: scale/crop : Die Größe des veränderten Bildes as 2-Tupel
         """
         self._logging.info("add_image(): Start add image")
-        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
         if img_action is None and self.grid.cell_size == 1:
             img_action = "do_nothing"
         if img_action is None and self.grid.cell_size > 1:
@@ -295,7 +314,7 @@ class Actor(pygame.sprite.Sprite):
         self._original_images.append(_image)
         self._logging.info("actor.add_image() : Number of Actor images:" + str(self._original_images.__len__()))
         self.image = self._original_images[0]  # overwrite image
-        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
+        self.dirty = 1
         self.has_image = True
 
     def delete_images(self):
@@ -334,17 +353,16 @@ class Actor(pygame.sprite.Sprite):
         """
         Läd das nächste Sprite in einer Animation.
         """
+
         if self._animated:
             if self.grid.frame % self.animation_speed == 0:
                 # every n-th frame (n: animation speed) do:
-                self.grid.repaint_area(pygame.Rect(self.image_rect))
                 if self._image_index < self._original_images.__len__() - 1:
                     self._image_index = self._image_index + 1
                 else:
                     self._image_index = 0
                 self.image = self._original_images[self._image_index]
-                self.draw()
-                self.grid.repaint_area(pygame.Rect(self.image_rect))
+                self.dirty = 1
                 self._logging.info("actor.image_next() : Image Index:" + str(self._image_index) + "/" + str(
                 self._original_images.__len__() - 1))
 
@@ -356,12 +374,11 @@ class Actor(pygame.sprite.Sprite):
         :param direction:
         """
         if self.is_rotatable:
-            self.__grid__.repaint_area(pygame.Rect(self.image_rect))
             # rotate the original image to new direction
             self._logging.debug("actor.__rotate: rotate Image" + str(dir(self._original_images)) + ", Image: " + str(
                 self._image) + "Index:" + str(self._image_index))
             self.image = pygame.transform.rotate(self._original_images[self._image_index], direction)
-            self.__grid__.repaint_area(pygame.Rect(self.image_rect))
+            self.dirty = 1
 
     def is_in_grid(self, target: tuple = None) -> bool:
         """
@@ -476,15 +493,12 @@ class Actor(pygame.sprite.Sprite):
         """
         try:
             if not self._is_flipped:
-                self.__grid__.repaint_area(pygame.Rect(self.image_rect))
                 self._logging.debug(
                     "actor.flip_x() : Flipping " + self.title + " image number " + str(self._image_index))
                 self.image = pygame.transform.flip(self._original_images[self._image_index], False, False)
-                self.__grid__.repaint_area(pygame.Rect(self.image_rect))
             else:
-                self.__grid__.repaint_area(pygame.Rect(self.image_rect))
                 self.image = pygame.transform.flip(self._original_images[self._image_index], True, False)
-                self.__grid__.repaint_area(pygame.Rect(self.image_rect))
+            self.dirty = 1
         except IndexError:
             self._logging.warning("actor.flip_x : Index Error in __flip_x__() in: Image Index is out of bounds")
 
@@ -500,7 +514,7 @@ class Actor(pygame.sprite.Sprite):
         label = myfont.render(text, 1, (0, 0, 0))
         self.image.blit(label, (0, 0))
         self._original_images[0] = self._image
-        self.__grid__.repaint_area(pygame.Rect(self.image_rect))
+        self.dirty = 1
 
     def get_all_actors_at_location(self, class_name, location=None) -> list:
         """
@@ -567,6 +581,7 @@ class Actor(pygame.sprite.Sprite):
                 size = (cell_size, cell_size)
             #self._original_images[index] = pygame.transform.scale(self._original_images[index],
             #                                                      (size[0], size[1]))
+            self.source_rect=pygame.Rect(0,0,size[0],size[1])
             return pygame.transform.scale(image,(size[0], size[1]))
         elif img_action == "center":
             cropped_surface = pygame.Surface((cell_size, cell_size), pygame.SRCALPHA, 32)
@@ -574,32 +589,11 @@ class Actor(pygame.sprite.Sprite):
             height = image.get_height()
             x_pos = (self.grid.cell_size - width) / 2
             y_pos = (self.grid.cell_size - height) / 2
-            cropped_surface.blit(image, (x_pos, y_pos), 0, 0, cell_size, cell_size)
+            cropped_surface.blit(image, (x_pos, y_pos), (0, 0, cell_size, cell_size))
             return cropped_surface
             #self._original_images[self._image_index] = cropped_surface
         elif img_action == "do_nothing":
             return image
-
-
-
-    def __image_rect__(self, location=None):
-        """
-        the image rect when drawn to another location
-        """
-        if location == None:
-            location = self.location
-        try:
-            width = self._image.get_width()
-            height = self._image.get_height()
-            left, top = self.__get_image_coordinates_in_pixels__(location)
-        except AttributeError:
-            left, top, width, height = 0, 0, 0, 0
-        return pygame.Rect(left, top, width, height)
-
-    def __cell_rect__(self, location: tuple = None):
-        if location == None:
-            location = self.location
-        return self.grid.cell_rect(location)
 
     def set_bounding_box_size(self, value):
         """
@@ -945,32 +939,14 @@ class Actor(pygame.sprite.Sprite):
 
 
 
-    def draw(self):
-        """
-        Zeichnet den Akteur auf das Spielfeld.
-        """
-        if self.has_image:
-            cell_left, cell_top = self.__get_image_coordinates_in_pixels__()
-            self.__flip_x__()
-            self.__rotate__(self.direction)
-            if self.grid._show_bounding_boxes:
-                pygame.draw.rect(self._image, (255, 0, 0),
-                                 (0, 0, self.rect.width, self.rect.height), 2)
-            if self.grid._show_direction_marker:
-                # self._logging.debug("actor.draw() - Draw line from"+str(self._image.get_rect().center)+" to "+str(self._image.get_rect().topleft))
-                x = round(
-                    self.rect.width / 2 + math.cos(math.radians(self.direction)) * self.rect.width)
-                y = round(self.rect.height / 2 - math.sin(
-                    math.radians(self.direction)) * self.rect.height)
-                pygame.draw.line(self.image, (255, 0, 0), (self.rect.width / 2,
-                                                           self.rect.height / 2), (x, y), 2)
-            self.grid.grid_surface.blit(self._image, (cell_left, cell_top))
+
 
     def remove(self):
         """
         Entfernt den Akteur vom Grid.
         """
         self.grid.remove_actor(self)
+        self.kill
         del (self)
 
 
