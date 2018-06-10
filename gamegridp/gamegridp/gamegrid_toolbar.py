@@ -36,16 +36,48 @@ class Toolbar(object):
 
     def add_button(self, text, img_path=None, color=(255,255,255), border=(255,255,255)):
         """
-        adds a button to toolbar
-        :param img_path: image button
-        :param text: button text. This is also the text for the data variable in listen(event,data)
-        :return:
-        """
+          Fügt einen Button zur Toolbar hinzu.
+          Parameters
+          ----------
+          text
+              Der Text
+          img_path
+              Pfad zum Bild vor dem Text (optional)
+          color
+              Die Hintergrundfarbe
+          border
+              Die Rahmenfarbe
+          Returns
+              Der erstellte Button
+          """
         button = ToolbarButton(self.width, 25, img_path=img_path, text=text, color=color, border=border)
-        button.parent = self
+        button.setup(self)
         self.elements.append(button)
         self.dirty = 1
         return button
+
+    def add_label(self, text, img_path=None, color=(255,255,255), border=(255,255,255)):
+        """
+        Fügt ein Label zur Toolbar hinzu
+        Parameters
+        ----------
+        text
+            Der Text
+        img_path
+            Pfad zum Bild vor dem Text (optional)
+        color
+            Die Hintergrundfarbe
+        border
+            Die Rahmenfarbe
+
+        Returns
+            Das erstellte Label
+        """
+        label = ToolbarLabel(self.width, 25, img_path=img_path, text=text, color=color, border=border)
+        label.setup(self)
+        self.elements.append(label)
+        self.dirty = 1
+        return label
 
     def __elements_height__(self):
         height = 0
@@ -67,12 +99,23 @@ class Toolbar(object):
 
 
 class ToolbarElement():
-    def __init__(self):
+    def __init__(self, width, height, color):
+        package_directory = os.path.dirname(os.path.abspath(__file__))
+        self.myfont = pygame.font.SysFont("monospace", 15)
         self.height = 25
         self.surface = None
+        self.background_color = color
         self.title = ""
         self.event = "no event"
         self.parent = None
+        self._dirty = 1
+        self.width = width
+        self.height = height
+        self.color = color
+        self.clear()
+
+    def setup(self, parent):
+        self.parent = parent
         self.dirty = 1
 
     def get_surface(self):
@@ -80,31 +123,59 @@ class ToolbarElement():
 
     def listen(self, event, position: tuple):
         return self.event, 0
+    @property
+    def dirty(self):
+        return self._dirty
 
+    @dirty.setter
+    def dirty(self, value):
+        self._dirty = value
+        if self.parent:
+            self.parent._dirty = value
+
+    def clear(self):
+        self.surface = pygame.Surface((self.width, self.height))
+        self.surface.fill(self.color)
+
+    def set_text(self, text, padding_left):
+        label = self.myfont.render(text, 1, (0, 0, 0))
+        self.surface.blit(label, (padding_left, 5))
+        self.dirty = 1
+
+    def set_image(self, img_path):
+        image = pygame.image.load(img_path)
+        image = pygame.transform.scale(image, (22, 22))
+        self.surface.blit(image, (2, 0))
+        self.dirty = 1
+
+    def draw_border(self, color, width):
+        border_rect = pygame.Rect(0, 0, self.width, self.height - 2)
+        pygame.draw.rect(self.surface, color, border_rect, width)
+        self.dirty = 1
 
 class ToolbarButton(ToolbarElement):
 
     def __init__(self, width, height, text, img_path, color=(255,255,255), border=(255,255,255)):
-        super().__init__()
-        package_directory = os.path.dirname(os.path.abspath(__file__))
-        myfont = pygame.font.SysFont("monospace", 15)
-        button = pygame.Surface((width, height))
-        button.fill(color)
-        label = myfont.render(text, 1, (0, 0, 0))
-        border_rect = pygame.Rect(0,0,width, height-2)
-
-        if img_path != None:
-            image = pygame.image.load(img_path)
-            image = pygame.transform.scale(image, (22, 22))
-            button.blit(image, (2, 0))
-            button.blit(label, (25, 5))
-            pygame.draw.rect(button,border, border_rect,2)
+        super().__init__(width, height, color)
+        if img_path is not None:
+            self.set_image(img_path)
+            self.set_text(text, 25)
         else:
-            button.blit(label, (0, 0))
-
-        self.surface = button
+            self.set_text(text,2)
         self.event = "button"
         self.data = text
 
     def listen(self, event, position: tuple):
         return self.event, self.data
+
+class ToolbarLabel(ToolbarElement):
+    def __init__(self, width, height, text, img_path, color=(255,255,255), border=(255,255,255)):
+        super().__init__(width, height, color)
+        self.surface.fill(color)
+        if img_path is not None:
+            self.set_image(img_path)
+            self.set_text(text, 25)
+        else:
+            self.set_text(text,2)
+        self.event = "label"
+        self.data = text
