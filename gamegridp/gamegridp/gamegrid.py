@@ -1225,7 +1225,7 @@ class GUIGrid(GameGrid):
         reply = easygui.buttonbox(message, choices=choices)
         return reply
 
-    def integer_box(self, message: str, title="", min: int = 0, max: int = sys.maxsize, image="None") -> str:
+    def integer_box(self, message: str, title="", min: int = 0, max: int = sys.maxsize, image=None) -> str:
         """
         Zeigt ein Pop-Up zur Eingabe einer Zahl ein.
 
@@ -1272,7 +1272,7 @@ class GUIGrid(GameGrid):
         str
             Der eingegebene Wert als String.
         """
-        reply = easygui.string_box(message, title=title, default=default, strip=strip, image=image)
+        reply = easygui.enterbox(message, title=title, default=default, strip=strip, image=image)
         return reply
 
     def message_box(self, message):
