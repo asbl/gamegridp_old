@@ -254,8 +254,6 @@ class Actor(pygame.sprite.DirtySprite):
 
         :return: Die umgebende Bounding-Box.
         """
-        self._logging.info(self.location)
-        self._logging.info(self.class_name)
         try:
             if self.grid.type == "cell":
                 return self.grid.cell_rect(self.location)

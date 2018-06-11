@@ -18,20 +18,25 @@ class Toolbar(object):
     def set_posx(self, posx):
         self.posx = posx
 
+    def get_element(self, index):
+        return self.elements[index]
+
     def draw(self):
         """
         Creates a toolbar on the left side of the window
         """
         if self.dirty == 1:
             toolbar = pygame.Surface((self.width, self.height))
-            toolbar.fill((255, 255, 255))
-            i = 0
-            height = 0
+            toolbar.fill((245, 245, 245))
+            _actual_height = 0
             for element in self.elements:
-                toolbar.blit(element.get_surface(), (0, height))
-                height = height + element.height
+                if element.dirty == 1:
+                    toolbar.blit(element.get_surface(), (0, _actual_height))
+                    #self.grid.schedule_repaint((0,_actual_height,element.width, element.height))
+                    self.grid.schedule_repaint((0,0,1200, 1000))
+                    element.dirty = 0
+                _actual_height = _actual_height + element.height
             self.grid.screen_surface.blit(toolbar, (self.posx, 0, self.width, self.height))
-            self.grid.schedule_repaint((self.posx, 0, self.width, self.height))
             self.dirty = 0
 
     def add_button(self, text, img_path=None, color=(255,255,255), border=(255,255,255)):
@@ -102,8 +107,6 @@ class ToolbarElement():
     def __init__(self, width, height, color):
         package_directory = os.path.dirname(os.path.abspath(__file__))
         self.myfont = pygame.font.SysFont("monospace", 15)
-        self.height = 25
-        self.surface = None
         self.background_color = color
         self.title = ""
         self.event = "no event"
@@ -123,6 +126,7 @@ class ToolbarElement():
 
     def listen(self, event, position: tuple):
         return self.event, 0
+
     @property
     def dirty(self):
         return self._dirty
@@ -131,11 +135,12 @@ class ToolbarElement():
     def dirty(self, value):
         self._dirty = value
         if self.parent:
-            self.parent._dirty = value
+            self.parent.dirty = value
 
     def clear(self):
         self.surface = pygame.Surface((self.width, self.height))
         self.surface.fill(self.color)
+        self.dirty = 1
 
     def set_text(self, text, padding_left):
         label = self.myfont.render(text, 1, (0, 0, 0))
