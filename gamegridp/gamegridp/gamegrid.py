@@ -159,7 +159,7 @@ class GameGrid(object):
         self.screen_surface = pygame.display.set_mode(WINDOW_SIZE)
         self.grid_surface = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
         self.background = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
-        self.background.fill((255, 255, 255))
+        self.background.fill(self._cell_color)
         pygame.display.set_caption(title)
         self.screen_surface.fill((255, 255, 255))
         # Init clock
@@ -1229,7 +1229,7 @@ class GUIGrid(GameGrid):
         reply = easygui.buttonbox(message, choices=choices)
         return reply
 
-    def integer_box(self, message: str, title="", min: int = 0, max: int = sys.maxsize, image="None") -> str:
+    def integer_box(self, message: str, title="", min: int = 0, max: int = sys.maxsize, image=None) -> str:
         """
         Zeigt ein Pop-Up zur Eingabe einer Zahl ein.
 
@@ -1276,7 +1276,7 @@ class GUIGrid(GameGrid):
         str
             Der eingegebene Wert als String.
         """
-        reply = easygui.string_box(message, title=title, default=default, strip=strip, image=image)
+        reply = easygui.enterbox(message, title=title, default=default, strip=strip, image=image)
         return reply
 
     def message_box(self, message):
