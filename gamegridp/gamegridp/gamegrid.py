@@ -159,7 +159,7 @@ class GameGrid(object):
         self.screen_surface = pygame.display.set_mode(WINDOW_SIZE)
         self.grid_surface = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
         self.background = pygame.Surface((self.__grid_width_in_pixels__, self.__grid_height_in_pixels__))
-        self.background.fill((255, 255, 255))
+        self.background.fill(self._cell_color)
         pygame.display.set_caption(title)
         self.screen_surface.fill((255, 255, 255))
         # Init clock
