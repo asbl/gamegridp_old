@@ -7,17 +7,7 @@
     <bookmark url="file://$PROJECT_DIR$/docs/tutorial/02_basic_framework.rst" line="39" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/GameGridP.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/GameGridP.egg-info/PKG-INFO" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid_toolbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/build/lib/gamegridp/gamegrid_toolbar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/dist/GameGridP-0.4.0.19-py3.6.egg" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/dist/GameGridP-0.4.0.19-py3.6.egg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamegridp/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamegridp/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snippets/Spiel John Tim/Programmierprojekt3.py" beforeDir="false" afterPath="$PROJECT_DIR$/snippets/Spiel John Tim/Programmierprojekt3.py" afterDir="false" />
-    </list>
+    <list default="true" id="299867c9-c929-4300-a18a-45f38ae5f097" name="Default" comment="updated animations&#10;updated flipthefish (without keyboard controls)&#10;updated roboanimation &#10;updatet reset (full screen repaint" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Programmierprojekt3.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Programmierprojekt3.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/snippets/Spiel John Tim/Programmierprojekt3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="35" column="69" selection-start-line="35" selection-start-column="69" selection-end-line="35" selection-end-column="69" />
+            <state relative-caret-position="174">
+              <caret line="128" selection-start-line="128" selection-end-line="128" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -65,11 +55,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="bouncing.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/snippets/moving/bouncing.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="481">
+              <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="gamegrid_toolbar.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="34" column="62" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="62" />
+            <state relative-caret-position="207">
+              <caret line="129" column="7" selection-start-line="129" selection-start-column="7" selection-end-line="129" selection-end-column="7" />
               <folding>
                 <element signature="e#446#518#1" expanded="true" />
                 <element signature="e#1077#1280#1" expanded="true" />
@@ -79,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gamegrid.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gamegrid.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="364" column="31" selection-start-line="364" selection-start-column="31" selection-end-line="364" selection-end-column="31" />
+            <state relative-caret-position="135">
+              <caret line="652" column="62" selection-start-line="652" selection-start-column="62" selection-end-line="652" selection-end-column="62" />
               <folding>
                 <element signature="e#84#98#0" expanded="true" />
               </folding>
@@ -111,12 +110,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cell</find>
-      <find>cell_siz</find>
-      <find>cell_size</find>
-      <find>set_image</find>
-      <find>self.image</find>
-      <find>image(se</find>
       <find>_transform__(se</find>
       <find>animate(</find>
       <find>ne</find>
@@ -137,10 +130,16 @@
       <find>set_</find>
       <find>setu</find>
       <find>draw(</find>
-      <find>print</find>
       <find>location</find>
       <find>__draw_tool</find>
       <find>set_text</find>
+      <find>print</find>
+      <find>test</find>
+      <find>bounce(</find>
+      <find>colli</find>
+      <find>collision_ac</find>
+      <find>collision_pa</find>
+      <find>_current_co</find>
     </findStrings>
     <replaceStrings>
       <replace>screen</replace>
@@ -202,16 +201,16 @@
         <option value="$PROJECT_DIR$/examples/snippets/moving/roboanimation.py" />
         <option value="$PROJECT_DIR$/gamegridp/setup.py" />
         <option value="$PROJECT_DIR$/gamegridp/gamegridp/actor.py" />
-        <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" />
         <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py" />
         <option value="$PROJECT_DIR$/snippets/Spiel John Tim/Programmierprojekt3.py" />
+        <option value="$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="977" />
-    <option name="height" value="1038" />
+    <option name="x" value="-9" />
+    <option name="width" value="978" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -367,7 +366,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Programmierprojekt3">
+  <component name="RunManager" selected="Python.bouncing">
     <configuration name="Create the world" type="PythonConfigurationType" factoryName="Python">
       <module name="gamegridp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -1087,13 +1086,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/bouncing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/snippets/moving/flipthefish.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -1193,20 +1185,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="364" column="31" selection-start-line="364" selection-start-column="31" selection-end-line="364" selection-end-column="31" />
-          <folding>
-            <element signature="e#84#98#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid_toolbar.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="34" column="62" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="62" />
+        <state relative-caret-position="207">
+          <caret line="129" column="7" selection-start-line="129" selection-start-column="7" selection-end-line="129" selection-end-column="7" />
           <folding>
             <element signature="e#446#518#1" expanded="true" />
             <element signature="e#1077#1280#1" expanded="true" />
@@ -1217,10 +1199,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/snippets/Spiel John Tim/Programmierprojekt3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="35" column="69" selection-start-line="35" selection-start-column="69" selection-end-line="35" selection-end-column="69" />
+        <state relative-caret-position="174">
+          <caret line="128" selection-start-line="128" selection-end-line="128" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/snippets/moving/bouncing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gamegridp/gamegridp/gamegrid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="652" column="62" selection-start-line="652" selection-start-column="62" selection-end-line="652" selection-end-column="62" />
+          <folding>
+            <element signature="e#84#98#0" expanded="true" />
           </folding>
         </state>
       </provider>

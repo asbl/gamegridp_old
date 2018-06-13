@@ -649,8 +649,11 @@ class GameGrid(object):
                 "gamegrid.__collision__() - 1collision-actors:" + str(
                 colliding_actors_pairs) + ", current_colliding:" + str(
                 self._current_colliding_actors_pairs))
+            # update current_colliding actors
+            # Remove all actors which aren't colliding anymore
             self._current_colliding_actors_pairs = list(
             set(self._current_colliding_actors_pairs) - (set(self._current_colliding_actors_pairs) - set(colliding_actors_pairs)))
+            # Add new Actors to current_colliding
             self._current_colliding_actors_pairs = list(set(self._current_colliding_actors_pairs).union(set(colliding_actors_pairs)))
             self._logging.debug("gamegrid.__collision__() - 2collision-actors:" + str(
             colliding_actors_pairs) + ", current_colliding:" + str(self._current_colliding_actors_pairs))
@@ -1127,6 +1130,7 @@ class CellGrid(GameGrid):
             self._non_static_actors.remove(actor)
         if actor in  self._static_collision_actors[(actor.get_x(), actor.get_y())]:
             self._static_collision_actors[(actor.get_x(), actor.get_y())].remove(actor)
+        self._logging.info("Removed"+str(actor))
         super().remove_actor(actor)
 
     def remove_actors_from_cell(self, location):
